@@ -7,20 +7,18 @@ html, body {
 	min-height: 100%;
 	background-image: url("../img/palm.jpg");
 	background-size: 100%;
+	background-repeat: no-repeat;
+	top: 0px;
 }
 
 .h1 {
 	font: black;
 }
 
-#title {
-	height: 100%;
-	line-height: 100%;
-	text-align: center;
+.navbar {
+	height: 50px;
 }
 
-#innertitle {
-	display: inline-block;
-	vertical-align: middle;
-	line-height: normal;
+#login {
+	margin-top: -5px;
 }
