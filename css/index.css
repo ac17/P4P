@@ -6,7 +6,7 @@ html, body {
 #banner {
 	min-height: 100%;
 	background-image: url("../img/palm.jpg");
-	background-size: 100%;
+	background-size: cover;
 	background-repeat: no-repeat;
 	top: 0px;
 }
