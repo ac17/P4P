@@ -1,0 +1,31 @@
+/* Fonts */
+@font-face {
+    font-family: RalewayThin;
+    src: url("../fonts/RalewayThin.ttf");
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: RalewayThin;
+}
+
+/* Sticky footer styles */
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+  background-color: black;
+  color: white;
+}
+#footerInner {
+  text-align: center;
+}
+
+/* Buttons */
+.btn {
+  background-color: rgba(0,0,0,0.7);
+  border: solid #1fbad6 5px;
+}

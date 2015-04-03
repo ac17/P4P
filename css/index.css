@@ -1,18 +1,22 @@
-html, body {
-	height: 100%;
-	margin: 0;
-}
-
 #banner {
 	min-height: 100%;
 	background-image: url("../img/palm.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	top: 0px;
+	position: relative;
+
+	display: table;
+    height: 100%;
+    width: 100%;
+	z-index:10;
+
+	margin-bottom: 0px;
 }
 
-.h1 {
-	font: black;
+
+#banner h1 {
+	color: white;
 }
 
 .navbar {
@@ -20,5 +24,36 @@ html, body {
 }
 
 #login {
-	margin-top: -5px;
+	margin-top: 7px;
+}
+
+#bannerInner {
+	display: table-cell;
+    vertical-align: middle;
+	z-index:10;
+	width: 100%;
+	float: center;
+	position: relative;
+	text-align: center;
+}
+
+#bannerInnerInner {
+	display: table-cell;
+    vertical-align: middle;
+	z-index:10;
+	text-align: center;
+	float: center;
+	margin: 0 auto;
+}
+
+.col-md-4 {
+	text-align: center;
+}
+
+#howItWorks {
+	margin-bottom: 0px;
+}
+
+#howItWorks i {
+	line-height: 100px;
 }
