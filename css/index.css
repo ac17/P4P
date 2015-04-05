@@ -21,7 +21,20 @@
 
 .navbar {
 	height: 50px;
+	font-weight: bold;
 }
+
+.navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+}
+
 
 #login {
 	margin-top: 7px;
@@ -56,4 +69,52 @@
 
 #howItWorks i {
 	line-height: 100px;
+}
+
+#SignUpBtn {
+	width: 200px;
+}
+
+/* Contact Form */
+#contactUs {
+	background: #1fbad6;
+	margin-bottom: 0px;
+	color: white;
+}
+
+.col-md-6 {
+	position: relative;
+	height: 100%;
+}
+
+#contactForm {
+	color: white;
+}
+
+input[type="text"] {
+	background: #208bb9;
+	width: 100%;
+	border: none;
+	box-shadow: none;
+	font-size: 20px;
+}
+
+input[type="email"] {
+	background: #208bb9;
+	width: 100%;
+	border: none;
+	box-shadow: none;
+	font-size: 20px;
+}
+
+textarea {
+	background: #208bb9;
+	width: 100%;
+	border: none;
+	box-shadow: none;
+	font-size: 20px;
+}
+
+#contactSubmit {
+	background: #208bb9;
 }
