@@ -11,9 +11,9 @@
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
 		DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB768B1AD3015B004A2CD9 /* ViewController.swift */; };
 		DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB768D1AD3015B004A2CD9 /* Main.storyboard */; };
-		DCAB76911AD3015B004A2CD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76901AD3015B004A2CD9 /* Images.xcassets */; };
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
+		DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,11 +33,11 @@
 		DCAB76891AD3015B004A2CD9 /* P4P.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = P4P.xcdatamodel; sourceTree = "<group>"; };
 		DCAB768B1AD3015B004A2CD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCAB768E1AD3015B004A2CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DCAB76901AD3015B004A2CD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DCAB76931AD3015B004A2CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DCAB76991AD3015B004A2CD9 /* P4PTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P4PTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
+		DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
-				DCAB76901AD3015B004A2CD9 /* Images.xcassets */,
+				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
@@ -195,9 +195,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
-				DCAB76911AD3015B004A2CD9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +409,7 @@
 				DCAB76A51AD3015B004A2CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCAB76A61AD3015B004A2CD9 /* Build configuration list for PBXNativeTarget "P4PTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				DCAB76A81AD3015B004A2CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
