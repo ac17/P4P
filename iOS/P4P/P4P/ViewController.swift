@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var tabBarController;
+    //var tabBarController;
     
     var userValidated = false  // Whether the user's username and password were authenticated.
     
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         userValidated = true   // Replace this with login logic
-        self.tabBarController.selectedIndex = 1
+        //self.tabBarController.selectedIndex = 1
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +31,11 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func cancelReturnToHome(segue:UIStoryboardSegue) {
+        
+    }
 
+    
+    
 }
 
