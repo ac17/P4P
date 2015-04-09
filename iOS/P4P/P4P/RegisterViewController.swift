@@ -8,19 +8,29 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var netIDTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var userPhotoView: UIImageView!
     
+    var imagePicker: UIImagePickerController!
+    
+    let tapRec = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.userPhotoView.userInteractionEnabled = true
+        
+        // Set up the gesture recognizer
+        tapRec.addTarget(self, action: "takeSelfie")
+        self.userPhotoView.addGestureRecognizer(tapRec)
         
         // part of dismissing keyboard
         self.netIDTextField.delegate = self
@@ -44,6 +54,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         view.endEditing(true)
         return false
+    }
+    
+    // called when the image is tapped. opens the camera so the user can take a selfie
+    func takeSelfie() {
+        self.imagePicker = UIImagePickerController()
+        self.imagePicker.delegate = self
+        self.imagePicker.sourceType = .Camera
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        self.userPhotoView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
 
     @IBAction func register(sender: AnyObject) {
