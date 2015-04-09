@@ -1,4 +1,5 @@
 <?
+require_once('database_connect.php');
 session_start();
 
 function loginForm() {
@@ -13,9 +14,26 @@ function loginForm() {
 	</div>';
 }
 
+function authenticate($username) {
+	$results = mysql_query('SELECT * FROM Users WHERE netID="' . $username .'";');
+	if (mysql_num_rows($results) == 0)
+		return False;
+	else {
+		$row = mysql_fetch_assoc($results);
+		return $row;
+	}
+}
+
 if (isset($_POST['enter'])) {
 	if ($_POST['netID'] != "") {
-		$_SESSION['netID'] = stripslashes(htmlspecialchars($_POST['name']));
+		$username = stripslashes(htmlspecialchars($_POST['netID']));
+		$userInfo = authenticate($username);
+		if ($userInfo) {
+			echo 'Hello, ' . $userInfo['firstName'] . '!';
+		}
+		else {
+			echo "Uh oh, you're not in our database!";
+		}
 	}
 	else {
 		echo '<span class="error">Please type in a netID.</span>';
