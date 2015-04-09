@@ -6,7 +6,7 @@
 </head>
  
  <?
-require_once('database_connect.php');
+require_once('../database_connect.php');
 session_start();
 
 function loginForm() {
