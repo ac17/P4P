@@ -36,7 +36,7 @@ if (isset($_POST['enter'])) {
 		$username = stripslashes(htmlspecialchars($_POST['netID']));
 		$userInfo = authenticate($username);
 		if ($userInfo) {
-			echo 'Hello, ' . $userInfo['firstName'] . '!';
+			$_SESSION['user'] = $userInfo;
 		}
 		else {
 			echo "Uh oh, you're not in our database!";
@@ -49,7 +49,7 @@ if (isset($_POST['enter'])) {
 ?>
 
 <?php
-if(!isset($_SESSION['name'])){
+if(!isset($_SESSION['user'])){
     loginForm();
 }
 else{
