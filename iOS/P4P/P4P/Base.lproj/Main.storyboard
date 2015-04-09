@@ -96,6 +96,7 @@
                         <viewControllerLayoutGuide type="bottom" id="f7E-6P-hsY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="209-6E-aGK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ReV-cC-WK6">
@@ -255,10 +256,10 @@
                                 <exclude reference="hPb-o8-lFs"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="BtP-LI-y6c"/>
                                 <exclude reference="QvA-VR-hTy"/>
                                 <exclude reference="cfG-jM-Bbb"/>
                                 <exclude reference="fjE-L6-F2S"/>
-                                <exclude reference="BtP-LI-y6c"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -266,10 +267,10 @@
                                 <include reference="hPb-o8-lFs"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="BtP-LI-y6c"/>
                                 <include reference="QvA-VR-hTy"/>
                                 <include reference="cfG-jM-Bbb"/>
                                 <include reference="fjE-L6-F2S"/>
-                                <include reference="BtP-LI-y6c"/>
                             </mask>
                         </variation>
                     </view>
@@ -343,6 +344,7 @@
                         <viewControllerLayoutGuide type="bottom" id="1vk-by-b2x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MPm-ja-T1s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PiZ-AB-Avm">
