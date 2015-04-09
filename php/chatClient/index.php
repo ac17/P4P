@@ -56,7 +56,7 @@ else{
 ?>
 <div id="wrapper">
     <div id="menu">
-        <p class="welcome">Welcome, <b><?php echo $_SESSION['name']; ?></b></p>
+        <p class="welcome">Welcome, <b><?php echo $_SESSION['user']['firstName']; ?></b></p>
         <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
         <div style="clear:both"></div>
     </div>    
@@ -130,7 +130,7 @@ if(isset($_GET['logout'])){
      
     //Simple exit message
     $fp = fopen("log.html", 'a');
-    fwrite($fp, "<div class='msgln'><i>User ". $_SESSION['name'] ." has left the chat session.</i><br></div>");
+    fwrite($fp, "<div class='msgln'><i>User ". $_SESSION['user']['firstName'] ." has left the chat session.</i><br></div>");
     fclose($fp);
      
     session_destroy();
