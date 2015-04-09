@@ -437,6 +437,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="177" y="684" width="57" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="register:" destination="0jg-q7-aoB" eventType="touchUpInside" id="qFG-gv-My6"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPZ-Xr-wYE">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -492,6 +495,7 @@
                         <outlet property="lastNameTextField" destination="G7H-eq-hbH" id="Phf-kc-ZsA"/>
                         <outlet property="netIDTextField" destination="xer-Ju-mdh" id="o4F-cf-xIJ"/>
                         <outlet property="passwordTextField" destination="3HL-CD-JLu" id="juP-7d-cTH"/>
+                        <outlet property="registerButton" destination="arn-qm-Azu" id="PT2-jn-tRf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BcI-iI-4Yk" userLabel="First Responder" sceneMemberID="firstResponder"/>

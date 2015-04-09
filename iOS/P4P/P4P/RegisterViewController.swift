@@ -14,6 +14,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -45,6 +46,32 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
+    @IBAction func register(sender: AnyObject) {
+        var netid = self.netIDTextField.text
+        var firstName = self.firstNameTextField.text
+        var lastName = self.lastNameTextField.text
+        var password = self.passwordTextField.text
+        
+        var validated = false
+        
+        let url = NSURL(string: "http://www.stackoverflow.com")
+        
+
+        var registerViewController = self;
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            validated = true
+            println(validated)
+            if validated {
+                dispatch_async(dispatch_get_main_queue()) {
+                    registerViewController.performSegueWithIdentifier("loginToDash", sender: sender)
+                }
+                
+            }
+        }
+        task.resume()
+    }
+    
     /*
     // MARK: - Navigation
 
