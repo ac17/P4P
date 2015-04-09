@@ -24,6 +24,7 @@
 		A05C3E4B1AD48BA0007185A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */; };
 		A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */; };
 		A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */; };
+		A0A525B11AD6417100EED5EE /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A525B01AD6417100EED5EE /* SwiftyJSON.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
 		DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB768B1AD3015B004A2CD9 /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		A0A525B01AD6417100EED5EE /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		DCAB76841AD3015B004A2CD9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A0A525B01AD6417100EED5EE /* SwiftyJSON.swift */,
 				DCAB76851AD3015B004A2CD9 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -295,6 +298,7 @@
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
+				A0A525B11AD6417100EED5EE /* SwiftyJSON.swift in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
