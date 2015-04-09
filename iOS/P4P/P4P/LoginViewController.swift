@@ -12,6 +12,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         view.endEditing(true)
         return false
+    }
+    
+    @IBAction func login(sender: AnyObject) {
+        let url = NSURL(string: "http://www.stackoverflow.com")
+        let username = self.usernameTextField.text
+        let password = self.passwordTextField.text
+        
+        var validated = false
+        var loginViewController = self;
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            validated = true
+            println(validated)
+            if validated {
+                dispatch_async(dispatch_get_main_queue()) {
+                    loginViewController.performSegueWithIdentifier("loginToDash", sender: sender)
+                }
+
+            }
+        }
+        task.resume()
+        
+
     }
 
     /*

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -110,7 +110,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="10S-Pr-Ar5">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="147" y="446" width="200" height="30"/>
                                 </variation>
@@ -141,6 +141,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="177" y="577" width="38" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="login:" destination="Wph-OH-i9h" eventType="touchUpInside" id="fZf-9I-4dj"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EYa-Bn-U8h">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -179,8 +182,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loginButton" destination="vfX-w0-KCb" id="NOT-Ni-GeG"/>
                         <outlet property="passwordTextField" destination="10S-Pr-Ar5" id="YNI-dC-1Fh"/>
                         <outlet property="usernameTextField" destination="ReV-cC-WK6" id="f67-JY-1dG"/>
+                        <segue destination="aJd-5x-5cz" kind="show" identifier="loginToDash" id="QIk-LZ-Ci4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXh-WI-oks" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,6 +247,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-o8-lFs" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="400" height="731"/>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -512,4 +520,7 @@
         <image name="chaticon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QIk-LZ-Ci4"/>
+    </inferredMetricsTieBreakers>
 </document>
