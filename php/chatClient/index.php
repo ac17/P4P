@@ -49,7 +49,7 @@ if (isset($_POST['enter'])) {
 ?>
 
 <?php
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['user']['firstName'])){
     loginForm();
 }
 else{
