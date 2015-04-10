@@ -45,13 +45,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
 
     // dismisses iOS keyboard after you open a textfield and touch anywhere else
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
     
     // called when you hit enter in a text field. dismisses keyboard
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
         return false
     }
