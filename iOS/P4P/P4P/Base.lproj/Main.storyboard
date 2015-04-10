@@ -250,34 +250,6 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="oso-Mx-2CB" firstAttribute="top" secondItem="hPb-o8-lFs" secondAttribute="bottom" id="BtP-LI-y6c"/>
-                            <constraint firstAttribute="trailing" secondItem="hPb-o8-lFs" secondAttribute="trailing" id="QvA-VR-hTy"/>
-                            <constraint firstItem="hPb-o8-lFs" firstAttribute="leading" secondItem="Mfh-my-Cn3" secondAttribute="leading" id="cfG-jM-Bbb"/>
-                            <constraint firstItem="hPb-o8-lFs" firstAttribute="top" secondItem="fKM-KB-joQ" secondAttribute="bottom" id="fjE-L6-F2S"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="hPb-o8-lFs"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="BtP-LI-y6c"/>
-                                <exclude reference="QvA-VR-hTy"/>
-                                <exclude reference="cfG-jM-Bbb"/>
-                                <exclude reference="fjE-L6-F2S"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="hPb-o8-lFs"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="BtP-LI-y6c"/>
-                                <include reference="QvA-VR-hTy"/>
-                                <include reference="cfG-jM-Bbb"/>
-                                <include reference="fjE-L6-F2S"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="mapicon" id="OZh-oJ-7gp"/>
                 </viewController>
