@@ -15,7 +15,7 @@ if(isset($_SESSION['user'])){
     $saveresult = saveChat($from, $to, $date, $chat);
 
     $insertq = "INSERT INTO chat_history (User_From, User_To, Time, Conversation) VALUES ('".$from."', '".$to."', '".$date."', '".$text."');";
-	$result = mysql_query($insertQ);
+	$result = mysql_query($insertq);
 	if (!$results) {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
 	}

@@ -91,7 +91,7 @@
 	color: white;
 }
 
-input[type="text"] {
+#contactForm input[type="text"] {
 	background: #208bb9;
 	width: 100%;
 	border: none;
@@ -99,7 +99,7 @@ input[type="text"] {
 	font-size: 20px;
 }
 
-input[type="email"] {
+#contactForm input[type="email"] {
 	background: #208bb9;
 	width: 100%;
 	border: none;
@@ -107,7 +107,7 @@ input[type="email"] {
 	font-size: 20px;
 }
 
-textarea {
+#contactForm textarea {
 	background: #208bb9;
 	width: 100%;
 	border: none;

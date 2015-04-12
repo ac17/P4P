@@ -1,3 +1,6 @@
+<?php
+require_once('php/signup.php');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,6 +29,17 @@
     </head>
 
 <body>
+<?php
+    if (isset($_POST['hiddenSignup']) && $_POST['hiddenSignup'] == 'true') {
+        echo <<< SIGNUPCONFIRMATION
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#signupModal').modal('show');
+            });
+        </script>
+SIGNUPCONFIRMATION;
+    }
+?>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -81,13 +95,54 @@
         </div>
     </div>
 
+    <!-- Sign Up Modal-->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Sign Up</h2>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    $suForm = <<< SIGNUP
+                    <form action="{$_SERVER['PHP_SELF']}" method="post" id="signupForm">
+                        <input type="text" class="form-control" placeholder="First name" name="fName" id="fName" required><br>
+                        <input type="text" class="form-control" placeholder="Last name" name="lName" id="lName" required><br>
+                        <input type="text" class="form-control" placeholder="Princeton netID" name="netid" id="netid" required><br>
+                        <input type="password" class="form-control" placeholder="Password" name = "pw" id="pw" required><br>
+                        <input type="hidden" name="hiddenSignup" id="hiddenSignup" value="true">
+                        <button class="btn btn-default" id="signupSubmit" type="submit" form="signupForm" value="Submit">Submit</button>
+                    </form>
+SIGNUP;
+                    $dupUser = "Sorry, you have already signed up!";
+                    $welcomeUser = "Thank you for signing up! Check your @princeton.edu email address for a verification email - you must verify your account before using Passes for Passes.";
+                    /* sign up new user */
+                    if (isset($_POST['hiddenSignup']) && $_POST['hiddenSignup'] == 'true') {
+                    $err = 0;
+                        if (signup($_POST['netid'], $_POST['fName'], $_POST['lName'], $_POST['pw'], $err)) {
+                            echo $welcomeUser;
+                        }
+                        elseif ($err == -1)
+                            echo $dupUser;
+                    }
+                    else
+                        echo $suForm;
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
         <!-- Banner -->
         <div class="jumbotron" id="banner">
             <div class="container" id="bannerInner">
                 <div class="container" id="bannerInnerInner">
                     <center>
                         <h1><b>Share the Moment</b></h1>
-                        <button type="button" class="btn btn-default" id="SignUpBtn">Sign Up</button>
+                        <button type="button" class="btn btn-default" id="signup" data-toggle="modal" data-target="#signupModal">Sign Up</button>
                     </center>
                 </div>
             </div>

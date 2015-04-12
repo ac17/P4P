@@ -1,5 +1,5 @@
 <?php
-require_once('../database_connect.php');
+require_once('database_connect.php');
 
 /* generate a random alphanumeric string */
 function randString($length)
@@ -14,7 +14,7 @@ function randString($length)
 }
 
 /* Enter account info in table and send verification email. */
-function signup($netId, $fName, $lName, $pw) {
+function signup($netId, $fName, $lName, $pw, &$err) {
 	$netId = stripslashes(htmlspecialchars($netId));
 	$fName = stripslashes(htmlspecialchars($fName));
 	$lName = stripslashes(htmlspecialchars($lName));
@@ -26,13 +26,13 @@ function signup($netId, $fName, $lName, $pw) {
 	if ($dupResults) {
 		$numDup = mysql_num_rows($dupResults);
 		if ($numDup > 0) {
-			echo "You have already signed up!";
-			return;
+			$err = -1;
+			return FALSE;
 		}
 	}
 	else {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
-		return;
+		return FALSE;
 	}
 	
 	/* generate random verification code and insert non-verified user info into table */
@@ -41,7 +41,7 @@ function signup($netId, $fName, $lName, $pw) {
 	$result = mysql_query($query);
 	if (!$result) {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
-		return;
+		return FALSE;
 	}
 
 	/* get ID */
@@ -51,7 +51,8 @@ function signup($netId, $fName, $lName, $pw) {
 	/* send verification email */
 	$to = $netId . "@princeton.edu";
 	$subject = "Welcome to Passes for Passes!";
-	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers = "From: ec2-54-149-32-72.us-west-2.compute.amazonaws.com";
+	$headers .= "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 	$message = "
 	<html>
@@ -64,6 +65,7 @@ function signup($netId, $fName, $lName, $pw) {
 		<p>Best,<br>The Passes for Passes Team</p>
 	</body>
 	</html>";
-	mail($to, $subject, $message, $headers);
+	mail($to, $subject, "Testing!");
+	return TRUE;
 }
 ?>
