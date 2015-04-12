@@ -19,4 +19,5 @@ if(isset($_SESSION['user'])){
 	if (!$results) {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
 	}
+}
 ?>
