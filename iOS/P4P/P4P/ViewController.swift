@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, LoginViewControllerDelegate {
     //var tabBarController;
     
     var userValidated = false  // Whether the user's username and password were authenticated.
@@ -33,6 +33,22 @@ class ViewController: UIViewController {
 
     @IBAction func cancelReturnToHome(segue:UIStoryboardSegue) {
         
+    }
+    
+    @IBAction func presentLoginScreen(sender: AnyObject) {
+        performSegueWithIdentifier("presentLogin", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "presentLogin" {
+            let viewControllers: NSArray = segue.destinationViewController.viewControllers
+            let loginViewController1: LoginViewController = viewControllers[0] as! LoginViewController
+            loginViewController1.delegate = self
+        }
+    }
+    
+    func completeLogin() {
+        performSegueWithIdentifier("openDash", sender: self)
     }
 
     

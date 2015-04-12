@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate : NSObjectProtocol {
+    func completeLogin()  // Segues to screen
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    var delegate: LoginViewControllerDelegate! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +57,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             println(validated)
             if validated {
                 dispatch_async(dispatch_get_main_queue()) {
-                    loginViewController.performSegueWithIdentifier("loginToDash", sender: sender)
+                    self.parentViewController!.dismissViewControllerAnimated(true, completion: {
+                        self.delegate.completeLogin()
+                    });
                 }
 
             }

@@ -28,7 +28,7 @@
                                     <rect key="frame" x="181" y="364" width="38" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="HTy-oo-gc5" kind="presentation" id="fHa-g6-yf4"/>
+                                    <action selector="presentLoginScreen:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sWC-uA-cnd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9Y-gT-h8T">
@@ -81,6 +81,7 @@
                     </view>
                     <connections>
                         <segue destination="aJd-5x-5cz" kind="show" identifier="openDash" id="gnR-HL-sUD"/>
+                        <segue destination="HTy-oo-gc5" kind="presentation" identifier="presentLogin" id="L6G-g0-zrG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -185,7 +186,7 @@
                         <outlet property="loginButton" destination="vfX-w0-KCb" id="NOT-Ni-GeG"/>
                         <outlet property="passwordTextField" destination="10S-Pr-Ar5" id="YNI-dC-1Fh"/>
                         <outlet property="usernameTextField" destination="ReV-cC-WK6" id="f67-JY-1dG"/>
-                        <segue destination="aJd-5x-5cz" kind="show" identifier="loginToDash" id="QIk-LZ-Ci4"/>
+                        <segue destination="aJd-5x-5cz" kind="showDetail" identifier="loginToDash" id="QIk-LZ-Ci4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXh-WI-oks" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -478,6 +479,6 @@
         <image name="mapicon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QIk-LZ-Ci4"/>
+        <segue reference="gnR-HL-sUD"/>
     </inferredMetricsTieBreakers>
 </document>
