@@ -1,4 +1,3 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 //Get login information 
 require("database_login_info.php");
@@ -12,4 +11,3 @@ mysql_query("SET NAMES 'utf8'");
 mysql_query("SET CHARACTER SET utf8");
 mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 ?>
-</html>

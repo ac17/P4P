@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="database_login_info.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130718938193559116" remote="130719190200000000" />
-<file name="database_connect.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130679234583431171" remote="130719189000000000" />
-<file name="searchUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130718936922608778" remote="130719189000000000" />
+<file name="database_login_info.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130727644200000000" />
+<file name="database_connect.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130727644200000000" />
+<file name="searchUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130725080955822703" remote="130727626200000000" />
+<file name="updateLocation.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720499400000000" remote="130720499400000000" />
+<file name="search.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130725672600000000" />
+<file name="addExchange.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130725151859898184" remote="130725403800000000" />
+<file name="userActiveExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130725458578253594" remote="130725712200000000" />
+<file name="searchExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130727393813650637" remote="130727645400000000" />
+<file name="removeExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130726768210000000" remote="130727020200000000" />
 </dwsync>
