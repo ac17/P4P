@@ -9,10 +9,9 @@ if(isset($_SESSION['user'])){
     fwrite($fp, "<div class='msgln'>(".date("g:i A").") <b>".$_SESSION['user']['firstName']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>");
     fclose($fp);
 
-    $date = date("g:i A"); // using date temporarily
-    
+    $date = date("Y-m-d H:i:s");    
     $from = $_SESSION['user']['netId'];
-    $to = $_SESSION['user']['netId']; // dummy value
+    $to = $_SESSION['user']['netId']; /
 
     $insertq = "INSERT INTO chat_history (User_From, User_To, Time, Conversation) VALUES ('".$from."', '".$to."', '".$date."', '".$text."');";
 	$result = mysql_query($insertq);
