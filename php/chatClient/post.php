@@ -11,7 +11,7 @@ if(isset($_SESSION['user'])){
 
     $date = date("Y-m-d H:i:s");    
     $from = $_SESSION['user']['netId'];
-    $to = $_SESSION['user']['netId']; /
+    $to = $_SESSION['user']['netId']; 
 
     $insertq = "INSERT INTO chat_history (User_From, User_To, Time, Conversation) VALUES ('".$from."', '".$to."', '".$date."', '".$text."');";
 	$result = mysql_query($insertq);
