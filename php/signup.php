@@ -1,5 +1,4 @@
 <?php
-require_once('database_connect.php');
 
 /* generate a random alphanumeric string */
 function randString($length)

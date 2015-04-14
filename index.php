@@ -1,5 +1,7 @@
 <?php
-require_once('php/signup.php');
+include_once('php/database_connect.php');
+include_once('php/signup.php');
+include_once('login.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +41,16 @@ require_once('php/signup.php');
         </script>
 SIGNUPCONFIRMATION;
     }
+
+    if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
+        echo <<< LOGINCONFIRMATION
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#loginModal').modal('show');
+            });
+        </script>
+LOGINCONFIRMATION;
+    }
 ?>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -76,16 +88,25 @@ SIGNUPCONFIRMATION;
                     <h2>Log In</h2>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <?php
+                    if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
+                        $err = array();
+                        login($_POST["netID"], $_POST["loginPW"], $err);
+                        echo '<div class="alert alert-danger" role="alert">'. $err['login_failure'] .'</div>';
+                    }
+                    ?>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="loginForm">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@</span>
-                            <input type="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="netID" id="netID" name="netID" aria-describedby="basic-addon1">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
-                        </div>
+                            <input type="password" class="form-control" placeholder="Password" id="loginPW" name="loginPW" aria-describedby="basic-addon1">
+                        </div><br>
+                        <input type="hidden" name="hiddenLogin" id="hiddenLogin" value="true">
+                        <button class="btn btn-default" id="loginSubmit" type="submit" form="loginForm" value="Submit">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">

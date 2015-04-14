@@ -1,42 +1,25 @@
-<?
-require_once('database_connect.php');
-session_start();
-
-function loginForm() {
-	echo '
-	<div id="loginform">
-		<form action="index.php" method="post">
-			<p>Please enter your netid to continue:</p>
-			<label for="netID">NetID:</label>
-			<input type="text" name="netID" id="netID">
-			<input type="submit" name="enter" id="enter" value="Enter">
-		</form>
-	</div>';
-}
-
-function authenticate($username) {
-	$results = mysql_query('SELECT * FROM Users WHERE netID="' . $username .'";');
-	if (mysql_num_rows($results) == 0)
-		return False;
-	else {
-		$row = mysql_fetch_assoc($results);
-		return $row;
+<?php
+/* Login user with netId and pw, store errors in err. */
+function login($netId, $pw, &$err) {
+	$netId = stripslashes(htmlspecialchars($netId));
+	$pw = stripslashes(htmlspecialchars($pw));
+	$loginQ = "SELECT * FROM Users WHERE netId='{$netId}' AND password=MD5('{$pw}') AND verified=1";
+	$loginR = mysql_query($loginQ);
+	if (!$loginR) {
+		$err['login_failure'] = 'Database connection error: ' . mysql_error();
+		return;
 	}
-}
-
-if (isset($_POST['enter'])) {
-	if ($_POST['netID'] != "") {
-		$username = stripslashes(htmlspecialchars($_POST['netID']));
-		$userInfo = authenticate($username);
-		if ($userInfo) {
-			echo 'Hello, ' . $userInfo['firstName'] . '!';
-		}
-		else {
-			echo "Uh oh, you're not in our database!";
-		}
+	elseif (mysql_num_rows($loginR) == 0) {
+		$err['login_failure'] = 'Sorry, an account does not exist with this username/password combination.';
+		return;
 	}
-	else {
-		echo '<span class="error">Please type in a netID.</span>';
+	$setSessionIDQuery = "UPDATE Users SET session_id='" . session_id() . "' WHERE netId='{$netId}';";
+	$setSessionIDResult = mysql_query($setSessionIDQuery);
+	if (!$setSessionIDResult) {
+		$err['login_failure'] = 'Database connection error: ' . mysql_error();
+		return;
 	}
+	header('Location: dashboard.php');
+	exit;
 }
 ?>
