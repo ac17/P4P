@@ -1,76 +1,88 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="../../favicon.ico">
-
-<title>Starter Template for Bootstrap</title>
-
-<!-- Bootstrap core CSS -->
-<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="starter-template.css" rel="stylesheet">
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <style type="text/css">
+      #map-canvas { height:300px; margin: 0; padding: 0;}
+    </style>
     
-<title>Untitled Document</title>
-
-<link rel="stylesheet" type="text/css" href="CSS/style.css">
-
-</head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+	var spinner;
+    $(function() {
+        $( "#passDate" ).datepicker({
+          onSelect: function( dateText ) {
+			getMatchingExchanges();
+          }
+         });
+        
+        $( "#eatingClub" ).selectmenu({
+          change: function( event, data ) {
+          }
+         });
+		
+		$( "#radio" ).buttonset();
+		
+        spinner = $( "#spinner" ).spinner({ min: 0 });       
+    }); 
+    </script>
+    
+    <style>
+		fieldset {
+		  border: 0;
+		}
+		label {
+		  display: block;
+		}
+		select {
+		  width: 200px;
+		}
+		.overflow {
+		  height: 200px;
+		}
+    </style>  
+    </head>
 <body>
-<?php 
-  //require "./PHP/harvestNote.php";
-  //massHarvest("./JeffNoteURLs.txt");
-  
-?>
+<div id="map-canvas"></div>
+<br/>
+<table style="border:thick; border:solid">
+<tr>
+<td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+    <form action="#">
+      <fieldset>
+        <label for="eatingClub">Eating Club: </label>
+        <select name="eatingClub" id="eatingClub">
+          <option>Ivy Club</option>
+          <option>Tiger Inn</option>
+          <option selected="selected">Colonial</option>
+          <option>Cottage</option>
+          <option>Cap & Gown</option>
+          <option>Tiger Inn</option>
+        </select>
+        </fieldset>
+    </form>
+</td>
+<td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+	<label for="spinner">Number of Passes:</label><br />
+	<input id="spinner" name="value">
+</td>
+<td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+    Pass Date: <br /><input type="text" id="passDate" onChange=""><br /><br />
+</td>
+</tr>
+</table>
 
-<div class="container">
-    <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Find User</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a><form name="searchBox" action="" method="post">
-            Search: <input type="text" name="searchQuery" onkeyup="search()" on/><br />
-            </form></a></li>
-            </ul>
-       </div>
-     </nav>
-     
-    <div id="result"></div>
-</div>
+<div id="result"></div>
+<div id="debug"></div>
 
-</body>
-
-<script type="text/javascript">
-
-function search()
-{
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("GET", "./php/searchUsers.php?query=" + document.searchBox.searchQuery.value, false);
-	xmlhttp.send(null);
-	document.getElementById("result").innerHTML = xmlhttp.responseText;
-}
-
-function getNote(id)
-{
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("GET", "./php/displayNote.php?id=" + id, false);
-	xmlhttp.send(null);
-	document.getElementById("result").innerHTML = xmlhttp.responseText;
-}
-</script>
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="./bootstrap/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuz6mK7HrFf1z04PdsgNkEv6AfQtYBH5o"></script>
+<script src="js/map.js"></script>
     
+</body>
 </html>
+
+
+

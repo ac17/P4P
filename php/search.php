@@ -32,6 +32,7 @@ while($user = mysql_fetch_array(($query_result))){
 	//echo $user['firstName'] . " " . $user['my_point_x'] . " " . $user['my_point_y'];
 	//echo "<br />";
 }
+
 echo json_encode(array("Locations"=>$points)); 
 mysql_close($connection);
  

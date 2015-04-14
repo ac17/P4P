@@ -1,4 +1,3 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 // start session
 session_start();
@@ -25,4 +24,3 @@ function isUserLoggedIn() {
 	return FALSE;
 }
 ?>
-</html>
