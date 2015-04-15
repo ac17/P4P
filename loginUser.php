@@ -71,16 +71,16 @@ LOGINCONFIRMATION;
     <div class="container" id="bannerInner">
         <div class="container" id="bannerInnerInner">
             <center>
-                <h1><b>Log In</b></h1>
-                <?php
-                if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
-                    $err = array();
-                    login($_POST["netID"], $_POST["loginPW"], $err);
-                    echo '<div class="alert alert-danger" role="alert">'. $err['login_failure'] .'</div>';
-                }
-                ?>
                 <div class="container">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="loginForm">
+                       <center><h1><b>Log In</b></h1></center>
+                        <?php
+                        if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
+                            $err = array();
+                            login($_POST["netID"], $_POST["loginPW"], $err);
+                            echo '<div class="alert alert-danger" role="alert">'. $err['login_failure'] .'</div>';
+                        }
+                        ?>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@</span>
                             <input type="text" class="form-control" placeholder="netID" id="netID" name="netID" aria-describedby="basic-addon1">

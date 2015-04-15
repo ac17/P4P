@@ -28,6 +28,7 @@ include_once('login.php');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="js/smoothscroll.js"></script>
     </head>
 
 <body>
@@ -70,8 +71,8 @@ LOGINCONFIRMATION;
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
          
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#howItWorks">About</a></li>
+            <li><a href="#contactUs">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
@@ -168,8 +169,10 @@ SIGNUP;
             <div class="container" id="bannerInner">
                 <div class="container" id="bannerInnerInner">
                     <center>
-                        <h1><b>Share the Moment</b></h1>
-                        <button type="button" class="btn btn-default" id="signup" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+                        <div id="shareTheMoment">
+                            <h1><b>Share the Moment</b></h1>
+                            <button type="button" class="btn btn-default" id="signup" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+                        </div>
                     </center>
                 </div>
             </div>

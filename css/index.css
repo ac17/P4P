@@ -43,6 +43,12 @@
 	margin: 0 auto;
 }
 
+#shareTheMoment {
+	position: relative;
+	width: 60%;
+	left: 10%;
+}
+
 .col-md-4 {
 	text-align: center;
 }
