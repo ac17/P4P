@@ -74,7 +74,13 @@ LOGINCONFIRMATION;
             <li><a href="#">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><button type="button" class="btn btn-default" id="login" data-toggle="modal" data-target="#loginModal">Log In</button></li>
+            <li>
+                <button type="button" class="btn btn-default" id="login" data-toggle="modal" data-target="#loginModal">
+                    <?php if (isUserLoggedIn()) echo '<a href="dashboard.php">'; ?>
+                    Log In
+                    <?php if (isUserLoggedIn()) echo '</a>'; ?>
+                </button>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
     </div>
@@ -219,6 +225,6 @@ SIGNUP;
         </footer>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>
