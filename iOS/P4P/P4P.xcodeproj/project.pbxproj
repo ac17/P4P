@@ -7,13 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4531AABC5C8392591800CBA6 /* Pods_P4P.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E281AD4802C007185A0 /* LoginViewController.swift */; };
+		A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */; };
+		A05C3E331AD48B44007185A0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E321AD48B44007185A0 /* GoogleMaps.framework */; };
+		A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A05C3E341AD48B5A007185A0 /* GoogleMaps.bundle */; };
+		A05C3E371AD48B6F007185A0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E361AD48B6F007185A0 /* AVFoundation.framework */; };
+		A05C3E391AD48B73007185A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E381AD48B73007185A0 /* CoreData.framework */; };
+		A05C3E3B1AD48B79007185A0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E3A1AD48B79007185A0 /* CoreLocation.framework */; };
+		A05C3E3D1AD48B7E007185A0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E3C1AD48B7D007185A0 /* CoreText.framework */; };
+		A05C3E3F1AD48B81007185A0 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E3E1AD48B81007185A0 /* GLKit.framework */; };
+		A05C3E411AD48B86007185A0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E401AD48B86007185A0 /* ImageIO.framework */; };
+		A05C3E431AD48B8A007185A0 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E421AD48B8A007185A0 /* libc++.dylib */; };
+		A05C3E451AD48B93007185A0 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E441AD48B93007185A0 /* libicucore.dylib */; };
+		A05C3E471AD48B97007185A0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E461AD48B97007185A0 /* libz.dylib */; };
+		A05C3E491AD48B9B007185A0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E481AD48B9B007185A0 /* OpenGLES.framework */; };
+		A05C3E4B1AD48BA0007185A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */; };
+		A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */; };
+		A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
 		DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB768B1AD3015B004A2CD9 /* ViewController.swift */; };
 		DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB768D1AD3015B004A2CD9 /* Main.storyboard */; };
-		DCAB76911AD3015B004A2CD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76901AD3015B004A2CD9 /* Images.xcassets */; };
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
+		DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +45,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4531AABC5C8392591800CBA6 /* Pods_P4P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P4P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.release.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.release.xcconfig"; sourceTree = "<group>"; };
+		A05C3E281AD4802C007185A0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "P4P-Bridging-Header.h"; sourceTree = "<group>"; };
+		A05C3E321AD48B44007185A0 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		A05C3E341AD48B5A007185A0 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		A05C3E361AD48B6F007185A0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A05C3E381AD48B73007185A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A05C3E3A1AD48B79007185A0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A05C3E3C1AD48B7D007185A0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		A05C3E3E1AD48B81007185A0 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A05C3E401AD48B86007185A0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A05C3E421AD48B8A007185A0 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		A05C3E441AD48B93007185A0 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		A05C3E461AD48B97007185A0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A05C3E481AD48B9B007185A0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCAB76891AD3015B004A2CD9 /* P4P.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = P4P.xcdatamodel; sourceTree = "<group>"; };
 		DCAB768B1AD3015B004A2CD9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCAB768E1AD3015B004A2CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DCAB76901AD3015B004A2CD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DCAB76931AD3015B004A2CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DCAB76991AD3015B004A2CD9 /* P4PTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P4PTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
+		DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +84,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */,
+				A05C3E4B1AD48BA0007185A0 /* QuartzCore.framework in Frameworks */,
+				A05C3E491AD48B9B007185A0 /* OpenGLES.framework in Frameworks */,
+				A05C3E471AD48B97007185A0 /* libz.dylib in Frameworks */,
+				A05C3E451AD48B93007185A0 /* libicucore.dylib in Frameworks */,
+				A05C3E431AD48B8A007185A0 /* libc++.dylib in Frameworks */,
+				A05C3E411AD48B86007185A0 /* ImageIO.framework in Frameworks */,
+				A05C3E3F1AD48B81007185A0 /* GLKit.framework in Frameworks */,
+				A05C3E3D1AD48B7E007185A0 /* CoreText.framework in Frameworks */,
+				A05C3E3B1AD48B79007185A0 /* CoreLocation.framework in Frameworks */,
+				A05C3E391AD48B73007185A0 /* CoreData.framework in Frameworks */,
+				A05C3E371AD48B6F007185A0 /* AVFoundation.framework in Frameworks */,
+				A05C3E331AD48B44007185A0 /* GoogleMaps.framework in Frameworks */,
+				244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +111,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		742EE811FF1AF67C11926C53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */,
+				9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A05C3E311AD48B28007185A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */,
+				A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */,
+				A05C3E481AD48B9B007185A0 /* OpenGLES.framework */,
+				A05C3E461AD48B97007185A0 /* libz.dylib */,
+				A05C3E441AD48B93007185A0 /* libicucore.dylib */,
+				A05C3E421AD48B8A007185A0 /* libc++.dylib */,
+				A05C3E401AD48B86007185A0 /* ImageIO.framework */,
+				A05C3E3E1AD48B81007185A0 /* GLKit.framework */,
+				A05C3E3C1AD48B7D007185A0 /* CoreText.framework */,
+				A05C3E3A1AD48B79007185A0 /* CoreLocation.framework */,
+				A05C3E381AD48B73007185A0 /* CoreData.framework */,
+				A05C3E361AD48B6F007185A0 /* AVFoundation.framework */,
+				A05C3E341AD48B5A007185A0 /* GoogleMaps.bundle */,
+				A05C3E321AD48B44007185A0 /* GoogleMaps.framework */,
+				4531AABC5C8392591800CBA6 /* Pods_P4P.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DCAB76781AD3015B004A2CD9 = {
 			isa = PBXGroup;
 			children = (
 				DCAB76831AD3015B004A2CD9 /* P4P */,
 				DCAB769C1AD3015B004A2CD9 /* P4PTests */,
 				DCAB76821AD3015B004A2CD9 /* Products */,
+				A05C3E311AD48B28007185A0 /* Frameworks */,
+				742EE811FF1AF67C11926C53 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,10 +168,14 @@
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
-				DCAB76901AD3015B004A2CD9 /* Images.xcassets */,
+				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
+				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
+				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
+				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
+				A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */,
 			);
 			path = P4P;
 			sourceTree = "<group>";
@@ -122,9 +212,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCAB76A31AD3015B004A2CD9 /* Build configuration list for PBXNativeTarget "P4P" */;
 			buildPhases = (
+				0CF4DD32FB2A54F364F13CD4 /* Check Pods Manifest.lock */,
 				DCAB767D1AD3015B004A2CD9 /* Sources */,
 				DCAB767E1AD3015B004A2CD9 /* Frameworks */,
 				DCAB767F1AD3015B004A2CD9 /* Resources */,
+				4ED6B4B9C9886A40D1D327CD /* Embed Pods Frameworks */,
+				A7B4F6ADB46F1CD9CA87B73B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,9 +288,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
-				DCAB76911AD3015B004A2CD9 /* Images.xcassets in Resources */,
+				A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,11 +304,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0CF4DD32FB2A54F364F13CD4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4ED6B4B9C9886A40D1D327CD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-P4P/Pods-P4P-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7B4F6ADB46F1CD9CA87B73B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-P4P/Pods-P4P-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DCAB767D1AD3015B004A2CD9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */,
+				A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */,
+				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
@@ -293,7 +438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -329,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -338,21 +483,38 @@
 		};
 		DCAB76A41AD3015B004A2CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = P4P/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "P4P/P4P-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		DCAB76A51AD3015B004A2CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = P4P/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "P4P/P4P-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -409,6 +571,7 @@
 				DCAB76A51AD3015B004A2CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCAB76A61AD3015B004A2CD9 /* Build configuration list for PBXNativeTarget "P4PTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +580,7 @@
 				DCAB76A81AD3015B004A2CD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
