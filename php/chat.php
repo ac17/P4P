@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Chat</title>
-<link type="text/css" rel="stylesheet" href="chat_style.css" />
+<link type="text/css" rel="stylesheet" href="../css/chat_style.css" />
 </head>
  
  <? 
