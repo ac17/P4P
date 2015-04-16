@@ -17,7 +17,16 @@ $select = ' SELECT ';
 $column =  ' *, x( Users.location ) AS my_point_x, y( Users.location ) AS my_point_y';  
 $from = ' FROM ';  
 $tables = ' Active_exchanges LEFT JOIN Users ON Active_exchanges.requesterNetId=Users.netId ';
-$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.passType LIKE "%' .$passType. '%" AND Active_exchanges.passNum LIKE "%'.$numPasses.'%" AND Active_exchanges.type LIKE "%'.$type.'%"';
+
+if($passType != "All")
+{
+	$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.passType LIKE "%' .$passType. '%" 			AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'"';
+}
+else 
+{
+	$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'"';
+}
+
 $query = $select . $column . $from . $tables . $where; 
 //Execute the query
 $query_result = mysql_query($query);

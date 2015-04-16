@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <script>
 	var spinner;
     $(function() {
@@ -48,9 +47,9 @@
 <body>
 <div id="map-canvas"></div>
 <br/>
-<table style="border:thick; border:solid">
+<table>
 <tr>
-<td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+<td>
     <form action="#">
       <fieldset>
         <label for="eatingClub">Eating Club: </label>
@@ -65,11 +64,11 @@
         </fieldset>
     </form>
 </td>
-<td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
-	<label for="spinner">Number of Passes:</label><br />
+<td>
+	<label for="spinner">Number of Passes:</label>
 	<input id="spinner" name="value">
 </td>
-<td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+<td>
     Pass Date: <br /><input type="text" id="passDate" onChange=""><br /><br />
 </td>
 </tr>

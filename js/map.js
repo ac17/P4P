@@ -39,7 +39,7 @@ function getMatchingExchanges()
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/searchExchanges.php?date=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text(), true);
+	xmlhttp.open("GET", "./php/searchExchanges.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text(), true);
 	xmlhttp.send();
 }
 
@@ -100,19 +100,4 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
   infoWindows = [];
-}
-
-var timer;
-var searchDelay = 250; 
-function delaySearch(){
-   clearTimeout(timer);
-   timer = setTimeout(search, searchDelay);
-}
-
-function getNote(id)
-{
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("GET", "./php/displayNote.php?id=" + id, false);
-	xmlhttp.send(null);
-	document.getElementById("result").innerHTML = xmlhttp.responseText;
 }
