@@ -22,17 +22,14 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-<<<<<<< HEAD
     <!-- jquery ui -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-=======
->>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom -->
     <link rel="stylesheet" href="css/global.css">
     <link href="css/dashboard.css" rel="stylesheet">
-<<<<<<< HEAD
     
 	<style>
 		.feedback { font-size: 1.4em; }
@@ -41,9 +38,7 @@
 		.selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
 		.selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
 	</style> 
-=======
-
->>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -51,16 +46,13 @@
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<<<<<<< HEAD
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </head>
 
   <body onLoad="getUserActiveExchanges('<?php echo $_SESSION['user']['netId']; ?>')">
-=======
   </head>
 
   <body>
->>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3
 
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
@@ -126,7 +118,6 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<<<<<<< HEAD
             <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
             <div id="tabs">
               <ul>
@@ -225,9 +216,7 @@
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
              </div>
           </div>        
-=======
           <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
->>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3
         </div>
       </div>
     </div>
@@ -238,7 +227,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-<<<<<<< HEAD
+
     
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4"></script>
 	<script src="js/map.js"></script>
@@ -255,8 +244,6 @@
   </div>
 
 	
-=======
   </body>
 
->>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3
 </html>
