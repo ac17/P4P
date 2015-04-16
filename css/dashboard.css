@@ -102,6 +102,7 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+<<<<<<< HEAD
 }
 
 
@@ -137,3 +138,6 @@ select {
 }
 
 #map-canvas { height:400px; margin: 0; padding: 0;}
+=======
+}
+>>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3
