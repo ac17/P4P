@@ -1,5 +1,7 @@
 <?php
-require_once('php/signup.php');
+include_once('php/database_connect.php');
+include_once('php/signup.php');
+include_once('login.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +28,7 @@ require_once('php/signup.php');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="js/smoothscroll.js"></script>
     </head>
 
 <body>
@@ -38,6 +41,16 @@ require_once('php/signup.php');
             });
         </script>
 SIGNUPCONFIRMATION;
+    }
+
+    if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
+        echo <<< LOGINCONFIRMATION
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#loginModal').modal('show');
+            });
+        </script>
+LOGINCONFIRMATION;
     }
 ?>
 <!-- Fixed navbar -->
@@ -58,11 +71,17 @@ SIGNUPCONFIRMATION;
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
          
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#howItWorks">About</a></li>
+            <li><a href="#contactUs">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><button type="button" class="btn btn-default" id="login" data-toggle="modal" data-target="#loginModal">Log In</button></li>
+            <li>
+                <button type="button" class="btn btn-default" id="login" data-toggle="modal" data-target="#loginModal">
+                    <?php if (isUserLoggedIn()) echo '<a href="dashboard.php">'; ?>
+                    Log In
+                    <?php if (isUserLoggedIn()) echo '</a>'; ?>
+                </button>
+            </li>
           </ul>
         </div><!-- /.navbar-collapse -->
     </div>
@@ -76,16 +95,25 @@ SIGNUPCONFIRMATION;
                     <h2>Log In</h2>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <?php
+                    if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
+                        $err = array();
+                        login($_POST["netID"], $_POST["loginPW"], $err);
+                        echo '<div class="alert alert-danger" role="alert">'. $err['login_failure'] .'</div>';
+                    }
+                    ?>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="loginForm">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@</span>
-                            <input type="email" class="form-control" placeholder="Email address" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="netID" id="netID" name="netID" aria-describedby="basic-addon1">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-                            <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
-                        </div>
+                            <input type="password" class="form-control" placeholder="Password" id="loginPW" name="loginPW" aria-describedby="basic-addon1">
+                        </div><br>
+                        <input type="hidden" name="hiddenLogin" id="hiddenLogin" value="true">
+                        <button class="btn btn-default" id="loginSubmit" type="submit" form="loginForm" value="Submit">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -141,8 +169,10 @@ SIGNUP;
             <div class="container" id="bannerInner">
                 <div class="container" id="bannerInnerInner">
                     <center>
-                        <h1><b>Share the Moment</b></h1>
-                        <button type="button" class="btn btn-default" id="signup" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+                        <div id="shareTheMoment">
+                            <h1><b>Share the Moment</b></h1>
+                            <button type="button" class="btn btn-default" id="signup" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+                        </div>
                     </center>
                 </div>
             </div>
@@ -198,6 +228,6 @@ SIGNUP;
         </footer>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

@@ -19,22 +19,6 @@
 	color: white;
 }
 
-.navbar {
-	height: 50px;
-	font-weight: bold;
-}
-
-.navbar-brand
-{
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    text-align: center;
-    margin: auto;
-    font-weight: bold;
-}
-
 
 #login {
 	margin-top: 7px;
@@ -57,6 +41,12 @@
 	text-align: center;
 	float: center;
 	margin: 0 auto;
+}
+
+#shareTheMoment {
+	position: relative;
+	width: 60%;
+	left: 10%;
 }
 
 .col-md-4 {
