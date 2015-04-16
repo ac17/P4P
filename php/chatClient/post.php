@@ -1,5 +1,4 @@
 <?
-require_once('../database_connect.php');
 session_start();
 
 if(isset($_SESSION['user'])){

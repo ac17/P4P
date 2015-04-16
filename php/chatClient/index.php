@@ -5,63 +5,28 @@
 <link type="text/css" rel="stylesheet" href="style.css" />
 </head>
  
- <?
+ <? 
+ /* connect to the database*/
 require_once('../database_connect.php');
-session_start();
-
-function loginForm() {
-	echo '
-	<div id="loginform">
-		<form action="index.php" method="post">
-			<p>Please enter your netid to continue:</p>
-			<label for="netID">NetID:</label>
-			<input type="text" name="netID" id="netID">
-			<input type="submit" name="enter" id="enter" value="Enter">
-		</form>
-	</div>';
-}
-
-function authenticate($username) {
-	$results = mysql_query('SELECT * FROM Users WHERE netID="' . $username .'";');
-	if (mysql_num_rows($results) == 0)
-		return False;
-	else {
-		$row = mysql_fetch_assoc($results);
-		return $row;
-	}
-}
-
-if (isset($_POST['enter'])) {
-	if ($_POST['netID'] != "") {
-		$username = stripslashes(htmlspecialchars($_POST['netID']));
-		$userInfo = authenticate($username);
-		if ($userInfo) {
-			$_SESSION['user'] = $userInfo;
-		}
-		else {
-			echo "Uh oh, you're not in our database!";
-		}
-	}
-	else {
-		echo '<span class="error">Please type in a netID.</span>';
-	}
-}
 ?>
 
 <?php
-if(!isset($_SESSION['user']['firstName'])){
-    loginForm();
+/* If the user is not logged in, redirect to the login page. */
+if (!isUserLoggedIn()){
+    header('Location: ../../loginUser.php');
 }
 else{
 ?>
 <div id="wrapper">
     <div id="menu">
+    	<!-- welcome message + exit button!-->
         <p class="welcome">Welcome, <b><?php echo $_SESSION['user']['firstName']; ?></b></p>
         <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
         <div style="clear:both"></div>
     </div>    
     <div id="chatbox"></div>
      
+    <!-- form submission for message -->
     <form name="message" action="">
         <input name="usermsg" type="text" id="usermsg" size="63" />
         <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
@@ -118,25 +83,12 @@ $(document).ready(function(){
 <script type="text/javascript">
 // jQuery Document
 $(document).ready(function(){
-	//If user wants to end session
+	//If user wants to end session - redirect to logout
 	$("#exit").click(function(){
 		var exit = confirm("Are you sure you want to end the session?");
-		if(exit==true){window.location = 'index.php?logout=true';}		
+		if(exit==true){window.location = '../../logout.php';}		
 	});
 });
 </script>
-<?php 
-if(isset($_GET['logout'])){ 
-     
-    //Simple exit message
-    $fp = fopen("log.html", 'a');
-    fwrite($fp, "<div class='msgln'><i>User ". $_SESSION['user']['firstName'] ." has left the chat session.</i><br></div>");
-    fclose($fp);
-     
-    session_destroy();
-    header("Location: index.php"); //Redirect the user
-}
-?>
-
 </body>
 </html>
