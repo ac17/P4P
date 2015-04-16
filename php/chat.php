@@ -2,18 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Chat</title>
-<link type="text/css" rel="stylesheet" href="style.css" />
+<link type="text/css" rel="stylesheet" href="chat_style.css" />
 </head>
  
  <? 
  /* connect to the database*/
-require_once('../database_connect.php');
+require_once('database_connect.php');
 ?>
 
 <?php
 /* If the user is not logged in, redirect to the login page. */
 if (!isUserLoggedIn()){
-    header('Location: ../../loginUser.php');
+    header('Location: ../loginUser.php');
 }
 else{
 ?>
@@ -36,34 +36,38 @@ else{
 <script type="text/javascript">
 // jQuery Document
 $(document).ready(function(){
-	//If user submits the form
+	///If user submits the form, log the message in the chat_history table using chat_logmessage.php
 	$("#submitmsg").click(function(){	
 		var clientmsg = $("#usermsg").val();
-		$.post("post.php", {text: clientmsg});				
+		$.post("chat_logmessage.php", {text: clientmsg});				
 		$("#usermsg").attr("value", "");
 		return false;
 	});
 	
-	//Load the file containing the chat log
+	//Load the data containing the chat log by querying the chat_history table through chat_query.php
 	function loadLog(){		
 
 		$.ajax({
-			url: "log.html",
+			type: "GET",
+			url: "chat_query.php",
+			dataType: "html",
 			cache: false,
-			success: function(html){		
-				$("#chatbox").html(html); //Insert chat log into the #chatbox div				
+			success: function(response){		
+				$("#chatbox").html(response); //Insert chat log into the #chatbox div				
 		  	},
 		});
 	}
 	
-	//Load the file containing the chat log
+	//Load the data containing the chat log by querying the chat_history table through chat_query.php
 	function loadLog(){		
 		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
 		$.ajax({
-			url: "log.html",
+			type: "GET",
+			url: "chat_query.php",
+			dataType: "html",
 			cache: false,
-			success: function(html){		
-				$("#chatbox").html(html); //Insert chat log into the #chatbox div	
+			success: function(response){		
+				$("#chatbox").html(response); //Insert chat log into the #chatbox div	
 				
 				//Auto-scroll			
 				var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
@@ -83,10 +87,10 @@ $(document).ready(function(){
 <script type="text/javascript">
 // jQuery Document
 $(document).ready(function(){
-	//If user wants to end session - redirect to logout
+	//If user wants to end session - redirect to logout.php
 	$("#exit").click(function(){
 		var exit = confirm("Are you sure you want to end the session?");
-		if(exit==true){window.location = '../../logout.php';}		
+		if(exit==true){window.location = '../logout.php';}		
 	});
 });
 </script>
