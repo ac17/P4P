@@ -21,7 +21,8 @@ else{
     <div id="menu">
     	<!-- welcome message + exit button!-->
         <p class="welcome">Welcome, <b><?php echo $_SESSION['user']['firstName']; ?></b></p>
-        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+        <p class="logout"><a id="loggingout" href="#">Logout</a></p>
+        <p class="exit_chat"><a id="exit" href="#">Exit Current Chat</a></p>
         <div style="clear:both"></div>
     </div>    
     <div id="chatbox"></div>
@@ -44,12 +45,12 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	//Load the data containing the chat log by querying the chat_history table through chat_query.php
+	//Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
 	function loadLog(){		
 
 		$.ajax({
 			type: "GET",
-			url: "chat_query.php",
+			url: "chat_retrieve.php",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
@@ -63,7 +64,7 @@ $(document).ready(function(){
 		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
 		$.ajax({
 			type: "GET",
-			url: "chat_query.php",
+			url: "chat_retrieve.php",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
@@ -88,9 +89,14 @@ $(document).ready(function(){
 // jQuery Document
 $(document).ready(function(){
 	//If user wants to end session - redirect to logout.php
+	$("#loggingout").click(function(){
+		var loggingout = confirm("Are you sure you want to end the session?");
+		if(loggingout ==true){window.location = '../logout.php';}		
+	});
+
+	// if the user wants to exit the current chat back to the map
 	$("#exit").click(function(){
-		var exit = confirm("Are you sure you want to end the session?");
-		if(exit==true){window.location = '../logout.php';}		
+		window.location = '../dashboard.php';		
 	});
 });
 </script>

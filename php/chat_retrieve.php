@@ -4,7 +4,7 @@ require_once('database_connect.php');
 
 /* get the chat history involving the particular user alone*/
 if(isset($_SESSION['user'])){
-    $query='SELECT * FROM chat_history WHERE User_From = "'.$_SESSION['user']['netId'].'" OR User_To = "'.$_SESSION['user']['netId'].'";';
+    $query='SELECT * FROM chat_history WHERE User_From = "'.$_SESSION['user']['netId'].'" OR User_From = "'."ac17".'";';
     $results=mysql_query($query);
 
     if (!$results) {
