@@ -1,10 +1,33 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* CSS for info windows which appears with a list of offers from a user. */
 .offerDiv {
+	width:150px;
 	border-width: 1px;
 	padding: 3px;
 	border:solid;
 	border-radius: 5px;
+}
+
+.selectedOfferDiv {
+	width:150px;
+	border-width: 1px;
+	padding: 3px;
+	border:solid;
+	border-radius: 5px;
+	background-color:#CCC;
+}
+
+.infoWinHeading {
+	width:150px;
+}
+
+.infoWinContent {
+	width:200px;
+}
+
+.infoWinbodyContent {
+	width:200px;
 }
 

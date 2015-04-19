@@ -159,6 +159,7 @@
                 
                 <br /><br />
               </div>
+              
               <!-- Exchange Manager -->
               <div id="tab-2">                    
                 <table>
@@ -167,10 +168,6 @@
                     Pass Date: <br /><input type="text" id="passDate"><br /><br />
                 </td>
                 <td>
-                    <div id="radio">
-                        <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">Request</label>
-                        <input type="radio" id="radio2" name="radio"><label for="radio2">Offer</label>
-                    </div>
                 </td>
                 <td>
                     <label for="spinner">Number of Passes:</label>
@@ -188,7 +185,6 @@
                           <option selected="selected">Colonial</option>
                           <option>Cottage</option>
                           <option>Cap & Gown</option>
-                          <option>Tiger Inn</option>
                         </select>
                         </fieldset>
                     </form>
