@@ -66,8 +66,6 @@ $(function() {
 		min: 1,
 		step: 1
 	}); 
-	
-	$( "#radio" ).buttonset();
 				
 	$( "#postExchange" )
 		.button()
@@ -93,7 +91,7 @@ $(function() {
 				}
 			}
 
-			xmlhttp.open("GET", "./php/addExchange.php?netId=" + document.getElementById("netId").value + "&passDate=" + $( "#passDate" ).val() + "&type=" + $("#radio :radio:checked + label").text() + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text() + "&comment=" + document.getElementById("comment").value, true);
+			xmlhttp.open("GET", "./php/addExchange.php?netId=" + document.getElementById("netId").value + "&passDate=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text() + "&comment=" + document.getElementById("comment").value, true);
 			xmlhttp.send();
 	});
 	

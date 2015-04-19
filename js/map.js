@@ -45,27 +45,25 @@ function getMatchingExchanges()
 }
 
 function addUserToMap(user) {
-	var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h4 id="firstHeading" class="firstHeading">'+
+	var contentString = '<div class="infoWinContent">'+
+      '<h4 class="infoWinHeading">'+
 	  user.name +
 	  '</h4>'+
-      '<div id="bodyContent">';
+      '<div class="infoWinbodyContent">';
 	  var i;
 	  for (i=0; i<user.exchanges.length; i++) {
 		var exchange = user.exchanges[i];
 		contentString = contentString +
-		'<div class="offerDiv" onclick="pursueOffer('+exchange.id+')">' +
+		'<div id="'+exchange.id+'" class="offerDiv" onclick="pursueOffer('+exchange.id+')">' +
 		'<h4>' + exchange.club + '</h4>'+
 		'<div> # Passes:  '+ exchange.passNum + '<br />' + exchange.comment +
-		'</div>'+
-		
+		'</div>'+		
 		'</div>';
 	  } 
       contentString = contentString +
 	  	'</div>' +
       '</div>';
+	  
 	var myLatlng = new google.maps.LatLng(user.lat, user.lng);
 	
 	var infowindow = new google.maps.InfoWindow({
@@ -87,7 +85,31 @@ function addUserToMap(user) {
 }
 
 function pursueOffer(offerId) {
-	alert(offerId);
+	// show the offer as selected
+	document.getElementById(offerId).className = "selectedOfferDiv";
+	
+	//disable persuing the offer again 
+	document.getElementById(offerId).onclick = "";
+	
+	if (window.XMLHttpRequest)
+			{//  IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp = new XMLHttpRequest();
+			}
+			else
+			{//  IE6, IE5
+			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			  
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					alert(xmlhttp.responseText);
+				}
+			}
+
+			xmlhttp.open("GET", "./php/pursueOffer.php?netId=" + document.getElementById("netId").value + "&offerId=" + offerId, true);
+			xmlhttp.send();
 }
 
 // Sets the map on all markers in the array.
