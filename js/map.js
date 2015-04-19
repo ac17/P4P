@@ -30,10 +30,11 @@ function getMatchingExchanges()
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			var json = JSON.parse(xmlhttp.responseText);
-			if (json.Exchanges.length>0) { 
-				for (i=0; i<json.Exchanges.length; i++) { 
-					var exchange = json.Exchanges[i];
-					addOfferMarker(exchange);
+			if (json.Users.length>0) {
+				var i;
+				for (i=0; i<json.Users.length; i++) { 
+					var user = json.Users[i];
+					addUserToMap(user);
 				}  
 			} 
 		}
@@ -43,22 +44,29 @@ function getMatchingExchanges()
 	xmlhttp.send();
 }
 
-function addOfferMarker(exchange) {
+function addUserToMap(user) {
 	var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h2 id="firstHeading" class="firstHeading">'+
-	  exchange.passNum +
-	  " " +
-	  exchange.club +
-	  " " +
-	  exchange.name +
-	  '</h2>'+
-      '<div id="bodyContent">'+ exchange.comments +
-      '</div>'+
+      '<h4 id="firstHeading" class="firstHeading">'+
+	  user.name +
+	  '</h4>'+
+      '<div id="bodyContent">';
+	  var i;
+	  for (i=0; i<user.exchanges.length; i++) {
+		var exchange = user.exchanges[i];
+		contentString = contentString +
+		'<div class="offerDiv" onclick="pursueOffer('+exchange.id+')">' +
+		'<h4>' + exchange.club + '</h4>'+
+		'<div> # Passes:  '+ exchange.passNum + '<br />' + exchange.comment +
+		'</div>'+
+		
+		'</div>';
+	  } 
+      contentString = contentString +
+	  	'</div>' +
       '</div>';
-	
-	var myLatlng = new google.maps.LatLng(exchange.lat, exchange.lng);
+	var myLatlng = new google.maps.LatLng(user.lat, user.lng);
 	
 	var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -76,6 +84,10 @@ function addOfferMarker(exchange) {
 	
 	markers.push(marker);
 	infoWindows.push(infowindow);
+}
+
+function pursueOffer(offerId) {
+	alert(offerId);
 }
 
 // Sets the map on all markers in the array.

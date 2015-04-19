@@ -30,6 +30,7 @@
     <!-- Custom -->
     <link rel="stylesheet" href="css/global.css">
     <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/map.css" rel="stylesheet">
     
 	<style>
 		.feedback { font-size: 1.4em; }
@@ -216,7 +217,6 @@
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
              </div>
           </div>        
-          <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
         </div>
       </div>
     </div>
@@ -235,7 +235,6 @@
     <script src="js/dashboard.js"></script>
   
   </body>
-  
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>

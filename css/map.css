@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+
+.offerDiv {
+	border-width: 1px;
+	padding: 3px;
+	border:solid;
+	border-radius: 5px;
+}
+

@@ -32,7 +32,7 @@ if ($query_result !== false)
 {
 	while($exchange = mysql_fetch_array(($query_result))){	
 		array_push($exchanges, array('id' =>$exchange['id'], 
-									 'club' =>$exchange['passType'],
+									 'club' =>$exchange['passClub'],
 									 'passNum' =>$exchange['passNum'],
 									 'passDate' =>$exchange['passDate'],
 									 'comments' =>$exchange['comments'],

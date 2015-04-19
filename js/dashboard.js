@@ -73,8 +73,6 @@ $(function() {
 		.button()
 		.click(function( event ) {
 			
-			alert(document.getElementById("netId").value);
-			
 			if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
 			  xmlhttp = new XMLHttpRequest();
@@ -88,7 +86,7 @@ $(function() {
 			{
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
-					getUserActiveExchanges();
+					getUserActiveExchanges(document.getElementById("netId").value);
 					spinner.spinner( "value", 0 );
 					document.getElementById("comment").value = "";
 					$( "#passDate" ).val("");
@@ -130,5 +128,4 @@ $(function() {
 		  }
 		});
 	});
-	
 });
