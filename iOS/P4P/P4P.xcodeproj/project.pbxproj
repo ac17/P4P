@@ -25,6 +25,7 @@
 		A05C3E4B1AD48BA0007185A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */; };
 		A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */; };
 		A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */; };
+		A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CE551AE4B894005FA89A /* PopupViewController.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
 		DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB768B1AD3015B004A2CD9 /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		A0D3CE551AE4B894005FA89A /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
+				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
 				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
@@ -363,6 +366,7 @@
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
+				A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
