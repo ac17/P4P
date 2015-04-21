@@ -101,7 +101,7 @@ $(function() {
 			selectedRequests = [];
 		},
 		selected: function( event, ui ) {
-			selectedRequests.push(ui.selected.attributes.requestid.nodeValue);
+			selectedRequests.push([ui.selected.attributes.requestid.nodeValue,"Request"]);
 		}
 	});
 	
@@ -110,7 +110,7 @@ $(function() {
 			selectedOffers = [];
 		},
 		selected: function( event, ui ) {
-			selectedOffers.push(ui.selected.attributes.offerId.nodeValue);
+			selectedOffers.push([ui.selected.attributes.offerId.nodeValue,"Offer"]);
 		}
 	});
 	

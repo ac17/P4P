@@ -40,7 +40,7 @@ function getMatchingExchanges()
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/searchExchanges.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text(), true);
+	xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
 	xmlhttp.send();
 }
 
@@ -53,8 +53,17 @@ function addUserToMap(user) {
 	  var i;
 	  for (i=0; i<user.exchanges.length; i++) {
 		var exchange = user.exchanges[i];
+		// disable pursueOffer is the offer has already been requested
+		if (exchange.requested == 0)
+		{
+		contentString = contentString + '<div id="'+exchange.id+'" class="offerDiv" onclick="pursueOffer('+exchange.id+')">';
+		}
+		else
+		{
+		contentString = contentString + '<div id="'+exchange.id+'" class="selectedOfferDiv" ">';
+		}
+		
 		contentString = contentString +
-		'<div id="'+exchange.id+'" class="offerDiv" onclick="pursueOffer('+exchange.id+')">' +
 		'<h4>' + exchange.club + '</h4>'+
 		'<div> # Passes:  '+ exchange.passNum + '<br />' + exchange.comment +
 		'</div>'+		

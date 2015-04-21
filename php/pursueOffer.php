@@ -29,19 +29,9 @@ if(!$query_result){
 	die("Could not query the database. " . mysql_error());
 }
 
-// look up request's id 
-$query = ' SELECT id FROM Active_exchanges WHERE requesterNetId="' . $netId . '" AND associatedExchanges LIKE "%' . $offer['id'] .'%"';
-//Execute the query
-$query_result = mysql_query($query);
-//Provide an error message if the query failed
-if(!$query_result){
-	die("Could not query the database. " . mysql_error());
-}
-$request = mysql_fetch_array(($query_result));
-
 // add request's id to the offer's associatedExchanges 
 $associatedExchanges = json_decode( $offer['associatedExchanges'] );
-$associatedExchanges[] =  $request['id'];
+$associatedExchanges[] = $netId;
 echo json_encode($associatedExchanges);
 $query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offer['id'] . '"';
 //Execute the query
