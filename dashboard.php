@@ -72,9 +72,27 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href=""><b>Notifications</b></a></li>
+            <?php
+              $RequestedQuery = "SELECT * FROM Exchange_history WHERE requesterNetId='{$_SESSION['user']['netId']}' ORDER BY requestPassDate DESC LIMIT 5;";
+              $RequestedResult = mysql_query($RequestedQuery);
+              if ($RequestedResult) {
+                if (mysql_num_rows($RequestedResult) == 0)
+                  echo "<li><a><i>0 records found.</i></a></li>";
+                else {
+                  for ($i = 0; $i < mysql_num_rows($RequestedResult); $i++) {
+                    $row = mysql_fetch_assoc($RequestedResult);
+                    $reqDate = date('m-d-Y', strtotime($row['requestPassDate']));
+                    echo '<li><a href="#">' . $reqDate . ': ' . $row['requestPassType'] . '</a></li>';
+                  }
+                }
+              }
+            ?>
+          </ul>
           <!-- Recently Requested Passes -->
           <ul class="nav nav-sidebar">
-            <li class="active"><a href=""><b>Your Recently Requested Passes</b></a></li>
+            <li><a href=""><b>Your Recently Requested Passes</b></a></li>
             <?php
               $RequestedQuery = "SELECT * FROM Exchange_history WHERE requesterNetId='{$_SESSION['user']['netId']}' ORDER BY requestPassDate DESC LIMIT 5;";
               $RequestedResult = mysql_query($RequestedQuery);
@@ -116,7 +134,8 @@
             <div id="tabs">
               <ul>
                 <li><a href="#tab-1">Search for Passes</a></li>
-                <li><a href="#tab-2">Offer/Request</a></li>
+                <li><a href="#tab-2">Your Offer/Request</a></li>
+                <li><a href="#tab-3">Transactions</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">          
@@ -204,6 +223,19 @@
                 <ol id="offerList" class="selectable">
                 </ol>
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
+             </div>
+             
+             <!-- Current Transactions -->
+             <div id="tab-3">
+             <div id="transcationAccordion">
+                <h3>Trade Dan for 1 pass for Colonia on 05/04/2015</h3>
+                <div>
+                    <iframe scrolling="no" frameborder="0" height="500" width="700" src="php/chat.php"></iframe>
+                </div>
+                <h3>Trade Angelica for 1 pass for Colonia on 05/04/2015</h3>
+                <div>
+                    <iframe scrolling="no" frameborder="0" height="500" width="700" src="php/chat.php"></iframe>
+                </div>
              </div>
           </div>        
         </div>

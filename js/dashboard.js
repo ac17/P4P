@@ -114,6 +114,12 @@ $(function() {
 		}
 	});
 	
+	$(function() {
+    	$( "#transcationAccordion" ).accordion({
+			heightStyle: "content",
+		});
+  	});
+	
 	// dialogs 
 	$(function() {
 		$( "#invalid-passNum-dialog" ).dialog({
