@@ -31,15 +31,8 @@
     <link rel="stylesheet" href="css/global.css">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
-    
-	<style>
-		.feedback { font-size: 1.4em; }
-		.selectable .ui-selecting { background: #FECA40; }
-		.selectable .ui-selected { background: #F39814; color: white; }
-		.selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-		.selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
-	</style> 
-    
+    <link href="css/exchangeManager.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -206,7 +199,7 @@
                 <ol id="requestList" class="selectable">
                 </ol>
                 <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-                <br  />
+                <br  /><br  />
                 Your Current Offers
                 <ol id="offerList" class="selectable">
                 </ol>
