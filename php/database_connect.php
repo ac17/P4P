@@ -12,6 +12,8 @@ $database_select = @mysql_select_db($database_databaseName) or die($error);
 mysql_query("SET NAMES 'utf8'");
 mysql_query("SET CHARACTER SET utf8");
 mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
+// include Google PHP API
+set_include_path(get_include_path() . PATH_SEPARATOR . 'google_php_api/src');
 
 // Checks if the current user is logged in and returns TRUE or FALSE accordingly. If yes, then store the user's info in $_SESSION['user'].
 function isUserLoggedIn() {
