@@ -50,7 +50,7 @@ $(document).ready(function(){
 	function loadLog(){		
 		$.ajax({
 			type: "GET",
-			url: "chatRetrieve.php",
+			url: "chatRetrieve.php?recipient=" + "<?php echo $recipient; ?>",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
@@ -64,7 +64,7 @@ $(document).ready(function(){
 		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
 		$.ajax({
 			type: "GET",
-			url: "chatRetrieve.php",
+			url: "chatRetrieve.php?recipient=" + "<?php echo $recipient; ?>",
 			dataType: "html",
 			cache: false,
 			success: function(response){		

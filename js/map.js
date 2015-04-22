@@ -53,7 +53,7 @@ function addUserToMap(user) {
 
       // link for chatting
       contentString = contentString + 
-      '<div id = "chatlink"><a href = "./php/chat.php?chatwith='+user.netId+'">Click here to chat</a><div>';
+      '<div id = "chatlink"><a href = "./php/chat.php?recipient='+user.netId+'">Click here to chat</a><div>';
 
       //offers
 	  var i;
