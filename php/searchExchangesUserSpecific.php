@@ -4,6 +4,7 @@ header('Content-type: application/json');
 require('./database_connect.php');
 
 //Get the id of the note to be displayed returned
+$userNetId = $_GET["netId"];
 $date = $_GET["date"];
 $passClub = $_GET["club"];
 $numPasses = $_GET["numPasses"];
@@ -41,7 +42,8 @@ if(!$query_result){
 }
 
 $users = array();
-
+$requestedByUser = 0;
+ 
 //echo "Results for ".$queryTerms.": <br/><br/>";
 //Display the results from the query
 if ($query_result !== false)
@@ -51,9 +53,19 @@ if ($query_result !== false)
 	
 	while($exchange = mysql_fetch_array(($query_result)))
 	{
+		// has the user requested this $exchange
+		if(strpos($exchange['associatedExchanges'],$userNetId) !== false)
+		{
+			$requestedByUser = 1;
+		}
+		else
+		{
+			$requestedByUser = 0;
+		}
+		
 		// add a new user to the $users array
 		if ($previousUser != $exchange['requesterNetId'])
-		{
+		{			
 			$users[$exchange['requesterNetId']] = array('netId' =>$exchange['requesterNetId'],
 													    'name' =>$exchange['firstName'],
 													    'lat' =>$exchange['my_point_x'], 
@@ -63,7 +75,8 @@ if ($query_result !== false)
 													 						'passNum' =>$exchange['passNum'],
 																			'passDate' =>$exchange['passDate'],
 													 						'comment' =>$exchange['comments'],
-													 						'type' =>$exchange['type']))
+													 						'type' =>$exchange['type'],
+																			'requested' =>$requestedByUser))
 													    );
 			$currentUser = $exchange['requesterNetId'];
 		}
@@ -75,7 +88,8 @@ if ($query_result !== false)
 									                                 'passNum' =>$exchange['passNum'],
 									                                 'passDate' =>$exchange['passDate'],
 									                                 'comment' =>$exchange['comments'],
-									                                 'type' =>$exchange['type']);
+									                                 'type' =>$exchange['type'],
+																	 'requested' =>$requestedByUser);
 		}
 		
 		$previousUser = $exchange['requesterNetId'];
@@ -85,5 +99,33 @@ if ($query_result !== false)
 // return the users array index numerically
 echo json_encode(array("Users"=>array_values($users))); 
 mysql_close($connection);
- 
+
+function getArrayOfUserRequestIds($userNetId)
+{
+	require('./database_connect.php');
+	
+	$requestIds = array();
+	
+	//Build a query
+	$select = ' SELECT '; 
+	$column =  ' id ';  
+	$from = ' FROM ';  
+	$tables = ' Active_exchanges ';
+    $where = ' WHERE requesterNetId="' . $userNetId .'" AND type="Request"';
+	$query = $select . $column . $from . $tables . $where;
+	
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
+	while($id = mysql_fetch_array(($query_result)))
+	{
+		$requestIds[] = $id['id'];
+	}
+	
+	return $requestIds;
+}
 ?>

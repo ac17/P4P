@@ -30,35 +30,56 @@ function getMatchingExchanges()
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			var json = JSON.parse(xmlhttp.responseText);
-			if (json.Exchanges.length>0) { 
-				for (i=0; i<json.Exchanges.length; i++) { 
-					var exchange = json.Exchanges[i];
-					addOfferMarker(exchange);
+			if (json.Users.length>0) {
+				var i;
+				for (i=0; i<json.Users.length; i++) { 
+					var user = json.Users[i];
+					addUserToMap(user);
 				}  
 			} 
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/searchExchanges.php?date=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text(), true);
+	xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
 	xmlhttp.send();
 }
 
-function addOfferMarker(exchange) {
-	var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h2 id="firstHeading" class="firstHeading">'+
-	  exchange.passNum +
-	  " " +
-	  exchange.club +
-	  " " +
-	  exchange.name +
-	  '</h2>'+
-      '<div id="bodyContent">'+ exchange.comments +
-      '</div>'+
+function addUserToMap(user) {
+	var contentString = '<div class="infoWinContent">'+
+      '<h4 class="infoWinHeading">'+
+	  user.name +
+	  '</h4>'+
+      '<div class="infoWinbodyContent">';
+
+      // link for chatting
+      contentString = contentString + 
+      '<div id = "chatlink"><a href = "./php/chat.php?offerer=' + user.netid + '">Click here to chat</a><div>';
+
+      //offers
+	  var i;
+	  for (i=0; i<user.exchanges.length; i++) {
+		var exchange = user.exchanges[i];
+		// disable pursueOffer is the offer has already been requested
+		if (exchange.requested == 0)
+		{
+		contentString = contentString + '<div id="'+exchange.id+'" class="offerDiv" onclick="pursueOffer('+exchange.id+')">';
+		}
+		else
+		{
+		contentString = contentString + '<div id="'+exchange.id+'" class="selectedOfferDiv" ">';
+		}
+		
+		contentString = contentString +
+		'<h4>' + exchange.club + '</h4>'+
+		'<div> # Passes:  '+ exchange.passNum + '<br />' + exchange.comment +
+		'</div>'+		
+		'</div>';
+	  } 
+      contentString = contentString +
+	  	'</div>' +
       '</div>';
-	
-	var myLatlng = new google.maps.LatLng(exchange.lat, exchange.lng);
+	  
+	var myLatlng = new google.maps.LatLng(user.lat, user.lng);
 	
 	var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -76,6 +97,34 @@ function addOfferMarker(exchange) {
 	
 	markers.push(marker);
 	infoWindows.push(infowindow);
+}
+
+function pursueOffer(offerId) {
+	// show the offer as selected
+	document.getElementById(offerId).className = "selectedOfferDiv";
+	
+	//disable persuing the offer again 
+	document.getElementById(offerId).onclick = "";
+	
+	if (window.XMLHttpRequest)
+			{//  IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp = new XMLHttpRequest();
+			}
+			else
+			{//  IE6, IE5
+			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			  
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					alert(xmlhttp.responseText);
+				}
+			}
+
+			xmlhttp.open("GET", "./php/pursueOffer.php?netId=" + document.getElementById("netId").value + "&offerId=" + offerId, true);
+			xmlhttp.send();
 }
 
 // Sets the map on all markers in the array.
@@ -100,19 +149,4 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
   infoWindows = [];
-}
-
-var timer;
-var searchDelay = 250; 
-function delaySearch(){
-   clearTimeout(timer);
-   timer = setTimeout(search, searchDelay);
-}
-
-function getNote(id)
-{
-	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("GET", "./php/displayNote.php?id=" + id, false);
-	xmlhttp.send(null);
-	document.getElementById("result").innerHTML = xmlhttp.responseText;
 }

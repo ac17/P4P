@@ -6,7 +6,7 @@ $netId = $_GET["netId"];
 $passDate = $_GET["passDate"];
 $type = $_GET["type"];
 $numPasses = $_GET["numPasses"];
-$passType = $_GET["club"];
+$passClub = $_GET["club"];
 $comment = $_GET["comment"];
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
@@ -19,7 +19,7 @@ if(get_magic_quotes_gpc()){
 }
 
 //Build query
-$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $netId . '","' . $passType . '","' . $numPasses . '","' . date ("Y-m-d", strtotime($passDate)) . '","' . $comment . '","' . $type. '")';
+$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $netId . '","' . $passClub . '","' . $numPasses . '","' . date ("Y-m-d", strtotime($passDate)) . '","' . $comment . '","' . $type. '",0,"")';
 //Execute the query
 $query_result = mysql_query($query);
 //Provide an error message if the query failed
