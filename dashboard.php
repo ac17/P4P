@@ -175,6 +175,20 @@
 
                 <!--chatclient -->
 
+<<<<<<< HEAD
+                <link type="text/css" rel="stylesheet" href="../css/chat_style.css" />
+                 
+                <?php
+                $chatto = $_GET['chatwith'];
+
+                /* If the user is not logged in, redirect to the login page. */
+                if (!isUserLoggedIn()){
+                    header('Location: ../loginUser.php');
+                }
+                else{
+                ?>
+=======
+>>>>>>> ebd5fb717ade53d86f4ac776b74df600f8160820
                 <div id="wrapper">
                     <div id="menu">
                       <!-- welcome message + exit button!-->
@@ -191,9 +205,85 @@
                         <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
                     </form>
                 </div>
+<<<<<<< HEAD
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+                <script type="text/javascript">
+                // jQuery Document
+                $(document).ready(function(){
+                  ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
+                  $("#submitmsg").click(function(){ 
+                    var clientmsg = $("#usermsg").val();
+                    var postString = 
+                    $.post("chatLogmessage.php?chatwith=" + $chatto, {text: clientmsg});        
+                    $("#usermsg").attr("value", "");
+                    return false;
+                  });
+                  
+                  //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
+                  function loadLog(){   
+
+                    $.ajax({
+                      type: "GET",
+                      url: "chatRetrieve.php",
+                      dataType: "html",
+                      cache: false,
+                      success: function(response){    
+                        $("#chatbox").html(response); //Insert chat log into the #chatbox div       
+                        },
+                    });
+                  }
+                  
+                  //Load the data containing the chat log by querying the chat_history table through chat_query.php
+                  function loadLog(){   
+                    var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
+                    $.ajax({
+                      type: "GET",
+                      url: "chatRetrieve.php",
+                      dataType: "html",
+                      cache: false,
+                      success: function(response){    
+                        $("#chatbox").html(response); //Insert chat log into the #chatbox div 
+                        
+                        //Auto-scroll     
+                        var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
+                        if(newscrollHeight > oldscrollHeight){
+                          $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                        }       
+                        },
+                    });
+                  }
+                  
+                  setInterval (loadLog, 2500);  //Reload file every 2500 ms or x ms if you w
+                });
+                </script>
+                <?php
+                }
+                ?>
+                <script type="text/javascript">
+                // jQuery Document
+                $(document).ready(function(){
+                  //If user wants to end session - redirect to logout.php
+                  $("#loggingout").click(function(){
+                    var loggingout = confirm("Are you sure you want to end the session?");
+                    if(loggingout ==true){window.location = '../logout.php';}   
+                  });
+
+                  // if the user wants to exit the current chat back to the map
+                  $("#exit").click(function(){
+                    window.location = '../dashboard.php';   
+                  });
+                });
+                </script>
+
+=======
                 
 
               </div>
+<<<<<<< HEAD
+=======
+>>>>>>> ebd5fb717ade53d86f4ac776b74df600f8160820
+              </div>
+>>>>>>> aea098701c6b00353afa1edfd7be99783750c2b8
               <!-- Exchange Manager -->
               <div id="tab-2">                    
                 <table>

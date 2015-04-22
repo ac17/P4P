@@ -5,14 +5,13 @@
 <link type="text/css" rel="stylesheet" href="../css/chat_style.css" />
 </head>
  
- <? 
+ <?php
  /* connect to the database*/
 require_once('database_connect.php');
+$recipient = $_GET['recipient'];
 ?>
 
 <?php
-$chatto = $_GET['chatwith'];
-
 /* If the user is not logged in, redirect to the login page. */
 if (!isUserLoggedIn()){
     header('Location: ../loginUser.php');
@@ -42,18 +41,16 @@ $(document).ready(function(){
 	///If user submits the form, log the message in the chat_history table using chat_logmessage.php
 	$("#submitmsg").click(function(){	
 		var clientmsg = $("#usermsg").val();
-		var postString = 
-		$.post("chatLogmessage.php?chatwith=" + $chatto, {text: clientmsg});				
+		$.post("chatLogmessage.php", {text: clientmsg, recipient: "<?php echo $recipient; ?>"});				
 		$("#usermsg").attr("value", "");
 		return false;
 	});
 	
 	//Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
 	function loadLog(){		
-
 		$.ajax({
 			type: "GET",
-			url: "chatRetrieve.php",
+			url: "chatRetrieve.php?recipient=" + "<?php echo $recipient; ?>",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
@@ -67,7 +64,7 @@ $(document).ready(function(){
 		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
 		$.ajax({
 			type: "GET",
-			url: "chatRetrieve.php",
+			url: "chatRetrieve.php?recipient=" + "<?php echo $recipient; ?>",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
@@ -96,7 +93,6 @@ $(document).ready(function(){
 		var loggingout = confirm("Are you sure you want to end the session?");
 		if(loggingout ==true){window.location = '../logout.php';}		
 	});
-
 	// if the user wants to exit the current chat back to the map
 	$("#exit").click(function(){
 		window.location = '../dashboard.php';		
