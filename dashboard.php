@@ -136,7 +136,7 @@
               <ul>
                 <li><a href="#tab-1">Search for Passes</a></li>
                 <li><a href="#tab-2">Your Offer/Request</a></li>
-                <li><a href="#tab-3">Transactions</a></li>
+                <li><a href="#tab-3">Trades</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">          
@@ -247,6 +247,7 @@
                 </ol>
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
              </div>
+<<<<<<< HEAD
 
              <!-- Current Transactions -->
              <div id="tab-3">
@@ -259,6 +260,23 @@
                 <div>
                     <iframe scrolling="no" frameborder="0" height="500" width="700" src="php/chat.php"></iframe>
                 </div>
+=======
+             
+             <!-- Current Trades -->
+             <div>
+                 <div id="tab-3" style="float:left">
+                 <div id="transcationAccordion">
+                    <h3>Trade Dan for 1 pass for Colonia on 05/04/2015</h3>
+                    <div>
+                    </div>
+                    <h3>Trade Angelica for 1 pass for Colonia on 05/04/2015</h3>
+                    <div>
+                    </div>
+                 </div>
+                 <div id="chatClientDiv">
+                    <iframe scrolling="no" frameborder="0" height="500" width="600" src="php/chat.php"></iframe>
+                 </div>
+>>>>>>> d350c379bcce631a0772295043d446d9852470af
              </div>
           </div>        
         </div>
