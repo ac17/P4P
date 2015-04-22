@@ -194,7 +194,6 @@
                 
 
               </div>
-              </div>
               <!-- Exchange Manager -->
               <div id="tab-2">                    
                 <table>
