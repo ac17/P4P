@@ -22,11 +22,17 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom -->
     <link rel="stylesheet" href="css/global.css">
     <link href="css/dashboard.css" rel="stylesheet">
+    
+    <link href="css/map.css" rel="stylesheet">
+    <link href="css/exchangeManager.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,6 +41,7 @@
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </head>
 
   <body>
@@ -103,7 +110,86 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
+            <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
+            
+            <!-- Map -->
+            <style type="text/css">
+                #map-canvas { height:300px; margin: 0; padding: 0;}
+            </style>
+            <div id="map-canvas"></div>
+                <form action="#">
+                  <fieldset>
+                    <label for="eatingClub">Eating Club: </label>
+                    <select name="eatingClub" id="eatingClub">
+                      <option>Ivy Club</option>
+                      <option>Tiger Inn</option>
+                      <option selected="selected">Colonial</option>
+                      <option>Cottage</option>
+                      <option>Cap & Gown</option>
+                      <option>Tiger Inn</option>
+                    </select>
+                    </fieldset>
+                </form>
+
+                <label for="spinner">Number of Passes:</label>
+                <input id="spinner" name="value">
+
+                Pass Date: <br /><input type="text" id="passDate" onChange=""><br /><br />
+                
+                NetID: <br /><input type="text" id="NetID" onKeyUp="getUserActiveExchanges()"><br /><br />
+				
+                <!-- Exchange Manager -->
+                <table style="border:thick; border:solid">
+                <tr>
+                <td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+                    Pass Date: <br /><input type="text" id="passDate"><br /><br />
+                </td>
+                <td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+                    <div id="radio">
+                        <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">Request</label>
+                        <input type="radio" id="radio2" name="radio"><label for="radio2">Offer</label>
+                    </div>
+                </td>
+                <td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+                    <label for="spinner">Number of Passes:</label><br />
+                    <input id="spinner" name="value">
+                </td>
+                <td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+                    <form>
+                      <fieldset>
+                        <label for="eatingClub">Eating Club: </label><br />
+                        <select name="eatingClub" id="eatingClub">
+                          <option>Ivy Club</option>
+                          <option>Tiger Inn</option>
+                          <option selected="selected">Colonial</option>
+                          <option>Cottage</option>
+                          <option>Cap & Gown</option>
+                          <option>Tiger Inn</option>
+                        </select>
+                        </fieldset>
+                    </form>
+                </td>
+                <td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+                    Comment:
+                    <textarea id="comment" rows="5" cols="20"></textarea>
+                </td>
+                <td style="border:thick; border:solid; padding:10px; vertical-align:middle;">
+                    <input type="submit" value="Post" id="submit">
+                </td>
+                </tr>
+                </table>
+                
+                <br  />
+                Your Current Requests
+                <ol id="requestList" class="selectable">
+                </ol>
+                <input type="submit" value="Delete Selected Requests" onmousedown="removeSelectedRequests()">
+                <br  />
+                Your Current Offers
+                <ol id="offerList" class="selectable">
+                </ol>
+                <input type="submit" value="Delete Selected Offers" onmousedown="removeSelectedOffers()">
+
         </div>
       </div>
     </div>
@@ -114,6 +200,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4"></script>
+	<script src="js/map.js"></script>
+    <script src="css/exchangeManager.css"></script>
+    
   </body>
 
 </html>

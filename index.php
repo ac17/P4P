@@ -76,7 +76,7 @@ LOGINCONFIRMATION;
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-                <button type="button" class="btn btn-default" id="login" data-toggle="modal" data-target="#loginModal">
+                <button type="button" class="btn btn-default" id="login" <?php if (!isUserLoggedIn()) echo 'data-toggle="modal" data-target="#loginModal"'; ?> >
                     <?php if (isUserLoggedIn()) echo '<a href="dashboard.php">'; ?>
                     Log In
                     <?php if (isUserLoggedIn()) echo '</a>'; ?>
@@ -117,7 +117,7 @@ LOGINCONFIRMATION;
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@ SIGNUP;
                     ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
                 </div>
             </div>
         </div>

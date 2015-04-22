@@ -57,6 +57,16 @@ html, body {
   box-shadow: none;
 }
 
+.btn-close {
+  background: none;
+  color: black;
+}
+
+.btn-close:hover {
+  background: none;
+  color: black;
+}
+
 .row {
   margin-left: 0px;
   margin-right: 0px;
