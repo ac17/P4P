@@ -36,6 +36,7 @@ if ($query_result !== false)
 									 'passNum' =>$exchange['passNum'],
 									 'passDate' =>$exchange['passDate'],
 									 'comments' =>$exchange['comments'],
+									 'associatedExchanges' =>$exchange['associatedExchanges'],
 									 'type' =>$exchange['type'])); 
 	}
 }

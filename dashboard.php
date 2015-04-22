@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/chat_style.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -170,8 +171,30 @@
                 <div id="map-canvas"></div>
                 
                 <br /><br />
+
+
+                <!--chatclient -->
+
+                <div id="wrapper">
+                    <div id="menu">
+                      <!-- welcome message + exit button!-->
+                        <p class="welcome">Welcome, <b><?php echo $_SESSION['user']['firstName']; ?></b></p>
+                        <p class="logout"><a id="loggingout" href="#">Logout</a></p>
+                        <p class="exit_chat"><a id="exit" href="#">Exit Current Chat</a></p>
+                        <div style="clear:both"></div>
+                    </div>    
+                    <div id="chatbox"></div>
+                     
+                    <!-- form submission for message -->
+                    <form name="message" action="">
+                        <input name="usermsg" type="text" id="usermsg" size="63" />
+                        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+                    </form>
+                </div>
+                
+
               </div>
-              
+              </div>
               <!-- Exchange Manager -->
               <div id="tab-2">                    
                 <table>
@@ -224,7 +247,7 @@
                 </ol>
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
              </div>
-             
+
              <!-- Current Transactions -->
              <div id="tab-3">
              <div id="transcationAccordion">
@@ -255,7 +278,8 @@
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
   
-  </body>
+  
+  
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>

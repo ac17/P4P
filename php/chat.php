@@ -11,6 +11,8 @@ require_once('database_connect.php');
 ?>
 
 <?php
+$chatto = $_GET['chatwith'];
+
 /* If the user is not logged in, redirect to the login page. */
 if (!isUserLoggedIn()){
     header('Location: ../loginUser.php');
@@ -40,7 +42,8 @@ $(document).ready(function(){
 	///If user submits the form, log the message in the chat_history table using chat_logmessage.php
 	$("#submitmsg").click(function(){	
 		var clientmsg = $("#usermsg").val();
-		$.post("chat_logmessage.php", {text: clientmsg});				
+		var postString = 
+		$.post("chatLogmessage.php?chatwith=" + $chatto, {text: clientmsg});				
 		$("#usermsg").attr("value", "");
 		return false;
 	});
@@ -50,7 +53,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: "GET",
-			url: "chat_retrieve.php",
+			url: "chatRetrieve.php",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
@@ -64,7 +67,7 @@ $(document).ready(function(){
 		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
 		$.ajax({
 			type: "GET",
-			url: "chat_retrieve.php",
+			url: "chatRetrieve.php",
 			dataType: "html",
 			cache: false,
 			success: function(response){		
