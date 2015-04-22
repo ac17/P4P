@@ -29,9 +29,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         mapView.delegate = self
     }
     
-    @IBAction func searchPassPopUp(sender: AnyObject) {
-    }
-    
     // function called when authorization revoked or granted
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {
@@ -93,6 +90,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 
             formattedDateString = dateStringArray[0] + "/" + dateStringArray[1] + "/" + dateStringArray[2]
         }
+        
+        // replace spaces in club name with pluses
+        clubString = clubString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchanges.php?"
         requestString += "date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
