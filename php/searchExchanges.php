@@ -63,6 +63,7 @@ if ($query_result !== false)
 													 						'passNum' =>$exchange['passNum'],
 																			'passDate' =>$exchange['passDate'],
 													 						'comment' =>$exchange['comments'],
+																			'associatedExchanges' =>$exchange['associatedExchanges'],
 													 						'type' =>$exchange['type']))
 													    );
 			$currentUser = $exchange['requesterNetId'];
@@ -75,6 +76,7 @@ if ($query_result !== false)
 									                                 'passNum' =>$exchange['passNum'],
 									                                 'passDate' =>$exchange['passDate'],
 									                                 'comment' =>$exchange['comments'],
+																	 'associatedExchanges' =>$exchange['associatedExchanges'],
 									                                 'type' =>$exchange['type']);
 		}
 		
