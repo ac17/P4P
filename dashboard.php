@@ -44,7 +44,7 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </head>
 
-  <body onLoad="getUserActiveExchanges('<?php echo $_SESSION['user']['netId']; ?>')">
+  <body onLoad="loadUserData('<?php echo $_SESSION['user']['netId']; ?>')">
   </head>
 
   <body>
@@ -136,7 +136,6 @@
               <ul>
                 <li><a href="#tab-1">Search for Passes</a></li>
                 <li><a href="#tab-2">Your Offer/Request</a></li>
-                <li><a href="#tab-3">Trades</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">          
@@ -175,20 +174,6 @@
 
                 <!--chatclient -->
 
-<<<<<<< HEAD
-                <link type="text/css" rel="stylesheet" href="../css/chat_style.css" />
-                 
-                <?php
-                $chatto = $_GET['chatwith'];
-
-                /* If the user is not logged in, redirect to the login page. */
-                if (!isUserLoggedIn()){
-                    header('Location: ../loginUser.php');
-                }
-                else{
-                ?>
-=======
->>>>>>> ebd5fb717ade53d86f4ac776b74df600f8160820
                 <div id="wrapper">
                     <div id="menu">
                       <!-- welcome message + exit button!-->
@@ -205,85 +190,9 @@
                         <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
                     </form>
                 </div>
-<<<<<<< HEAD
-                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-                <script type="text/javascript">
-                // jQuery Document
-                $(document).ready(function(){
-                  ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-                  $("#submitmsg").click(function(){ 
-                    var clientmsg = $("#usermsg").val();
-                    var postString = 
-                    $.post("chatLogmessage.php?chatwith=" + $chatto, {text: clientmsg});        
-                    $("#usermsg").attr("value", "");
-                    return false;
-                  });
-                  
-                  //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
-                  function loadLog(){   
-
-                    $.ajax({
-                      type: "GET",
-                      url: "chatRetrieve.php",
-                      dataType: "html",
-                      cache: false,
-                      success: function(response){    
-                        $("#chatbox").html(response); //Insert chat log into the #chatbox div       
-                        },
-                    });
-                  }
-                  
-                  //Load the data containing the chat log by querying the chat_history table through chat_query.php
-                  function loadLog(){   
-                    var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
-                    $.ajax({
-                      type: "GET",
-                      url: "chatRetrieve.php",
-                      dataType: "html",
-                      cache: false,
-                      success: function(response){    
-                        $("#chatbox").html(response); //Insert chat log into the #chatbox div 
-                        
-                        //Auto-scroll     
-                        var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
-                        if(newscrollHeight > oldscrollHeight){
-                          $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-                        }       
-                        },
-                    });
-                  }
-                  
-                  setInterval (loadLog, 2500);  //Reload file every 2500 ms or x ms if you w
-                });
-                </script>
-                <?php
-                }
-                ?>
-                <script type="text/javascript">
-                // jQuery Document
-                $(document).ready(function(){
-                  //If user wants to end session - redirect to logout.php
-                  $("#loggingout").click(function(){
-                    var loggingout = confirm("Are you sure you want to end the session?");
-                    if(loggingout ==true){window.location = '../logout.php';}   
-                  });
-
-                  // if the user wants to exit the current chat back to the map
-                  $("#exit").click(function(){
-                    window.location = '../dashboard.php';   
-                  });
-                });
-                </script>
-
-=======
-                
 
               </div>
-<<<<<<< HEAD
-=======
->>>>>>> ebd5fb717ade53d86f4ac776b74df600f8160820
-              </div>
->>>>>>> aea098701c6b00353afa1edfd7be99783750c2b8
+              
               <!-- Exchange Manager -->
               <div id="tab-2">                    
                 <table>
@@ -324,48 +233,23 @@
                 </td>
                 </tr>
                 </table>
-               
                 <br  />
-                Your Current Requests
-                <ol id="requestList" class="selectable">
-                </ol>
-                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
+              	Trades
+                <br />
+                <br />
+                <div id="tradeList">
+                </div>
+                
                 <br  /><br  />
-                Your Current Offers
+                Your Open Offers
                 <ol id="offerList" class="selectable">
                 </ol>
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-             </div>
-<<<<<<< HEAD
-
-             <!-- Current Transactions -->
-             <div id="tab-3">
-             <div id="transcationAccordion">
-                <h3>Trade Dan for 1 pass for Colonia on 05/04/2015</h3>
-                <div>
-                    <iframe scrolling="no" frameborder="0" height="500" width="700" src="php/chat.php"></iframe>
-                </div>
-                <h3>Trade Angelica for 1 pass for Colonia on 05/04/2015</h3>
-                <div>
-                    <iframe scrolling="no" frameborder="0" height="500" width="700" src="php/chat.php"></iframe>
-                </div>
-=======
-             
-             <!-- Current Trades -->
-             <div>
-                 <div id="tab-3" style="float:left">
-                 <div id="transcationAccordion">
-                    <h3>Trade Dan for 1 pass for Colonia on 05/04/2015</h3>
-                    <div>
-                    </div>
-                    <h3>Trade Angelica for 1 pass for Colonia on 05/04/2015</h3>
-                    <div>
-                    </div>
-                 </div>
-                 <div id="chatClientDiv">
-                    <iframe scrolling="no" frameborder="0" height="500" width="600" src="php/chat.php"></iframe>
-                 </div>
->>>>>>> d350c379bcce631a0772295043d446d9852470af
+                <br  /><br  />
+                Your Pending Requests
+                <ol id="requestList" class="selectable">
+                </ol>
+                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
              </div>
           </div>        
         </div>
@@ -386,6 +270,8 @@
     <script src="js/dashboard.js"></script>
   
   
+   
+                
   
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>

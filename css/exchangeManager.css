@@ -12,3 +12,9 @@
 .requestSubListItem {
 	padding-left:5em;
 }
+
+.tradeDiv {
+	min-height:30px;
+	border:thin, #CCC, solid;
+	vertical-align:middle;
+}

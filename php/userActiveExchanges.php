@@ -3,10 +3,10 @@ header('Content-type: application/json');
 //Get login information 
 require('./database_connect.php');
 //Get the id of the note to be displayed returned
-$netId = $_GET["netId"];
+$currentUserNetId = $_GET["netId"];
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
-	$queryTerms = stripslashes(mysql_real_escape_string($netId));
+	$currentUserNetId = stripslashes(mysql_real_escape_string($currentUserNetId));
 }
 
 //Build a query
@@ -14,7 +14,7 @@ $select = ' SELECT ';
 $column =  ' * ';  
 $from = ' FROM ';  
 $tables = ' Active_exchanges ';
-$where = 'WHERE requesterNetId="' . $netId . '"';
+$where = 'WHERE requesterNetId="' . $currentUserNetId . '" AND isPartOfTransaction="0" ';
 $query = $select . $column . $from . $tables . $where; 
 //Execute the query
 $query_result = mysql_query($query);

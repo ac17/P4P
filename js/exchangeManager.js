@@ -36,7 +36,7 @@ function getUserActiveExchanges(netId)
 						for (j=0; j<associatedExchanges.length; j++)
 						{
 							// associatedExchanges[j] contains the netId of the user who made the request
-							listOfRequests = listOfRequests + '<li class="requestSubListItem">Request From: ' + associatedExchanges[j] + ' <input type="submit" value="Decline" style="float:right" onMouseDown="declineRequest('+exchange.id+','+document.getElementById("netId").value+','+associatedExchanges[j]+')"><input type="submit" value="Accept" style="float:right" onMouseDown="acceptRequest('+exchange.id+','+associatedExchanges[j]+')"></li>';
+							listOfRequests = listOfRequests + '<li class="requestSubListItem">Request From: ' + associatedExchanges[j] + ' <input type="submit" value="Decline" style="float:right" onMouseDown="declineRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"><input type="submit" value="Accept" style="float:right" onMouseDown="acceptRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"></li>';
 						}						
 						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + listOfRequests + "</ul></li>";
 						
@@ -49,6 +49,45 @@ function getUserActiveExchanges(netId)
 	xmlhttp.open("GET", "./php/userActiveExchanges.php?netId=" + netId, true);
 	xmlhttp.send();
 }
+
+
+
+
+function getUserActiveTrades(netId)
+{
+	document.getElementById("tradeList").innerHTML = "";
+	
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var json = JSON.parse(xmlhttp.responseText);
+			if (json.Trades.length>0) { 
+				for (i=0; i<json.Trades.length; i++) { 
+					var trade = json.Trades[i];			
+					// add requests and offers to the lists
+					document.getElementById("tradeList").innerHTML = document.getElementById("tradeList").innerHTML + '<div class="tradeDiv" offerId="'+trade.id+'"> Trade with ' + trade.recipient + " for " + trade.passNum + " pass(es) to " +  trade.club + "  Date: " + trade.passDate+ '<input type="submit" value="Chat" style="float:right" onMouseDown=""><input type="submit" value="Cancel" style="float:right" onMouseDown=""><input type="submit" value="Complete" style="float:right" onMouseDown=""><div>';				
+				}
+			} 
+		}
+	}
+	
+	xmlhttp.open("GET", "./php/userActiveTrades.php?currentUserNetId=" + netId, true);
+	xmlhttp.send();
+}
+
+
+
+
 
 function removeSelectedOffers(netId)
 {	
@@ -99,9 +138,8 @@ function removeSelectedRequests(netId)
 	xmlhttp.send(JSON.stringify(selectedRequests));
 }
 
-declineRequest(requestId, currentUserNetId, requesterNetId)
+function declineRequest(offerId, currentUserNetId, requesterNetId)
 {	
-alert('a');
 
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -116,15 +154,19 @@ alert('a');
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
+			getUserActiveTrades(currentUserNetId);
+			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/declineRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "requestId&=" + requestId, true);
+	xmlhttp.open("GET", "./php/declineRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "&offerId=" + offerId, true);
 	xmlhttp.send();
 }
 
-acceptRequest(requestId, requesterNetId)
+function acceptRequest(offerId, currentUserNetId, requesterNetId)
 {
+	alert("A");
+	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
 	  xmlhttp = new XMLHttpRequest();
@@ -138,9 +180,12 @@ acceptRequest(requestId, requesterNetId)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
+			alert(xmlhttp.responseText);
+			getUserActiveTrades(currentUserNetId);
+			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/acceptRequest.php?netId=" + requesterNetId + "requestId&=" + requestId, true);
+	xmlhttp.open("GET", "./php/acceptRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "&offerId=" + offerId, true);
 	xmlhttp.send();
 }

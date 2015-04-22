@@ -5,14 +5,15 @@
 <file name="searchUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130725080955822703" remote="130738582800000000" />
 <file name="updateLocation.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720499400000000" remote="130720499400000000" />
 <file name="search.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130725672600000000" />
-<file name="addExchange.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740617603594236" remote="130740869400000000" />
-<file name="userActiveExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740902674237209" remote="130741154400000000" />
+<file name="addExchange.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741814329958643" remote="130742066400000000" />
+<file name="userActiveExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742089444536730" remote="130742341200000000" />
 <file name="searchExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740885945210364" remote="130741154400000000" />
 <file name="removeExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740627975427471" remote="130740879600000000" />
 <file name="pursueOffer.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740577447197422" remote="130740829200000000" />
 <file name="hack.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130739633998493959" remote="130739885400000000" />
-<file name="chat.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741656000000000" remote="130741668000000000" />
+<file name="chat.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741750959215741" remote="130742013000000000" />
 <file name="searchExchangesUserSpecific.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740902868738334" remote="130741154400000000" />
-<file name="acceptRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741055887097926" remote="130741316400000000" />
-<file name="declineRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741200929886521" remote="130741453800000000" />
+<file name="acceptRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741840498975425" remote="130742092200000000" />
+<file name="declineRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741823933137914" remote="130742076000000000" />
+<file name="userActiveTrades.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742104916141655" remote="130742357400000000" />
 </dwsync>
