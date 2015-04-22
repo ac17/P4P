@@ -50,6 +50,8 @@ function addUserToMap(user) {
 	  user.name +
 	  '</h4>'+
       '<div class="infoWinbodyContent">';
+      contentString = contentString + 
+      '<div id = "chatlink"><a href = "./php/chat.php">Click here to chat</a><div>';
 	  var i;
 	  for (i=0; i<user.exchanges.length; i++) {
 		var exchange = user.exchanges[i];
