@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../css/chat_style.css" />
+    <link type="text/css" rel="stylesheet" href="css/chat_style.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
