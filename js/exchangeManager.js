@@ -1,6 +1,6 @@
 // JavaScript Document
 
-function getUserActiveExchanges(netId)
+function getUserActiveExchanges(currentUserNetId)
 {
 	document.getElementById("requestList").innerHTML = "";
 	document.getElementById("offerList").innerHTML = "";
@@ -46,50 +46,104 @@ function getUserActiveExchanges(netId)
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/userActiveExchanges.php?netId=" + netId, true);
+	xmlhttp.open("GET", "./php/userActiveExchanges.php?currentUserNetId=" + currentUserNetId, true);
 	xmlhttp.send();
 }
 
 
 
 
-function getUserActiveTrades(netId)
+function getUserActiveTrades(currentUserNetId)
 {
 	document.getElementById("tradeList").innerHTML = "";
 	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  xmlhttp1 = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	xmlhttp1.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (xmlhttp1.readyState==4 && xmlhttp1.status==200)
 		{
-			var json = JSON.parse(xmlhttp.responseText);
+			var json = JSON.parse(xmlhttp1.responseText);
 			if (json.Trades.length>0) { 
 				for (i=0; i<json.Trades.length; i++) { 
 					var trade = json.Trades[i];			
 					// add requests and offers to the lists
-					document.getElementById("tradeList").innerHTML = document.getElementById("tradeList").innerHTML + '<div class="tradeDiv" offerId="'+trade.id+'"> Trade with ' + trade.recipient + " for " + trade.passNum + " pass(es) to " +  trade.club + "  Date: " + trade.passDate+ '<input type="submit" value="Chat" style="float:right" onMouseDown=""><input type="submit" value="Cancel" style="float:right" onMouseDown=""><input type="submit" value="Complete" style="float:right" onMouseDown=""><div>';				
+					// check if the trade is based on the user's requets or offer
+					if (trade.recipient == currentUserNetId)
+					{
+						document.getElementById("tradeList").innerHTML = document.getElementById("tradeList").innerHTML + '<div class="tradeDiv" offerId="'+trade.id+'"> *Trade with ' + trade.provider + " for " + trade.passNum + " pass(es) to " +  trade.club + "  Date: " + trade.passDate+ '<input type="submit" value="Chat" style="float:right" onMouseDown=""><input type="submit" value="Cancel" style="float:right" onMouseDown="cancelTrade(\''+currentUserNetId+'\',\''+trade.provider+'\',\''+trade.recipient+'\',\''+trade.offerId+'\',\''+trade.requestId+'\')"><input type="submit" value="Complete" style="float:right" onMouseDown="completeTrade(\''+currentUserNetId+'\',\''+trade.provider+'\',\''+trade.recipient+'\',\''+trade.offerId+'\',\''+trade.requestId+'\')"><div>';
+					}
+					else
+					{
+						document.getElementById("tradeList").innerHTML = document.getElementById("tradeList").innerHTML + '<div class="tradeDiv" offerId="'+trade.id+'"> Trade with ' + trade.recipient + " for " + trade.passNum + " pass(es) to " +  trade.club + "  Date: " + trade.passDate+ '<input type="submit" value="Chat" style="float:right" onMouseDown=""><input type="submit" value="Cancel" style="float:right" onMouseDown="cancelTrade(\''+currentUserNetId+'\',\''+trade.provider+'\',\''+trade.recipient+'\',\''+trade.offerId+'\',\''+trade.requestId+'\')"><input type="submit" value="Complete" style="float:right" onMouseDown="completeTrade(\''+currentUserNetId+'\',\''+trade.provider+'\',\''+trade.recipient+'\',\''+trade.offerId+'\',\''+trade.requestId+'\')"><div>';
+					}
 				}
 			} 
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/userActiveTrades.php?currentUserNetId=" + netId, true);
+	xmlhttp1.open("GET", "./php/userActiveTrades.php?currentUserNetId=" + currentUserNetId, true);
+	xmlhttp1.send();
+}
+
+
+function completeTrade(currentUserNetId, provider, recipient, offerId, requestId)
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			getUserActiveTrades(currentUserNetId);
+			getUserActiveExchanges(currentUserNetId);
+		}
+	}
+	
+	xmlhttp.open("GET", "./php/completeTrade.php?currentUserNetId=" + currentUserNetId + "&provider=" + provider + "&recipient=" + recipient + "&offerId=" + offerId +"&requestId=" + requestId, true);
+	xmlhttp.send();
+}
+
+function cancelTrade(currentUserNetId, provider, recipient, offerId, requestId)
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			getUserActiveTrades(currentUserNetId);
+			getUserActiveExchanges(currentUserNetId);
+		}
+	}
+	
+	xmlhttp.open("GET", "./php/cancelTrade.php?currentUserNetId=" + currentUserNetId + "&provider=" + provider + "&recipient=" + recipient + "&offerId=" + offerId +"&requestId=" + requestId, true);
 	xmlhttp.send();
 }
 
 
-
-
-
-function removeSelectedOffers(netId)
+function removeSelectedOffers(currentUserNetId)
 {	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -104,17 +158,17 @@ function removeSelectedOffers(netId)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			alert(xmlhttp.responseText);
-			getUserActiveExchanges(netId);
+			getUserActiveTrades(currentUserNetId);
+			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("POST", "./php/removeExchanges.php?netId=" + netId, true);
+	xmlhttp.open("POST", "./php/removeExchanges.php?currentUserNetId=" + currentUserNetId, true);
 	xmlhttp.setRequestHeader( "Content-Type", "application/json" );
 	xmlhttp.send(JSON.stringify(selectedOffers));
 }
 	
-function removeSelectedRequests(netId)
+function removeSelectedRequests(currentUserNetId)
 {	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -129,11 +183,12 @@ function removeSelectedRequests(netId)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			getUserActiveExchanges(netId);
+			getUserActiveTrades(currentUserNetId);
+			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("POST", "./php/removeExchanges.php?netId=" + netId, true);
+	xmlhttp.open("POST", "./php/removeExchanges.php?currentUserNetId=" + currentUserNetId, true);
 	xmlhttp.setRequestHeader( "Content-Type", "application/json" );
 	xmlhttp.send(JSON.stringify(selectedRequests));
 }
@@ -165,7 +220,6 @@ function declineRequest(offerId, currentUserNetId, requesterNetId)
 
 function acceptRequest(offerId, currentUserNetId, requesterNetId)
 {
-	alert("A");
 	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -180,7 +234,6 @@ function acceptRequest(offerId, currentUserNetId, requesterNetId)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			alert(xmlhttp.responseText);
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}

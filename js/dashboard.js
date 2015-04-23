@@ -136,6 +136,6 @@ $(function() {
 
 function loadUserData(netId)
 {
-	getUserActiveExchanges(netId);
 	getUserActiveTrades(netId);
+	getUserActiveExchanges(netId);
 }

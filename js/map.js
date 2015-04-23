@@ -119,7 +119,6 @@ function pursueOffer(offerId) {
 			{
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
-					alert(xmlhttp.responseText);
 				}
 			}
 
@@ -149,4 +148,54 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
   infoWindows = [];
+}
+
+function shareCurrentLocation(currentUserNetId)
+{
+	// Try W3C Geolocation (Preferred)
+	if(navigator.geolocation) {
+	browserSupportFlag = true;
+	navigator.geolocation.getCurrentPosition(function(position) {
+	  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	  map.setCenter(initialLocation);
+		if (window.XMLHttpRequest)
+		{//  IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp = new XMLHttpRequest();
+		}
+		else
+		{//  IE6, IE5
+		  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		  
+		xmlhttp.onreadystatechange=function()
+		{
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				map.setCenter(position);
+			}
+		}
+		
+		xmlhttp.open("GET", "./php/updateLocation.php?currentUserNetId="+currentUserNetId+"&lat="+position.coords.latitude+"&lng="+position.coords.longitude, true);
+		xmlhttp.send();	
+		
+	}, function() {
+	  handleNoGeolocation(browserSupportFlag);
+	});
+	}
+	// Browser doesn't support Geolocation
+	else {
+	browserSupportFlag = false;
+	handleNoGeolocation(browserSupportFlag);
+	}
+	
+	function handleNoGeolocation(errorFlag) {
+	if (errorFlag == true) {
+	  alert("Geolocation service failed.");
+	  initialLocation = newyork;
+	} else {
+	  alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+	  initialLocation = siberia;
+	}
+	map.setCenter(initialLocation);
+	}
 }

@@ -2,7 +2,7 @@
 //Get login information 
 require('./database_connect.php');
 //Get the id of the note to be displayed returned
-$name = $_GET["name"];
+$currentUserNetId = $_GET["currentUserNetId"];
 $lat = $_GET["lat"];
 $lng = $_GET["lng"];
 //Protect against SQL injection
@@ -15,12 +15,10 @@ if(get_magic_quotes_gpc()){
 	$lng = stripslashes($lng);
 }
 
-echo $name . " " . $lat . " " . $lng;
-
 //Build a query
 $update = ' UPDATE ';   
 $tables = ' Users ';
-$where = ' WHERE firstName = "' . $name . '"';
+$where = ' WHERE netId = "' . $currentUserNetId . '"';
 $set = ' SET location = GeomFromText("POINT('.$lat.' '.$lng.')")';
 $query = $update . $tables . $set . $where; 
 

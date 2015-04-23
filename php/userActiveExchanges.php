@@ -3,7 +3,7 @@ header('Content-type: application/json');
 //Get login information 
 require('./database_connect.php');
 //Get the id of the note to be displayed returned
-$currentUserNetId = $_GET["netId"];
+$currentUserNetId = $_GET["currentUserNetId"];
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
 	$currentUserNetId = stripslashes(mysql_real_escape_string($currentUserNetId));
