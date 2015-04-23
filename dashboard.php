@@ -329,7 +329,7 @@ SETTINGS;
               <div id="tab-3">  
                 <?php
                   $query = 'SELECT * FROM chat_history WHERE (User_From = "'.$_SESSION['user']['netId'].'") 
-                            OR (User_To = "'.$_SESSION['user']['netId'].'" ORDER BY Time);';
+                            OR (User_To = "'.$_SESSION['user']['netId'].'") ORDER BY Time desc;';
                   $result = mysql_query($query);
 
                   if (!$result) {
@@ -339,68 +339,37 @@ SETTINGS;
                   echo "<table>"; // start a table to present the chat
 
                   //Creates a loop to loop through results
-                  while($row = mysql_fetch_array($result)){   
-                    echo "<tr><td>" . $row['User_From'] . "</td><td>" . $row['Conversation'] . "</td></tr>";  //$row['index'] the index here is a field name
+                  $counter = 1;
+                  $otherUser = "";
+                  while($row = mysql_fetch_array($result)){
+                    /* keep track of any new users appearing on the chat history*/
+                    if ((strcmp($row['User_From'], $otherUser) !== 0) && (strcmp($row['User_To'], $otherUser) !== 0)){
+                      if (strcmp($row['User_From'], $_SESSION['user']['netId']) !== 0) 
+                        $otherUser = $row['User_From'];
+                      else
+                        $otherUser = $row['User_To'];
+                      $counter = 1;
+                    }
+
+                    /* retrieve the name of the otherUser*/
+                    $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$otherUser.'";'); 
+                    if (!$getName)
+                      $otherUsername = "";
+                    else
+                      $otherUsername = mysql_result($getName, 0);
+
+                    /* give option to chat with the other user if this is the first time their conversation is appearing*/
+                    if ($counter === 1){
+                      echo '<tr><td>' . $row['User_From'] . '</td><td>' . $row['Conversation'] .'</td><td><a href = "/php/chat.php?recipient='.$otherUsername.'">Chat with '.$otherUsername.'</a></td></tr>';  //$row['index'] the index here is a field name
+                    }
+                    else
+                      echo '<tr><td>' . $row['User_From'] . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+                    $counter = $counter + 1;    
                   }
 
                   echo "</table>"; //Close the table in HTML
-                ?>                  
-                <table>
-                <tr>
-                <td >
-                    Pass Date: <br /><input type="text" id="passDate"><br /><br />
-                </td>
-                <td>
-                </td>
-                <td>
-                    <label for="spinner">Number of Passes:</label>
-                    <input id="spinner" name="value">
-                </td>
-                </tr>
-                <tr>
-                <td>
-                    <form>
-                      <fieldset>
-                        <label for="eatingClub">Eating Club: </label>
-                        <select name="eatingClub" id="eatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap & Gown</option>
-                        </select>
-                        </fieldset>
-                    </form>
-                </td>
-                <td>
-                    <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea>
-                </td>
-                <td>
-                    <input type="submit" value="Post" id="postExchange">
-                    <!-- used to pass netid to on click function for Post -->
-                    <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
-                </td>
-                </tr>
-                </table>
-                <br  />
-                Trades
-                <br />
-                <br />
-                <div id="tradeList">
-                </div>
-                
-                <br  /><br  />
-                Your Open Offers
-                <ol id="offerList" class="selectable">
-                </ol>
-                <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                <br  /><br  />
-                Your Pending Requests
-                <ol id="requestList" class="selectable">
-                </ol>
-                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-             </div>
+                ?>                
+              </div>
           </div>        
         </div>
       </div>
