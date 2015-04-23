@@ -366,7 +366,7 @@ SETTINGS;
 
                     /* give option to chat with the other user if this is the first time their conversation is appearing*/
                     if ($counter === 1){
-                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td><td><a href = "/php/chat.php?recipient='.$otherUsername.'">Chat with '.$otherUsername.'</a></td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td><td><a href = "/php/chat.php?recipient='.$otherUser.'">Chat with '.$otherUsername.'</a></td></tr>';  //$row['index'] the index here is a field name
                     }
                     /*else
                       echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
