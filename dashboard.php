@@ -49,6 +49,18 @@
 
   <body>
 
+    <?php
+    if (isset($_POST['hiddenSettings']) && $_POST['hiddenSettings'] == 'true') {
+        echo <<< CHANGESETTINGS
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#settingsModal').modal('show');
+            });
+        </script>
+CHANGESETTINGS;
+    }
+    ?>
+
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -62,13 +74,73 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Settings</a></li>
+            <li><a><button type="button" data-toggle="modal" data-target="#settingsModal">Settings</button></a></li>
             <li><a href="#">Help</a></li>
             <li><a href="logout.php">Log Out</a></li>
           </ul>
         </div>
       </div>
     </nav>
+
+    <!-- Settings Modal-->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>User Settings</h2>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    $settingsForm = <<< SETTINGS
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="settingsForm">
+                      <h3>Change your password.</h3>
+                        <input type="password" class="form-control" placeholder="Old password" id="oldPW" name="oldPW" aria-describedby="basic-addon1">
+                        <br>
+                        <input type="password" class="form-control" placeholder="New password" id="newPW" name="newPW" aria-describedby="basic-addon1">
+                        <br>
+                        <input type="hidden" name="hiddenSettings" id="hiddenSettings" value="true">
+                        <button class="btn btn-default" id="settingsSubmit" type="submit" form="settingsForm" value="Submit">Submit</button>
+                    </form>
+SETTINGS;
+                    $err = array();
+                    $success = array();
+                    if (isset($_POST['hiddenSettings']) && $_POST['hiddenSettings'] == 'true') {
+                      $old = stripslashes(htmlspecialchars($_POST['oldPW']));
+                      $new = stripslashes(htmlspecialchars($_POST['newPW']));
+
+                      /* check that old password is correct */
+                      $oldPWHash = md5($old);
+                      if ($oldPWHash == $_SESSION['user']['password']) {
+                        $changeQuery = 'UPDATE Users SET password="' . md5($new) . '" WHERE netId="' . $_SESSION['user']['netId'] . '";';
+                        $changeResult = mysql_query($changeQuery);
+                        if ($changeResult) {
+                          $success['changeSettings'] = 'Your password has been successfully changed!';
+                        }
+                        else {
+                          $err['changeSettings'] = 'Sorry, we could not connect to the database at this time. Please reload the page and try again.';
+                        }
+                      }
+                      else {
+                        $err['changeSettings'] = 'Sorry, your old password is incorrect! Please reload the page and try again.';
+                      }
+
+                      /* Print appropriate success or error message. */
+                      if ($success['changeSettings'])
+                        echo "<p>" . $success['changeSettings'] . "</p>";
+                      else
+                        echo '<div class="alert alert-danger" role="alert">'. $err['changeSettings'] .'</div>';
+                    }
+                    else {
+                      echo $settingsForm;
+                    }
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid">
       <div class="row">
