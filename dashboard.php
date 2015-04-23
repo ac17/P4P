@@ -358,12 +358,18 @@ SETTINGS;
                     else
                       $otherUsername = mysql_result($getName, 0);
 
+                    /* identify if the message was sent by "You" or the other user*/
+                    if (strcmp($row['User_From'], $_SESSION['user']['netId']) !== 0) 
+                        $userFrom = $row['User_From'];
+                      else
+                        $userFrom = "You";
+
                     /* give option to chat with the other user if this is the first time their conversation is appearing*/
                     if ($counter === 1){
-                      echo '<tr><td>' . $row['User_From'] . '</td><td>' . $row['Conversation'] .'</td><td><a href = "/php/chat.php?recipient='.$otherUsername.'">Chat with '.$otherUsername.'</a></td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td><td><a href = "/php/chat.php?recipient='.$otherUsername.'">Chat with '.$otherUsername.'</a></td></tr>';  //$row['index'] the index here is a field name
                     }
-                    else
-                      echo '<tr><td>' . $row['User_From'] . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+                    /*else
+                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
                     $counter = $counter + 1;    
                   }
 
