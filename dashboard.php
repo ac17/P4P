@@ -342,6 +342,7 @@ SETTINGS;
                   //Creates a loop to loop through results
                   $counter = 1;
                   $otherUser = "";
+                  $usersInteractedWith = array();
                   while($row = mysql_fetch_array($result)){
                     /* keep track of any new users appearing on the chat history*/
                     if ((strcmp($row['User_From'], $otherUser) !== 0) && (strcmp($row['User_To'], $otherUser) !== 0)){
@@ -349,7 +350,10 @@ SETTINGS;
                         $otherUser = $row['User_From'];
                       else
                         $otherUser = $row['User_To'];
-                      $counter = 1;
+                      if (!in_array($otherUser, $usersInteractedWith)){
+                        $counter = 1;
+                        array_push($usersInteractedWith, $otherUser);
+                      }
                     }
 
                     /* retrieve the name of the otherUser*/
@@ -365,7 +369,7 @@ SETTINGS;
                       else
                         $userFrom = "You";
 
-                    /* give option to chat with the other user if this is the first time their conversation is appearing*/
+                    /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
                       echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'">'.$otherUsername.'</a></td><td style="width:70%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
