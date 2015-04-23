@@ -33,6 +33,7 @@ if ($query_result !== false)
 	while($exchange = mysql_fetch_array(($query_result))){
 		$offerId = "";
 		$requestId = "";
+		$provider = "";
 		$recipient = "";
 		$club = $exchange['passClub'];
 		$passNum = $exchange['passNum'];
@@ -44,7 +45,8 @@ if ($query_result !== false)
 		{
 			$requestId = $exchange['id'];
 			$offer = getCorrespodingOffer(json_decode($exchange['associatedExchanges']));
-			$recipient = $offer['requesterNetId'];
+			$provider = $offer['requesterNetId'];
+			$recipient = $currentUserNetId;
 			$offerId = $offer['id'];
 		}
 		else 
@@ -52,11 +54,13 @@ if ($query_result !== false)
 			$offerId = $exchange['id'];
 			$request = getCorrespodingRequest($currentUserNetId, $offerId);
 			$recipient = $request['requesterNetId'];
+			$provider = $currentUserNetId;
 			$requestId = $request['id'];
 		}
 		
 		array_push($trades, array('offerId' =>$offerId,
 								  'requestId' =>$requestId,
+								  'provider' =>$provider,
 								  'recipient' =>$recipient, 
 								  'club' =>$club,
 								  'passNum' =>$passNum,

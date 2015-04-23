@@ -146,22 +146,20 @@ SETTINGS;
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href=""><b>Notifications</b></a></li>
-            <?php
-              $RequestedQuery = "SELECT * FROM Exchange_history WHERE requesterNetId='{$_SESSION['user']['netId']}' ORDER BY requestPassDate DESC LIMIT 5;";
-              $RequestedResult = mysql_query($RequestedQuery);
-              if ($RequestedResult) {
-                if (mysql_num_rows($RequestedResult) == 0)
-                  echo "<li><a><i>0 records found.</i></a></li>";
-                else {
-                  for ($i = 0; $i < mysql_num_rows($RequestedResult); $i++) {
-                    $row = mysql_fetch_assoc($RequestedResult);
-                    $reqDate = date('m-d-Y', strtotime($row['requestPassDate']));
-                    echo '<li><a href="#">' . $reqDate . ': ' . $row['requestPassType'] . '</a></li>';
-                  }
-                }
-              }
-            ?>
+          <!-- User Info -->
+          <?php
+          		echo '<img src="img/palm.jpg" width="100%" height="100%"></img>';
+				$RequestedQuery = "SELECT reputation FROM Users WHERE netId='{$_SESSION['user']['netId']}' LIMIT 1;";
+              	$RequestedResult = mysql_query($RequestedQuery);
+				$Reputation = mysql_fetch_array(($RequestedResult));
+				echo "Reputation: " . $Reputation['reputation'];
+          ?>
+          <br /><br /><br />
+          <!-- Notifications -->
+          <li class="active"><a href=""><b>Notifications</b></a></li>
+          <?php
+              
+          ?>
           </ul>
           <!-- Recently Requested Passes -->
           <ul class="nav nav-sidebar">
@@ -243,27 +241,9 @@ SETTINGS;
                 <div id="map-canvas"></div>
                 
                 <br /><br />
-
+				<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
 
                 <!--chatclient -->
-
-                <div id="wrapper">
-                    <div id="menu">
-                      <!-- welcome message + exit button!-->
-                        <p class="welcome">Welcome, <b><?php echo $_SESSION['user']['firstName']; ?></b></p>
-                        <p class="logout"><a id="loggingout" href="#">Logout</a></p>
-                        <p class="exit_chat"><a id="exit" href="#">Exit Current Chat</a></p>
-                        <div style="clear:both"></div>
-                    </div>    
-                    <div id="chatbox"></div>
-                     
-                    <!-- form submission for message -->
-                    <form name="message" action="">
-                        <input name="usermsg" type="text" id="usermsg" size="63" />
-                        <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
-                    </form>
-                </div>
-
               </div>
               
               <!-- Exchange Manager -->

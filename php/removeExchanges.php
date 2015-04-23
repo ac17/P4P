@@ -2,12 +2,12 @@
 //Get login information 
 require('../php/database_connect.php');
 //Get the id of the note to be displayed returned
-$netId = $_GET["netId"];
+$currentUserNetId = $_GET["currentUserNetId"];
 $data = file_get_contents( "php://input" );
 $exchangesToRemove = json_decode( $data );
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
-	$netId = stripslashes(mysql_real_escape_string($netId));
+	$currentUserNetId = stripslashes(mysql_real_escape_string($currentUserNetId));
 	$exchangesToRemove = stripslashes(mysql_real_escape_string($exchangesToRemove));
 }
 
@@ -15,11 +15,11 @@ foreach ($exchangesToRemove as $exchange)
 {
 	if($exchange[1] == "Request")
 	{
-		deleteRequest($netId, $exchange[0]);
+		deleteRequest($currentUserNetId, $exchange[0]);
 	}
 	else 
 	{
-		deleteOffer($netId, $exchange[0]);
+		deleteOffer($currentUserNetId, $exchange[0]);
 	}	
 }
 
