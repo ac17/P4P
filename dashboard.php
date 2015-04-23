@@ -92,7 +92,7 @@ CHANGESETTINGS;
                 <div class="modal-body">
                     <?php
                     $settingsForm = <<< SETTINGS
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="settingsForm">
+                    <form action="{$_SERVER['PHP_SELF']}" method="post" id="settingsForm">
                       <h3>Change your password.</h3>
                         <input type="password" class="form-control" placeholder="Old password" id="oldPW" name="oldPW" aria-describedby="basic-addon1">
                         <br>
@@ -103,7 +103,7 @@ CHANGESETTINGS;
                     </form>
 SETTINGS;
                     $err = array();
-                    $success = array();
+                    $success['changeSettings'] = FALSE;
                     if (isset($_POST['hiddenSettings']) && $_POST['hiddenSettings'] == 'true') {
                       $old = stripslashes(htmlspecialchars($_POST['oldPW']));
                       $new = stripslashes(htmlspecialchars($_POST['newPW']));
