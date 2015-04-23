@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/inbox.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/chat_style.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
@@ -306,7 +307,7 @@ SETTINGS;
              </div>
 
              <!-- Chat Manager -->
-              <div id="tab-3">  
+              <div class = "container-fluid" id="tab-3">  
                 <?php
                   $query = 'SELECT * FROM chat_history WHERE (User_From = "'.$_SESSION['user']['netId'].'") 
                             OR (User_To = "'.$_SESSION['user']['netId'].'") ORDER BY Time desc;';
@@ -316,7 +317,7 @@ SETTINGS;
                     die("Could not query the database. " . mysql_error());;
                   }
 
-                  echo "<table>"; // start a table to present the chat
+                  echo '<table class = "table table-striped table-bordered table-hover table-condensed">'; // start a table to present the chat
 
                   //Creates a loop to loop through results
                   $counter = 1;
@@ -340,13 +341,13 @@ SETTINGS;
 
                     /* identify if the message was sent by "You" or the other user*/
                     if (strcmp($row['User_From'], $_SESSION['user']['netId']) !== 0) 
-                        $userFrom = $row['User_From'];
+                        $userFrom = $otherUsername;
                       else
                         $userFrom = "You";
 
                     /* give option to chat with the other user if this is the first time their conversation is appearing*/
                     if ($counter === 1){
-                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td><td><a href = "/php/chat.php?recipient='.$otherUser.'">Chat with '.$otherUsername.'</a></td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'">'.$otherUsername.'</a></td><td style="width:70%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
                     /*else
                       echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
