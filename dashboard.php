@@ -254,7 +254,25 @@
              </div>
 
              <!-- Chat Manager -->
-              <div id="tab-3">                    
+              <div id="tab-3">  
+                <?php
+                  $query = 'SELECT * FROM chat_history WHERE (User_From = "'.$_SESSION['user']['netId'].'") 
+                            OR (User_To = "'.$_SESSION['user']['netId'].'" ORDER BY Time);';
+                  $result = mysql_query($query);
+
+                  if (!$result) {
+                    die("Could not query the database. " . mysql_error());;
+                  }
+
+                  echo "<table>"; // start a table to present the chat
+
+                  //Creates a loop to loop through results
+                  while($row = mysql_fetch_array($result)){   
+                    echo "<tr><td>" . $row['User_From'] . "</td><td>" . $row['Conversation'] . "</td></tr>";  //$row['index'] the index here is a field name
+                  }
+
+                  echo "</table>"; //Close the table in HTML
+                ?>                  
                 <table>
                 <tr>
                 <td >
