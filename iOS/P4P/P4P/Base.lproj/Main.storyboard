@@ -229,11 +229,11 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="chaticon" id="8Rd-P4-ShH"/>
+                    <navigationItem key="navigationItem" title="Chat" id="SG4-KC-Z5h"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaU-xq-Ctm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="2317.5"/>
+            <point key="canvasLocation" x="446" y="2913"/>
         </scene>
         <!--Map-->
         <scene sceneID="xZJ-QC-WVi">
@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WZv-5D-Viv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="720" y="2317.5"/>
+            <point key="canvasLocation" x="470" y="2185"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="53g-Tz-GHs">
@@ -427,31 +427,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsM-Dm-IK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="If2-Vw-WD5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="2290.5"/>
+            <point key="canvasLocation" x="1511" y="2190"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="8SA-0n-euB">
+        <!--Current Exchanges-->
+        <scene sceneID="Kxc-J7-KpU">
             <objects>
-                <viewController id="YOe-YL-uxh" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CJc-iY-0gY"/>
-                        <viewControllerLayoutGuide type="bottom" id="JfV-AV-aPi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hLw-pt-eci">
+                <tableViewController id="hwc-jt-Urh" customClass="CurrentExchangesViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="V9u-ze-cUr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="lp0-PV-PKV"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7iJ-AA-96k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ExchangeCell" editingAccessoryType="disclosureIndicator" textLabel="psh-KK-1nx" detailTextLabel="obD-0I-Hkx" style="IBUITableViewCellStyleSubtitle" id="pzU-wt-kP9">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pzU-wt-kP9" id="e69-fR-geA">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="psh-KK-1nx">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="obD-0I-Hkx">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact">
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hwc-jt-Urh" id="rwf-6g-Wmb"/>
+                            <outlet property="delegate" destination="hwc-jt-Urh" id="K1w-If-k9c"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Current Exchanges" id="BKV-xg-ATA">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ZRi-JI-TWY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Olo-v0-4ra">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K7k-NM-P6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="1296"/>
+            <point key="canvasLocation" x="1637" y="1388"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="BC9-0E-z0h">
             <objects>
-                <tabBarController id="aJd-5x-5cz" sceneMemberID="viewController">
+                <tabBarController id="aJd-5x-5cz" customClass="TabBarViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="2eC-ry-cBv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -459,14 +497,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="YOe-YL-uxh" kind="relationship" relationship="viewControllers" id="dlA-HL-6Yb"/>
-                        <segue destination="ukD-ek-BV1" kind="relationship" relationship="viewControllers" id="EoT-4s-KvO"/>
-                        <segue destination="sk5-uP-bPk" kind="relationship" relationship="viewControllers" id="jmq-KM-KDU"/>
+                        <segue destination="er0-F0-4sh" kind="relationship" relationship="viewControllers" id="8RV-iV-ZlP"/>
+                        <segue destination="ukD-ek-BV1" kind="relationship" relationship="viewControllers" id="tBb-Up-y3E"/>
+                        <segue destination="3aS-gj-oZV" kind="relationship" relationship="viewControllers" id="XdX-Qw-NLz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qM-QR-XDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-453" y="1735.5"/>
+            <point key="canvasLocation" x="-671" y="1673"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fGZ-Tu-cHn">
@@ -650,12 +688,50 @@
             </objects>
             <point key="canvasLocation" x="627" y="-417"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gEf-WH-cNY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="er0-F0-4sh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="oEx-dL-vCr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kjL-ZU-P2Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hwc-jt-Urh" kind="relationship" relationship="rootViewController" id="ePo-2z-Fqe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XVe-kE-2Vx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="617" y="1426"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="5kd-s5-S20">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3aS-gj-oZV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chat" image="chaticon" id="8Rd-P4-ShH"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Ca-mS-jjG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sk5-uP-bPk" kind="relationship" relationship="rootViewController" id="5be-0A-R2z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4J2-Rh-1mk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-538" y="2913"/>
+        </scene>
     </scenes>
     <resources>
         <image name="chaticon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gnR-HL-sUD"/>
+        <segue reference="QIk-LZ-Ci4"/>
     </inferredMetricsTieBreakers>
 </document>
