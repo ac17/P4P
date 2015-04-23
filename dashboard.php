@@ -208,6 +208,7 @@ SETTINGS;
               <ul>
                 <li><a href="#tab-1">Search for Passes</a></li>
                 <li><a href="#tab-2">Your Offer/Request</a></li>
+                <li><a href="#tab-3">Inbox</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">          
@@ -307,6 +308,65 @@ SETTINGS;
                 </table>
                 <br  />
               	Trades
+                <br />
+                <br />
+                <div id="tradeList">
+                </div>
+                
+                <br  /><br  />
+                Your Open Offers
+                <ol id="offerList" class="selectable">
+                </ol>
+                <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
+                <br  /><br  />
+                Your Pending Requests
+                <ol id="requestList" class="selectable">
+                </ol>
+                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
+             </div>
+
+             <!-- Chat Manager -->
+              <div id="tab-3">                    
+                <table>
+                <tr>
+                <td >
+                    Pass Date: <br /><input type="text" id="passDate"><br /><br />
+                </td>
+                <td>
+                </td>
+                <td>
+                    <label for="spinner">Number of Passes:</label>
+                    <input id="spinner" name="value">
+                </td>
+                </tr>
+                <tr>
+                <td>
+                    <form>
+                      <fieldset>
+                        <label for="eatingClub">Eating Club: </label>
+                        <select name="eatingClub" id="eatingClub">
+                          <option>Ivy Club</option>
+                          <option>Tiger Inn</option>
+                          <option selected="selected">Colonial</option>
+                          <option>Cottage</option>
+                          <option>Cap & Gown</option>
+                        </select>
+                        </fieldset>
+                    </form>
+                </td>
+                <td>
+                    <label for="comment">Comment:</label>
+                    <textarea id="comment" rows="5" cols="20"></textarea>
+                </td>
+                <td>
+                    <input type="submit" value="Post" id="postExchange">
+                    <!-- used to pass netid to on click function for Post -->
+                    <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
+                </td>
+                </tr>
+                </table>
+                <br  />
+                Trades
                 <br />
                 <br />
                 <div id="tradeList">
