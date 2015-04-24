@@ -18,4 +18,5 @@
 <file name="userActiveTrades.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742676338099800" remote="130743016200000000" />
 <file name="completeTrade.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742718569785315" remote="130742970000000000" />
 <file name="cancelTrade.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742723581791985" remote="130742976000000000" />
+<file name="signup.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742652653075095" remote="130743860400000000" />
 </dwsync>

@@ -8,8 +8,10 @@
 ?>
 
 <!DOCTYPE html>
+<html manifest="P4P.manifest">
+
 <html lang="en">
-  <head>
+  <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +19,13 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 
+	<!-- for HTML5 App -->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="img/palm.png"/>
+    <link rel="apple-touch-startup-image" href="img/palm.png" />
+    
     <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
@@ -210,59 +219,55 @@ SETTINGS;
                 <li><a href="#tab-3">Inbox</a></li>
               </ul>
               <!-- Map -->
-              <div id="tab-1">          
-                <table>
-                <tr>
-                <td>
-                <form action="#">
-                  <fieldset>
-                    <label for="searchEatingClub">Eating Club: </label>
-                    <select name="searchEatingClub" id="searchEatingClub">
-                      <option>Ivy Club</option>
-                      <option>Tiger Inn</option>
-                      <option selected="selected">Colonial</option>
-                      <option>Cottage</option>
-                      <option>Cap & Gown</option>
-                      <option>Tiger Inn</option>
-                      <option>All</option>
-                    </select>
-                    </fieldset>
-                </form>
-                </td>
-                <td>
-                <label for="numPasses">Number of Passes:</label>
-                <input id="numPasses" name="value">
-                </td>
-                <td>
-                <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
-                </td>
-                </tr>
-                </table>
+              <div id="tab-1">
+              	<div class="col-md-12">          
+                    <div class="col-md-4">
+                    <form action="#">
+                      <fieldset>
+                        <label for="searchEatingClub">Eating Club: </label>
+                        <select name="searchEatingClub" id="searchEatingClub">
+                          <option>Ivy Club</option>
+                          <option>Tiger Inn</option>
+                          <option selected="selected">Colonial</option>
+                          <option>Cottage</option>
+                          <option>Cap & Gown</option>
+                          <option>Tiger Inn</option>
+                          <option>All</option>
+                        </select>
+                        </fieldset>
+                    </form>
+                    </div>
+                    <div class="col-md-4">
+                    <label for="numPasses">Number of Passes:</label>
+                    <input id="numPasses" name="value">
+                    </div>
+                    <div class="col-md-4">
+                    <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
+                    </div>
+                </div>
                 
-                <div id="map-canvas"></div>
+                <div class="col-md-12" ><br /><br /></div>
                 
-                <br /><br />
-				<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                <div class="col-md-12" id="map-canvas"></div>
+                
+                <div class="col-md-12" ><br /><br /></div>
+
+                	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
 
                 <!--chatclient -->
               </div>
               
               <!-- Exchange Manager -->
               <div id="tab-2">                    
-                <table>
-                <tr>
-                <td >
+                <div class="col-md-12">          
+                    <div class="col-md-4">
                     Pass Date: <br /><input type="text" id="passDate"><br /><br />
-                </td>
-                <td>
-                </td>
-                <td>
+					</div>
+                	<div class="col-md-4">
                     <label for="spinner">Number of Passes:</label>
                     <input id="spinner" name="value">
-                </td>
-                </tr>
-                <tr>
-                <td>
+                    </div>
+                    <div class="col-md-4">
                     <form>
                       <fieldset>
                         <label for="eatingClub">Eating Club: </label>
@@ -275,35 +280,46 @@ SETTINGS;
                         </select>
                         </fieldset>
                     </form>
-                </td>
-                <td>
+                    </div>
+                 </div>
+                 <div class="col-md-12">
+                	<div class="col-md-4">
                     <label for="comment">Comment:</label>
                     <textarea id="comment" rows="5" cols="20"></textarea>
-                </td>
-                <td>
+                    </div>
+                    <div class="col-md-4">
                     <input type="submit" value="Post" id="postExchange">
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
-                </td>
-                </tr>
-                </table>
-                <br  />
-              	Trades
-                <br />
-                <br />
-                <div id="tradeList">
+                    </div>
+                 </div>
+
+                <div class="col-md-12"><br  /></div>
+              	<div class="col-md-12">Trades</div>
+                <div class="col-md-12"><br  /></div>
+                <div class="col-md-12"><br  /></div>
+                <div class="col-md-12" id="tradeList">
                 </div>
                 
-                <br  /><br  />
-                Your Open Offers
-                <ol id="offerList" class="selectable">
-                </ol>
+                <div class="col-md-12"><br  /><br  /></div>
+                <div class="col-md-12">Your Open Offers</div>
+                <div class="col-md-12">
+                    <ol id="offerList" class="selectable">
+                    </ol>
+                </div>
+                <div class="col-md-12">
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                <br  /><br  />
-                Your Pending Requests
-                <ol id="requestList" class="selectable">
-                </ol>
+                </div>
+                
+                <div class="col-md-12"><br  /><br  /></div>
+                <div class="col-md-12">Your Pending Requests</div>
+                <div class="col-md-12">
+                    <ol id="requestList" class="selectable">
+                    </ol>
+                </div>
+                
                 <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
+
              </div>
 
              <!-- Chat Manager -->
