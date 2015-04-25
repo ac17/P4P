@@ -284,10 +284,10 @@ SETTINGS;
                  </div>
                  <div class="col-md-12">
                 	<div class="col-md-4">
-                    <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea>
                     </div>
                     <div class="col-md-4">
+                    <label for="comment">Comment:</label>
+                    <textarea id="comment" rows="5" cols="20"></textarea>
                     <input type="submit" value="Post" id="postExchange">
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
@@ -389,20 +389,22 @@ SETTINGS;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4"></script>
 	<script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
-  
-  
-   
-                
-  
+
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
     Please enter a whole number of passes greater than 0.
+  </p>
+  </div>
+
+  <div id="error-dialog" title="Invalid Number of Passes">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+    <div id="errorMessage"></div>
   </p>
   </div>
 

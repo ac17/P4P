@@ -129,25 +129,39 @@ $(function() {
 		}
 	});
 	
-	$(function() {
-    	$( "#transcationAccordion" ).accordion({
+	$( "#transcationAccordion" ).accordion({
 			heightStyle: "content",
 		});
-  	});
 	
 	// dialogs 
-	$(function() {
-		$( "#invalid-passNum-dialog" ).dialog({
-		  modal: true,
-		  autoOpen: false,
-		  buttons: {
-			Ok: function() {
-			  $( this ).dialog( "close" );
-			}
-		  }
-		});
+	$( "#invalid-passNum-dialog" ).dialog({
+	  modal: true,
+	  autoOpen: false,
+	  buttons: {
+		Ok: function() {
+		  $( this ).dialog( "close" );
+		}
+	  }
 	});
+	
+	$( "#error-dialog" ).dialog({
+	  modal: true,
+	  autoOpen: false,
+	  buttons: {
+		Ok: function() {
+		  $( this ).dialog( "close" );
+		}
+	  }
+	});
+	
 });
+
+function showError(errorTitle, errorMsg)
+{
+	document.getElementById("error-dialog").title = errorTitle;
+	document.getElementById("errorMessage").innerHTML = errorMsg;
+	$( "#error-dialog" ).dialog( "open" );
+}
 
 function loadUserData(netId)
 {

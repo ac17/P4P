@@ -28,7 +28,7 @@ function getMatchingExchanges()
 	xmlhttp.onreadystatechange=function()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
+		{			
 			var json = JSON.parse(xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;

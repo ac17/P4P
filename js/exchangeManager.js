@@ -17,7 +17,7 @@ function getUserActiveExchanges(currentUserNetId)
 	xmlhttp.onreadystatechange=function()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
+		{			
 			var json = JSON.parse(xmlhttp.responseText);
 			if (json.Exchanges.length>0) { 
 				for (i=0; i<json.Exchanges.length; i++) { 
