@@ -1,8 +1,9 @@
 <?php 
 //Get login information 
 require('../php/database_connect.php');
+require('exchange_api/exchangeAPI.php');
 //Get the id of the note to be displayed returned
-$netId = $_GET["netId"];
+$currentUserNetId = $_GET["netId"];
 $passDate = $_GET["passDate"];
 $type = $_GET["type"];
 $numPasses = $_GET["numPasses"];
@@ -10,7 +11,7 @@ $passClub = $_GET["club"];
 $comment = $_GET["comment"];
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
-	$netId = stripslashes(mysql_real_escape_string($netId));
+	$currentUserNetId = stripslashes(mysql_real_escape_string($$currentUserNetId));
 	$passDate = stripslashes(mysql_real_escape_string($passDate));
 	$type = stripslashes(mysql_real_escape_string($type));
 	$numPasses = stripslashes(mysql_real_escape_string($numPasses));
@@ -18,15 +19,21 @@ if(get_magic_quotes_gpc()){
 	$comment = stripslashes(mysql_real_escape_string($comment));
 }
 
-//Build query
-$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $netId . '","' . $passClub . '","' . $numPasses . '","' . date ("Y-m-d", strtotime($passDate)) . '","' . $comment . '","' . $type. '",0,"[]")';
-//Execute the query
-$query_result = mysql_query($query);
-//Provide an error message if the query failed
-if(!$query_result){
-	die("Could not query the database. " . mysql_error());
-}
+addExchange($currentUserNetId, $passDate, $type, $numPasses, $passClub, $comment);
 
 mysql_close($connection);
  
+
+function addExchange($currentUserNetId, $passDate, $type, $numPasses, $passClub, $comment)
+{
+	//Build query
+	$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $currentUserNetId . '","' . $passClub . '","' . $numPasses . '","' . date ("Y-m-d", strtotime($passDate)) . '","' . $comment . '","' . $type. '",0,"[]")';
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+}
+
 ?>
