@@ -8,10 +8,8 @@
 ?>
 
 <!DOCTYPE html>
-<html manifest="P4P.manifest">
-
 <html lang="en">
-  <head> 
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,13 +17,6 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-	<!-- for HTML5 App -->
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="apple-touch-icon" href="img/palm.png"/>
-    <link rel="apple-touch-startup-image" href="img/palm.png" />
-    
     <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
@@ -219,55 +210,59 @@ SETTINGS;
                 <li><a href="#tab-3">Inbox</a></li>
               </ul>
               <!-- Map -->
-              <div id="tab-1">
-              	<div class="col-md-12">          
-                    <div class="col-md-4">
-                    <form action="#">
-                      <fieldset>
-                        <label for="searchEatingClub">Eating Club: </label>
-                        <select name="searchEatingClub" id="searchEatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap & Gown</option>
-                          <option>Tiger Inn</option>
-                          <option>All</option>
-                        </select>
-                        </fieldset>
-                    </form>
-                    </div>
-                    <div class="col-md-4">
-                    <label for="numPasses">Number of Passes:</label>
-                    <input id="numPasses" name="value">
-                    </div>
-                    <div class="col-md-4">
-                    <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
-                    </div>
-                </div>
+              <div id="tab-1">          
+                <table>
+                <tr>
+                <td>
+                <form action="#">
+                  <fieldset>
+                    <label for="searchEatingClub">Eating Club: </label>
+                    <select name="searchEatingClub" id="searchEatingClub">
+                      <option>Ivy Club</option>
+                      <option>Tiger Inn</option>
+                      <option selected="selected">Colonial</option>
+                      <option>Cottage</option>
+                      <option>Cap & Gown</option>
+                      <option>Tiger Inn</option>
+                      <option>All</option>
+                    </select>
+                    </fieldset>
+                </form>
+                </td>
+                <td>
+                <label for="numPasses">Number of Passes:</label>
+                <input id="numPasses" name="value">
+                </td>
+                <td>
+                <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
+                </td>
+                </tr>
+                </table>
                 
-                <div class="col-md-12" ><br /><br /></div>
+                <div id="map-canvas"></div>
                 
-                <div class="col-md-12" id="map-canvas"></div>
-                
-                <div class="col-md-12" ><br /><br /></div>
-
-                	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                <br /><br />
+				<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
 
                 <!--chatclient -->
               </div>
               
               <!-- Exchange Manager -->
               <div id="tab-2">                    
-                <div class="col-md-12">          
-                    <div class="col-md-4">
+                <table>
+                <tr>
+                <td >
                     Pass Date: <br /><input type="text" id="passDate"><br /><br />
-					</div>
-                	<div class="col-md-4">
+                </td>
+                <td>
+                </td>
+                <td>
                     <label for="spinner">Number of Passes:</label>
                     <input id="spinner" name="value">
-                    </div>
-                    <div class="col-md-4">
+                </td>
+                </tr>
+                <tr>
+                <td>
                     <form>
                       <fieldset>
                         <label for="eatingClub">Eating Club: </label>
@@ -280,46 +275,35 @@ SETTINGS;
                         </select>
                         </fieldset>
                     </form>
-                    </div>
-                 </div>
-                 <div class="col-md-12">
-                	<div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
+                </td>
+                <td>
                     <label for="comment">Comment:</label>
                     <textarea id="comment" rows="5" cols="20"></textarea>
+                </td>
+                <td>
                     <input type="submit" value="Post" id="postExchange">
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
-                    </div>
-                 </div>
-
-                <div class="col-md-12"><br  /></div>
-              	<div class="col-md-12">Trades</div>
-                <div class="col-md-12"><br  /></div>
-                <div class="col-md-12"><br  /></div>
-                <div class="col-md-12" id="tradeList">
+                </td>
+                </tr>
+                </table>
+                <br  />
+              	Trades
+                <br />
+                <br />
+                <div id="tradeList">
                 </div>
                 
-                <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Open Offers</div>
-                <div class="col-md-12">
-                    <ol id="offerList" class="selectable">
-                    </ol>
-                </div>
-                <div class="col-md-12">
+                <br  /><br  />
+                Your Open Offers
+                <ol id="offerList" class="selectable">
+                </ol>
                 <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                </div>
-                
-                <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Pending Requests</div>
-                <div class="col-md-12">
-                    <ol id="requestList" class="selectable">
-                    </ol>
-                </div>
-                
+                <br  /><br  />
+                Your Pending Requests
+                <ol id="requestList" class="selectable">
+                </ol>
                 <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-
              </div>
 
              <!-- Chat Manager -->
@@ -367,15 +351,171 @@ SETTINGS;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
-                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:70%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href="/php/chat.php?recipient='.$otherUser.'" onclick="javascript:void window.open("/php/chat.php?recipient="'.$otherUser.',"1429818593324","width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0");return false;">'.$otherUsername.'</a></td><td style="width:70%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
                     /*else
-                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
+i                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
                     $counter = $counter + 1;    
                   }
 
                   echo "</table>"; //Close the table in HTML
                 ?>                
+                
+                <!-- Popup chat -->
+                <script>
+                //this function can remove a array element.
+                Array.remove = function(array, from, to) {
+                  var rest = array.slice((to || from) + 1 || array.length);
+                  array.length = from < 0 ? array.length + from : from;
+                  return array.push.apply(array, rest);
+                };
+
+                //this variable represents the total number of popups can be displayed according to the viewport width
+                var total_popups = 0;
+            
+                //arrays of popups ids
+                var popups = [];
+
+                //this is used to close a popup
+                function close_popup(id)
+                {
+                  for(var iii = 0; iii < popups.length; iii++)
+                  {
+                    if(id == popups[iii])
+                    {
+                      Array.remove(popups, iii);
+
+                      document.getElementById(id).style.display = "none";
+
+                      calculate_popups();
+
+                      return;
+                    }
+                  }   
+                }
+
+                //displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width
+                function display_popups()
+                {
+                  var right = 220;
+
+                  var iii = 0;
+                  for(iii; iii < total_popups; iii++)
+                  {
+                    if(popups[iii] != undefined)
+                    {
+                      var element = document.getElementById(popups[iii]);
+                      element.style.right = right + "px";
+                      right = right + 320;
+                      element.style.display = "block";
+                    }
+                  }
+
+                  for(var jjj = iii; jjj < popups.length; jjj++)
+                  {
+                    var element = document.getElementById(popups[jjj]);
+                    element.style.display = "none";
+                  }
+                }
+            
+                //creates markup for a new popup. Adds the id to popups array.
+                function register_popup(id, name)
+                {
+
+                  for(var iii = 0; iii < popups.length; iii++)
+                  {   
+                    //already registered. Bring it to front.
+                    if(id == popups[iii])
+                    {
+                      Array.remove(popups, iii);
+
+                      popups.unshift(id);
+
+                      calculate_popups();
+
+
+                      return;
+                    }
+                  }               
+
+                  var element = '<div class="popup-box chat-popup" id="'+ id +'">';
+                  element = element + '<div class="popup-head">';
+                  element = element + '<div class="popup-head-left">'+ name +'</div>';
+                  element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
+                  element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
+
+                  document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+
+                  popups.unshift(id);
+
+                  calculate_popups();
+
+                }
+
+                //calculate the total number of popups suitable and then populate the toatal_popups variable.
+                function calculate_popups()
+                {
+                  var width = window.innerWidth;
+                  if(width < 540)
+                  {
+                    total_popups = 0;
+                  }
+                  else
+                  {
+                    width = width - 200;
+                    //320 is width of a single popup box
+                    total_popups = parseInt(width/320);
+                  }
+
+                  display_popups();
+
+                }
+
+                //recalculate when window is loaded and also when window is resized.
+                window.addEventListener("resize", calculate_popups);
+                window.addEventListener("load", calculate_popups);
+            
+                </script>
+
+                <div class="chat-sidebar">
+                  <div class="sidebar-name">
+                    <!-- Pass username and display name to register popup -->
+                    <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
+                      <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                      <span>Narayan Prusty</span>
+                    </a>
+                  </div>
+                  <div class="sidebar-name">
+                    <a href="javascript:register_popup('qnimate', 'QNimate');">
+                      <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                      <span>QNimate</span>
+                    </a>
+                  </div>
+                  <div class="sidebar-name">
+                    <a href="javascript:register_popup('qscutter', 'QScutter');">
+                      <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                      <span>QScutter</span>
+                    </a>
+                  </div>
+                  <div class="sidebar-name">
+                    <a href="javascript:register_popup('qidea', 'QIdea');">
+                      <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                      <span>QIdea</span>
+                    </a>
+                  </div>
+                  <div class="sidebar-name">
+                    <a href="javascript:register_popup('qazy', 'QAzy');">
+                      <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                      <span>QAzy</span>
+                    </a>
+                  </div>
+                  <div class="sidebar-name">
+                    <a href="javascript:register_popup('qblock', 'QBlock');">
+                      <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                      <span>QBlock</span>
+                    </a>
+                  </div>
+                </div>
               </div>
           </div>        
         </div>
@@ -389,22 +529,20 @@ SETTINGS;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
+    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4"></script>
 	<script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
-
+  
+  
+   
+                
+  
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
     Please enter a whole number of passes greater than 0.
-  </p>
-  </div>
-
-  <div id="error-dialog" title="Invalid Number of Passes">
-  <p>
-    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-    <div id="errorMessage"></div>
   </p>
   </div>
 

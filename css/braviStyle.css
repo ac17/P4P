@@ -1,0 +1,63 @@
+﻿#overlay
+  2  {
+  3      position: fixed;
+  4      height: 100%;
+  5      width: 100%; 
+  6      background-color: #fffddd;
+  7      opacity: 0.4;
+  8  }
+  9  
+ 10  .main
+ 11  {
+ 12      position: absolute;
+ 13      top: 25%;
+ 14      left: 30%;
+ 15      margin-left: -70px;
+ 16      background: url(../images/title.png) no-repeat;
+ 17      -moz-border-radius: 15px;
+ 18      border-radius: 15px;
+ 19      border: 3px solid gray;
+ 20      padding: 0;
+ 21      border: 1px dashed silver;
+ 22      background-color: #aacc74;
+ 23  }
+ 24  #dv_no_move
+ 25  {
+ 26      padding: 2px -40px -50px 2px;
+ 27      height: 90%;
+ 28      width: 100%;
+ 29  }
+ 30  .close
+ 31  {
+ 32      float: right;
+ 33      cursor: pointer;
+ 34      margin-top: 3px;
+ 35  }
+ 36  .close:hover
+ 37  {
+ 38      margin-top: 5px;
+ 39  }
+ 40  .title
+ 41  {
+ 42      cursor: move;
+ 43      width: 98%;
+ 44      height: 20px;
+ 45      font-size: 14;
+ 46      font-weight: 900;
+ 47      color: #fff;
+ 48  }
+ 49  #title_left
+ 50  {
+ 51      padding: 4px 0 3px 9px;
+ 52      float: left;
+ 53      cursor: default;
+ 54  }
+ 55  
+ 56  #dv_load
+ 57  {
+ 58      position: fixed;
+ 59      left: 50%;
+ 60      top: 50%;
+ 61      margin-left: -100px;
+ 62      margin: 0 auto;
+ 63  }
