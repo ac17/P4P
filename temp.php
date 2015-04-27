@@ -1,81 +1,275 @@
-<script type="text/javascript">
-(function ($) {
-    $.braviPopUp = function (title, src, width, height) {
-        //Destroy if exist
-        $('#dv_move').remove();
-        //create hte popup html
-        var html = '<div class="main" id="dv_move" style="width:' + width + 'px; height:' + height + 'px;">';
-        html += '  <div class="title">';
-        html += '    <span id="title_left">' + title + '</span> <span class="close">';
-        html += ' <img id="img_close" src="images/close.png" width="25" height="23" onclick="CloseDialog();"></span></div>';
-        html += ' <div id="dv_no_move">';
-        html += '<div id="dv_load"><img src="images/circular.gif"/></div>';
-        html += ' <iframe id="url" scrolling="auto" src="' + src + '"  style="border:none;" width="100%" height="100%"></iframe>';
-        html += ' </div>';
-        html += ' </div>';
+<!doctype html>
+<html>
+    <head>
+        <title>Facebook Style Popup Design</title>
+        <style>
+            @media only screen and (max-width : 540px) 
+            {
+                .chat-sidebar
+                {
+                    display: none !important;
+                }
+                
+                .chat-popup
+                {
+                    display: none !important;
+                }
+            }
+            
+            body
+            {
+                background-color: #e9eaed;
+            }
+            
+            .chat-sidebar
+            {
+                width: 200px;
+                position: fixed;
+                height: 100%;
+                right: 0px;
+                top: 0px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border: 1px solid rgba(29, 49, 91, .3);
+            }
+            
+            .sidebar-name 
+            {
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-bottom: 4px;
+                font-size: 12px;
+            }
+            
+            .sidebar-name span
+            {
+                padding-left: 5px;
+            }
+            
+            .sidebar-name a
+            {
+                display: block;
+                height: 100%;
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .sidebar-name:hover
+            {
+                background-color:#e1e2e5;
+            }
+            
+            .sidebar-name img
+            {
+                width: 32px;
+                height: 32px;
+                vertical-align:middle;
+            }
+            
+            .popup-box
+            {
+                display: none;
+                position: fixed;
+                bottom: 0px;
+                right: 220px;
+                height: 285px;
+                background-color: rgb(237, 239, 244);
+                width: 300px;
+                border: 1px solid rgba(29, 49, 91, .3);
+            }
+            
+            .popup-box .popup-head
+            {
+                background-color: #6d84b4;
+                padding: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                clear: both;
+            }
+            
+            .popup-box .popup-head .popup-head-left
+            {
+                float: left;
+            }
+            
+            .popup-box .popup-head .popup-head-right
+            {
+                float: right;
+                opacity: 0.5;
+            }
+            
+            .popup-box .popup-head .popup-head-right a
+            {
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .popup-box .popup-messages
+            {
+                height: 100%;
+                overflow-y: scroll;
+            }
+            
 
-        //add to body
-   $('<div></div>').prependTo('body').attr('id', 'overlay');// add overlay div to disable the parent page
-        $('body').append(html);
-        //enable dragable
-        $('#dv_move').draggable();
-        //enable resizeable
-        $("#dv_move").resizable({
-            minWidth: 300,
-            minHeight: 100,
-            maxHeight: 768,
-            maxWidth: 1024
-        });
 
-        $("#dv_no_move").mousedown(function () {
-            return false;
-        });
-        $("#title_left").mousedown(function () {
-            return false;
-        });
-        $("#img_close").mousedown(function () {
-            return false;
-        });
-        //change close icon image on hover
-        $("#img_close").mouseover(function () {
-            $(this).attr("src", 'images/close2.png');
-        });
-        $("#img_close").mouseout(function () {
-            $(this).attr("src", 'images/close.png');
-        });
-
-        setTimeout("$('#dv_load').hide();", 1500);
-    };
-})(jQuery); 
-</script>
-
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" />
-    <!--><script src="jquery/braviPopup.js" type="text/javascript"></script> -->
-    <link href="css/braviStyle.css" rel="stylesheet" type="text/css" />
-    <title>braviPopUp</title>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#btnTest').click(function () {
-                $.braviPopUp('testing title!', 'popup.aspx', 600, 400);
-            });
-        });  
- //if you want to refresh parent page on closing of a popup window then remove comment to the below function
-        //and also call this function from the js file 
-        //        function Refresh() {
-        //            window.location.reload();
-        //        }     
-    </script>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <input type="button" id="btnTest" value="Click Me!" />
-    </form>
-</body>
+        </style>
+        
+        <script>
+            //this function can remove a array element.
+            Array.remove = function(array, from, to) {
+                var rest = array.slice((to || from) + 1 || array.length);
+                array.length = from < 0 ? array.length + from : from;
+                return array.push.apply(array, rest);
+            };
+        
+            //this variable represents the total number of popups can be displayed according to the viewport width
+            var total_popups = 0;
+            
+            //arrays of popups ids
+            var popups = [];
+        
+            //this is used to close a popup
+            function close_popup(id)
+            {
+                for(var iii = 0; iii < popups.length; iii++)
+                {
+                    if(id == popups[iii])
+                    {
+                        Array.remove(popups, iii);
+                        
+                        document.getElementById(id).style.display = "none";
+                        
+                        calculate_popups();
+                        
+                        return;
+                    }
+                }   
+            }
+        
+            //displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width
+            function display_popups()
+            {
+                var right = 220;
+                
+                var iii = 0;
+                for(iii; iii < total_popups; iii++)
+                {
+                    if(popups[iii] != undefined)
+                    {
+                        var element = document.getElementById(popups[iii]);
+                        element.style.right = right + "px";
+                        right = right + 320;
+                        element.style.display = "block";
+                    }
+                }
+                
+                for(var jjj = iii; jjj < popups.length; jjj++)
+                {
+                    var element = document.getElementById(popups[jjj]);
+                    element.style.display = "none";
+                }
+            }
+            
+            //creates markup for a new popup. Adds the id to popups array.
+            function register_popup(id, name)
+            {
+                
+                for(var iii = 0; iii < popups.length; iii++)
+                {   
+                    //already registered. Bring it to front.
+                    if(id == popups[iii])
+                    {
+                        Array.remove(popups, iii);
+                    
+                        popups.unshift(id);
+                        
+                        calculate_popups();
+                        
+                        
+                        return;
+                    }
+                }               
+                
+                var element = '<div class="popup-box chat-popup" id="'+ id +'">';
+                element = element + '<div class="popup-head">';
+                element = element + '<div class="popup-head-left">'+ name +'</div>';
+                element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
+                element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
+                
+                document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+        
+                popups.unshift(id);
+                        
+                calculate_popups();
+                
+            }
+            
+            //calculate the total number of popups suitable and then populate the toatal_popups variable.
+            function calculate_popups()
+            {
+                var width = window.innerWidth;
+                if(width < 540)
+                {
+                    total_popups = 0;
+                }
+                else
+                {
+                    width = width - 200;
+                    //320 is width of a single popup box
+                    total_popups = parseInt(width/320);
+                }
+                
+                display_popups();
+                
+            }
+            
+            //recalculate when window is loaded and also when window is resized.
+            window.addEventListener("resize", calculate_popups);
+            window.addEventListener("load", calculate_popups);
+            
+        </script>
+    </head>
+    <body>
+        <div class="chat-sidebar">
+            <div class="sidebar-name">
+                <!-- Pass username and display name to register popup -->
+                <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
+                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                    <span>Narayan Prusty</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('qnimate', 'QNimate');">
+                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                    <span>QNimate</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('qscutter', 'QScutter');">
+                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                    <span>QScutter</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('qidea', 'QIdea');">
+                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                    <span>QIdea</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('qazy', 'QAzy');">
+                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                    <span>QAzy</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('qblock', 'QBlock');">
+                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                    <span>QBlock</span>
+                </a>
+            </div>
+        </div>
+        
+    </body>
 </html>
