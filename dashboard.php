@@ -368,7 +368,7 @@ SETTINGS;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
-                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:70%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href="javascript:register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');">'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
                     /*else
                       echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
@@ -377,167 +377,20 @@ SETTINGS;
 
                   echo "</table>"; //Close the table in HTML
                 ?>  
-
-
-                <!-- Popup Chat like facebook -->
-                <script>
-                //this function can remove a array element.
-                Array.remove = function(array, from, to) {
-                  var rest = array.slice((to || from) + 1 || array.length);
-                  array.length = from < 0 ? array.length + from : from;
-                  return array.push.apply(array, rest);
-                };
-
-                //this variable represents the total number of popups can be displayed according to the viewport width
-                var total_popups = 0;
-            
-                //arrays of popups ids
-                var popups = [];
-
-                //this is used to close a popup
-                function close_popup(id)
-                {
-                  for(var iii = 0; iii < popups.length; iii++)
-                  {
-                    if(id == popups[iii])
-                    {
-                      Array.remove(popups, iii);
-
-                      document.getElementById(id).style.display = "none";
-
-                      calculate_popups();
-
-                      return;
-                    }
-                  }   
-                }
-
-                //displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width
-                function display_popups()
-                {
-                  var right = 220;
-
-                  var iii = 0;
-                  for(iii; iii < total_popups; iii++)
-                  {
-                    if(popups[iii] != undefined)
-                    {
-                      var element = document.getElementById(popups[iii]);
-                      element.style.right = right + "px";
-                      right = right + 320;
-                      element.style.display = "block";
-                    }
-                  }
-
-                  for(var jjj = iii; jjj < popups.length; jjj++)
-                  {
-                    var element = document.getElementById(popups[jjj]);
-                    element.style.display = "none";
-                  }
-                }
-            
-                //creates markup for a new popup. Adds the id to popups array.
-                function register_popup(id, name)
-                {
-
-                  for(var iii = 0; iii < popups.length; iii++)
-                  {   
-                    //already registered. Bring it to front.
-                    if(id == popups[iii])
-                    {
-                      Array.remove(popups, iii);
-
-                      popups.unshift(id);
-
-                      calculate_popups();
-
-
-                      return;
-                    }
-                  }               
-
-                  var element = '<div class="popup-box chat-popup" id="'+ id +'">';
-                  element = element + '<div class="popup-head">';
-                  element = element + '<div class="popup-head-left">'+ name +'</div>';
-                  element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-                  element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
-
-                  document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
-
-                  popups.unshift(id);
-
-                  calculate_popups();
-
-                }
-
-                //calculate the total number of popups suitable and then populate the toatal_popups variable.
-                function calculate_popups()
-                {
-                  var width = window.innerWidth;
-                  if(width < 540)
-                  {
-                    total_popups = 0;
-                  }
-                  else
-                  {
-                    width = width - 200;
-                    //320 is width of a single popup box
-                    total_popups = parseInt(width/320);
-                  }
-
-                  display_popups();
-
-                }
-
-               //recalculate when window is loaded and also when window is resized.
-                window.addEventListener("resize", calculate_popups);
-                window.addEventListener("load", calculate_popups);           
-              </script>
               
-              <div class="chat-sidebar">
-              <?php
-                foreach($usersInteractedWith as $user) {
-                  /* retrieve the name of the user*/
+              <!--> <div class="chat-sidebar"> -->
+              <?php 
+                //foreach($usersInteractedWith as $user) {
+                  /* retrieve the name of the user
                     $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$user.'";'); 
                     if (!$getName)
                       $userName = "";
                     else
                       $userName = mysql_result($getName, 0);
-                  echo '<div class="sidebar-name"><a href="javascript:register_popup("'.$user.'", "'.$userName.'");"><span>'.$userName.'</span></a></div>';
-                }
+                  echo '<div class="sidebar-name"><a href="javascript:register_popup(\''.$user.'\', \''.$userName.'\');"><span>'.$userName.'</span></a></div>';
+                }*/
               ?>
-              </div>
-              <!--
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
-                     <span>Narayan Prusty</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qnimate', 'QNimate');">
-                    <span>QNimate</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qscutter', 'QScutter');">
-                    <span>QScutter</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qidea', 'QIdea');">                    
-                    <span>QIdea</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qazy', 'QAzy');">
-                    <span>QAzy</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qblock', 'QBlock');">
-                    <span>QBlock</span>
-                  </a>
-                </div> -->             
+              <!--></div>   --> 
             </div>
           </div>        
         </div>
@@ -555,6 +408,7 @@ SETTINGS;
 	<script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/popup.js"></script>
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
