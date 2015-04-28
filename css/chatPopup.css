@@ -1,9 +1,10 @@
- @media only screen and (max-width : 540px){
+@media only screen and (max-width : 540px) 
+{
     .chat-sidebar
     {
         display: none !important;
     }
-
+    
     .chat-popup
     {
         display: none !important;
