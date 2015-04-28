@@ -379,6 +379,7 @@ SETTINGS;
                 ?>  
 
 
+                <!-- Popup Chat like facebook -->
                 <script>
                 //this function can remove a array element.
                 Array.remove = function(array, from, to) {
@@ -497,37 +498,31 @@ SETTINGS;
                 <div class="sidebar-name">
                   <!-- Pass username and display name to register popup -->
                   <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
-                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
-                    <span>Narayan Prusty</span>
+                     <span>Narayan Prusty</span>
                   </a>
                 </div>
                 <div class="sidebar-name">
                   <a href="javascript:register_popup('qnimate', 'QNimate');">
-                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
                     <span>QNimate</span>
                   </a>
                 </div>
                 <div class="sidebar-name">
                   <a href="javascript:register_popup('qscutter', 'QScutter');">
-                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
                     <span>QScutter</span>
                   </a>
                 </div>
                 <div class="sidebar-name">
-                  <a href="javascript:register_popup('qidea', 'QIdea');">
-                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
+                  <a href="javascript:register_popup('qidea', 'QIdea');">                    
                     <span>QIdea</span>
                   </a>
                 </div>
                 <div class="sidebar-name">
                   <a href="javascript:register_popup('qazy', 'QAzy');">
-                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
                     <span>QAzy</span>
                   </a>
                 </div>
                 <div class="sidebar-name">
                   <a href="javascript:register_popup('qblock', 'QBlock');">
-                    <img width="30" height="30" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p50x50/1510656_10203002897620130_521137935_n.jpg?oh=572eaca929315b26c58852d24bb73310&oe=54BEE7DA&__gda__=1418131725_c7fb34dd0f499751e94e77b1dd067f4c" />
                     <span>QBlock</span>
                   </a>
                 </div>
