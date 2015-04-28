@@ -495,8 +495,20 @@ SETTINGS;
               </script>
               
               <div class="chat-sidebar">
+              <?php
+                foreach($usersInteractedWith as $user) {
+                  /* retrieve the name of the user*/
+                    $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$user.'";'); 
+                    if (!$getName)
+                      $userName = "";
+                    else
+                      $userName = mysql_result($getName, 0);
+                  echo '<div class="sidebar-name"><a href="javascript:register_popup("'.$user.'", "'.$userName.'");"><span>'.$userName.'</span></a></div>';
+                }
+              ?>
+              </div>
+              <!--
                 <div class="sidebar-name">
-                  <!-- Pass username and display name to register popup -->
                   <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
                      <span>Narayan Prusty</span>
                   </a>
@@ -525,8 +537,7 @@ SETTINGS;
                   <a href="javascript:register_popup('qblock', 'QBlock');">
                     <span>QBlock</span>
                   </a>
-                </div>
-              </div>             
+                </div> -->             
             </div>
           </div>        
         </div>
