@@ -43,6 +43,7 @@
     <link type="text/css" rel="stylesheet" href="css/chat_style.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
+    <link type="text/css" rel="stylesheet" href="/css/chatPopup.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
