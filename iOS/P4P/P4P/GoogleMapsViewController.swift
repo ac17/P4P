@@ -66,6 +66,12 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // Dispose of any resources that can be recreated.
     }
     
+    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        var infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
+        infoWindow.nameMarker.text = "\(marker.title) \(marker.position.latitude) \(marker.position.longitude)"
+        return infoWindow
+    }
+    
     @IBAction func searchPassFilter(segue:UIStoryboardSegue)
     {
         mapView.clear()
