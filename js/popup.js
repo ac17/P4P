@@ -77,9 +77,30 @@ function register_popup(id, name)
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ name +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-    element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
+    element = element + '<div style="clear: both"></div></div><div class="popup-messages">Hello!</div></div>';   
+
 
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+
+    var f = document.createElement("form");
+    f.setAttribute('method',"post");
+    f.setAttribute('action',"submit.php");
+
+    var i = document.createElement("input"); //input element, text
+    i.setAttribute('type',"text");
+    i.setAttribute('name',"username");
+
+    var s = document.createElement("input"); //input element, Submit button
+    s.setAttribute('type',"submit");
+    s.setAttribute('value',"Submit");
+
+    f.appendChild(i);
+    f.appendChild(s);
+
+    //and some more input elements here
+    //and dont forget to add a submit button
+
+    document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
 
     popups.unshift(id);
 
