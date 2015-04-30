@@ -20,7 +20,15 @@ function close_popup(id)
         {
             Array.remove(popups, iii);
 
-            document.getElementById(id).style.display = "none";
+            document.getElementById(id).innerHTML = "";
+            var element = '<div class="popup-box chat-popup" id="'+ id +'">';
+            element = element + '<div class="popup-head">';
+            element = element + '<div class="popup-head-left">'+ name +'</div>';
+            element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
+            element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
+
+            document.getElementById(id).innerHTML = element;
+            document.getElementById(id).style.display = "none";        
 
             calculate_popups();
 
@@ -124,7 +132,7 @@ function register_popup(id, name)
                 dataType: "html",
                 cache: false,
                 success: function(response){        
-                    $("#chatbox").html(response); //Insert chat log into the #chatbox div               
+                    $("#popup-messages").html(response); //Insert chat log into the #chatbox div               
                 },
             });
         }
@@ -138,12 +146,12 @@ function register_popup(id, name)
                 dataType: "html",
                 cache: false,
                 success: function(response){        
-                    $("#chatbox").html(response); //Insert chat log into the #chatbox div   
+                    $("#popup-messages").html(response); //Insert chat log into the #chatbox div   
                     
                     //Auto-scroll           
                     var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
                     if(newscrollHeight > oldscrollHeight){
-                        $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                        $("#popup-messages").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
                     }               
                 },
             });
