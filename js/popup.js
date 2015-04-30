@@ -77,22 +77,26 @@ function register_popup(id, name)
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ name +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-    element = element + '<div style="clear: both"></div></div><div class="popup-messages">Hello!</div></div>';   
+    element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';   
 
 
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 
     var f = document.createElement("form");
-    f.setAttribute('method',"post");
-    f.setAttribute('action',"submit.php");
+    f.setAttribute('action',"");
+    f.setAttribute('name',"message");
 
     var i = document.createElement("input"); //input element, text
     i.setAttribute('type',"text");
-    i.setAttribute('name',"username");
+    i.setAttribute('name',"usermsg");
+    i.setAttribute('id',"usermsg");
+    i.setAttribute('size',"63");
 
     var s = document.createElement("input"); //input element, Submit button
     s.setAttribute('type',"submit");
-    s.setAttribute('value',"Submit");
+    s.setAttribute('value',"Send");
+    s.setAttribute('id',"submitmsg");
+    s.setAttribute('name',"submitmsg");
 
     f.appendChild(i);
     f.appendChild(s);
@@ -101,6 +105,52 @@ function register_popup(id, name)
     //and dont forget to add a submit button
 
     document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
+
+    // jQuery Document
+    $(document).ready(function(){
+        ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
+        $("#submitmsg").click(function(){   
+            var clientmsg = $("#usermsg").val();
+            $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
+            $("#usermsg").attr("value", "");
+            return false;
+        });
+        
+        //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
+        function loadLog(){     
+            $.ajax({
+                type: "GET",
+                url: "php/chatRetrieve.php?recipient=" + id,
+                dataType: "html",
+                cache: false,
+                success: function(response){        
+                    $("#chatbox").html(response); //Insert chat log into the #chatbox div               
+                },
+            });
+        }
+        
+        //Load the data containing the chat log by querying the chat_history table through chat_query.php
+        function loadLog(){     
+            var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
+            $.ajax({
+                type: "GET",
+                url: "php/chatRetrieve.php?recipient=" + id,
+                dataType: "html",
+                cache: false,
+                success: function(response){        
+                    $("#chatbox").html(response); //Insert chat log into the #chatbox div   
+                    
+                    //Auto-scroll           
+                    var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
+                    if(newscrollHeight > oldscrollHeight){
+                        $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                    }               
+                },
+            });
+        }
+        
+        setInterval (loadLog, 2500);    //Reload file every 2500 ms or x ms if you w
+    });
 
     popups.unshift(id);
 
