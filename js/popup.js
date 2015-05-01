@@ -108,6 +108,10 @@ function register_popup(id, name)
     //and dont forget to add a submit button   
 
     // jQuery Document
+    var script = document.createElement('script');
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
+    script.type = 'text/javascript';
+    script.innerHTML = '
     $(document).ready(function(){
         ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
         $("#submitmsg").click(function(){   
@@ -151,7 +155,9 @@ function register_popup(id, name)
         }
         
         setInterval (loadLog, 2500);    //Reload file every 2500 ms or x ms if you w
-    });
+    });';
+
+    document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(script);
 
     popups.unshift(id);
 
