@@ -518,7 +518,7 @@ function completeTrade($currentUserNetId, $provider, $recipient, $offerId, $requ
 	// error: no matching offer for trade, the trade no longer exists
 	if (mysql_num_rows($query_result)==0) 
 	{ 
-		echo "The trade has been cancelled.";
+		echo "The trade is no longer active.";
 		return; 
 	}
 	
