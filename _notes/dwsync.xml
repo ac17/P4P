@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="header.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130719173400000000" remote="130719173400000000" />
-<file name="index.html" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130719202200000000" remote="130719202200000000" />
-<file name="index.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720468800000000" remote="130720468800000000" />
+<file name="index.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130743610473265708" remote="130743862200000000" />
 <file name="README.md" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130719173400000000" remote="130719173400000000" />
-<file name="map.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130730212810466500" remote="130730464200000000" />
-<file name="locationUpdateSim.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130720519200000000" remote="130720519200000000" />
-<file name="exchangeManager.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130726776037517180" remote="130727031600000000" />
+<file name="dashboard.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744531300601373" remote="130744800000000000" />
+<file name="login.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130735378978263360" remote="130743860400000000" />
 </dwsync>

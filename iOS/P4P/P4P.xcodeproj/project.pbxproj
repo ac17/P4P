@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4531AABC5C8392591800CBA6 /* Pods_P4P.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */; };
 		A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E281AD4802C007185A0 /* LoginViewController.swift */; };
 		A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */; };
 		A05C3E331AD48B44007185A0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E321AD48B44007185A0 /* GoogleMaps.framework */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		4531AABC5C8392591800CBA6 /* Pods_P4P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P4P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.release.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.release.xcconfig"; sourceTree = "<group>"; };
+		A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowTableViewController.swift; sourceTree = "<group>"; };
 		A05C3E281AD4802C007185A0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "P4P-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -185,10 +187,11 @@
 				DCE489D81AF1CC65009599D3 /* menuicon.png */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
 				DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */,
-				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
-				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
 				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
+				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
+				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
@@ -379,6 +382,7 @@
 				A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */,
 				A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */,
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
+				A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */,
 				DC1BFAC71AE7393D0067184A /* CurrentExchangesViewController.swift in Sources */,
 				DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,

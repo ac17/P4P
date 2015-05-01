@@ -102,4 +102,42 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+<<<<<<< HEAD
 }
+
+
+/* CSS for active exchange lists */
+.feedback { font-size: 1.4em; }
+.selectable .ui-selecting { background: #FECA40; }
+.selectable .ui-selected { background: #F39814; color: white; }
+.selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+.selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+
+table {
+	width:100%;	
+}
+
+td {
+	padding:10px; 
+	vertical-align:middle;
+	text-align:center;	
+}
+
+/* CSS for dropdown buttons */
+fieldset {
+  border: 0;
+}
+label {
+  display: block;
+}
+select {
+  width: 200px;
+}
+.overflow {
+  height: 200px;
+}
+
+#map-canvas { height:400px; margin: 0; padding: 0;}
+=======
+}
+>>>>>>> 4b1134c5d35bb3f5fe860b20e5127f35b9df91d3

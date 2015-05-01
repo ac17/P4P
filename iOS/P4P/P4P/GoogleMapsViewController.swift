@@ -14,6 +14,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     @IBOutlet var mapView: GMSMapView!
     let locationManager = CLLocationManager()
     var popoverViewController: PopupViewController!
+    var infoWindowViewController: InfoWindowTableViewController!
+    var infoWindowNavigationController: UINavigationController!
+
+    var mapInfoWindowNetID: String = ""
+    var mapInfoWindowName: String = ""
+    var mapInfoWindowNumberOffers: String = ""
+    var mapInfoExchangeArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +32,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        self.view .insertSubview(mapView, atIndex:0)
+        self.view.insertSubview(mapView, atIndex:0)
         mapView.delegate = self
     }
     
@@ -51,12 +58,21 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
     
-    // popover segue - make it happen
+    // specifics to happen when you call a segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "popoverSegue" {
             popoverViewController = segue.destinationViewController as! PopupViewController
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverViewController.popoverPresentationController!.delegate = self
+        }
+        
+        if segue.identifier == "infoWindowModal" {
+            infoWindowNavigationController = segue.destinationViewController as! UINavigationController
+            infoWindowViewController = infoWindowNavigationController.topViewController as! InfoWindowTableViewController
+            infoWindowViewController.mapInfoWindowNetID = mapInfoWindowNetID
+            infoWindowViewController.mapInfoWindowName = mapInfoWindowName
+            infoWindowViewController.mapInfoWindowNumberOffers = mapInfoWindowNumberOffers
+            infoWindowViewController.mapInfoExchangeArray = mapInfoExchangeArray
         }
     }
     
@@ -65,12 +81,20 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         return UIModalPresentationStyle.None
     }
 
+    
+    // customized marker named "CustomInfoMarker"
+    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        mapInfoWindowNetID = marker.title
+        mapInfoWindowName = marker.snippet.componentsSeparatedByString("-")[0]
+        mapInfoWindowNumberOffers = marker.snippet.componentsSeparatedByString("-")[1]
+        var mapInfoWindowExchanges = marker.snippet.componentsSeparatedByString("-")[2]
+        mapInfoExchangeArray = mapInfoWindowExchanges.componentsSeparatedByString(",")
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        performSegueWithIdentifier("infoWindowModal", sender: self)
+        return UIView(frame: CGRectMake(0,0,0,0))
     }
     
+    // filter button pressed on popup
     @IBAction func searchPassFilter(segue:UIStoryboardSegue)
     {
         mapView.clear()
@@ -101,7 +125,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchanges.php?"
         requestString += "date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
-        //println(requestString)
+        println(requestString)
         
         // pull info from server, display markers
         let url = NSURL(string: requestString)
@@ -115,29 +139,35 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 //println(subJson["exchanges"])
 
                 var name = "Bob"
+                var netID = "bobsmith"
                 var latitude = "-33.86"
                 var longitude = "151.20"
 
                 if let temp = subJson["name"].string { name = temp }
+                if let temp = subJson["netId"].string { netID = temp }
                 if let temp = subJson["lat"].string { latitude = temp }
                 if let temp = subJson["lng"].string { longitude = temp }
                 
                 var passClubs = [String]()
                 var passNumbers = [String]()
                 var passComments = [String]()
+                var passExchangeID = [String]()
               
                 for(exchange: String, subsubJson: JSON) in subJson["exchanges"] {
                     var club = "Princeton"
                     var number = "12345"
                     var comment = "hi, test comment"
+                    var exchangeID = "000"
                     
                     if let temp = subsubJson["club"].string { club = temp }
                     if let temp = subsubJson["passNum"].string { number = temp }
                     if let temp = subsubJson["comment"].string { comment = temp }
+                    if let temp = subsubJson["id"].string { exchangeID = temp }
 
                     passClubs.append(club)
                     passNumbers.append(number)
                     passComments.append(comment)
+                    passExchangeID.append(exchangeID)
                 }
                 
                 //println(passClubs)
@@ -147,13 +177,14 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                 dispatch_async(dispatch_get_main_queue()) {
                     var marker = GMSMarker()
                     marker.position = CLLocationCoordinate2DMake((latitude as NSString).doubleValue, (longitude as NSString).doubleValue)
-                    marker.title = name
+                    marker.title = netID
                     var snippetString = ""
                     var index = 0
                     for exchangeString in passClubs {
-                        snippetString += passClubs[index] + "-" + passNumbers[index] + "\n"
+                        snippetString += passExchangeID[index] + " " + passClubs[index] + " " + passNumbers[index] + ","
                         index++
                     }
+                    snippetString = name + "-" + String(index) + "-" + snippetString
                     marker.snippet = snippetString
                     marker.map = self.mapView
                 }
@@ -161,14 +192,15 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
         task.resume()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // allow for returning to maps view controller
+    @IBAction func returnToMap(segue:UIStoryboardSegue) {
+    
     }
-    */
 
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

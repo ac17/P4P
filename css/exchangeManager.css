@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* CSS for request and offer lists */
+.feedback { font-size: 0.8em; }
+.selectable .ui-selecting { background: #428bca; }
+.selectable .ui-selected { background: #428bca; color: white; }
+.selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+.selectable li { margin: 3px; padding: 0.4em; font-size: 0.8em; height: auto; }
+
+
+.requestSubListItem {
+	padding-left:5em;
+}
+
+.tradeDiv {
+	min-height:30px;
+	border:thin, #CCC, solid;
+	vertical-align:middle;
+}

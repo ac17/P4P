@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -292,6 +292,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="mapicon" id="OZh-oJ-7gp"/>
                     <connections>
                         <outlet property="mapView" destination="48M-0G-N4c" id="seu-NU-dbq"/>
+                        <segue destination="zhl-0V-WND" kind="presentation" identifier="infoWindowModal" id="ii8-hl-ZcM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WZv-5D-Viv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,7 +415,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsM-Dm-IK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="If2-Vw-WD5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="2190"/>
+            <point key="canvasLocation" x="1432.5" y="1926"/>
+        </scene>
+        <!--UserExchange-->
+        <scene sceneID="ea1-W5-E3l">
+            <objects>
+                <tableViewController id="Yb1-T9-HRs" customClass="InfoWindowTableViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XA9-oT-vhT">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="MarkerOfferCells" selectionStyle="default" indentationWidth="10" reuseIdentifier="MarkerOfferCells" id="QgT-23-5la">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QgT-23-5la" id="YkH-Rp-2of">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Yb1-T9-HRs" id="nlV-qB-b0q"/>
+                            <outlet property="delegate" destination="Yb1-T9-HRs" id="vlN-Rz-Axc"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="UserExchange" id="YIf-U9-b4H">
+                        <barButtonItem key="leftBarButtonItem" title="Map" id="gn1-TP-RXq">
+                            <connections>
+                                <segue destination="xPi-st-NcB" kind="unwind" unwindAction="returnToMap:" id="oMp-Lo-But"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Chat" id="0bm-ET-NM3"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sh4-1C-gsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xPi-st-NcB" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2077.5" y="2387.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NF1-YD-NIg">
+            <objects>
+                <navigationController id="zhl-0V-WND" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pfk-Kv-szU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Yb1-T9-HRs" kind="relationship" relationship="rootViewController" id="DoG-zx-6fY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F8a-eA-flg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1195.5" y="2553"/>
         </scene>
         <!--Current Exchanges-->
         <scene sceneID="Kxc-J7-KpU">
@@ -423,7 +476,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="V9u-ze-cUr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ExchangeCell" editingAccessoryType="disclosureIndicator" textLabel="psh-KK-1nx" detailTextLabel="obD-0I-Hkx" style="IBUITableViewCellStyleSubtitle" id="pzU-wt-kP9">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -433,7 +486,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="psh-KK-1nx">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact">
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -442,7 +495,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="obD-0I-Hkx">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact">
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -458,18 +511,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Current Exchanges" id="BKV-xg-ATA">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="ZRi-JI-TWY">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Olo-v0-4ra">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Pqu-nE-giD">
+                            <connections>
+                                <segue destination="Jpg-Bv-Req" kind="unwind" unwindAction="cancelReturnToHome:" id="0O8-hP-amO"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7k-NM-P6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Jpg-Bv-Req" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1637" y="1388"/>
         </scene>
