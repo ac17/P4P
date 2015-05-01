@@ -418,7 +418,7 @@ SETTINGS;
   </p>
   </div>
 
-  <div id="error-dialog" title="We ran into a problem...">
+   <div id="error-dialog" title="We ran into a problem...">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
     <div id="errorMessage"></div>
