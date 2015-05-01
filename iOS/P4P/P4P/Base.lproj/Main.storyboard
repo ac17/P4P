@@ -199,7 +199,7 @@
         <!--Chat-->
         <scene sceneID="Lx4-3M-9ji">
             <objects>
-                <viewController id="sk5-uP-bPk" sceneMemberID="viewController">
+                <viewController id="sk5-uP-bPk" customClass="ChatViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ryH-hz-VOQ"/>
                         <viewControllerLayoutGuide type="bottom" id="1JY-df-Z3V"/>
@@ -207,33 +207,20 @@
                     <view key="view" contentMode="scaleToFill" id="u32-IP-cl7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PLN-vT-pyz">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="22" y="499" width="357" height="30"/>
-                                </variation>
-                            </textField>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="PLN-vT-pyz"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="PLN-vT-pyz"/>
-                            </mask>
-                        </variation>
+                        <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="SG4-KC-Z5h"/>
+                    <navigationItem key="navigationItem" title="Chat" id="SG4-KC-Z5h">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="wWt-Pj-LyI">
+                            <connections>
+                                <action selector="leaveChatScreen" destination="sk5-uP-bPk" id="rBa-E0-TED"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NaU-xq-Ctm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="446" y="2913"/>
+            <point key="canvasLocation" x="445.5" y="2913"/>
         </scene>
         <!--Map-->
         <scene sceneID="xZJ-QC-WVi">

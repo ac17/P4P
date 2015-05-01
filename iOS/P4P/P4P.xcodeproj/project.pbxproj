@@ -28,12 +28,15 @@
 		A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CE551AE4B894005FA89A /* PopupViewController.swift */; };
 		DC1BFAC71AE7393D0067184A /* CurrentExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */; };
 		DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC81AE875A10067184A /* TabBarViewController.swift */; };
+		DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACC1AF0700D0067184A /* ChatViewController.swift */; };
+		DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
 		DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB768B1AD3015B004A2CD9 /* ViewController.swift */; };
 		DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB768D1AD3015B004A2CD9 /* Main.storyboard */; };
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
+		DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE489D81AF1CC65009599D3 /* menuicon.png */; };
 		DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +75,8 @@
 		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentExchangesViewController.swift; sourceTree = "<group>"; };
 		DC1BFAC81AE875A10067184A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DC1BFACC1AF0700D0067184A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
+		DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 		DCAB76991AD3015B004A2CD9 /* P4PTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P4PTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
+		DCE489D81AF1CC65009599D3 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuicon.png; path = Images.xcassets/menuicon.png; sourceTree = "<group>"; };
 		DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,9 +177,12 @@
 		DCAB76831AD3015B004A2CD9 /* P4P */ = {
 			isa = PBXGroup;
 			children = (
+				DC1BFACC1AF0700D0067184A /* ChatViewController.swift */,
+				DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */,
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
+				DCE489D81AF1CC65009599D3 /* menuicon.png */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
 				DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */,
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
@@ -301,6 +310,7 @@
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
 				A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */,
+				DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +384,8 @@
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
+				DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */,
+				DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */,
 				A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

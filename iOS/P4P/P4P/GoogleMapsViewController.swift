@@ -29,6 +29,11 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         mapView.delegate = self
     }
     
+    override func viewDidAppear(animated: Bool) {
+        var tabBarController = self.tabBarController as! TabBarViewController
+        tabBarController.lastScreen = 1
+    }
+    
     // function called when authorization revoked or granted
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {

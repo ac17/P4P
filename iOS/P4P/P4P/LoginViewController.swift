@@ -58,6 +58,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if validated {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.parentViewController!.dismissViewControllerAnimated(true, completion: {
+                        (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
                         self.delegate.completeLogin()
                     });
                 }
