@@ -64,7 +64,7 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 		<p>Best,<br>The Passes for Passes Team</p>
 	</body>
 	</html>";
-	/* mail($to, $subject, "Testing!"); */
+	mailer($fName, $to, $subject, $message);
 	return TRUE;
 }
 ?>
