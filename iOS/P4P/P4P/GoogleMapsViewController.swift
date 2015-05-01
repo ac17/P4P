@@ -9,11 +9,14 @@
 import UIKit
 import SwiftyJSON
 
-class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var mapView: GMSMapView!
     let locationManager = CLLocationManager()
     var popoverViewController: PopupViewController!
+    var infoWindowViewController: InfoWindowTableViewController!
+    var infoWindowNavigationController: UINavigationController!
+
     var mapInfoWindowNetID: String = ""
     var mapInfoWindowName: String = ""
     var mapInfoWindowNumberOffers: String = ""
@@ -29,35 +32,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        self.view .insertSubview(mapView, atIndex:0)
+        self.view.insertSubview(mapView, atIndex:0)
         mapView.delegate = self
     }
-    
-    
-    // MARK: - Table view data source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return mapInfoExchangeArray.count
-    }
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MarkerOfferCells", forIndexPath: indexPath) as! UITableViewCell
-        var offer = mapInfoExchangeArray[indexPath.row]
-        cell.textLabel!.text = offer
-        
-        // Configure the cell...
-        return cell
-    }
-    
     
     // function called when authorization revoked or granted
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -76,12 +53,21 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
     }
     
-    // popover segue - make it happen
+    // specifics to happen when you call a segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "popoverSegue" {
             popoverViewController = segue.destinationViewController as! PopupViewController
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverViewController.popoverPresentationController!.delegate = self
+        }
+        
+        if segue.identifier == "infoWindowModal" {
+            infoWindowNavigationController = segue.destinationViewController as! UINavigationController
+            infoWindowViewController = infoWindowNavigationController.topViewController as! InfoWindowTableViewController
+            infoWindowViewController.mapInfoWindowNetID = mapInfoWindowNetID
+            infoWindowViewController.mapInfoWindowName = mapInfoWindowName
+            infoWindowViewController.mapInfoWindowNumberOffers = mapInfoWindowNumberOffers
+            infoWindowViewController.mapInfoExchangeArray = mapInfoExchangeArray
         }
     }
     
@@ -93,17 +79,14 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     // customized marker named "CustomInfoMarker"
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        var infoWindow = NSBundle.mainBundle().loadNibNamed("CustomInfoWindow", owner: self, options: nil).first! as! CustomInfoWindow
         mapInfoWindowNetID = marker.title
         mapInfoWindowName = marker.snippet.componentsSeparatedByString("-")[0]
         mapInfoWindowNumberOffers = marker.snippet.componentsSeparatedByString("-")[1]
         var mapInfoWindowExchanges = marker.snippet.componentsSeparatedByString("-")[2]
         mapInfoExchangeArray = mapInfoWindowExchanges.componentsSeparatedByString(",")
 
-        //infoWindow.mapInfoExchangeArray = mapInfoWindowExchanges.componentsSeparatedByString(",")
-        infoWindow.nameMarker.text = "\(marker.title) \(marker.position.latitude) \(marker.position.longitude)"
-        infoWindow.exchangeMarker.registerClass(UITableViewCell.self, forCellReuseIdentifier: "MarkerOfferCells")
-        return infoWindow
+        performSegueWithIdentifier("infoWindowModal", sender: self)
+        return UIView(frame: CGRectMake(0,0,0,0))
     }
     
     // filter button pressed on popup
@@ -204,6 +187,12 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         }
         task.resume()
     }
+    
+    // allow for returning to maps view controller
+    @IBAction func returnToMap(segue:UIStoryboardSegue) {
+    
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4531AABC5C8392591800CBA6 /* Pods_P4P.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */; };
 		A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E281AD4802C007185A0 /* LoginViewController.swift */; };
 		A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */; };
 		A05C3E331AD48B44007185A0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E321AD48B44007185A0 /* GoogleMaps.framework */; };
@@ -25,8 +26,6 @@
 		A05C3E4B1AD48BA0007185A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */; };
 		A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */; };
 		A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */; };
-		A098450E1AF079CA00E64513 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A098450D1AF079CA00E64513 /* CustomInfoWindow.xib */; };
-		A09845101AF0817E00E64513 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A098450F1AF0817E00E64513 /* CustomInfoWindow.swift */; };
 		A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CE551AE4B894005FA89A /* PopupViewController.swift */; };
 		DC1BFAC71AE7393D0067184A /* CurrentExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */; };
 		DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC81AE875A10067184A /* TabBarViewController.swift */; };
@@ -52,6 +51,7 @@
 /* Begin PBXFileReference section */
 		4531AABC5C8392591800CBA6 /* Pods_P4P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P4P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.release.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.release.xcconfig"; sourceTree = "<group>"; };
+		A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowTableViewController.swift; sourceTree = "<group>"; };
 		A05C3E281AD4802C007185A0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "P4P-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -70,8 +70,6 @@
 		A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
-		A098450D1AF079CA00E64513 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
-		A098450F1AF0817E00E64513 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
 		A0D3CE551AE4B894005FA89A /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentExchangesViewController.swift; sourceTree = "<group>"; };
@@ -180,14 +178,13 @@
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
 				DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */,
-				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
-				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
 				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
+				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
+				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
-				A098450F1AF0817E00E64513 /* CustomInfoWindow.swift */,
-				A098450D1AF079CA00E64513 /* CustomInfoWindow.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
 				A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */,
@@ -303,7 +300,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A098450E1AF079CA00E64513 /* CustomInfoWindow.xib in Resources */,
 				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
@@ -376,12 +372,12 @@
 				A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */,
 				A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */,
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
+				A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */,
 				DC1BFAC71AE7393D0067184A /* CurrentExchangesViewController.swift in Sources */,
 				DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
-				A09845101AF0817E00E64513 /* CustomInfoWindow.swift in Sources */,
 				A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

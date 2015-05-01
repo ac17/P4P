@@ -13,6 +13,10 @@ class CustomInfoWindow: UIView {//UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var nameMarker: UILabel!
     @IBOutlet weak var selectorMarker: UISegmentedControl!
     @IBOutlet weak var exchangeMarker: UITableView!
+    @IBAction func buttonTest(sender: AnyObject) {
+        println("button pressed!")
+    }
+    
     //var mapInfoExchangeArray: [String] = []
     /*
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
