@@ -111,51 +111,47 @@ function register_popup(id, name)
     var script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
     script.type = 'text/javascript';
-    script.innerHTML = '
-    $(document).ready(function(){
-        ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-        $("#submitmsg").click(function(){   
-            var clientmsg = $("#usermsg").val();
-            $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
-            $("#usermsg").attr("value", "");
-            return false;
-        });
-        
-        //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
-        function loadLog(){     
-            $.ajax({
-                type: "GET",
-                url: "php/chatRetrieve.php?recipient=" + id,
-                dataType: "html",
-                cache: false,
-                success: function(response){        
-                    $("#popup-messages").html(response); //Insert chat log into the #chatbox div               
-                },
-            });
-        }
-        
-        //Load the data containing the chat log by querying the chat_history table through chat_query.php
-        function loadLog(){     
-            var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
-            $.ajax({
-                type: "GET",
-                url: "php/chatRetrieve.php?recipient=" + id,
-                dataType: "html",
-                cache: false,
-                success: function(response){        
-                    $("#popup-messages").html(response); //Insert chat log into the #chatbox div   
-                    
-                    //Auto-scroll           
-                    var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
-                    if(newscrollHeight > oldscrollHeight){
-                        $("#popup-messages").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-                    }               
-                },
-            });
-        }
-        
-        setInterval (loadLog, 2500);    //Reload file every 2500 ms or x ms if you w
-    });';
+    script.innerHTML = '' +
+    '$(document).ready(function(){' + 
+        '///If user submits the form, log the message in the chat_history table using chat_logmessage.php' + 
+        '$("#submitmsg").click(function(){' +   
+            'var clientmsg = $("#usermsg").val();' + 
+            '$.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});' +              
+            '$("#usermsg").attr("value", "");' +
+            'return false;' +
+        '});' +
+        '//Load the data containing the chat log by querying the chat_history table through chat_retrieve.php' +
+        'function loadLog(){' +     
+            '$.ajax({' +
+                'type: "GET",' +
+                'url: "php/chatRetrieve.php?recipient=" + id,' +
+                'dataType: "html",' +
+                'cache: false,' +
+                'success: function(response){' +       
+                    '$("#popup-messages").html(response); //Insert chat log into the #chatbox div' +               
+                '},' +
+            '});'+
+        '}'+
+        '//Load the data containing the chat log by querying the chat_history table through chat_query.php' +
+        'function loadLog(){' +     
+            'var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request' +
+            '$.ajax({' +
+                'type: "GET",' +
+                'url: "php/chatRetrieve.php?recipient=" + id,' +
+                'dataType: "html",' +
+                'cache: false,' +
+                'success: function(response){' +        
+                    '$("#popup-messages").html(response); //Insert chat log into the #chatbox div' +   
+                    '//Auto-scroll' +           
+                    'var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request ' +
+                    'if(newscrollHeight > oldscrollHeight){' +
+                        '$("#popup-messages").animate({ scrollTop: newscrollHeight }, "normal"); //Autoscroll to bottom of div' +
+                    '}' +               
+                '},' +
+            '});' +
+        '}' +        
+        'setInterval (loadLog, 2500);    //Reload file every 2500 ms or x ms if you w' +
+    '});';
 
     document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(script);
 
