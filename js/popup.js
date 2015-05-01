@@ -81,7 +81,7 @@ function register_popup(id, name)
 
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 
-    if (!document.getElementById(id).forms[0]){
+    //if (!document.getElementById(id).forms[0]){
         var f = document.createElement("form");
         f.setAttribute('action',"");
         f.setAttribute('name',"message");
@@ -102,7 +102,7 @@ function register_popup(id, name)
         f.appendChild(s);
 
         document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
-    }
+    //}
 
     //and some more input elements here
     //and dont forget to add a submit button   
