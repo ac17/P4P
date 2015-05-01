@@ -10,7 +10,22 @@ function pursueOffer($currentUserNetId, $offerId)
 	if(!$query_result){
 		die("Could not query the database. " . mysql_error());
 	}
+	
+	// error: no matching offer 
+	if (mysql_num_rows($query_result)==0) 
+	{ 
+		echo "The offer you are pursuing has been deleted.";
+		return; 
+	}
+	
 	$offer = mysql_fetch_array(($query_result));
+	
+	// error: the offer is now part of a trade
+	if ($offer['isPartOfTransaction'] == 1) 
+	{ 
+		echo "The offer you are pursuing is part of a trade.";
+		return; 
+	}
 	
 	// add a request
 	$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $currentUserNetId . '","' . $offer['passClub'] . '","' . $offer['passNum'] . '","' . date ("Y-m-d", strtotime($offer['passDate'])) . '","","Request", "0", \''. json_encode(array($offer['id'])) .'\')';
@@ -24,7 +39,6 @@ function pursueOffer($currentUserNetId, $offerId)
 	// add request's id to the offer's associatedExchanges 
 	$associatedExchanges = json_decode( $offer['associatedExchanges'] );
 	$associatedExchanges[] = $currentUserNetId;
-	echo json_encode($associatedExchanges);
 	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offer['id'] . '"';
 	//Execute the query
 	$query_result = mysql_query($query);
@@ -37,12 +51,12 @@ function pursueOffer($currentUserNetId, $offerId)
 
 function userActiveTrades($currentUserNetId)
 {
-	//Build a query
+	//Build a query to get all offer which are part of trades and have the current user's net id 
 	$select = ' SELECT '; 
 	$column =  ' * ';  
 	$from = ' FROM ';  
 	$tables = ' Active_exchanges ';
-	$where = 'WHERE requesterNetId="' . $currentUserNetId . '" AND isPartOfTransaction="1" ';
+	$where = 'WHERE (requesterNetId="' . $currentUserNetId . '" OR associatedExchanges LIKE "%'.$currentUserNetId.'%") AND isPartOfTransaction="1" AND type="Offer"';
 	$query = $select . $column . $from . $tables . $where; 
 	//Execute the query
 	$query_result = mysql_query($query);
@@ -67,24 +81,12 @@ function userActiveTrades($currentUserNetId)
 			$passNum = $exchange['passNum'];
 			$passDate = $exchange['passDate'];
 			$comments = $exchange['comments'];
+			$offerId = $exchange['id'];
+			$provider = $exchange['requesterNetId'];
 			
-			// check if the trade is based on the current user's reuqest or offer
-			if ($exchange['type'] == "Request")
-			{
-				$requestId = $exchange['id'];
-				$offer = getCorrespodingOffer(json_decode($exchange['associatedExchanges']));
-				$provider = $offer['requesterNetId'];
-				$recipient = $currentUserNetId;
-				$offerId = $offer['id'];
-			}
-			else 
-			{
-				$offerId = $exchange['id'];
-				$request = getCorrespodingRequest($currentUserNetId, $offerId);
-				$recipient = $request['requesterNetId'];
-				$provider = $currentUserNetId;
-				$requestId = $request['id'];
-			}
+			$request = getCorrespodingRequest($offerId);
+			$recipient = $request['requesterNetId'];
+			$requestId = $request['id'];
 			
 			array_push($trades, array('offerId' =>$offerId,
 									  'requestId' =>$requestId,
@@ -100,10 +102,10 @@ return $trades;
 }
 
 
-function getCorrespodingRequest($currentUserNetId, $offerId)
+function getCorrespodingRequest($offerId)
 {
 	// get correspoding offer's request's id 
-	$query = ' SELECT * FROM Active_exchanges WHERE requesterNetId="' . $currentUserNetId . '" AND associatedExchanges LIKE "%'.$offerId.'%"';
+	$query = ' SELECT * FROM Active_exchanges WHERE associatedExchanges LIKE "%'.$offerId.'%"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed
@@ -512,8 +514,16 @@ function completeTrade($currentUserNetId, $provider, $recipient, $offerId, $requ
 	if(!$query_result){
 		die("Could not query the database. " . mysql_error());
 	}
-	$offer = mysql_fetch_array(($query_result));
 	
+	// error: no matching offer for trade, the trade no longer exists
+	if (mysql_num_rows($query_result)==0) 
+	{ 
+		echo "The trade has been cancelled.";
+		return; 
+	}
+	
+	$offer = mysql_fetch_array(($query_result));
+		
 	// record trade into history table
 	$query = 'INSERT INTO Exchange_history VALUES(NULL,"'. $recipient . '","' . $offer['passClub'] . '","' . $offer['passNum'] . '","' . $offer['passDate']  . '","' . $provider . '",1,"' . $offer['passClub'] . '","' . $offer['passNum'] . '","' . $offer['passDate']  . '")';
 	//Execute the query
@@ -563,6 +573,12 @@ function cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $reques
 	}
 	$offer = mysql_fetch_array(($query_result));
 	
+	// error: no matching offer for trade, the trade no longer exists
+	if (mysql_num_rows($query_result)==0) 
+	{ 
+		return; 
+	}
+	
 	// punish the cancelling user 
 	$query = 'UPDATE Users SET reputation=reputation-1 WHERE netId="'.$currentUserNetId.'"';
 	//Execute the query
@@ -610,6 +626,74 @@ function addExchange($currentUserNetId, $passDate, $type, $numPasses, $passClub,
 {
 	//Build query
 	$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $currentUserNetId . '","' . $passClub . '","' . $numPasses . '","' . date ("Y-m-d", strtotime($passDate)) . '","' . $comment . '","' . $type. '",0,"[]")';
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+}
+
+function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
+{	
+	// get correspoding offer's request's id 
+	$query = ' SELECT id FROM Active_exchanges WHERE requesterNetId="' . $requesterNetId . '" AND associatedExchanges LIKE "%'.$offerId.'%"';
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	$result = mysql_fetch_array(($query_result));
+	
+	// error: no matching request
+	if (mysql_num_rows($query_result)==0) 
+	{ 
+		echo "The request has been cancelled.";
+		return; 
+	}
+	
+	$requestId = $result['id'];
+		
+	// get the offer's associatedExchanges
+	$query = ' SELECT associatedExchanges FROM Active_exchanges WHERE id="' . $offerId . '"';
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	$offer = mysql_fetch_array(($query_result));
+	$associatedExchanges = json_decode( $offer['associatedExchanges'] );
+	
+	// temporarly remove $requesterNetId from the offer's associatedExchanges
+	$associatedExchanges = array_diff($associatedExchanges, array($requesterNetId));
+
+	if(!empty($associatedExchanges))
+	{
+		// remove all requests based on netids in offer's associatedExchanges
+		$query = 'DELETE FROM Active_exchanges WHERE associatedExchanges LIKE "%'. $offerId . '%" AND requesterNetId IN (' . implode(',', array_map('intval', $associatedExchanges)) . ')';
+		//Execute the query
+		$query_result = mysql_query($query);
+		//Provide an error message if the query failed
+		if(!$query_result){
+			die("Could not query the database. " . mysql_error());
+		}
+	}
+
+	// remove all netIds but $requesterNetId from the offer's associatedExchanges
+	// set that the offer is part of a transaction
+	$associatedExchanges = array($requesterNetId);
+	$query = ' UPDATE Active_exchanges SET isPartOfTransaction="1", associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offerId . '"';
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
+	//set that the request is part of a transaction
+	$query = ' UPDATE Active_exchanges SET isPartOfTransaction="1" WHERE id="' . $requestId . '"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed

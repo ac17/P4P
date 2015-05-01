@@ -26,7 +26,7 @@ function getUserActiveExchanges(currentUserNetId)
 			}
 			catch(err)
 			{
-				showError("A Small Problem...", xmlhttp.responseText)
+				showError("A Small Problem...", xmlhttp.responseText);
 			}
 			
 			if (json.Exchanges.length>0) { 
@@ -119,6 +119,11 @@ function completeTrade(currentUserNetId, provider, recipient, offerId, requestId
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
+			if(xmlhttp.responseText != "")
+			{
+				showError("A Small Problem...", xmlhttp.responseText);
+			}
+			
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}
@@ -244,6 +249,11 @@ function acceptRequest(offerId, currentUserNetId, requesterNetId)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
+			if(xmlhttp.responseText != "")
+			{
+				showError("A Small Problem...", xmlhttp.responseText);
+			}
+			
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}

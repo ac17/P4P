@@ -120,6 +120,11 @@ function pursueOffer(offerId) {
 			{
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
+					if(xmlhttp.responseText != "")
+					{
+						showError("A Small Problem...", xmlhttp.responseText);
+						getMatchingExchanges();
+					}
 				}
 			}
 
