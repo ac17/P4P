@@ -357,6 +357,9 @@ SETTINGS;
                     $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$otherUser.'";'); 
                     if (!$getName)
                       $otherUsername = "";
+                    else if (mysql_num_rows($getName) == 0){
+                      $otherUsername = "";
+                    }
                     else
                       $otherUsername = mysql_result($getName, 0);
 
