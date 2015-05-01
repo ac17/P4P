@@ -25,4 +25,15 @@ function isUserLoggedIn() {
 	}
 	return FALSE;
 }
+
+// Use to verify email of new user.
+function verify($idNum, $vc, &$connection) {
+	$verifyQ = "UPDATE Users SET verified='1' WHERE id='" . $idNum. "' AND verifCode='" . $vc . "';";
+	$verifyR = mysql_query($verifyQ);
+	if (!$verifyR) {
+		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
+		return FALSE;
+	}
+	return TRUE;
+}
 ?>
