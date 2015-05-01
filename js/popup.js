@@ -19,15 +19,6 @@ function close_popup(id)
         if(id == popups[iii])
         {
             Array.remove(popups, iii);
-
-            document.getElementById(id).innerHTML = "";
-            var element = '<div class="popup-box chat-popup" id="'+ id +'">';
-            element = element + '<div class="popup-head">';
-            element = element + '<div class="popup-head-left">'+ name +'</div>';
-            element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-            element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
-
-            document.getElementById(id).innerHTML = element;
             document.getElementById(id).style.display = "none";        
 
             calculate_popups();
@@ -40,7 +31,7 @@ function close_popup(id)
 //displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width
 function display_popups()
 {
-    var right = 220;
+    var right = 10;
 
     var iii = 0;
     for(iii; iii < total_popups; iii++)
@@ -90,29 +81,31 @@ function register_popup(id, name)
 
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 
-    var f = document.createElement("form");
-    f.setAttribute('action',"");
-    f.setAttribute('name',"message");
+    if (!document.getElementById(id).forms[0]){
+        var f = document.createElement("form");
+        f.setAttribute('action',"");
+        f.setAttribute('name',"message");
 
-    var i = document.createElement("input"); //input element, text
-    i.setAttribute('type',"text");
-    i.setAttribute('name',"usermsg");
-    i.setAttribute('id',"usermsg");
-    i.setAttribute('size',"63");
+        var i = document.createElement("input"); //input element, text
+        i.setAttribute('type',"text");
+        i.setAttribute('name',"usermsg");
+        i.setAttribute('id',"usermsg");
+        i.setAttribute('size',"63");
 
-    var s = document.createElement("input"); //input element, Submit button
-    s.setAttribute('type',"submit");
-    s.setAttribute('value',"Send");
-    s.setAttribute('id',"submitmsg");
-    s.setAttribute('name',"submitmsg");
+        var s = document.createElement("input"); //input element, Submit button
+        s.setAttribute('type',"submit");
+        s.setAttribute('value',"Send");
+        s.setAttribute('id',"submitmsg");
+        s.setAttribute('name',"submitmsg");
 
-    f.appendChild(i);
-    f.appendChild(s);
+        f.appendChild(i);
+        f.appendChild(s);
+
+        document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
+    }
 
     //and some more input elements here
-    //and dont forget to add a submit button
-
-    document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
+    //and dont forget to add a submit button   
 
     // jQuery Document
     $(document).ready(function(){
@@ -176,7 +169,7 @@ function calculate_popups()
     }
     else
     {
-        width = width - 200;
+        // width = width - 200;
         //320 is width of a single popup box
         total_popups = parseInt(width/320);
     }
