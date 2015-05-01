@@ -168,7 +168,7 @@ return $exchanges;
 
 
 function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPasses, $type)
-{
+{	
 	//Build a query
 	$select = ' SELECT '; 
 	$column =  ' *, x( Users.location ) AS my_point_x, y( Users.location ) AS my_point_y, Active_exchanges.id as exchangeId ';  
@@ -178,11 +178,11 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 	// Select between searching for all clubs
 	if($passClub != "All")
 	{
-		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.type="' .$type. '" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.passClub="'.$passClub.'"';
+		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.type="' .$type. '" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.passClub="'.$passClub.'" AND requesterNetId !="' .$currentUserNetId. '"';
 	}
 	else 
 	{
-		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'"';
+		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'" AND requesterNetId !="' .$currentUserNetId. '"';
 	}
 	$order = " ORDER BY requesterNetId DESC";
 	 

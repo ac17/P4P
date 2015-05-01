@@ -7,7 +7,7 @@
 <file name="dashboard.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130736659619843067" remote="130742920200000000" />
 <file name="map.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742777655680925" remote="130743029400000000" />
 <file name="exchangeManager.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742108714648917" remote="130742920200000000" />
-<file name="chat_style.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130740525477414920" remote="130742920200000000" />
 <file name="trades.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741045229158327" remote="130741297200000000" />
-<file name="inbox.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130742784134781509" remote="130743050400000000" />
+<file name="chatStyle.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130748809735686110" remote="130749844200000000" />
+<file name="inbox.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130743050400000000" remote="130743050400000000" />
 </dwsync>

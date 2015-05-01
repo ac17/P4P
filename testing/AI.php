@@ -18,17 +18,30 @@ foreach ($userIds as $userId)
 		sleep(5);
 	}
 	
-	echo "<br />";
+	echo "----------------------------------------------------------------------------<br /><br />";
 }
 
 mysql_close($connection);
+
+//--------------------------------------------------------
 
 function loadUserInfo($userId)
 {
 	return mysql_fetch_assoc(mysql_query("SELECT * FROM Users WHERE id='" . $userId . "';"));
 }
 
+function sendRequest()
+{
+	userActiveTrades($currentUserNetId);
+	userActiveExchanges($currentUserNetId);
+	searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPasses, $type);
+	removeExchanges($currentUserNetId, $exchangesToRemove);
+	completeTrade($currentUserNetId, $provider, $recipient, $offerId, $requestId);
+	cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $requestId);
+}
 
+//----------------------------------------------------------------------------------------------------------------------
+// Creating offers
 function randomOffer($netId)
 {
 	$passDate = "04/" . mt_rand(26,30) . "/2015";
@@ -37,9 +50,17 @@ function randomOffer($netId)
 	$passClub = $clubs[mt_rand(0,4)];
 	$comment = "";
 	echo "Adding offer for " . $netId . " Date " . $passDate . " Num " . $numPasses . " Club " . $passClub . "<br />";
-	addExchange($netId, $passDate, "Offer", $numPasses, $passClub, $comment);
+	
+	$time_start = microtime(true);
+	$output = addExchange($netId, $passDate, "Offer", $numPasses, $passClub, $comment);
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
+	echo "Function runtime: " . $time . " seconds<br />";
+	echo "Function output: <br />" . var_dump($output) . "<br />";
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// Moving users 
 function moveUser($netId)
 {
 	$maxLat = 40.35266;
@@ -47,7 +68,13 @@ function moveUser($netId)
 	$maxLng = -74.658773;
 	$minLng = -74.649675;
 	
+	echo "Getting ".$netId."'s loction<br />";
+	$time_start = microtime(true);
 	$loc = getUserLocation($netId);
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
+	echo "Function runtime: " . $time . " seconds<br />";
+	echo "Function output: <br />" . var_dump($loc) . "<br />";
 	
 	$lat = (((mt_rand( 0, 9)/9)*2-9)/10000);
 	$lng = (((mt_rand( 0, 9)/9)*2-9)/10000);
@@ -56,13 +83,24 @@ function moveUser($netId)
 	
 	if ( $loc['point_x'] + $lat < $maxLat && $minLat < $loc['point_x'] + $lat && $loc['point_y'] > $maxLng  + $lng && $loc['point_y'] + $lng < $minLng )
 	{
-		updateLocation($netId, $loc['point_x'] + $lat, $loc['point_y'] + $lng);
+		$time_start = microtime(true);
+		$output = updateLocation($netId, $loc['point_x'] + $lat, $loc['point_y'] + $lng);
+		$time_end = microtime(true);
+		$time = $time_end - $time_start;
+		echo "Function runtime: " . $time . " seconds<br />";
+		echo "Function output: <br />" . var_dump($output) . "<br />";
 	}
 	else 
 	{
 		$lat = ($maxLat - $minLat)*(mt_rand( 1, 100)/100) + $minLat;
 		$lng = ($maxLng - $minLng)*(mt_rand( 1, 100)/100) + $minLng;
-		updateLocation($netId, $lat, $lng);
+		
+		$time_start = microtime(true);
+		$output = updateLocation($netId, $lat, $lng);
+		$time_end = microtime(true);
+		$time = $time_end - $time_start;
+		echo "Function runtime: " . $time . " seconds<br />";
+		echo "Function output: <br />" . var_dump($output) . "<br />";
 	}
 }
 

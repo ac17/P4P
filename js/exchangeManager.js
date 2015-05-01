@@ -18,7 +18,17 @@ function getUserActiveExchanges(currentUserNetId)
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{			
-			var json = JSON.parse(xmlhttp.responseText);
+			var json;
+			
+			try 
+			{
+				json = JSON.parse(xmlhttp.responseText);
+			}
+			catch(err)
+			{
+				showError("A Small Problem...", xmlhttp.responseText)
+			}
+			
 			if (json.Exchanges.length>0) { 
 				for (i=0; i<json.Exchanges.length; i++) { 
 					var exchange = json.Exchanges[i];			

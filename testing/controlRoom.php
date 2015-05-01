@@ -1,6 +1,6 @@
 <?php
   /* Connect to the database. */
-  include_once('php/database_connect.php');
+  include_once('../php/database_connect.php');
 
   /* If the user is not logged in, redirect to the login page. */
   if (!isUserLoggedIn())
@@ -37,13 +37,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom -->
-    <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/inbox.css" rel="stylesheet">
-    <link href="css/map.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
-    <link href="css/exchangeManager.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/global.css">
-    <link type="text/css" rel="stylesheet" href="/css/chatPopup.css"/>
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/inbox.css" rel="stylesheet">
+    <link href="../css/map.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/chatStyle.css" />
+    <link href="../css/exchangeManager.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link type="text/css" rel="stylesheet" href="../css/chatPopup.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -155,69 +155,16 @@ SETTINGS;
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-          <!-- User Info -->
-          <?php
-          		echo '<img src="img/palm.jpg" width="100%" height="100%"></img>';
-				$RequestedQuery = "SELECT reputation FROM Users WHERE netId='{$_SESSION['user']['netId']}' LIMIT 1;";
-              	$RequestedResult = mysql_query($RequestedQuery);
-				$Reputation = mysql_fetch_array(($RequestedResult));
-				echo "Reputation: " . $Reputation['reputation'];
-          ?>
-          <br /><br /><br />
-          <!-- Notifications -->
-          <li class="active"><a href=""><b>Notifications</b></a></li>
-          <?php
-              
-          ?>
-          </ul>
-          <!-- Recently Requested Passes -->
-          <ul class="nav nav-sidebar">
-            <li><a href=""><b>Your Recently Requested Passes</b></a></li>
-            <?php
-              $RequestedQuery = "SELECT * FROM Exchange_history WHERE requesterNetId='{$_SESSION['user']['netId']}' ORDER BY requestPassDate DESC LIMIT 5;";
-              $RequestedResult = mysql_query($RequestedQuery);
-              if ($RequestedResult) {
-                if (mysql_num_rows($RequestedResult) == 0)
-                  echo "<li><a><i>0 records found.</i></a></li>";
-                else {
-                  for ($i = 0; $i < mysql_num_rows($RequestedResult); $i++) {
-                    $row = mysql_fetch_assoc($RequestedResult);
-                    $reqDate = date('m-d-Y', strtotime($row['requestPassDate']));
-                    echo '<li><a href="#">' . $reqDate . ': ' . $row['requestPassType'] . '</a></li>';
-                  }
-                }
-              }
-            ?>
-          </ul>
-          <!-- Recently Offered Passes -->
-          <ul class="nav nav-sidebar">
-            <li><a href=""><b>Your Recently Offered Passes</b></a></li>
-            <?php
-              $RequestedQuery = "SELECT * FROM Exchange_history WHERE providerNetId='{$_SESSION['user']['netId']}' ORDER BY requestPassDate DESC LIMIT 5;";
-              $RequestedResult = mysql_query($RequestedQuery);
-              if ($RequestedResult) {
-                if (mysql_num_rows($RequestedResult) == 0)
-                  echo "<li><a><i>0 records found.</i></a></li>";
-                else {
-                  for ($i = 0; $i < mysql_num_rows($RequestedResult); $i++) {
-                    $row = mysql_fetch_assoc($RequestedResult);
-                    $reqDate = date('m-d-Y', strtotime($row['requestPassDate']));
-                    echo '<li><a href="#">' . $reqDate . ': ' . $row['requestPassType'] . '</a></li>';
-                  }
-                }
-              }
-            ?>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-12 main">
             <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
+            <?php
+          		echo '<img src="../img/base.jpg" width="100%" height="100%"></img>';
+            ?>
             <div id="tabs">
               <ul>
                 <li><a href="#tab-1">Search for Passes</a></li>
                 <li><a href="#tab-2">Your Offer/Request</a></li>
-                <li><a href="#tab-3">Inbox</a></li>
+                <li><a href="#tab-3">AI</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">
@@ -325,69 +272,7 @@ SETTINGS;
 
              <!-- Chat Manager -->
               <div class = "container-fluid" id="tab-3">  
-                <?php
-                  $query = 'SELECT * FROM chat_history WHERE (User_From = "'.$_SESSION['user']['netId'].'") 
-                            OR (User_To = "'.$_SESSION['user']['netId'].'") ORDER BY Time desc;';
-                  $result = mysql_query($query);
-
-                  if (!$result) {
-                    die("Could not query the database. " . mysql_error());;
-                  }
-
-                  echo '<table class = "table table-striped table-bordered table-hover table-condensed">'; // start a table to present the chat
-
-                  //Creates a loop to loop through results
-                  $counter = 1;
-                  $otherUser = "";
-                  $usersInteractedWith = array();
-                  while($row = mysql_fetch_array($result)){
-                    /* keep track of any new users appearing on the chat history*/
-                    if ((strcmp($row['User_From'], $otherUser) !== 0) && (strcmp($row['User_To'], $otherUser) !== 0)){
-                      if (strcmp($row['User_From'], $_SESSION['user']['netId']) !== 0) 
-                        $otherUser = $row['User_From'];
-                      else
-                        $otherUser = $row['User_To'];
-                      if (!in_array($otherUser, $usersInteractedWith)){
-                        $counter = 1;
-                        array_push($usersInteractedWith, $otherUser);
-                      }
-                    }
-
-                    /* retrieve the name of the otherUser*/
-                    $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$otherUser.'";'); 
-                    if (!$getName)
-                      $otherUsername = "";
-                    else
-                      $otherUsername = mysql_result($getName, 0);
-
-                    /* identify if the message was sent by "You" or the other user*/
-                    if (strcmp($row['User_From'], $_SESSION['user']['netId']) !== 0) 
-                        $userFrom = $otherUsername;
-                      else
-                        $userFrom = "You";
-
-                    /* print mst recent chat and link to chat with the other user*/
-                    if ($counter === 1){
-                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');" >'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
-                    }
-                    $counter = $counter + 1;    
-                  }
-
-                  echo "</table>"; //Close the table in HTML
-                ?>  
-              
-              <!-- <div class="chat-sidebar"> 
-              <?php 
-                //foreach($usersInteractedWith as $user) {
-                  /* retrieve the name of the user
-                    $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$user.'";'); 
-                    if (!$getName)
-                      $userName = "";
-                    else
-                      $userName = mysql_result($getName, 0);
-                  echo '<div class="sidebar-name"><a href="javascript:register_popup(\''.$user.'\', \''.$userName.'\');"><span>'.$userName.'</span></a></div>';
-                }*/
-              ?>-->
+                
               </div> 
             </div>
           </div>        
@@ -402,11 +287,11 @@ SETTINGS;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4"></script>
-	<script src="js/map.js"></script>
-    <script src="js/exchangeManager.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/popup.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyYWgi9UywiXgHkDZBkTtRiWDpgt6IGVQ"></script>
+	<script src="../js/map.js"></script>
+    <script src="../js/exchangeManager.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/popup.js"></script>
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
@@ -415,7 +300,7 @@ SETTINGS;
   </p>
   </div>
 
-  <div id="error-dialog" title="We ran into a problem...">
+  <div id="error-dialog" title="Invalid Number of Passes">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
     <div id="errorMessage"></div>

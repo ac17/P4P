@@ -158,10 +158,12 @@ $(function() {
 
 function showError(errorTitle, errorMsg)
 {
-	document.getElementById("error-dialog").title = errorTitle;
+	alert(errorTitle); 
+	document.getElementById("error-dialog").setAttribute("title", errorTitle);
 	document.getElementById("errorMessage").innerHTML = errorMsg;
 	$( "#error-dialog" ).dialog( "open" );
 }
+
 
 function loadUserData(netId)
 {
