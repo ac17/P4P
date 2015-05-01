@@ -50,9 +50,6 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 	/* send verification email */
 	$to = $netId . "@princeton.edu";
 	$subject = "Welcome to Passes for Passes!";
-	$headers = "From: ec2-54-149-32-72.us-west-2.compute.amazonaws.com";
-	$headers .= "MIME-Version: 1.0" . "\r\n";
-	$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 	$message = "
 	<html>
 	<head>

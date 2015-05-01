@@ -2,8 +2,7 @@
 <?php
 	include_once('mailer.php');
 	if (isset($_POST['hiddenMsg']) && $_POST['hiddenMsg'] == 'true') {
-		$mailResult = "";
-		if (mailer($_POST['emailName'], $_POST['emailAdd'], $_POST['emailSub'], $_POST['emailMsg'], $mailResult))
+		if (mailer($_POST['emailName'], $_POST['emailAdd'], $_POST['emailSub'], $_POST['emailMsg']))
 			echo "Thanks, your message has been sent!";
 		else
 			echo "Sorry, something went wrong! Please try again.";
