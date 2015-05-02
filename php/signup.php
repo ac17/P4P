@@ -36,7 +36,7 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 	
 	/* generate random verification code and insert non-verified user info into table */
 	$vc = randString(12);
-	$query = "INSERT INTO Users (firstName, lastName, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', '" . $netId . "', md5('" . $pw . "'), 'FALSE', '{$vc}');";
+	$query = "INSERT INTO Users (firstName, lastName, photo, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', NULL, '" . $netId . "', md5('" . $pw . "'), 'FALSE', '{$vc}');";
 	$result = mysql_query($query);
 	if (!$result) {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";

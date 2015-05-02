@@ -70,6 +70,15 @@
         </script>
 CHANGESETTINGS;
     }
+        if (isset($_POST['hiddenProf']) && $_POST['hiddenProf'] == 'true') {
+            echo <<< CHANGEPP
+            <script type="text/javascript">
+                $(window).load(function(){
+                    $('#settingsModal').modal('show');
+                });
+            </script>
+CHANGEPP;
+        }
     ?>
 
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -105,16 +114,27 @@ CHANGESETTINGS;
                     $settingsForm = <<< SETTINGS
                     <form action="{$_SERVER['PHP_SELF']}" method="post" id="settingsForm">
                       <h3>Change your password.</h3>
-                        <input type="password" class="form-control" placeholder="Old password" id="oldPW" name="oldPW" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" placeholder="Old password" id="oldPW" name="oldPW" aria-describedby="basic-addon1" required>
                         <br>
-                        <input type="password" class="form-control" placeholder="New password" id="newPW" name="newPW" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" placeholder="New password" id="newPW" name="newPW" aria-describedby="basic-addon1" required>
                         <br>
                         <input type="hidden" name="hiddenSettings" id="hiddenSettings" value="true">
                         <button class="btn btn-default" id="settingsSubmit" type="submit" form="settingsForm" value="Submit">Submit</button>
                     </form>
 SETTINGS;
+                    $changePhotoForm = <<<PROFPIC
+                    <form action="{$_SERVER['PHP_SELF']}" method="post" id="photoForm" enctype="multipart/form-data">
+                      <h3>Change your profile photo.</h3>
+                      New profile photo: <input type="file" name="profPic" id="profPic" required><br>
+                      <input type="hidden" name="hiddenProf" id="hiddenProf" value="true">
+                      <button class="btn btn-default" id="profSubmit" type="submit" form="photoForm" value="Submit">Submit</button>
+                    </form>
+PROFPIC;
                     $err = array();
                     $success['changeSettings'] = FALSE;
+                    $success['changeProfPic'] = FALSE;
+
+                    /* Process password change. */
                     if (isset($_POST['hiddenSettings']) && $_POST['hiddenSettings'] == 'true') {
                       $old = stripslashes(htmlspecialchars($_POST['oldPW']));
                       $new = stripslashes(htmlspecialchars($_POST['newPW']));
@@ -144,6 +164,68 @@ SETTINGS;
                     else {
                       echo $settingsForm;
                     }
+
+                    /* Process profile photo change. */
+                    if (isset($_POST['hiddenProf']) && $_POST['hiddenProf'] == 'true') {
+                      $target_dir = "img/";
+                      $target_file = $target_dir . basename($_FILES["profPic"]["name"]);
+                      $uploadOk = 1;
+                      $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                      // Check if image file is a actual image or fake image
+                      if(isset($_POST["submit"])) {
+                          $check = getimagesize($_FILES["profPic"]["tmp_name"]);
+                          if($check !== false) {
+                              $err['changeProfPic'] = "File is an image - " . $check["mime"] . ".";
+                              $uploadOk = 1;
+                          } else {
+                              $err['changeProfPic'] = "File is not an image.";
+                              $uploadOk = 0;
+                          }
+                      }
+                      // Check if file already exists
+                      if (file_exists($target_file)) {
+                          $err['changeProfPic'] = "Sorry, file already exists.";
+                          $uploadOk = 0;
+                      }
+                      // Check file size
+                      if ($_FILES["profPic"]["size"] > 5000000) {
+                          $err['changeProfPic'] = "Sorry, your file is too large.";
+                          $uploadOk = 0;
+                      }
+                      // Allow certain file formats
+                      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                      && $imageFileType != "gif" ) {
+                          $err['changeProfPic'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                          $uploadOk = 0;
+                      }
+                      // Check if $uploadOk is set to 0 by an error
+                      if ($uploadOk == 0) {
+                          // $err['changeProfPic'] = "Sorry, your file was not uploaded.";
+                      // if everything is ok, try to upload file
+                      } else {
+                          if (move_uploaded_file($_FILES["profPic"]["tmp_name"], $target_file)) {
+                            /* Store name of profile photo in database. */
+                            $profQ = 'UPDATE Users SET photo="' . basename($_FILES["profPic"]["name"]) . '" WHERE netId="' . $_SESSION['user']['netId'] . '";';
+                            $profR = mysql_query($profQ);
+                            if ($profR)
+                              $success['changeProfPic'] = "The file ". basename($_FILES["profPic"]["name"]). " has been uploaded.";
+                            else
+                              $err['changeProfPic'] = "Sorry, there was an error uploading your file.";
+                          } else {
+                              $err['changeProfPic'] = "Sorry, there was an error uploading your file.";
+                          }
+                      }
+
+                      /* Print appropriate success or error message. */
+                      if ($success['changeProfPic'])
+                        echo "<p>" . $success['changeProfPic'] . "</p>";
+                      else
+                        echo '<div class="alert alert-danger" role="alert">'. $err['changeProfPic'] .'</div>';
+                    }
+                    else {
+                      echo $changePhotoForm;
+                    }
                     ?>
                 </div>
                 <div class="modal-footer">
@@ -159,11 +241,14 @@ SETTINGS;
           <ul class="nav nav-sidebar">
           <!-- User Info -->
           <?php
-          		echo '<img src="img/palm.jpg" width="100%" height="100%"></img>';
+            if (!empty($_SESSION['user']['photo']))
+              echo '<img src="img/' . $_SESSION['user']['photo'] . '" width="100%"></img>';
+            else
+          		echo '<img src="img/default.jpg" width="100%"></img>';
 				$RequestedQuery = "SELECT reputation FROM Users WHERE netId='{$_SESSION['user']['netId']}' LIMIT 1;";
               	$RequestedResult = mysql_query($RequestedQuery);
 				$Reputation = mysql_fetch_array(($RequestedResult));
-				echo "Reputation: " . $Reputation['reputation'];
+				echo "<br>Reputation: " . $Reputation['reputation'];
           ?>
           <br /><br /><br />
           <!-- Notifications -->
