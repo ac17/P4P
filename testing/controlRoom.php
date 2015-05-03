@@ -44,6 +44,7 @@
     <link href="../css/exchangeManager.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/global.css">
     <link type="text/css" rel="stylesheet" href="../css/chatPopup.css"/>
+    <link type="text/css" rel="stylesheet" href="controlRoom.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -156,33 +157,33 @@ SETTINGS;
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12 main">
-            <h1 class="page-header">Welcome <?php echo $_SESSION['user']['firstName']; ?>!</h1>
+            <h1 class="page-header">Welcome to the Control Room <?php echo $_SESSION['user']['firstName']; ?>!</h1>
             <?php
           		echo '<img src="../img/base.jpg" width="100%" height="100%"></img>';
             ?>
             <div id="tabs">
               <ul>
-              	<li><a href="#tab-1">Server Status</a></li>
-                <li><a href="#tab-2">World Map</a></li>
+                <li><a href="#tab-1">World Map</a></li>
+                <li><a href="#tab-2">Server Status</a></li>
                 <li><a href="#tab-3">NPCs</a></li>
                 <li><a href="#tab-4">AI</a></li>
                 <li><a href="#tab-5">Garbage Collector</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">
-              
-              </div>
-              
-              <div id="tab-2">
-                
-                <div class="col-md-12" ><br /><br /></div>
+              	<div class="col-md-12" ><br /><br /></div>
                 
                 <div class="col-md-12" id="map-canvas"></div>
                 
                 <div class="col-md-12" ><br /><br /></div>
 
                 <input type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
-
+              </div>
+              
+              <div id="tab-2">
+                
+				<div class="col-md-12" id="serverStats"></div>
+                <input type="submit" value="Refresh" onClick="getServerStats()">
               </div>
               
               <!-- NPC -->
@@ -196,17 +197,18 @@ SETTINGS;
                         <input type="submit" value="Purge NPCs" id="purgeNPCs">
                     </div>
                   </div>
-				
+				  <br />
+                  <br />
                   <div class="col-md-12">
-                      <div class="col-md-3"> netId </div>
-                      <div class="col-md-3"> firstName </div>
-                      <div class="col-md-3"> lastName </div>
-                      <div class="col-md-3"> reputation </div>
+                      <div class="col-md-3 tableHeader"> netId </div>
+                      <div class="col-md-3 tableHeader"> firstName </div>
+                      <div class="col-md-3 tableHeader"> lastName </div>
+                      <div class="col-md-3 tableHeader"> reputation </div>
                       <div id="npcList">
                       </div>
                   </div>
                   
-              <input type="submit">
+              <input type="submit" value="Refresh" onClick="getAllNPCs()">
               </div>
               
              <!-- Chat Manager -->
@@ -214,7 +216,7 @@ SETTINGS;
                 
                  <div class="col-md-12">          
                 	<div class="col-md-6">
-                    <label for="spinner">Number of Passes:</label>
+                    <label for="spinner">Heartbeats:</label>
                     <input id="spinner" name="value">
                     </div>
                     <div class="col-md-6">
@@ -228,14 +230,24 @@ SETTINGS;
               </div> 
               
               <div class = "container-fluid" id="tab-5">  
-                
+                <div class="col-md-12" id="garbageCollector"></div>
+                <input type="submit" value="Refresh" onClick="getGarbageStats()">
               </div> 
             </div>
           </div>        
         </div>
       </div>
     </div>
-
+	
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

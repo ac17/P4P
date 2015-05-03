@@ -14,10 +14,20 @@ $(function() {
 					getAllExchanges();
 				}
 				
-				// upon enterting the tab which contains exchange manager, refresh the requests and offers
 				if (ui.newPanel.attr('id') == "tab-2")
 				{
+					getServerStats();
+				}
+
+				// upon enterting the tab which contains exchange manager, refresh the requests and offers
+				if (ui.newPanel.attr('id') == "tab-3")
+				{
 					getAllNPCs();
+				}
+				
+				if (ui.newPanel.attr('id') == "tab-5")
+				{
+					getGarbageStats();
 				}
 			}			  
 		});
@@ -50,25 +60,25 @@ $(function() {
 			
 			if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp = new XMLHttpRequest();
+			  aixmlhttp = new XMLHttpRequest();
 			}
 			else
 			{//  IE6, IE5
-			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			  aixmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			  
-			xmlhttp.onreadystatechange=function()
+			aixmlhttp.onreadystatechange=function()
 			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				if (aixmlhttp.readyState==4 && aixmlhttp.status==200)
 				{
 					alert("AI finished.");
-					document.getElementById("output").innerHTML = xmlhttp.responseText;
+					document.getElementById("output").innerHTML = aixmlhttp.responseText;
 					
 				}
 			}
 
-			xmlhttp.open("GET", "./AI.php?hb=" + spinner.spinner( "value" ), true);
-			xmlhttp.send();
+			aixmlhttp.open("GET", "./AI.php?hb=" + spinner.spinner( "value" ), true);
+			aixmlhttp.send();
 			document.getElementById("output").innerHTML = "Running";
 	});
 		
@@ -182,7 +192,6 @@ function showError(errorTitle, errorMsg)
 function loadUserData(netId)
 {
 	setInterval(getAllExchanges, 3000);
-	getAllNPCs();
 }
 
 function getAllNPCs()
@@ -205,5 +214,105 @@ function getAllNPCs()
 	}
 
 	xmlhttp.open("GET", "./getAllNPCs.php", true);
+	xmlhttp.send();
+}
+
+function getServerStats()
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("serverStats").innerHTML = xmlhttp.responseText;
+		}
+	}
+
+	xmlhttp.open("GET", "./getServerStats.php", true);
+	xmlhttp.send();
+}
+
+function getGarbageStats()
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("garbageCollector").innerHTML = xmlhttp.responseText;
+		}
+	}
+
+	xmlhttp.open("GET", "./getGarbage.php", true);
+	xmlhttp.send();
+}
+
+function cleanChatMessages()
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			if(xmlhttp.responseText != "")
+			{
+				showError("A Small Problem...", xmlhttp.responseText);
+			}
+			getGarbageStats();
+		}
+	}
+
+	xmlhttp.open("GET", "./cleanChatMessages.php", true);
+	xmlhttp.send();
+}
+
+function cleanExchanges()
+{
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			if(xmlhttp.responseText != "")
+			{
+				showError("A Small Problem...", xmlhttp.responseText);
+			}
+			getGarbageStats();
+		}
+	}
+
+	xmlhttp.open("GET", "./cleanExchanges.php", true);
 	xmlhttp.send();
 }

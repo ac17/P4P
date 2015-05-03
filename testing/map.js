@@ -19,18 +19,18 @@ function getAllExchanges()
 	deleteMarkers();
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  mapxmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  mapxmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	mapxmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (mapxmlhttp.readyState==4 && mapxmlhttp.status==200)
 		{			
-			var json = JSON.parse(xmlhttp.responseText);
+			var json = JSON.parse(mapxmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
 				for (i=0; i<json.Users.length; i++) { 
@@ -41,8 +41,8 @@ function getAllExchanges()
 		}
 	}
 	
-	xmlhttp.open("GET", "../php/getAllExchanges.php", true);
-	xmlhttp.send();
+	mapxmlhttp.open("GET", "../php/getAllExchanges.php", true);
+	mapxmlhttp.send();
 }
 
 function addUserToMap(user) {

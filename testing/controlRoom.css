@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+
+.tableHeader {
+	font-size:12px;
+	font-weight:900;
+	padding:3px;
+}
+
+.tableCell {
+	font-size:12px;
+	padding:3px;
+}
+
