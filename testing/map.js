@@ -14,38 +14,6 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-function getMatchingExchanges()
-{
-	deleteMarkers();
-	if (window.XMLHttpRequest)
-	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
-	}
-	else
-	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	  
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{			
-			var json = JSON.parse(xmlhttp.responseText);
-			if (json.Users.length>0) {
-				var i;
-				for (i=0; i<json.Users.length; i++) { 
-					var user = json.Users[i];
-					addUserToMap(user);
-				} 
-				updateMapToShowAllMarkers();
-			}
-		}
-	}
-	
-	xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
-	xmlhttp.send();
-}
-
 function getAllExchanges()
 {
 	deleteMarkers();
@@ -69,12 +37,11 @@ function getAllExchanges()
 					var user = json.Users[i];
 					addUserToMap(user);
 				} 
-				updateMapToShowAllMarkers();
 			}
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/getAllExchanges.php", true);
+	xmlhttp.open("GET", "../php/getAllExchanges.php", true);
 	xmlhttp.send();
 }
 
@@ -84,28 +51,18 @@ function addUserToMap(user) {
 	  user.name +
 	  '</h4>'+
       '<div class="infoWinbodyContent">';
-
-      // link for chatting
-      contentString = contentString + 
-      '<div id = "chatlink"><a href = "./php/chat.php?recipient='+user.netId+'">Click here to chat</a><div>';
-
+	  
       //offers
 	  var i;
 	  for (i=0; i<user.exchanges.length; i++) {
 		var exchange = user.exchanges[i];
 		// disable pursueOffer is the offer has already been requested
-		if (exchange.requested == 0)
-		{
-		contentString = contentString + '<div id="'+exchange.id+'" class="offerDiv" onclick="pursueOffer('+exchange.id+')">';
-		}
-		else
-		{
-		contentString = contentString + '<div id="'+exchange.id+'" class="selectedOfferDiv" ">';
-		}
-		
+
+		contentString = contentString + '<div id="'+exchange.id+'" class="offerDiv"">';
+
 		contentString = contentString +
 		'<h4>' + exchange.club + '</h4>'+
-		'<div> # Passes:  '+ exchange.passNum + '<br />' + exchange.comment +
+		'<div> # Passes:  '+ exchange.passNum + '<br />' + exchange.passDate + '<br />' + exchange.comment +
 		'</div>'+		
 		'</div>';
 	  } 

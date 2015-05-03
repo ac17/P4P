@@ -5,8 +5,13 @@ require('../php/exchange_api/exchangeAPI.php');
 
 $heatbeats = $_GET['hb'];
 
+// close session to allow for parallel requests
+session_write_close();
+
 $filename = 'NPCs.txt';
 $userIds = file($filename, FILE_IGNORE_NEW_LINES);
+
+set_time_limit (60000);
 
 foreach ($userIds as $userId)
 {
@@ -56,7 +61,9 @@ function randomOffer($netId)
 	$time_end = microtime(true);
 	$time = $time_end - $time_start;
 	echo "Function runtime: " . $time . " seconds<br />";
-	echo "Function output: <br />" . var_dump($output) . "<br />";
+	echo "Function output: <br />";
+	var_dump($output);
+	echo"<br />";
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -74,10 +81,12 @@ function moveUser($netId)
 	$time_end = microtime(true);
 	$time = $time_end - $time_start;
 	echo "Function runtime: " . $time . " seconds<br />";
-	echo "Function output: <br />" . var_dump($loc) . "<br />";
+	echo "Function output: <br />";
+	var_dump($loc);
+	echo"<br />";
 	
-	$lat = (((mt_rand( 0, 9)/9)*2-9)/10000);
-	$lng = (((mt_rand( 0, 9)/9)*2-9)/10000);
+	$lat = (((mt_rand( 0, 9))*2-9)/100000);
+	$lng = (((mt_rand( 0, 9))*2-9)/100000);
 	
 	echo "Changing location of " . $netId . " from " . $loc['point_x'] . " " . $loc['point_y'] . " by " . $lat . " " . $lng . "<br />";
 	
@@ -88,7 +97,9 @@ function moveUser($netId)
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
 		echo "Function runtime: " . $time . " seconds<br />";
-		echo "Function output: <br />" . var_dump($output) . "<br />";
+		echo "Function output: <br />";
+		var_dump($output);
+		echo"<br />";
 	}
 	else 
 	{
@@ -100,7 +111,9 @@ function moveUser($netId)
 		$time_end = microtime(true);
 		$time = $time_end - $time_start;
 		echo "Function runtime: " . $time . " seconds<br />";
-		echo "Function output: <br />" . var_dump($output) . "<br />";
+		echo "Function output: <br />";
+		var_dump($output);
+		echo"<br />";
 	}
 }
 

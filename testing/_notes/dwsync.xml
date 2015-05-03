@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="createUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745280819704088" remote="130745532600000000" />
+<file name="createUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745291694826109" remote="130750267200000000" />
 <file name="randName.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744837200000000" remote="130744837200000000" />
-<file name="NPCs.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745582400000000" remote="130745582400000000" />
-<file name="AI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130748841025466731" remote="130749093000000000" />
-<file name="controlRoom.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130749597953323542" remote="130749849600000000" />
+<file name="NPCs.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130749989158299187" remote="130750240800000000" />
+<file name="AI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750016876104554" remote="130750268400000000" />
+<file name="controlRoom.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750022492465792" remote="130750273800000000" />
+<file name="controlRoom.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750043680637686" remote="130750295400000000" />
+<file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750012915288009" remote="130750266000000000" />
+<file name="getAllNPCs.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750010961956285" remote="130750267200000000" />
+<file name="purgeAllNPCs.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750010039933548" remote="130750267200000000" />
+<file name="asyncAI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750006927265513" remote="130750267200000000" />
 </dwsync>

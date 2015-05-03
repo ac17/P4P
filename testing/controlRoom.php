@@ -162,37 +162,18 @@ SETTINGS;
             ?>
             <div id="tabs">
               <ul>
-                <li><a href="#tab-1">Search for Passes</a></li>
-                <li><a href="#tab-2">Your Offer/Request</a></li>
-                <li><a href="#tab-3">AI</a></li>
+              	<li><a href="#tab-1">Server Status</a></li>
+                <li><a href="#tab-2">World Map</a></li>
+                <li><a href="#tab-3">NPCs</a></li>
+                <li><a href="#tab-4">AI</a></li>
+                <li><a href="#tab-5">Garbage Collector</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">
-              	<div class="col-md-12">          
-                    <div class="col-md-4">
-                    <form action="#">
-                      <fieldset>
-                        <label for="searchEatingClub">Eating Club: </label>
-                        <select name="searchEatingClub" id="searchEatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap & Gown</option>
-                          <option>Tiger Inn</option>
-                          <option>All</option>
-                        </select>
-                        </fieldset>
-                    </form>
-                    </div>
-                    <div class="col-md-4">
-                    <label for="numPasses">Number of Passes:</label>
-                    <input id="numPasses" name="value">
-                    </div>
-                    <div class="col-md-4">
-                    <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
-                    </div>
-                </div>
+              
+              </div>
+              
+              <div id="tab-2">
                 
                 <div class="col-md-12" ><br /><br /></div>
                 
@@ -200,78 +181,53 @@ SETTINGS;
                 
                 <div class="col-md-12" ><br /><br /></div>
 
-                	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                <input type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
 
-                <!--chatclient -->
               </div>
               
-              <!-- Exchange Manager -->
-              <div id="tab-2">                    
-                <div class="col-md-12">          
-                    <div class="col-md-4">
-                    Pass Date: <br /><input type="text" id="passDate"><br /><br />
-					</div>
-                	<div class="col-md-4">
+              <!-- NPC -->
+              <div id="tab-3">
+
+                  <div class="col-md-12">                    
+                    <div class="col-md-6">
+                        <input type="submit" value="Add New NPC" id="addNPC">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" value="Purge NPCs" id="purgeNPCs">
+                    </div>
+                  </div>
+				
+                  <div class="col-md-12">
+                      <div class="col-md-3"> netId </div>
+                      <div class="col-md-3"> firstName </div>
+                      <div class="col-md-3"> lastName </div>
+                      <div class="col-md-3"> reputation </div>
+                      <div id="npcList">
+                      </div>
+                  </div>
+                  
+              <input type="submit">
+              </div>
+              
+             <!-- Chat Manager -->
+              <div class = "container-fluid" id="tab-4">  
+                
+                 <div class="col-md-12">          
+                	<div class="col-md-6">
                     <label for="spinner">Number of Passes:</label>
                     <input id="spinner" name="value">
                     </div>
-                    <div class="col-md-4">
-                    <form>
-                      <fieldset>
-                        <label for="eatingClub">Eating Club: </label>
-                        <select name="eatingClub" id="eatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap & Gown</option>
-                        </select>
-                        </fieldset>
-                    </form>
+                    <div class="col-md-6">
+                    <input type="submit" value="Run AI" id="runAI">
+                    <input type="submit" value="Run Async AI" id="runAsyncAI">
                     </div>
                  </div>
-                 <div class="col-md-12">
-                	<div class="col-md-4">
-                    </div>
-                    <div class="col-md-4">
-                    <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea>
-                    <input type="submit" value="Post" id="postExchange">
-                    <!-- used to pass netid to on click function for Post -->
-                    <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
-                    </div>
+                 <br />
+                 <div class="col-md-12" id="output" style="text-align:left; font-family:'MS Serif', 'New York', serif; font-size:14px">
                  </div>
-
-                <div class="col-md-12"><br  /></div>
-              	<div class="col-md-12">Trades</div>
-                <div class="col-md-12"><br  /></div>
-                <div class="col-md-12"><br  /></div>
-                <div class="col-md-12" id="tradeList">
-                </div>
-                
-                <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Open Offers</div>
-                <div class="col-md-12">
-                    <ol id="offerList" class="selectable">
-                    </ol>
-                </div>
-                <div class="col-md-12">
-                <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                </div>
-                
-                <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Pending Requests</div>
-                <div class="col-md-12">
-                    <ol id="requestList" class="selectable">
-                    </ol>
-                </div>
-                
-                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-
-             </div>
-
-             <!-- Chat Manager -->
-              <div class = "container-fluid" id="tab-3">  
+              </div> 
+              
+              <div class = "container-fluid" id="tab-5">  
                 
               </div> 
             </div>
@@ -288,9 +244,9 @@ SETTINGS;
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyYWgi9UywiXgHkDZBkTtRiWDpgt6IGVQ"></script>
-	<script src="../js/map.js"></script>
+	<script src="map.js"></script>
     <script src="../js/exchangeManager.js"></script>
-    <script src="../js/dashboard.js"></script>
+    <script src="controlRoom.js"></script>
     <script src="../js/popup.js"></script>
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
