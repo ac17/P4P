@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="getUserLocation.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751736000000000" remote="130751805000000000" />
-<file name="addExchange.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751736000000000" remote="130751805000000000" />
-<file name="updateLocation.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751736000000000" remote="130751805000000000" />
-<file name="pursueOffer.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751553246942788" remote="130751805000000000" />
-<file name="searchExchangesUserSpecific.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751821800000000" remote="130751821800000000" />
+<file name="getUserLocation.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752015600000000" remote="130752015600000000" />
+<file name="addExchange.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752015600000000" remote="130752015600000000" />
+<file name="updateLocation.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752015600000000" remote="130752015600000000" />
+<file name="pursueOffer.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752015600000000" remote="130752015600000000" />
+<file name="searchExchangesUserSpecific.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752015600000000" remote="130752015600000000" />
+<file name="acceptRequest.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752016200000000" remote="130752016200000000" />
+<file name="deleteOffer.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752016200000000" remote="130752016200000000" />
+<file name="deleteRequest.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752016200000000" remote="130752016200000000" />
+<file name="userActiveExchanges.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752016200000000" remote="130752016200000000" />
+<file name="userActiveTrades.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751771899197324" remote="130752023400000000" />
+<file name="completeTrade.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751775321483068" remote="130752027000000000" />
+<file name="cancelTrade.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751775937558305" remote="130752027600000000" />
 </dwsync>

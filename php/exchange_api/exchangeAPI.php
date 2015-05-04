@@ -39,7 +39,7 @@ function pursueOffer($currentUserNetId, $offerId)
 	// add request's id to the offer's associatedExchanges 
 	$associatedExchanges = json_decode( $offer['associatedExchanges'] );
 	$associatedExchanges[] = $currentUserNetId;
-	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offer['id'] . '"';
+	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode(array_values($associatedExchanges)).'\' WHERE id="' . $offer['id'] . '"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed
@@ -406,8 +406,7 @@ function deleteRequest($netId, $requestId)
 	// remove user's net id from the offer's associatedExchanges
 	$associatedExchanges = json_decode( $offer['associatedExchanges'] );
 	$associatedExchanges = array_diff($associatedExchanges, array($netId));
-	echo json_encode($associatedExchanges);
-	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offerId[0] . '"';
+	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode(array_values($associatedExchanges)).'\' WHERE id="' . $offerId[0] . '"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed
@@ -438,11 +437,10 @@ function deleteOffer($netId, $offerId)
 	
 	$offer = mysql_fetch_array(($query_result));
 		
-	if ($offer['associatedExchanges'] != "" && $offer['associatedExchanges'] != "[]")
+	if (($offer['associatedExchanges'] != "") && ($offer['associatedExchanges'] != "[]"))
 	{
 		// remove requests based on netids in offer's associatedExchanges
 		$associatedExchanges = json_decode( $offer['associatedExchanges'] );
-		echo json_encode($associatedExchanges);
 		$query = 'DELETE FROM Active_exchanges WHERE associatedExchanges LIKE "%'. $offerId . '%" AND requesterNetId IN (' . implode(',', array_map('intval', $associatedExchanges)) . ')';
 		//Execute the query
 		$query_result = mysql_query($query);
@@ -489,8 +487,7 @@ function deleteRequestByOfferId($currentUserNetId, $requesterNetId, $offerId)
 	// remove $requesterNetId from the offer's associatedExchanges
 	$associatedExchanges = json_decode( $offer['associatedExchanges'] );
 	$associatedExchanges = array_diff($associatedExchanges, array($requesterNetId));
-	echo json_encode($associatedExchanges);
-	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offerId . '"';
+	$query = ' UPDATE Active_exchanges SET associatedExchanges=\''.json_encode(array_values($associatedExchanges)).'\' WHERE id="' . $offerId . '"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed
@@ -689,7 +686,7 @@ function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 	// remove all netIds but $requesterNetId from the offer's associatedExchanges
 	// set that the offer is part of a transaction
 	$associatedExchanges = array($requesterNetId);
-	$query = ' UPDATE Active_exchanges SET isPartOfTransaction="1", associatedExchanges=\''.json_encode($associatedExchanges).'\' WHERE id="' . $offerId . '"';
+	$query = ' UPDATE Active_exchanges SET isPartOfTransaction="1", associatedExchanges=\''.json_encode(array_values($associatedExchanges)).'\' WHERE id="' . $offerId . '"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed

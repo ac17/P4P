@@ -18,10 +18,31 @@ foreach ($userIds as $userId)
 	$user = loadUserInfo($userId);
 	for ($h = 0; $h < $heatbeats; $h++)
 	{
-		//randomOffer($user['netId']);
-		//moveUser($user['netId']);
-		seekAndPursueOffer($user['netId']);
-		sleep(1);
+		for ($x = 0; $x < 1000; $x++)
+		{
+			randomOffer($user['netId']);
+		}
+		
+		$choice = mt_rand(0,4);
+		
+		switch ($choice) {
+			case 0:
+				moveUser($user['netId']);
+				break; 
+			case 1:
+				randomOffer($user['netId']);
+				break;
+			case 2:
+				seekAndPursueOffer($user['netId']);
+				break;
+			case 3:
+				manageOffersAndRequests($user['netId']);
+				break;
+			case 4:
+				trade($user['netId']);
+				break;
+		}
+		sleep(0.1);
 	}
 	
 	echo "----------------------------------------------------------------------------<br /><br />";
@@ -79,7 +100,7 @@ function seekAndPursueOffer($netId)
 {
 	$passDate = "04/" . mt_rand(26,30) . "/2015";
 	$numPasses = mt_rand(1,3);
-	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap & Gown"];
+	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap & Gown", "All"];
 	$passClub = $clubs[mt_rand(0,4)];
 	
 	echo "Searching for offer for  Date " . $passDate . " Num " . $numPasses . " Club " . $passClub . "<br />";	
@@ -137,6 +158,156 @@ function seekAndPursueOffer($netId)
 	}
 }
 
+
+//----------------------------------------------------------------------------------------------------------------------
+// manage Offers And Requests
+ 
+function manageOffersAndRequests($netId)
+{	
+	echo "Getting active exchanges for ".$netId." <br />";	
+	$question_start = getNumQuestions();
+	$time_start = microtime(true);
+		$exchanges = userActiveExchanges($netId);
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
+	$question_end = getNumQuestions();
+	$delta_q = $question_end - $question_start;
+	file_put_contents('./runtimeData/userActiveExchanges.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+	echo "Function runtime: " . $time . " seconds<br />";
+	echo "Function output: <br />";
+	var_dump($exchanges);
+	echo"<br />";
+	
+	
+	foreach ( $exchanges as $exchange )
+	{
+		if($exchange['type'] == "Request")
+		{
+			// decide to delete the request or do nothing
+			$choice = mt_rand(0,1);			
+			if($choice == 0)
+			{
+				echo "Deleting request: " . $exchange['passDate'] . " " . $exchange['club'] . " " . $exchange['passNum'] .  "<br />";	
+				$question_start = getNumQuestions();
+				$time_start = microtime(true);
+					$output = deleteRequest($netId, $exchange['id']);
+				$time_end = microtime(true);
+				$time = $time_end - $time_start;
+				$question_end = getNumQuestions();
+				$delta_q = $question_end - $question_start;
+				file_put_contents('./runtimeData/deleteRequest.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+				echo "Function runtime: " . $time . " seconds<br />";
+				echo "Function output: <br />";
+				var_dump($output);
+				echo"<br />";
+			}
+		}
+		else 
+		{
+			// decide to delete the offer, accept a request for it or do nothing
+			$choice = mt_rand(0,2);			
+			if($choice == 0)
+			{
+				echo "Deleting offer: " . $exchange['passDate'] . " " . $exchange['club'] . " " . $exchange['passNum'] .  "<br />";	
+				$question_start = getNumQuestions();
+				$time_start = microtime(true);
+					$output = deleteOffer($netId, $exchange['id']);
+				$time_end = microtime(true);
+				$time = $time_end - $time_start;
+				$question_end = getNumQuestions();
+				$delta_q = $question_end - $question_start;
+				file_put_contents('./runtimeData/deleteOffer.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+				echo "Function runtime: " . $time . " seconds<br />";
+				echo "Function output: <br />";
+				var_dump($output);
+				echo"<br />";
+			}
+			elseif($choice == 1)
+			{
+				$requestsForOffer = json_decode($exchange['associatedExchanges']);
+				$numRequests = count($requestsForOffer); 
+				
+				if ($numRequests > 0)
+				{
+					$acceptedRequest = mt_rand(0,$numRequests-1);
+					
+					echo "Accepting request from ". $requestsForOffer[$acceptedRequest] ." for offer: " . $exchange['passDate'] . " " . $exchange['club'] . " " . $exchange['passNum'] .  "<br />";	
+					$question_start = getNumQuestions();
+					$time_start = microtime(true);
+						$output = acceptRequest($netId, $requestsForOffer[$acceptedRequest], $exchange['id']);
+					$time_end = microtime(true);
+					$time = $time_end - $time_start;
+					$question_end = getNumQuestions();
+					$delta_q = $question_end - $question_start;
+					file_put_contents('./runtimeData/acceptRequest.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+					echo "Function runtime: " . $time . " seconds<br />";
+					echo "Function output: <br />";
+					var_dump($output);
+					echo"<br />";
+				}
+			}
+		} 
+	}
+	
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//  trade
+ 
+function trade($netId)
+{
+	echo "Getting trades for ".$netId." <br />";
+	$question_start = getNumQuestions();
+	$time_start = microtime(true);
+		$trades = userActiveTrades($netId);
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
+	$question_end = getNumQuestions();
+	$delta_q = $question_end - $question_start;
+	file_put_contents('./runtimeData/userActiveTrades.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+	echo "Function runtime: " . $time . " seconds<br />";
+	echo "Function output: <br />";
+	var_dump($trades);
+	echo"<br />";
+	
+	foreach ( $trades as $trade )
+	{
+		// decide to cancel or accept the trade or do nothing
+		$choice = mt_rand(0,2);			
+		if($choice == 0)
+		{
+			echo "Cancelling trade with ". $trade['provider'] . "/" . $trade['recipient'] ." for: " . $trade['passDate'] . " " . $trade['club'] . " " . $trade['passNum'] .  "<br />";	
+			$question_start = getNumQuestions();
+			$time_start = microtime(true);
+				$output = cancelTrade($netId, $trade['provider'], $trade['recipient'], $trade['offerId'], $trade['requestId']);
+			$time_end = microtime(true);
+			$time = $time_end - $time_start;
+			$question_end = getNumQuestions();
+			$delta_q = $question_end - $question_start;
+			file_put_contents('./runtimeData/cancelTrade.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+			echo "Function runtime: " . $time . " seconds<br />";
+			echo "Function output: <br />";
+			var_dump($output);
+			echo"<br />";
+		}
+		elseif($choice == 1)
+		{
+			echo "Completing trade with ". $trade['provider'] . "/" . $trade['recipient'] ." for: " . $trade['passDate'] . " " . $trade['club'] . " " . $trade['passNum'] .  "<br />";
+			$question_start = getNumQuestions();
+			$time_start = microtime(true);
+				$output = completeTrade($netId, $trade['provider'], $trade['recipient'], $trade['offerId'], $trade['requestId']);
+			$time_end = microtime(true);
+			$time = $time_end - $time_start;
+			$question_end = getNumQuestions();
+			$delta_q = $question_end - $question_start;
+			file_put_contents('./runtimeData/completeTrade.txt', $time . " " . $delta_q . " " . getTableNumRow("Active_exchanges") . "\n", FILE_APPEND | LOCK_EX);
+			echo "Function runtime: " . $time . " seconds<br />";
+			echo "Function output: <br />";
+			var_dump($output);
+			echo"<br />";
+		}
+	}
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 // Moving users 

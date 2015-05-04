@@ -65,7 +65,15 @@ mysql_close($connection);
 echo '<div class="col-md-6 tableHeader">addExchange() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/addExchange.txt').'</div>';
 echo '<div class="col-md-6 tableHeader">getUserLocation() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/getUserLocation.txt').'</div>';
 echo '<div class="col-md-6 tableHeader">updateLocation() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/updateLocation.txt').'</div>';
-
+echo '<div class="col-md-6 tableHeader">searchExchangesUserSpecific() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/searchExchangesUserSpecific.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">pursueOffer() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/pursueOffer.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">userActiveExchanges() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/userActiveExchanges.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">deleteRequest() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/deleteRequest.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">deleteOffer() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/deleteOffer.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">acceptRequest() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/acceptRequest.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">userActiveTrades() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/userActiveTrades.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">cancelTrade() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/cancelTrade.txt').'</div>';
+echo '<div class="col-md-6 tableHeader">completeTrade() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/completeTrade.txt').'</div>';
 
 function avgTime($file)
 {
