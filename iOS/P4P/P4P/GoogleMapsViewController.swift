@@ -21,9 +21,11 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var mapInfoWindowName: String = ""
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
-
+    var mapInfoExchangeIDArray: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // request access to user location
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -32,7 +34,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        self.view.insertSubview(mapView, atIndex:0)
+        //self.view.insertSubview(mapView, atIndex:0)
         mapView.delegate = self
     }
     
@@ -68,6 +70,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             infoWindowViewController.mapInfoWindowName = mapInfoWindowName
             infoWindowViewController.mapInfoWindowNumberOffers = mapInfoWindowNumberOffers
             infoWindowViewController.mapInfoExchangeArray = mapInfoExchangeArray
+            infoWindowViewController.mapInfoExchangeIDArray = mapInfoExchangeIDArray
+            
+            mapInfoExchangeArray.removeAll()
+            mapInfoExchangeIDArray.removeAll()
         }
     }
     
@@ -83,7 +89,11 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         mapInfoWindowName = marker.snippet.componentsSeparatedByString("-")[0]
         mapInfoWindowNumberOffers = marker.snippet.componentsSeparatedByString("-")[1]
         var mapInfoWindowExchanges = marker.snippet.componentsSeparatedByString("-")[2]
-        mapInfoExchangeArray = mapInfoWindowExchanges.componentsSeparatedByString(",")
+        var mapInfoExchangeArrayPre = mapInfoWindowExchanges.componentsSeparatedByString(",")
+        for exchangeInfo in mapInfoExchangeArrayPre {
+            mapInfoExchangeIDArray.append(exchangeInfo.componentsSeparatedByString("!")[0])
+            mapInfoExchangeArray.append(exchangeInfo.componentsSeparatedByString("!")[1])
+        }
 
         performSegueWithIdentifier("infoWindowModal", sender: self)
         return UIView(frame: CGRectMake(0,0,0,0))
@@ -176,10 +186,20 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                     var snippetString = ""
                     var index = 0
                     for exchangeString in passClubs {
-                        snippetString += passExchangeID[index] + " " + passClubs[index] + " " + passNumbers[index] + ","
+                        snippetString += passExchangeID[index] + "!" + passClubs[index] + " " + passNumbers[index] + ","
                         index++
                     }
+
+                    println(snippetString)
+                    let snippetStringLength = count(snippetString)
+                    let substringIndex = snippetStringLength - 1
+                    snippetString = snippetString.substringToIndex(advance(snippetString.startIndex, substringIndex))
+                    
+                    println(snippetString)
+                    
                     snippetString = name + "-" + String(index) + "-" + snippetString
+                    println(snippetString)
+                    
                     marker.snippet = snippetString
                     marker.map = self.mapView
                 }
