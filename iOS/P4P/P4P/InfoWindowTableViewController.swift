@@ -14,6 +14,8 @@ class InfoWindowTableViewController: UITableViewController {
     var mapInfoWindowName: String = ""
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
+    var mapInfoExchangeIDArray: [String] = []
+    var appNetID = "arturf"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,7 @@ class InfoWindowTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return (mapInfoExchangeArray.count - 1)
+        return (mapInfoExchangeArray.count)
     }
     
     
@@ -48,6 +50,24 @@ class InfoWindowTableViewController: UITableViewController {
         
         // Configure the cell...
         return cell
+    }
+    
+    // if you select a cell, make the request and change how the cell is displayed
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if cell!.accessoryType != UITableViewCellAccessoryType.Checkmark
+        {
+            cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
+            var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/pursueOffer.php?"
+            requestString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
+            println(requestString)
+            
+            // pull info from server, display markers
+            let url = NSURL(string: requestString)
+
+        }
+        
     }
 
     /*
