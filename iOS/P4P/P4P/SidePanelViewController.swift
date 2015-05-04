@@ -40,14 +40,14 @@ class SidePanelViewController: UITableViewController {
             }
             task.resume()
         }
-        
+        /*
         if let currentUser = (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser {
             if !contains(users, currentUser) {
                 (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = users[0]
             }
         } else {
             (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = self.users[0]
-        }
+        }*/
         
         let tapRec = UITapGestureRecognizer(target: self, action: "lol:")
         self.view.addGestureRecognizer(tapRec)

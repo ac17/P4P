@@ -14,9 +14,10 @@ class PopupViewController: UIViewController, UIPickerViewDataSource,UIPickerView
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var numPassesField: UITextField!
     
-    let pickerData = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap & Gown", "Tiger Inn", "All"]
+    let clubPickerData = ["All", "Cannon", "Cap & Gown", "Charter", "Cloister", "Colonial", "Cottage", "Ivy Club", "Terrace", "Tiger Inn", "Tower"]
     var clubWheel: UIPickerView!
     var datePickerView: UIDatePicker!
+    var numPassesWheel: UIPickerView!
 
     
     override func viewDidLoad() {
@@ -35,6 +36,12 @@ class PopupViewController: UIViewController, UIPickerViewDataSource,UIPickerView
 
         // whenever, the date is changed, call method "datePickerChanged"
         datePickerView.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        // make wheel of numbers of and set numPassesField to use as input
+        numPassesWheel = UIPickerView()
+        numPassesWheel.dataSource = self
+        numPassesWheel.delegate = self
+        numPassesField.inputView = numPassesWheel
     }
     
     // whenever the date picker changed, do this
@@ -49,21 +56,41 @@ class PopupViewController: UIViewController, UIPickerViewDataSource,UIPickerView
     
     // when a row of picker view is selected, make text box have info
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        clubField.text = pickerData[clubWheel.selectedRowInComponent(0)]
+        if pickerView === clubWheel {
+            clubField.text = clubPickerData[pickerView.selectedRowInComponent(0)]
+        } else if pickerView === numPassesWheel {
+            numPassesField.text = String(pickerView.selectedRowInComponent(0) + 1)
+        }
     }
     
     //MARK: - Delegates and data sources
     //MARK: Data Sources
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        if pickerView === clubWheel && clubField.text == "" {
+            clubField.text = "All"
+        } else if pickerView === numPassesWheel && numPassesField.text == "" {
+            numPassesField.text = "1"
+        }
         return 1
     }
+    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
+        if pickerView === clubWheel {
+            return clubPickerData.count
+        } else if pickerView === numPassesWheel {
+            return 99
+        }
+        return 0
     }
     
     //MARK: Delegates
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return pickerData[row]
+        if pickerView === clubWheel {
+            return clubPickerData[row]
+        } else if pickerView === numPassesWheel {
+            return String(row + 1)
+        }
+        return ""
     }
     
     override func didReceiveMemoryWarning() {
