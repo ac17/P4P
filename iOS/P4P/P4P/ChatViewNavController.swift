@@ -1,23 +1,20 @@
 //
-//  TabBarViewController.swift
+//  ChatViewNavController.swift
 //  P4P
 //
-//  Created by Frank Jiang on 22/4/15.
+//  Created by Frank Jiang on 29/4/15.
 //  Copyright (c) 2015 P4P. All rights reserved.
 //
 
 import UIKit
 
-class TabBarViewController: UITabBarController {
+class ChatViewNavController: UINavigationController {
 
-    var lastScreen = 1
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.selectedIndex = 1
+
         // Do any additional setup after loading the view.
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
