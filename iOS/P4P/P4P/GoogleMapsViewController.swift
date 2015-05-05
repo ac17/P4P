@@ -67,7 +67,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             var longitude = String(stringInterpolationSegment: location.coordinate.longitude)
             updateLocationString += "currentUserNetId=" + appNetID + "&lat=" + latitude + "&lng=" + longitude
             
-            println(updateLocationString)
+            //println(updateLocationString)
 
             // make a request to an offer (passes current user netid and desired offer id)
             let url = NSURL(string: updateLocationString)

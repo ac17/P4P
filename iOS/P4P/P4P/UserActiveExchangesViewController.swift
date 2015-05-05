@@ -29,17 +29,23 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
 
+        activeExchangeTableView.dataSource = self
+        activeExchangeTableView.delegate = self
         
+        userActiveExchangesPull()
+
+        // Do any additional setup after loading the view.
+    }
+    
+    func userActiveExchangesPull() {
         var getActiveExchangesString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/userActiveExchanges.php?"
         getActiveExchangesString += "currentUserNetId=" + appNetID
-        println("****************begin test*******************")
-        println(getActiveExchangesString)
+        //println(getActiveExchangesString)
         
         // pull info from server of all exchanges, categorize info into offer/request arrays
         let url = NSURL(string: getActiveExchangesString)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            //println(NSString(data: data, encoding: NSUTF8StringEncoding))
             let json = JSON(data: data)
             for (informationExchange:String, subJsonExchange: JSON) in json["Exchanges"] {
                 var passID = "007"
@@ -53,32 +59,22 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
                 if let temp = subJsonExchange["passNum"].string { passNumber = temp }
                 if let temp = subJsonExchange["passDate"].string { passDate = temp }
                 if let temp = subJsonExchange["type"].string { passType = temp }
-
-                println(passClub)
-
-                /*
-                println("****************start pass*******************")
-                println(passID)
-                println(passClub)
-                println(passNumber)
-                println(passDate)
-                println(passType)
-                println("****************end pass*******************")
-                */
-
+                
+                if (passType == "Offer") {
+                    var clubNumberString = passClub + " (" + passNumber + ")"
+                    self.offerClubNumberArray.append(clubNumberString)
+                    self.offerDateArray.append(passDate)
+                    self.offerIDArray.append(passID)
+                    
+                } else if (passType == "Request") {
+                    var clubNumberString = passClub + " (" + passNumber + ")"
+                    self.requestClubNumberArray.append(clubNumberString)
+                    self.requestDateArray.append(passDate)
+                    self.requestAssociatedIDArray.append(passID)
+                }
+                
                 dispatch_async(dispatch_get_main_queue()) {
-                    if (passType == "Offer") {
-                        var clubNumberString = passClub + " (" + passNumber + ")"
-                        self.offerClubNumberArray.append(clubNumberString)
-                        self.offerDateArray.append(passDate)
-                        self.offerIDArray.append(passID)
-                        
-                    } else if (passType == "Request") {
-                        var clubNumberString = passClub + " (" + passNumber + ")"
-                        self.requestClubNumberArray.append(clubNumberString)
-                        self.requestDateArray.append(passDate)
-                        self.requestAssociatedIDArray.append(passID)
-                    }
+                    self.activeExchangeTableView.reloadData()
                 }
             }
             /*
@@ -86,14 +82,9 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             println(self.offerClubNumberArray)
             println("****************request Club Number*******************")
             println(self.requestClubNumberArray)
-            println("****************end test*******************")
             */
-            
-            self.activeExchangeTableView.reloadData()
         }
         task.resume()
-        
-        // Do any additional setup after loading the view.
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -104,18 +95,11 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        println("dividing table views")
         return 2
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        println("checking number of rows")
         if section == 0 {
             return self.offerClubNumberArray.count
         } else if section == 1 {
@@ -125,8 +109,6 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("filling in rows")
-
         let cell = tableView.dequeueReusableCellWithIdentifier("ExchangeCell", forIndexPath: indexPath) as! UITableViewCell
         if indexPath.section == 0 { //offer stuff - Set title as the club and number, and subtitle as the date
             cell.textLabel!.text = offerClubNumberArray[indexPath.row]
@@ -183,7 +165,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         
         var exchangeString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/addExchange.php?"
         exchangeString += "netId=" + appNetID + "&passDate=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString + "&comment=" + ""
-        println(exchangeString)
+        //println(exchangeString)
         
         if (validRequest) {
             let url = NSURL(string: exchangeString)
@@ -192,7 +174,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
                 //println(NSString(data: data, encoding: NSUTF8StringEncoding))
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    
+                    self.userActiveExchangesPull()
                 }
             }
             task.resume()
@@ -212,6 +194,11 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     // has to be a popover; otherwise unaccepted
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
 

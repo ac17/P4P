@@ -71,7 +71,7 @@ class InfoWindowTableViewController: UITableViewController {
             
             var pursueOfferString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/pursueOffer.php?"
             pursueOfferString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
-            println(pursueOfferString)
+            //println(pursueOfferString)
             
             // make a request to an offer (passes current user netid and desired offer id)
             let url = NSURL(string: pursueOfferString)
@@ -83,9 +83,7 @@ class InfoWindowTableViewController: UITableViewController {
                 }
             }
             task.resume()
-
         }
-        
     }
 
     /*
