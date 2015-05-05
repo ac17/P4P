@@ -16,6 +16,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var popoverViewController: PopupViewController!
     var infoWindowViewController: InfoWindowTableViewController!
     var infoWindowNavigationController: UINavigationController!
+    var appNetID = ""
 
     var mapInfoWindowNetID: String = ""
     var mapInfoWindowName: String = ""
@@ -35,6 +36,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.settings.myLocationButton = true
         }
         mapView.delegate = self
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appNetID = appDelegate.userNetid
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,10 +58,37 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     // function called when new location data received
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.first as? CLLocation {
+            // move camera to current location
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            
+            // update location on database
+            var updateLocationString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/updateLocation.php?"
+            var latitude = String(stringInterpolationSegment: location.coordinate.latitude)
+            var longitude = String(stringInterpolationSegment: location.coordinate.longitude)
+            updateLocationString += "currentUserNetId=" + appNetID + "&lat=" + latitude + "&lng=" + longitude
+            
+            println(updateLocationString)
+
+            // make a request to an offer (passes current user netid and desired offer id)
+            let url = NSURL(string: updateLocationString)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                dispatch_async(dispatch_get_main_queue()) {
+                }
+            }
+            task.resume()
+
             locationManager.stopUpdatingLocation()
         }
     }
+    
+    // function called when my location button tapped
+    func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
+        locationManager.startUpdatingLocation()
+        return false
+    }
+
     
     // specifics to happen when you call a segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
