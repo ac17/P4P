@@ -3,7 +3,7 @@ header('Content-type: application/json');
 // Get login information 
 include_once('php/database_connect.php');
 
-// Get information of new registrant
+// Get information of users in chat
 $user1 = $_GET["user1"];
 $user2 = $_GET["user2"];
 $pwHash1 = $_GET["pwHash1"];
