@@ -11,53 +11,6 @@ var total_popups = 0;
 //arrays of popups ids
 var popups = [];
 
-//jquery for submitting loading and logging message
-$(document).ready(function(){
-    ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-    $(".submitmsg").click(function(){   
-        var clientmsg = $(".usermsg").val();
-        $.post("php/chatLogmessage.php", {text: clientmsg, recipient: "<?php echo $recipient; ?>"});                
-        $(".usermsg").attr("value", "");
-        return false;
-    });
-    
-    //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
-    function loadLog(){     
-        $.ajax({
-            type: "GET",
-            url: "php/chatRetrieve.php?recipient=" + "<?php echo $recipient; ?>",
-            dataType: "html",
-            cache: false,
-            success: function(response){        
-                $("#chatbox").html(response); //Insert chat log into the #chatbox div               
-            },
-        });
-    }
-    
-    //Load the data containing the chat log by querying the chat_history table through chat_query.php
-    function loadLog(){     
-        var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
-        $.ajax({
-            type: "GET",
-            url: "php/chatRetrieve.php?recipient=" + "<?php echo $recipient; ?>",
-            dataType: "html",
-            cache: false,
-            success: function(response){        
-                $("#chatbox").html(response); //Insert chat log into the #chatbox div   
-
-                //Auto-scroll           
-                var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
-                if(newscrollHeight > oldscrollHeight){
-                    $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-                }               
-            },
-        });
-    }
-    
-    setInterval (loadLog, 2500);    //Reload file every 2500 ms or x ms if you w
-});
-
-
 //this is used to close a popup
 function close_popup(id)
 {
@@ -151,8 +104,7 @@ function register_popup(id, name)
         f.appendChild(i);
         f.appendChild(s);
 
-        document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
-
+        document.getElementById(id).appendChild(f);
 
     //and some more input elements here
     //and dont forget to add a submit button   
@@ -183,3 +135,65 @@ function calculate_popups()
 /*//recalculate when window is loaded and also when window is resized.
 window.addEventListener("resize", calculate_popups);
 window.addEventListener("load", calculate_popups);*/
+
+//jquery for submitting loading and logging message
+$(document).ready(function(){
+    ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
+    $(".submitmsg").click(function(element){
+        console.log(element + "hello");
+        var id = $(element).attr("id");   
+        var clientmsg = $("#" + id, ".usermsg").val();
+        $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
+        $("#" + id, ".usermsg").attr("value", "");
+        return false;
+    });
+    
+    //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
+    function loadLog(element){
+        for(var iii = 0; iii < popups.length; iii++){
+            var netid = popups[iii];
+            $.ajax({
+                type: "GET",
+                url: "php/chatRetrieve.php?recipient=" + popups[iii],
+                dataType: "html",
+                cache: false,
+                success: function(response){
+                    console.log(popups[iii]);
+                    var x = document.getElementById(popups[iii]); 
+                    var y = document.getElementsByClassName("popup-messages");
+                    console.log(y);
+                    console.log(x);
+                    $("#" + netid + ' .popup-messages').html(response); //Insert chat log into the #chatbox div             
+                },
+            });
+        }
+    }
+    
+    //Load the data containing the chat log by querying the chat_history table through chat_query.php
+    function loadLog(element){
+        for (var iii = 0; iii < popups.length; iii++){
+            (function(i) {
+                //var oldscrollHeight = $(".pop" + popups[iii]).attr("scrollHeight") - 20; //Scroll height before the request
+                $.ajax({
+                    type: "GET",
+                    url: "php/chatRetrieve.php?recipient=" + popups[i],
+                    dataType: "html",
+                    cache: false,
+                    success: function(response){   
+                        console.log(response);
+                        $("#" + popups[i] + ' .popup-messages').html(response); //Insert chat log into the #chatbox div
+
+                        //Auto-scroll           
+                        /*var newscrollHeight = $(".pop" + popups[iii]).attr("scrollHeight") - 20; //Scroll height after the request
+                        if(newscrollHeight > oldscrollHeight){
+                            $(".pop" + popups[iii]).animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                        }  
+                        */             
+                    },
+                });
+            })(iii);
+        }
+    }
+    
+    setInterval (loadLog, 2500);    //Reload file every 2500 ms or x ms if you w
+});
