@@ -191,7 +191,7 @@ function showError(errorTitle, errorMsg)
 
 function loadUserData(netId)
 {
-	setInterval(getAllExchanges, 3000);
+	//setInterval(getAllExchanges, 3000);
 }
 
 function getAllNPCs()

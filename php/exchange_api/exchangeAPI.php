@@ -169,6 +169,40 @@ return $exchanges;
 }
 
 
+function getExchangeById($exchangeId)
+{
+	//Build a query
+	$select = ' SELECT '; 
+	$column =  ' * ';  
+	$from = ' FROM ';  
+	$tables = ' Active_exchanges ';
+	$where = 'WHERE id="' . $exchangeId . '"';
+	$query = $select . $column . $from . $tables . $where; 
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
+	
+	$exchanges = array();
+	
+	if ($query_result !== false)
+	{
+		while($exchange = mysql_fetch_array(($query_result))){	
+			array_push($exchanges, array('id' =>$exchange['id'], 
+										 'club' =>$exchange['passClub'],
+										 'passNum' =>$exchange['passNum'],
+										 'passDate' =>$exchange['passDate'],
+										 'comments' =>$exchange['comments'],
+										 'associatedExchanges' =>$exchange['associatedExchanges'],
+										 'type' =>$exchange['type'])); 
+		}
+	}
+return $exchanges;
+}
+
 function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPasses, $type)
 {	
 	// number of exchanges to return
