@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -449,7 +449,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsM-Dm-IK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="If2-Vw-WD5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1432.5" y="1926"/>
+            <point key="canvasLocation" x="1381.5" y="2001.75"/>
         </scene>
         <!--UserExchange-->
         <scene sceneID="ea1-W5-E3l">
@@ -507,7 +507,7 @@
         <!--Current Exchanges-->
         <scene sceneID="Kxc-J7-KpU">
             <objects>
-                <tableViewController id="hwc-jt-Urh" customClass="CurrentExchangesViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="hwc-jt-Urh" customClass="UserActiveExchangesViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="V9u-ze-cUr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -546,15 +546,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Current Exchanges" id="BKV-xg-ATA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Pqu-nE-giD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pqu-nE-giD">
                             <connections>
-                                <segue destination="Jpg-Bv-Req" kind="unwind" unwindAction="cancelReturnToHome:" id="0O8-hP-amO"/>
+                                <segue destination="5WN-Gk-W2s" kind="popoverPresentation" identifier="popoverSegueAddExchange" popoverAnchorBarButtonItem="Pqu-nE-giD" id="Alb-4T-5kX">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activeExchangeTableView" destination="V9u-ze-cUr" id="BI5-2L-OM4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7k-NM-P6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Jpg-Bv-Req" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1637" y="1388"/>
         </scene>
@@ -797,6 +801,149 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4J2-Rh-1mk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-538" y="2913"/>
+        </scene>
+        <!--Popup For Add Exchange View Controller-->
+        <scene sceneID="kzD-5a-mef">
+            <objects>
+                <viewController id="5WN-Gk-W2s" customClass="PopupForAddExchangeViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QIl-9k-KXu"/>
+                        <viewControllerLayoutGuide type="bottom" id="rbZ-2d-JKN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BcK-iT-JfK">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select an eating club" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uu8-Od-NpM">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select a date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bB8-I1-YMv">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select the number of passes" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kf8-mA-UTw">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nL9-NT-Ybx">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.67450980390000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="7" maxX="10" maxY="8"/>
+                                <state key="normal" title="Post">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="kkL-8w-chW" kind="unwind" unwindAction="addExchangePopup:" id="cxk-9h-lBM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kf8-mA-UTw" firstAttribute="top" secondItem="bB8-I1-YMv" secondAttribute="bottom" constant="10" id="1N1-nl-rxp"/>
+                            <constraint firstAttribute="centerX" secondItem="Uu8-Od-NpM" secondAttribute="centerX" id="AlK-bD-Xdj"/>
+                            <constraint firstAttribute="centerX" secondItem="nL9-NT-Ybx" secondAttribute="centerX" id="LDs-Bp-jXV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bB8-I1-YMv" secondAttribute="trailing" id="MYF-hy-kyF"/>
+                            <constraint firstItem="bB8-I1-YMv" firstAttribute="top" secondItem="Uu8-Od-NpM" secondAttribute="bottom" constant="10" id="Ofx-8w-b3U"/>
+                            <constraint firstItem="nL9-NT-Ybx" firstAttribute="top" secondItem="kf8-mA-UTw" secondAttribute="bottom" constant="25" id="SpQ-2U-bSe">
+                                <variation key="heightClass=regular-widthClass=compact" constant="19"/>
+                            </constraint>
+                            <constraint firstItem="bB8-I1-YMv" firstAttribute="leading" secondItem="BcK-iT-JfK" secondAttribute="leadingMargin" id="TkE-lj-sHU"/>
+                            <constraint firstItem="Uu8-Od-NpM" firstAttribute="leading" secondItem="BcK-iT-JfK" secondAttribute="leadingMargin" id="XwU-dc-sw3"/>
+                            <constraint firstItem="kf8-mA-UTw" firstAttribute="leading" secondItem="BcK-iT-JfK" secondAttribute="leadingMargin" id="ihz-fo-L3g"/>
+                            <constraint firstItem="Uu8-Od-NpM" firstAttribute="top" secondItem="QIl-9k-KXu" secondAttribute="bottom" constant="25" id="oWP-V0-84w"/>
+                            <constraint firstAttribute="centerX" secondItem="kf8-mA-UTw" secondAttribute="centerX" id="p0H-5u-5NL"/>
+                            <constraint firstAttribute="centerX" secondItem="bB8-I1-YMv" secondAttribute="centerX" id="pyl-pe-vTs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kf8-mA-UTw" secondAttribute="trailing" id="rSa-5L-V4p"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uu8-Od-NpM" secondAttribute="trailing" id="sYI-X6-4Gj"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Uu8-Od-NpM"/>
+                                <exclude reference="bB8-I1-YMv"/>
+                                <exclude reference="kf8-mA-UTw"/>
+                                <exclude reference="nL9-NT-Ybx"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="1N1-nl-rxp"/>
+                                <exclude reference="ihz-fo-L3g"/>
+                                <exclude reference="p0H-5u-5NL"/>
+                                <exclude reference="rSa-5L-V4p"/>
+                                <exclude reference="TkE-lj-sHU"/>
+                                <exclude reference="pyl-pe-vTs"/>
+                                <exclude reference="MYF-hy-kyF"/>
+                                <exclude reference="Ofx-8w-b3U"/>
+                                <exclude reference="XwU-dc-sw3"/>
+                                <exclude reference="AlK-bD-Xdj"/>
+                                <exclude reference="oWP-V0-84w"/>
+                                <exclude reference="sYI-X6-4Gj"/>
+                                <exclude reference="SpQ-2U-bSe"/>
+                                <exclude reference="LDs-Bp-jXV"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Uu8-Od-NpM"/>
+                                <include reference="bB8-I1-YMv"/>
+                                <include reference="kf8-mA-UTw"/>
+                                <include reference="nL9-NT-Ybx"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="1N1-nl-rxp"/>
+                                <include reference="ihz-fo-L3g"/>
+                                <include reference="p0H-5u-5NL"/>
+                                <include reference="rSa-5L-V4p"/>
+                                <include reference="TkE-lj-sHU"/>
+                                <include reference="pyl-pe-vTs"/>
+                                <include reference="MYF-hy-kyF"/>
+                                <include reference="Ofx-8w-b3U"/>
+                                <include reference="XwU-dc-sw3"/>
+                                <include reference="AlK-bD-Xdj"/>
+                                <include reference="oWP-V0-84w"/>
+                                <include reference="sYI-X6-4Gj"/>
+                                <include reference="SpQ-2U-bSe"/>
+                                <include reference="LDs-Bp-jXV"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="200"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="200"/>
+                    <connections>
+                        <outlet property="clubField" destination="Uu8-Od-NpM" id="ayh-be-9dR"/>
+                        <outlet property="dateField" destination="bB8-I1-YMv" id="nvO-bb-ARZ"/>
+                        <outlet property="numPassesField" destination="kf8-mA-UTw" id="Xg5-jl-qOo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqu-Mb-4MX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="kkL-8w-chW" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2343" y="1505.25"/>
         </scene>
     </scenes>
     <resources>

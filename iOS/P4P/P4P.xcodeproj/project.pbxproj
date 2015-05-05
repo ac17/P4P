@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4531AABC5C8392591800CBA6 /* Pods_P4P.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */; };
+		A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */; };
+		A05AE4111AF8A54700C59B5B /* UserActiveExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */; };
 		A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E281AD4802C007185A0 /* LoginViewController.swift */; };
 		A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */; };
 		A05C3E331AD48B44007185A0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E321AD48B44007185A0 /* GoogleMaps.framework */; };
@@ -27,7 +29,7 @@
 		A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */; };
 		A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */; };
 		A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CE551AE4B894005FA89A /* PopupViewController.swift */; };
-		DC1BFAC71AE7393D0067184A /* CurrentExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */; };
+		DC1BFAC71AE7393D0067184A /* ignore-CurrentExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC61AE7393D0067184A /* ignore-CurrentExchangesViewController.swift */; };
 		DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC81AE875A10067184A /* TabBarViewController.swift */; };
 		DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACC1AF0700D0067184A /* ChatViewController.swift */; };
 		DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */; };
@@ -57,6 +59,8 @@
 		4531AABC5C8392591800CBA6 /* Pods_P4P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P4P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.release.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.release.xcconfig"; sourceTree = "<group>"; };
 		A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowTableViewController.swift; sourceTree = "<group>"; };
+		A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupForAddExchangeViewController.swift; sourceTree = "<group>"; };
+		A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActiveExchangesViewController.swift; sourceTree = "<group>"; };
 		A05C3E281AD4802C007185A0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "P4P-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -77,7 +81,7 @@
 		A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		A0D3CE551AE4B894005FA89A /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
-		DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentExchangesViewController.swift; sourceTree = "<group>"; };
+		DC1BFAC61AE7393D0067184A /* ignore-CurrentExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ignore-CurrentExchangesViewController.swift"; sourceTree = "<group>"; };
 		DC1BFAC81AE875A10067184A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		DC1BFACC1AF0700D0067184A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
 		DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -190,19 +194,21 @@
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
-				DCE489D81AF1CC65009599D3 /* menuicon.png */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
-				DC1BFAC61AE7393D0067184A /* CurrentExchangesViewController.swift */,
+				A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */,
 				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
 				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
+				DCE489D81AF1CC65009599D3 /* menuicon.png */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
 				A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */,
+				DC1BFAC61AE7393D0067184A /* ignore-CurrentExchangesViewController.swift */,
 			);
 			path = P4P;
 			sourceTree = "<group>";
@@ -388,8 +394,10 @@
 				A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */,
 				A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */,
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
+				A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */,
+				A05AE4111AF8A54700C59B5B /* UserActiveExchangesViewController.swift in Sources */,
 				A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */,
-				DC1BFAC71AE7393D0067184A /* CurrentExchangesViewController.swift in Sources */,
+				DC1BFAC71AE7393D0067184A /* ignore-CurrentExchangesViewController.swift in Sources */,
 				DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */,
 				DC64ED791AF84A090014E48A /* ChatView.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,

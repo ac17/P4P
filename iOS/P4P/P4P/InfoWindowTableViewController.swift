@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class InfoWindowTableViewController: UITableViewController {
 
@@ -15,11 +16,14 @@ class InfoWindowTableViewController: UITableViewController {
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
     var mapInfoExchangeIDArray: [String] = []
-    var appNetID = "arturf"
+    var appNetID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appNetID = appDelegate.userNetid
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +52,12 @@ class InfoWindowTableViewController: UITableViewController {
         var offer = mapInfoExchangeArray[indexPath.row]
         cell.textLabel!.text = offer
         
+        // nned to check if the offer contains the current logged in user
+        var offerID = mapInfoExchangeIDArray[indexPath.row]
+        
+        // html request - get offer information; parse into users; check if contains current user
+        /******************* need to take care of ***********************/
+        
         // Configure the cell...
         return cell
     }
@@ -59,15 +69,21 @@ class InfoWindowTableViewController: UITableViewController {
         {
             cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
             
-            var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/pursueOffer.php?"
-            requestString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
-            println(requestString)
+            var pursueOfferString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/pursueOffer.php?"
+            pursueOfferString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
+            //println(pursueOfferString)
             
-            // pull info from server, display markers
-            let url = NSURL(string: requestString)
-
+            // make a request to an offer (passes current user netid and desired offer id)
+            let url = NSURL(string: pursueOfferString)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                }
+            }
+            task.resume()
         }
-        
     }
 
     /*

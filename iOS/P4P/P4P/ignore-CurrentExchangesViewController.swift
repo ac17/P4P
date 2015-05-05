@@ -23,15 +23,19 @@ struct Request {
     var offer: Offer
 }
 
-class CurrentExchangesViewController: UITableViewController {
-    
+class CurrentExchangesViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+
+    var popoverViewController: PopupForAddExchangeViewController!
+    var appNetID = ""
+
     var offers:[Offer] = []
     var requests:[Request] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appNetID = appDelegate.userNetid
         
         offers.append(Offer(netid: "ffjiang", number: 2, club: "Colonial", date: "11/12/13"))
         offers.append(Offer(netid: "ffjiang", number: 2, club: "Colonial", date: "13/14/15"))
@@ -100,6 +104,76 @@ class CurrentExchangesViewController: UITableViewController {
         // Configure the cell...
 
         return cell
+    }
+
+    
+    /***** popover for creating an exchange ****/
+    
+    // create exchange button pressed on popup
+    @IBAction func addExchangePopup(segue:UIStoryboardSegue)
+    {
+        var validRequest = true
+        var clubString = popoverViewController.clubField.text
+        var dateString = popoverViewController.dateField.text
+        var numPassesString = popoverViewController.numPassesField.text
+        if (((clubString == "") || (dateString == "")) || (numPassesString == "")) {
+            validRequest = false
+        }
+        
+        // HTTP requests need format xx/yy/zz, not x/y/zz
+        var formattedDateString = ""
+        if !dateString.isEmpty {
+            var dateStringArray = dateString.componentsSeparatedByString("/")
+            if (count(dateStringArray[0]) == 1) {
+                dateStringArray[0] = "0" + dateStringArray[0]
+            }
+            if (count(dateStringArray[1]) == 1) {
+                dateStringArray[1] = "0" + dateStringArray[1]
+            }
+            if (count(dateStringArray[2]) == 2) {
+                dateStringArray[2] = "20" + dateStringArray[2]
+            }
+            
+            formattedDateString = dateStringArray[0] + "/" + dateStringArray[1] + "/" + dateStringArray[2]
+        }
+        
+        // replace spaces in club name with pluses
+        clubString = clubString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        var exchangeString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/addExchange.php?"
+        exchangeString += "netId=" + appNetID + "&passDate=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString + "&comment=" + ""
+        println(exchangeString)
+        
+        if (validRequest) {
+            let url = NSURL(string: exchangeString)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                }
+            }
+            task.resume()
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
+    
+    
+    // specifics to happen when you call a segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "popoverSegueAddExchange" {
+            popoverViewController = segue.destinationViewController as! PopupForAddExchangeViewController
+            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverViewController.popoverPresentationController!.delegate = self
+        }
+    }
+    
+    // has to be a popover; otherwise unaccepted
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 
     /*

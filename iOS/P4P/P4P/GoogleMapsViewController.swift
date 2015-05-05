@@ -16,6 +16,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var popoverViewController: PopupViewController!
     var infoWindowViewController: InfoWindowTableViewController!
     var infoWindowNavigationController: UINavigationController!
+    var appNetID = ""
 
     var mapInfoWindowNetID: String = ""
     var mapInfoWindowName: String = ""
@@ -34,8 +35,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        //self.view.insertSubview(mapView, atIndex:0)
         mapView.delegate = self
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appNetID = appDelegate.userNetid
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,10 +58,37 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     // function called when new location data received
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.first as? CLLocation {
+            // move camera to current location
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            
+            // update location on database
+            var updateLocationString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/updateLocation.php?"
+            var latitude = String(stringInterpolationSegment: location.coordinate.latitude)
+            var longitude = String(stringInterpolationSegment: location.coordinate.longitude)
+            updateLocationString += "currentUserNetId=" + appNetID + "&lat=" + latitude + "&lng=" + longitude
+            
+            //println(updateLocationString)
+
+            // make a request to an offer (passes current user netid and desired offer id)
+            let url = NSURL(string: updateLocationString)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+                dispatch_async(dispatch_get_main_queue()) {
+                }
+            }
+            task.resume()
+
             locationManager.stopUpdatingLocation()
         }
     }
+    
+    // function called when my location button tapped
+    func didTapMyLocationButtonForMapView(mapView: GMSMapView!) -> Bool {
+        locationManager.startUpdatingLocation()
+        return false
+    }
+
     
     // specifics to happen when you call a segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -76,6 +106,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             infoWindowViewController.mapInfoWindowNumberOffers = mapInfoWindowNumberOffers
             infoWindowViewController.mapInfoExchangeArray = mapInfoExchangeArray
             infoWindowViewController.mapInfoExchangeIDArray = mapInfoExchangeIDArray
+            
+            infoWindowViewController.title = mapInfoWindowName
             
             mapInfoExchangeArray.removeAll()
             mapInfoExchangeIDArray.removeAll()
@@ -135,7 +167,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchanges.php?"
         requestString += "date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
-        println(requestString)
+        //println(requestString)
         
         // pull info from server, display markers
         let url = NSURL(string: requestString)
@@ -144,10 +176,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             //println(NSString(data: data, encoding: NSUTF8StringEncoding))
             let json = JSON(data: data)
             for (user: String, subJson: JSON) in json["Users"] {
-                //println(subJson["netId"])
-                //println(subJson["name"])
-                //println(subJson["exchanges"])
-
                 var name = "Bob"
                 var netID = "bobsmith"
                 var latitude = "-33.86"
@@ -180,10 +208,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                     passExchangeID.append(exchangeID)
                 }
                 
-                //println(passClubs)
-                //println(passNumbers)
-                //println(passComments)
-                
                 dispatch_async(dispatch_get_main_queue()) {
                     var marker = GMSMarker()
                     marker.position = CLLocationCoordinate2DMake((latitude as NSString).doubleValue, (longitude as NSString).doubleValue)
@@ -195,15 +219,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                         index++
                     }
 
-                    println(snippetString)
                     let snippetStringLength = count(snippetString)
                     let substringIndex = snippetStringLength - 1
                     snippetString = snippetString.substringToIndex(advance(snippetString.startIndex, substringIndex))
-                    
-                    println(snippetString)
-                    
                     snippetString = name + "-" + String(index) + "-" + snippetString
-                    println(snippetString)
                     
                     marker.snippet = snippetString
                     marker.map = self.mapView
