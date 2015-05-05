@@ -495,6 +495,7 @@ PROFPIC;
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/popup.js"></script>
+    
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
