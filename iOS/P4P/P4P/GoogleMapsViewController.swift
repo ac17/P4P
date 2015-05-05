@@ -107,6 +107,8 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             infoWindowViewController.mapInfoExchangeArray = mapInfoExchangeArray
             infoWindowViewController.mapInfoExchangeIDArray = mapInfoExchangeIDArray
             
+            infoWindowViewController.title = mapInfoWindowName
+            
             mapInfoExchangeArray.removeAll()
             mapInfoExchangeIDArray.removeAll()
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class InfoWindowTableViewController: UITableViewController {
 
@@ -50,6 +51,12 @@ class InfoWindowTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("MarkerOfferCells", forIndexPath: indexPath) as! UITableViewCell
         var offer = mapInfoExchangeArray[indexPath.row]
         cell.textLabel!.text = offer
+        
+        // nned to check if the offer contains the current logged in user
+        var offerID = mapInfoExchangeIDArray[indexPath.row]
+        
+        // html request - get offer information; parse into users; check if contains current user
+        /******************* need to take care of ***********************/
         
         // Configure the cell...
         return cell
