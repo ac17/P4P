@@ -14,10 +14,10 @@ var popups = [];
 //jquery for submitting loading and logging message
 $(document).ready(function(){
     ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-    $("#submitmsg").click(function(){   
-        var clientmsg = $("#usermsg").val();
+    $(".submitmsg").click(function(){   
+        var clientmsg = $(".usermsg").val();
         $.post("php/chatLogmessage.php", {text: clientmsg, recipient: "<?php echo $recipient; ?>"});                
-        $("#usermsg").attr("value", "");
+        $(".usermsg").attr("value", "");
         return false;
     });
     
@@ -66,7 +66,11 @@ function close_popup(id)
         if(id == popups[iii])
         {
             Array.remove(popups, iii);
-            document.getElementById(id).style.display = "none";        
+            var f = document.getElementById(id).getElementsByTagName("form");
+            //document.getElementById(id).removeChild(f[0]);
+            //document.getElementById(id).style.display = "none";   
+            var div = document.getElementById(id);
+            div.parentNode.removeChild(div);     
 
             calculate_popups();
 
@@ -128,7 +132,6 @@ function register_popup(id, name)
 
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
 
-    //if (!document.getElementById(id).forms[0]){
         var f = document.createElement("form");
         f.setAttribute('action',"");
         f.setAttribute('name',"message");
@@ -149,7 +152,7 @@ function register_popup(id, name)
         f.appendChild(s);
 
         document.getElementById(id).getElementsByClassName("popup-messages")[0].appendChild(f);
-    //}
+
 
     //and some more input elements here
     //and dont forget to add a submit button   
