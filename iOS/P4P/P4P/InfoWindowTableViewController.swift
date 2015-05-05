@@ -15,11 +15,14 @@ class InfoWindowTableViewController: UITableViewController {
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
     var mapInfoExchangeIDArray: [String] = []
-    var appNetID = "arturf"
+    var appNetID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appNetID = appDelegate.userNetid
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +66,7 @@ class InfoWindowTableViewController: UITableViewController {
             requestString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
             println(requestString)
             
-            // pull info from server, display markers
+            // make a request to an offer (passes current user netid and desired offer id)
             let url = NSURL(string: requestString)
 
         }

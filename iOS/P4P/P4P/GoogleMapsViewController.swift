@@ -34,7 +34,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.myLocationEnabled = true
             mapView.settings.myLocationButton = true
         }
-        //self.view.insertSubview(mapView, atIndex:0)
         mapView.delegate = self
     }
     
@@ -135,7 +134,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchanges.php?"
         requestString += "date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
-        println(requestString)
+        //println(requestString)
         
         // pull info from server, display markers
         let url = NSURL(string: requestString)
@@ -144,10 +143,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             //println(NSString(data: data, encoding: NSUTF8StringEncoding))
             let json = JSON(data: data)
             for (user: String, subJson: JSON) in json["Users"] {
-                //println(subJson["netId"])
-                //println(subJson["name"])
-                //println(subJson["exchanges"])
-
                 var name = "Bob"
                 var netID = "bobsmith"
                 var latitude = "-33.86"
@@ -180,10 +175,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                     passExchangeID.append(exchangeID)
                 }
                 
-                //println(passClubs)
-                //println(passNumbers)
-                //println(passComments)
-                
                 dispatch_async(dispatch_get_main_queue()) {
                     var marker = GMSMarker()
                     marker.position = CLLocationCoordinate2DMake((latitude as NSString).doubleValue, (longitude as NSString).doubleValue)
@@ -195,15 +186,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
                         index++
                     }
 
-                    println(snippetString)
                     let snippetStringLength = count(snippetString)
                     let substringIndex = snippetStringLength - 1
                     snippetString = snippetString.substringToIndex(advance(snippetString.startIndex, substringIndex))
-                    
-                    println(snippetString)
-                    
                     snippetString = name + "-" + String(index) + "-" + snippetString
-                    println(snippetString)
                     
                     marker.snippet = snippetString
                     marker.map = self.mapView
