@@ -146,13 +146,9 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         if leftViewController == nil {
             leftViewController = SidePanelViewController()
         }
-        self.view.addSubview(leftViewController!.view)
         self.addChildViewController(leftViewController!)
         leftViewController?.didMoveToParentViewController(self)
-    }
-    
-    func lol(gesture: UITapGestureRecognizer) {
-        println("asfaslfjsadf")
+        self.view.addSubview(leftViewController!.view)
     }
     
     func animateLeftPanel(#shouldExpand: Bool) {

@@ -18,7 +18,7 @@ class SidePanelViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tableView = self.view as! UITableView
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "userCell")
+        tableView.registerClass(ChatTableViewCell.self, forCellReuseIdentifier: "userCell")
         
         // Make side panel - move to left and down, and make thinner
         self.view.frame.size.width = self.view.frame.size.width - 250
@@ -40,20 +40,22 @@ class SidePanelViewController: UITableViewController {
             }
             task.resume()
         }
-        /*
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        println("swift")
+        // Set the currently selected user as the first user if one is not already chosen
         if let currentUser = (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser {
             if !contains(users, currentUser) {
                 (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = users[0]
+                (self.view as! UITableView).selectRowAtIndexPath(NSIndexPath(indexes: [0, 0], length: 2), animated: false, scrollPosition: UITableViewScrollPosition.None)
             }
         } else {
-            (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = self.users[0]
-        }*/
+            (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = users[0]
+            (self.view as! UITableView).selectRowAtIndexPath(NSIndexPath(indexes: [0, 0], length: 2), animated: false, scrollPosition: UITableViewScrollPosition.None)
+        }
     }
     
-    func lol(sender: UITapGestureRecognizer) {
-        println("lol")
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,7 +89,7 @@ class SidePanelViewController: UITableViewController {
         let user: String = tableView.cellForRowAtIndexPath(indexPath)!.textLabel!.text!
         (self.parentViewController as! ChatViewController).chatTextView.text = convos[user]
     }
-
+    
     /*
     // MARK: - Navigation
 
