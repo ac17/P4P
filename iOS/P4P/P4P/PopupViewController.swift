@@ -42,6 +42,7 @@ class PopupViewController: UIViewController, UIPickerViewDataSource,UIPickerView
         numPassesWheel.dataSource = self
         numPassesWheel.delegate = self
         numPassesField.inputView = numPassesWheel
+        
     }
     
     // whenever the date picker changed, do this

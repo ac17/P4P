@@ -204,7 +204,7 @@
                         <viewControllerLayoutGuide type="top" id="ryH-hz-VOQ"/>
                         <viewControllerLayoutGuide type="bottom" id="1JY-df-Z3V"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="u32-IP-cl7">
+                    <view key="view" contentMode="scaleToFill" id="u32-IP-cl7" customClass="ChatView" customModule="P4P" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -251,9 +251,6 @@
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="16" y="30" width="124" height="34"/>
-                                </variation>
                                 <connections>
                                     <segue destination="91l-Iq-K1m" kind="popoverPresentation" identifier="popoverSegue" popoverAnchorView="5tL-5h-wyP" id="cGj-hc-25V">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -366,9 +363,6 @@
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="133" y="154" width="34" height="30"/>
-                                </variation>
                                 <connections>
                                     <segue destination="If2-Vw-WD5" kind="unwind" unwindAction="searchPassFilter:" id="tYu-e6-19c"/>
                                 </connections>

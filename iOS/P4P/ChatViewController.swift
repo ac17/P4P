@@ -13,7 +13,7 @@ enum SlideOutState {
     case LeftPanelExpanded
 }
 
-class ChatViewController: UIViewController, UITextViewDelegate {
+class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate {
 
     var textEntry: UITextView!
     var chatTextView: UITextView!
@@ -37,6 +37,8 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        (self.view as! ChatView).viewController = self
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -78,7 +80,6 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         closeSidePanelRecognizer = UISwipeGestureRecognizer(target: self, action: "closeLeftPanel:")
         closeSidePanelRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(closeSidePanelRecognizer)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,9 +146,13 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         if leftViewController == nil {
             leftViewController = SidePanelViewController()
         }
-        self.view.insertSubview(leftViewController!.view, atIndex: 0)
+        self.view.addSubview(leftViewController!.view)
         self.addChildViewController(leftViewController!)
         leftViewController?.didMoveToParentViewController(self)
+    }
+    
+    func lol(gesture: UITapGestureRecognizer) {
+        println("asfaslfjsadf")
     }
     
     func animateLeftPanel(#shouldExpand: Bool) {
@@ -191,7 +196,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
             self.view.layer.shadowOpacity = 0.0
         }
     }
-
+    
     /*
     // MARK: - Navigation
 

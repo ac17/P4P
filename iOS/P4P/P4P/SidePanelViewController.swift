@@ -48,9 +48,6 @@ class SidePanelViewController: UITableViewController {
         } else {
             (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = self.users[0]
         }*/
-        
-        let tapRec = UITapGestureRecognizer(target: self, action: "lol:")
-        self.view.addGestureRecognizer(tapRec)
     }
     
     func lol(sender: UITapGestureRecognizer) {
@@ -87,7 +84,6 @@ class SidePanelViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("blah")
         let user: String = tableView.cellForRowAtIndexPath(indexPath)!.textLabel!.text!
         (self.parentViewController as! ChatViewController).chatTextView.text = convos[user]
     }
