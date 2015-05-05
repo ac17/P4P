@@ -26,6 +26,19 @@ function isUserLoggedIn() {
 	return FALSE;
 }
 
+// Authenticate user (for mobile)
+function isValidUser($un, $pwHash) {
+	$query = 'SELECT * FROM Users WHERE netId="' . $un . '" AND password="' . $pwHash . '";';
+	$result = mysql_query($query);
+	if (!$result)
+		return FALSE;
+	else
+		if (mysql_num_rows($result) == 1)
+			return TRUE;
+		else
+			return FALSE;
+}
+
 // Use to verify email of new user.
 function verify($idNum, $vc, &$connection) {
 	$verifyQ = "UPDATE Users SET verified='1' WHERE id='" . $idNum. "' AND verifCode='" . $vc . "';";

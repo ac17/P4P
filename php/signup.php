@@ -13,11 +13,10 @@ function randString($length)
 }
 
 /* Enter account info in table and send verification email. */
-function signup($netId, $fName, $lName, $pw, &$err) {
+function signup($netId, $fName, $lName, $pwHash, &$err) {
 	$netId = stripslashes(htmlspecialchars($netId));
 	$fName = stripslashes(htmlspecialchars($fName));
 	$lName = stripslashes(htmlspecialchars($lName));
-	$pw = stripslashes(htmlspecialchars($pw));
 	
 	/* check for duplicate */
 	$checkForDupQ = "SELECT * FROM Users WHERE netId='{$netId}';";
@@ -36,7 +35,7 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 	
 	/* generate random verification code and insert non-verified user info into table */
 	$vc = randString(12);
-	$query = "INSERT INTO Users (firstName, lastName, photo, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', NULL, '" . $netId . "', md5('" . $pw . "'), 'FALSE', '{$vc}');";
+	$query = "INSERT INTO Users (firstName, lastName, photo, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', NULL, '" . $netId . "', '" . $pwHash . "', 'FALSE', '{$vc}');";
 	$result = mysql_query($query);
 	if (!$result) {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
