@@ -112,9 +112,13 @@ class CurrentExchangesViewController: UITableViewController, UIPopoverPresentati
     // create exchange button pressed on popup
     @IBAction func addExchangePopup(segue:UIStoryboardSegue)
     {
+        var validRequest = true
         var clubString = popoverViewController.clubField.text
         var dateString = popoverViewController.dateField.text
         var numPassesString = popoverViewController.numPassesField.text
+        if (((clubString == "") || (dateString == "")) || (numPassesString == "")) {
+            validRequest = false
+        }
         
         // HTTP requests need format xx/yy/zz, not x/y/zz
         var formattedDateString = ""
@@ -138,18 +142,20 @@ class CurrentExchangesViewController: UITableViewController, UIPopoverPresentati
         
         var exchangeString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/addExchange.php?"
         exchangeString += "netId=" + appNetID + "&passDate=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString + "&comment=" + ""
-        //println(exchangeString)
+        println(exchangeString)
         
-        let url = NSURL(string: exchangeString)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        if (validRequest) {
+            let url = NSURL(string: exchangeString)
             
-            dispatch_async(dispatch_get_main_queue()) {
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
                 
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                }
             }
+            task.resume()
         }
-        task.resume()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
