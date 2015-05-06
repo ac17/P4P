@@ -18,7 +18,8 @@ body
 
 form, p, span {
     margin:0;
-    padding:0; }
+    padding:0;
+    height: 25px; }
   
 input { font:12px arial; }
 
@@ -73,7 +74,7 @@ input { font:12px arial; }
     position: fixed;
     bottom: 28px;
     right: 220px;
-    height: 285px;
+    height: 310px;
     background-color: #f5f5f5;
     width: 300px;
     border: 1px solid rgba(29, 49, 91, .3);
@@ -110,10 +111,10 @@ input { font:12px arial; }
 {
     text-align:left;
     margin: 0 auto;
-    margin-bottom:25px;
+    margin-bottom:0px;
     padding:10px;
     background:#fff;
-    height:270px;
+    height:285px;
     width:300px;
     border:1px solid #ACD8F0;
     overflow-y:scroll;
@@ -121,10 +122,12 @@ input { font:12px arial; }
 
 .usermsg {
     width: 238px;
+    height: 25px;
     border:1px solid #ACD8F0; 
     float: left;}
   
 .submitmsg { 
+    height: 25px;
     width: 60px;
     float: right;
 }
