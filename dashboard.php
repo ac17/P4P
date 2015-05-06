@@ -329,6 +329,13 @@ PROFPIC;
                     </div>
                 </div>
                 
+                <div class="col-md-12" ><br /></div>
+                
+                <div class="col-md-12" align="center">
+                    <label for="amount">Distance: <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></label>       
+                    <div id="range-slider"></div>
+                </div>
+                
                 <div class="col-md-12" ><br /><br /></div>
                 
                 <div class="col-md-12" id="map-canvas"></div>

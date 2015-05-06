@@ -212,6 +212,44 @@ function updateMapToShowAllMarkers()
 	}
 }
 
+function showMarkersWithinRange(range)
+{
+	// Try W3C Geolocation (Preferred)
+	if(navigator.geolocation) {
+	browserSupportFlag = true;
+	navigator.geolocation.getCurrentPosition(function(position) {
+	  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	  
+	  clearMarkers();
+	  
+	  for(i=0;i<markers.length;i++) {
+	   	if (computeDistanceBetween(initialLocation, markers[i].getPosition()) <= range)
+		{
+			markers[i].setMap(map);
+		}																	   
+	  }
+	
+	}, function() {
+	  handleNoGeolocation(browserSupportFlag);
+	});
+	}
+	// Browser doesn't support Geolocation
+	else {
+	browserSupportFlag = false;
+	handleNoGeolocation(browserSupportFlag);
+	}
+	
+	function handleNoGeolocation(errorFlag) {
+	if (errorFlag == true) {
+	  showError("A Small Problem...", "Geolocation service failed.");
+	  showMarkers();
+	} else {
+	  showError("A Small Problem...", "Your browser doesn't support geolocation. :( ");
+	  showMarkers();
+	}
+	}
+}
+
 function shareCurrentLocation(currentUserNetId)
 {
 	// Try W3C Geolocation (Preferred)
@@ -252,12 +290,9 @@ function shareCurrentLocation(currentUserNetId)
 	
 	function handleNoGeolocation(errorFlag) {
 	if (errorFlag == true) {
-	  alert("Geolocation service failed.");
-	  initialLocation = newyork;
+	  showError("A Small Problem...", "Geolocation service failed.");
 	} else {
-	  alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-	  initialLocation = siberia;
+	  showError("A Small Problem...", "Your browser doesn't support geolocation. :( ");
 	}
-	map.setCenter(initialLocation);
 	}
 }

@@ -60,6 +60,19 @@ $(function() {
 	   step: 1
 	 });       
 
+	$( "#range-slider" ).slider({
+      range: "min",
+      value: 37,
+      min: 1,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.value );
+		showMarkersWithinRange( ui.value );
+      }
+    });
+	
+    $( "#amount" ).val( $( "#range-slider" ).slider( "value" ) );
+
 	// functions for the elements of request/offer form 
 	$( "#passDate" ).datepicker({
 		defaultDate: new Date()
