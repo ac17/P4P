@@ -104,8 +104,8 @@ function addUserToMap(user) {
 
 
       // link for chatting
-      contentString = contentString + 
-      '<span id = "chatlink"><a onclick = "register_popup(\''+ user.netId + '\',\'' + user.name + '\');" >Chat</a></span>';
+      //contentString = contentString + 
+      //'<span id = "chatlink"><a onclick = "register_popup(\''+ user.netId + '\',\'' + user.name + '\');" >Chat</a></span>';
 
 
       //offers
