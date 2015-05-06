@@ -58,6 +58,12 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
             let loginViewController1: LoginViewController = viewControllers[0] as! LoginViewController
             loginViewController1.delegate = self
         }
+        if segue.identifier == "presentRegister" {
+            let viewControllers: NSArray = segue.destinationViewController.viewControllers
+            let registerViewController: RegisterViewController = viewControllers[0] as! RegisterViewController
+            registerViewController.delegate = self
+        }
+        
     }
     
     func completeLogin() {

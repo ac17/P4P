@@ -35,7 +35,7 @@
                                     <rect key="frame" x="171" y="305" width="58" height="32"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="168" y="363" width="64" height="30"/>
+                                    <rect key="frame" x="134" y="363" width="132" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="presentLoginScreen:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sWC-uA-cnd"/>
@@ -58,56 +58,14 @@
                                     <rect key="frame" x="162" y="384" width="77" height="32"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="155" y="430" width="90" height="30"/>
+                                    <rect key="frame" x="134" y="457" width="132" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="0gL-Ct-hBa" kind="presentation" id="iJ9-8O-eAv"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmO-id-AOy">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="8"/>
-                                <state key="normal" title="Open dashboard">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="127" y="502" width="146" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="openDash:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0IW-2d-e02"/>
+                                    <segue destination="0gL-Ct-hBa" kind="presentation" identifier="presentRegister" id="iJ9-8O-eAv"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="LmO-id-AOy" secondAttribute="trailing" constant="111" id="DGE-Nr-xCj"/>
-                            <constraint firstItem="LmO-id-AOy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="111" id="EQB-wp-sc4"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="LmO-id-AOy"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="DGE-Nr-xCj"/>
-                                <exclude reference="EQB-wp-sc4"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="LmO-id-AOy"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="DGE-Nr-xCj"/>
-                                <include reference="EQB-wp-sc4"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <segue destination="aJd-5x-5cz" kind="show" identifier="openDash" id="gnR-HL-sUD"/>
@@ -216,7 +174,6 @@
                         <outlet property="loginButton" destination="vfX-w0-KCb" id="NOT-Ni-GeG"/>
                         <outlet property="passwordTextField" destination="10S-Pr-Ar5" id="YNI-dC-1Fh"/>
                         <outlet property="usernameTextField" destination="ReV-cC-WK6" id="f67-JY-1dG"/>
-                        <segue destination="aJd-5x-5cz" kind="showDetail" identifier="loginToDash" id="QIk-LZ-Ci4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXh-WI-oks" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -718,14 +675,14 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="684" width="57" height="30"/>
+                                    <rect key="frame" x="172" y="591" width="57" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="register:" destination="0jg-q7-aoB" eventType="touchUpInside" id="qFG-gv-My6"/>
+                                    <action selector="register:" destination="0jg-q7-aoB" eventType="touchUpInside" id="TQz-zf-iLF"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="PiZ-AB-Avm"/>
@@ -978,7 +935,4 @@
         <image name="chaticon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="gnR-HL-sUD"/>
-    </inferredMetricsTieBreakers>
 </document>

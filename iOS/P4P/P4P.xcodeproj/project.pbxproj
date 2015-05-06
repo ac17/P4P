@@ -43,6 +43,7 @@
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
 		DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDC303A1AF97892008C13E8 /* HomeScreen.png */; };
+		DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDC303E1AF9AF06008C13E8 /* AppBackground.png */; };
 		DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE489D81AF1CC65009599D3 /* menuicon.png */; };
 		DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
 		DCDC303A1AF97892008C13E8 /* HomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeScreen.png; sourceTree = "<group>"; };
+		DCDC303E1AF9AF06008C13E8 /* AppBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBackground.png; sourceTree = "<group>"; };
 		DCE489D81AF1CC65009599D3 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuicon.png; path = Images.xcassets/menuicon.png; sourceTree = "<group>"; };
 		DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +207,7 @@
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
 				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
 				DC86CF531AF95CD000E0054F /* PopupView.swift */,
+				DCDC303E1AF9AF06008C13E8 /* AppBackground.png */,
 				DCDC303A1AF97892008C13E8 /* HomeScreen.png */,
 				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
+				DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
