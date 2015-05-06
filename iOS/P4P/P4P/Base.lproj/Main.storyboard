@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-8X-q0q">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-8X-q0q">
                                 <rect key="frame" x="281" y="337" width="38" height="30"/>
                                 <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -57,7 +57,7 @@
                                     <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gsi-5o-vV3"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5r3-0m-zkj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NetID" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5r3-0m-zkj">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fKa-5A-ocR"/>
@@ -80,7 +80,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9Y-gT-h8T">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9Y-gT-h8T">
                                 <rect key="frame" x="272" y="446" width="57" height="30"/>
                                 <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="8"/>
@@ -95,6 +95,9 @@
                                 </userDefinedRuntimeAttributes>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="162" y="384" width="77" height="32"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="126" y="688" width="150" height="32"/>
                                 </variation>
                                 <connections>
                                     <segue destination="0gL-Ct-hBa" kind="presentation" identifier="presentRegister" id="iJ9-8O-eAv"/>
@@ -111,9 +114,6 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="16" y="28" width="137" height="32"/>
                                 </variation>
-                                <connections>
-                                    <segue destination="aJd-5x-5cz" kind="show" id="mAv-vg-nPU"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UZ6-8p-TUH">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -172,7 +172,7 @@
                             <constraint firstItem="5r3-0m-zkj" firstAttribute="width" secondItem="UZ6-8p-TUH" secondAttribute="width" id="EYT-Tu-THU"/>
                             <constraint firstItem="PUI-8X-q0q" firstAttribute="centerX" secondItem="F9Y-gT-h8T" secondAttribute="centerX" id="H2r-8n-y8D"/>
                             <constraint firstItem="PUI-8X-q0q" firstAttribute="top" secondItem="UZ6-8p-TUH" secondAttribute="bottom" constant="20" id="Pas-aC-vcc"/>
-                            <constraint firstItem="5r3-0m-zkj" firstAttribute="centerX" secondItem="hob-Qe-7I0" secondAttribute="centerX" constant="-5.5" id="UXh-K7-BJ3"/>
+                            <constraint firstItem="5r3-0m-zkj" firstAttribute="centerX" secondItem="hob-Qe-7I0" secondAttribute="centerX" id="UXh-K7-BJ3"/>
                             <constraint firstItem="UZ6-8p-TUH" firstAttribute="top" secondItem="5r3-0m-zkj" secondAttribute="bottom" constant="20" id="W7u-QL-Gul"/>
                             <constraint firstItem="F9Y-gT-h8T" firstAttribute="top" secondItem="PUI-8X-q0q" secondAttribute="bottom" constant="30" id="Yhi-MU-ajC"/>
                             <constraint firstItem="PUI-8X-q0q" firstAttribute="centerX" secondItem="UZ6-8p-TUH" secondAttribute="centerX" id="cxe-gG-RTo"/>
@@ -1027,7 +1027,4 @@
         <image name="chaticon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="mAv-vg-nPU"/>
-    </inferredMetricsTieBreakers>
 </document>
