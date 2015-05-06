@@ -17,7 +17,7 @@ a {
   
     a:hover { 
 	text-decoration:inherit;
-	cursor: pointer;
+	cursor: hand;
  }
   
 #wrapper, #loginform {

@@ -105,6 +105,9 @@ body {
 <<<<<<< HEAD
 }
 
+a.clickable:hover{
+	cursor: hand;
+}
 
 /* CSS for active exchange lists */
 .feedback { font-size: 1.4em; }

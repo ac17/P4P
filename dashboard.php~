@@ -40,7 +40,6 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/inbox.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
     <link type="text/css" rel="stylesheet" href="css/chatPopup.css"/>
