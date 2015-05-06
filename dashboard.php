@@ -352,14 +352,6 @@ PROFPIC;
               <div id="tab-2">                    
                 <div class="col-md-12">          
                     <div class="col-md-4">
-                    <label for="passDate">Pass Date:</label>
-                    <input type="text" id="passDate"><br /><br />
-					</div>
-                	<div class="col-md-4">
-                    <label for="spinner">Number of Passes:</label>
-                    <input id="spinner" name="value">
-                    </div>
-                    <div class="col-md-4">
                     <form>
                       <fieldset>
                         <label for="eatingClub">Eating Club: </label>
@@ -372,6 +364,14 @@ PROFPIC;
                         </select>
                         </fieldset>
                     </form>
+					</div>
+                	<div class="col-md-4">
+                    <label for="spinner">Number of Passes:</label>
+                    <input id="spinner" name="value">
+                    </div>
+                    <div class="col-md-4">
+                    <label for="passDate">Pass Date:</label>
+                    <input type="text" id="passDate"><br /><br />
                     </div>
                  </div>
                  <div class="col-md-12">
