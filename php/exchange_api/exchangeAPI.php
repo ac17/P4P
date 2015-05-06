@@ -32,7 +32,7 @@ function pursueOffer($currentUserNetId, $offerId)
 	if ($deviceToken != NULL)
 	{ 
 		$message = getUserNameByNetId($currentUserNetId) . " requested your pass.";
-		echo shell_exec(PHP_BINDIR . "/php ./exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
+		shell_exec(PHP_BINDIR . "/php /opt/lampp/htdocs/php/exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
 	}
 	
 	// add a request
@@ -683,7 +683,7 @@ function cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $reques
 	if ($deviceToken != NULL)
 	{ 
 		$message = getUserNameByNetId($currentUserNetId) . " canceled  your trade.";
-		echo shell_exec(PHP_BINDIR . "/php ./exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
+		shell_exec(PHP_BINDIR . "/php /opt/lampp/htdocs/php/exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
 	}
 	
 	// punish the cancelling user 
@@ -766,7 +766,7 @@ function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 	if ($deviceToken != NULL)
 	{ 
 		$message = getUserNameByNetId($currentUserNetId) . " accepted your offer.";
-		echo shell_exec(PHP_BINDIR . "/php ./exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
+		shell_exec(PHP_BINDIR . "/php /opt/lampp/htdocs/php/exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
 	}
 	
 	$requestId = $result['id'];
