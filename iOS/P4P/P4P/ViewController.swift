@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func login(sender: AnyObject) {
         if self.failedLoginLabel.alpha != 0.0 {
             dispatch_async(dispatch_get_main_queue()) {
-                UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                     self.failedLoginLabel.alpha = 0.0
                     
                     }, completion: nil)

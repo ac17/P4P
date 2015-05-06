@@ -20,15 +20,25 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     var imagePicker: UIImagePickerController!
     
+    var backgroundView: UIImageView?
+    
     let tapRec = UITapGestureRecognizer()
+    
+    @IBOutlet weak var failedRegisterLabel: UILabel!
+    @IBOutlet weak var successRegisterLabel: UILabel!
+    @IBOutlet weak var emptyFormsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.clearColor()
 
         // Do any additional setup after loading the view.
         
+        // Set background color to dark blue
+        backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
+        backgroundView!.frame = UIScreen.mainScreen().bounds
+                self.view.insertSubview(backgroundView!, atIndex: 0)
+        
+        // Make the image view interactive
         self.userPhotoView.userInteractionEnabled = true
         
         // Set up the gesture recognizer
@@ -42,6 +52,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         self.passwordTextField.delegate = self
     }
 
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .Default
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -78,13 +96,35 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
 
     @IBAction func register(sender: AnyObject) {
+        if self.failedRegisterLabel.alpha != 0.0 {
+            dispatch_async(dispatch_get_main_queue()) {
+                UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.failedRegisterLabel.alpha = 0.0
+                    
+                    }, completion: nil)
+            }
+        }
+        if self.emptyFormsLabel.alpha != 0.0 {
+            dispatch_async(dispatch_get_main_queue()) {
+                UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.emptyFormsLabel.alpha = 0.0
+                    
+                    }, completion: nil)
+            }
+        }
         
-        println("lololol")
         let netid = self.netIDTextField.text
         let firstName = self.firstNameTextField.text
         let lastName = self.lastNameTextField.text
         let password = self.passwordTextField.text
         let pwHash = password.MD5()
+        
+        if netid == "" || firstName == "" || lastName == "" || password == "" {
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.emptyFormsLabel.alpha = 1.0
+                }, completion: nil)
+            return
+        }
     
         
         let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
@@ -96,22 +136,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             if let authResult = json["regResults"].array {
                 if authResult[0] == "TRUE" {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.parentViewController!.dismissViewControllerAnimated(true, completion: {
-                            (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = netid
-                            (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
-                        });
+                        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                            self.successRegisterLabel.alpha = 1.0
+                            }, completion: nil)
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                            self.failedRegisterLabel.alpha = 1.0
+                            }, completion: nil)
                     }
-                    // INDICATE THAT IT FAILED TO REGISTER
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                        self.failedRegisterLabel.alpha = 1.0
+                        }, completion: nil)
                 }
-                // INDICATE THAT IT FAILED TO REGISTER
             }
             
         }
@@ -128,5 +169,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     */
 
+}
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
 }
 
