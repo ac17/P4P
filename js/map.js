@@ -101,8 +101,8 @@ function addUserToMap(user) {
       '<div class="infoWinbodyContent">';
 
       // link for chatting
-      //contentString = contentString + 
-      //'<div id = "chatlink"><a href = "./php/chat.php?recipient='+user.netId+'">Click here to chat</a><div>';
+      contentString = contentString + 
+      '<span id = "chatlink"><a onclick = "register_popup('+ user + ',' + user.name + ');" >Click here to chat</a></span>';
 
       //offers
 	  var i;
