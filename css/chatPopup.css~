@@ -71,7 +71,7 @@ input { font:12px arial; }
 {
     display: none;
     position: fixed;
-    bottom: 0px;
+    bottom: 27px;
     right: 220px;
     height: 285px;
     background-color: #f5f5f5;
@@ -109,7 +109,7 @@ input { font:12px arial; }
 .popup-box .popup-messages
 {
     text-align:left;
-    margin:0 auto;
+    margin: 0 auto;
     margin-bottom:25px;
     padding:10px;
     background:#fff;
@@ -120,7 +120,7 @@ input { font:12px arial; }
 }
 
 .usermsg {
-    width: 2350px;
+    width: 238px;
     border:1px solid #ACD8F0; 
     float: left;}
   
