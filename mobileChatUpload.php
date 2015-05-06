@@ -28,7 +28,6 @@ if (isValidUser($from_user, $pwHash1)) {
 	else
 		$resultArray = array("result" => "FALSE");
 }
-
 // return the results array in JSON form
 echo json_encode($resultArray); 
 mysql_close($connection);

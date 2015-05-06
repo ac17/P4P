@@ -1,8 +1,8 @@
 <?php
-include_once('php/database_connect.php');
-include_once('mailer.php');
-include_once('php/signup.php');
-include_once('login.php');
+include('php/database_connect.php');
+include('mailer.php');
+include('php/signup.php');
+include('login.php');
 ?>
 <!DOCTYPE html>
 <html>

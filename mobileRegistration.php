@@ -2,6 +2,8 @@
 header('Content-type: application/json');
 // Get login information 
 include_once('php/database_connect.php');
+include_once('mailer.php');
+include_once('php/signup.php');
 
 // Get information of new registrant
 $fName = $_GET["fName"];
