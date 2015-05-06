@@ -222,7 +222,10 @@ SIGNUP;
                     if (isset($_POST["hiddenContact"]) && $_POST["hiddenContact"] == "true") {
                         $contactMsg = "From " . $_POST["firstName"] . " " . $_POST["lastName"] . " (" . $_POST["emailAdd"] . "): <br><br>" . $_POST["emailMsg"];
                         $resultMsg = "Thanks for your message! We'll get back to you as soon as possible.";
+                        $replyMsg = "<h3>Hi " . $_POST["firstName"] . ",</h3> <p>We'd like to thank you for contacting us! For your records, below is a copy of your message:</p><p>"
+                        . $_POST["emailMsg"] . "</p><p>We'll get back to you as soon as possible! Thanks again for using Passes for Passes.</p>Best,<br>The Passes for Passes Team";
                         mailer("Passes for Passes", "passesforpasses@gmail.com", "Message from Contact Form", $contactMsg);
+                        mailer($_POST["firstName"] . $_POST["lastName"], $_POST["emailAdd"], "Thanks for your message!", $replyMsg);
                         echo <<< CONTACTCONFIRMATION
         <script type="text/javascript">
             $(window).load(function(){
