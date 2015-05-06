@@ -1,6 +1,8 @@
 <?php 
 require('../php/database_connect.php');
 
+ini_set('memory_limit','1000M');
+
 // close session to allow for parallel requests
 session_write_close();
 

@@ -203,7 +203,8 @@ SETTINGS;
                       <div class="col-md-3 tableHeader"> netId </div>
                       <div class="col-md-3 tableHeader"> firstName </div>
                       <div class="col-md-3 tableHeader"> lastName </div>
-                      <div class="col-md-3 tableHeader"> reputation </div>
+                      <div class="col-md-2 tableHeader"> reputation </div>
+                      <div class="col-md-1 tableHeader"> delete </div>
                       <div id="npcList">
                       </div>
                   </div>
