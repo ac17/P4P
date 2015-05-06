@@ -66,8 +66,6 @@ class InfoWindowTableViewController: UITableViewController {
             let json = JSON(data: data)
             //println(NSString(data: data, encoding: NSUTF8StringEncoding))
             
-            println(json[0]["associatedExchanges"])
-            
             var arrayExchangeString = (json[0]["associatedExchanges"].string)
             
             if let dataFromString = arrayExchangeString!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
@@ -76,8 +74,6 @@ class InfoWindowTableViewController: UITableViewController {
                 var index = 0
                 for (key: String, subJson: JSON) in jsonExchange {
                     if (jsonExchange[index].string == self.appNetID) {
-                        println("shit there's a match")
-                        
                         dispatch_async(dispatch_get_main_queue()) {
                             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -92,8 +88,6 @@ class InfoWindowTableViewController: UITableViewController {
         }
 
         task.resume()
-        println("this cell might've changed")
-
         return cell
         
         // Configure the cell...

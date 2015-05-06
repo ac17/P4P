@@ -45,6 +45,14 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
     
     func userActiveExchangesPull() {
+        offerClubNumberArray.removeAll()
+        offerDateArray.removeAll()
+        offerIDArray.removeAll()
+        requestClubNumberArray.removeAll()
+        requestDateArray.removeAll()
+        requestAssociatedIDArray.removeAll()
+        
+        
         var getActiveExchangesString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/userActiveExchanges.php?"
         getActiveExchangesString += "currentUserNetId=" + appNetID
         //println(getActiveExchangesString)
@@ -142,7 +150,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if indexPath.section == 0 {
             offerMoreInfoWindowID = offerIDArray[indexPath.row]
-            offerMoreInfoWindowTitle = offerClubNumberArray[indexPath.row]
+            offerMoreInfoWindowTitle = offerClubNumberArray[indexPath.row] + " " + offerDateArray[indexPath.row]
             performSegueWithIdentifier("offerAcceptDeclinePop", sender: self)
         } else if indexPath.section == 1 {
             
