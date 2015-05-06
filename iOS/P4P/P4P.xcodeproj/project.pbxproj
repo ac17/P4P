@@ -33,6 +33,7 @@
 		DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC81AE875A10067184A /* TabBarViewController.swift */; };
 		DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACC1AF0700D0067184A /* ChatViewController.swift */; };
 		DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */; };
+		DC344CBA1AF9DDA600080812 /* ChatEntryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */; };
 		DC64ED791AF84A090014E48A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED781AF84A090014E48A /* ChatView.swift */; };
 		DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */; };
 		DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86CF531AF95CD000E0054F /* PopupView.swift */; };
@@ -42,6 +43,8 @@
 		DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB768D1AD3015B004A2CD9 /* Main.storyboard */; };
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
+		DCB963101AFAAB8000A43033 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB9630E1AFAAB8000A43033 /* icon@2x.png */; };
+		DCB963111AFAAB8000A43033 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB9630F1AFAAB8000A43033 /* icon@3x.png */; };
 		DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDC303A1AF97892008C13E8 /* HomeScreen.png */; };
 		DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDC303E1AF9AF06008C13E8 /* AppBackground.png */; };
 		DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE489D81AF1CC65009599D3 /* menuicon.png */; };
@@ -88,6 +91,7 @@
 		DC1BFAC81AE875A10067184A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		DC1BFACC1AF0700D0067184A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
 		DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
+		DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatEntryTextView.swift; sourceTree = "<group>"; };
 		DC64ED781AF84A090014E48A /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		DC86CF531AF95CD000E0054F /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		DCAB76991AD3015B004A2CD9 /* P4PTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P4PTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
+		DCB9630E1AFAAB8000A43033 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		DCB9630F1AFAAB8000A43033 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
 		DCDC303A1AF97892008C13E8 /* HomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeScreen.png; sourceTree = "<group>"; };
 		DCDC303E1AF9AF06008C13E8 /* AppBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppBackground.png; sourceTree = "<group>"; };
 		DCE489D81AF1CC65009599D3 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuicon.png; path = Images.xcassets/menuicon.png; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 		DCAB76831AD3015B004A2CD9 /* P4P */ = {
 			isa = PBXGroup;
 			children = (
+				DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */,
 				DC1BFACC1AF0700D0067184A /* ChatViewController.swift */,
 				DC64ED781AF84A090014E48A /* ChatView.swift */,
 				DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */,
@@ -209,6 +216,8 @@
 				DC86CF531AF95CD000E0054F /* PopupView.swift */,
 				DCDC303E1AF9AF06008C13E8 /* AppBackground.png */,
 				DCDC303A1AF97892008C13E8 /* HomeScreen.png */,
+				DCB9630E1AFAAB8000A43033 /* icon@2x.png */,
+				DCB9630F1AFAAB8000A43033 /* icon@3x.png */,
 				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
 				DCE489D81AF1CC65009599D3 /* menuicon.png */,
@@ -299,9 +308,11 @@
 				TargetAttributes = {
 					DCAB76801AD3015B004A2CD9 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = WKRZ8G7B5R;
 					};
 					DCAB76981AD3015B004A2CD9 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = WKRZ8G7B5R;
 						TestTargetID = DCAB76801AD3015B004A2CD9;
 					};
 				};
@@ -331,6 +342,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
+				DCB963101AFAAB8000A43033 /* icon@2x.png in Resources */,
+				DCB963111AFAAB8000A43033 /* icon@3x.png in Resources */,
 				DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */,
@@ -404,6 +417,7 @@
 			files = (
 				A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */,
 				A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */,
+				DC344CBA1AF9DDA600080812 /* ChatEntryTextView.swift in Sources */,
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
 				A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */,
 				A05AE4111AF8A54700C59B5B /* UserActiveExchangesViewController.swift in Sources */,
@@ -497,6 +511,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "442801bc-0b22-4218-a9df-6401224a3ef4";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -532,6 +547,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "442801bc-0b22-4218-a9df-6401224a3ef4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -543,6 +559,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -551,6 +569,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "P4P/P4P-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -562,6 +581,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -570,6 +591,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "P4P/P4P-Bridging-Header.h";
 			};
 			name = Release;
@@ -578,6 +600,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -589,6 +613,7 @@
 				INFOPLIST_FILE = P4PTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/P4P.app/P4P";
 			};
 			name = Debug;
@@ -597,6 +622,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -604,6 +631,7 @@
 				INFOPLIST_FILE = P4PTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/P4P.app/P4P";
 			};
 			name = Release;

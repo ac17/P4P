@@ -18,8 +18,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var userPhotoView: UIImageView!
     
-    var delegate: LoginViewControllerDelegate! = nil
-    
     var imagePicker: UIImagePickerController!
     
     let tapRec = UITapGestureRecognizer()
@@ -74,6 +72,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         self.userPhotoView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
+    
+    @IBAction func returnToHomeScreen(sender: AnyObject) {
+        self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     @IBAction func register(sender: AnyObject) {
         
@@ -97,7 +99,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                         self.parentViewController!.dismissViewControllerAnimated(true, completion: {
                             (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = netid
                             (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
-                            self.delegate.completeLogin()
                         });
                     }
                 } else {

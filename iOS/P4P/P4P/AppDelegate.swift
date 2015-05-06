@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var userNetid: String = "ffjiang"
-    var pwHash: String = "5d41402abc4b2a76b9719d911017c59"
-    var firstName: String = "Frank"
-    var lastName: String = "Jiang"
+    var pwHash: String = "5d41402abc4b2a76b9719d911017c592"
+    var firstName: String = "Artur"
+    var lastName: String = "Filipowicz"
+    var deviceToken: String = "0"
 
-    let googleMapsApiKey = "AIzaSyCFo0cjrjm2JkotEwtNkDeFrZLrqSFWjLk"
+    let googleMapsApiKey = "AIzaSyAaBguvi8hXnGsUUdUx_Mem8k7Yk_zBzBs"
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -42,11 +43,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window!.backgroundColor = UIColor(patternImage: (UIImage(named: "AppBackground.png")!))
         
+        // Check if there was a push notification
+        
+        if let launchOptions = launchOptions {
+            if let notificationsPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+                println("swift")
+            }
+        }
         return true
     }
     
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        if application.applicationState == .Active {
+            println("swift")
+        } else {
+            println("hi")
+        }
+
+    }
+    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
-        println("My token is" + String(stringInterpolationSegment: deviceToken))
+        // Clear <> tags and spaces from device token
+        self.deviceToken = String(stringInterpolationSegment: deviceToken).stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
+        println("My token is " + self.deviceToken)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {

@@ -28,9 +28,14 @@ class SidePanelViewController: UITableViewController {
         // Allow selections
         (self.view as! UITableView).allowsSelection = true
         
-        fillerView = UIView(frame: CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + self.view.frame.size.height, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height - self.view.frame.origin.y - self.view.frame.size.height))
+        fillerView = UIView(frame: CGRectMake(self.view.frame.origin.x, 800.0, self.view.frame.size.width, 100.0))//UIScreen.mainScreen().bounds.size.height - self.view.frame.origin.y - self.view.frame.size.height))
         fillerView.backgroundColor = UIColor.grayColor()
-        self.view.insertSubview(fillerView, atIndex: 10)
+        println(self.view.frame.origin.y + self.view.frame.size.height)
+        println(self.view.frame.origin)
+        println(self.view.frame.size)
+        println(fillerView.frame.origin)
+        println(fillerView.frame.size)
+        self.view.insertSubview(fillerView, atIndex: 100)
         
         // Cache conversations
         for (user, conv) in convos {

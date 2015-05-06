@@ -33,22 +33,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    // dismisses iOS keyboard after you open a textfield and touch anywhere else
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
-    }
-    
-    // called when you hit enter in a text field. dismisses keyboard
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return false
-    }
     
     @IBAction func login(sender: AnyObject) {
         let username: String = self.usernameTextField.text
         let password: String = self.passwordTextField.text
-        let deviceID: String = "0f744707bebcf74f9b7c25d48e3358945f6aa01da5ddb387462c7eaf61bbad78"
+        let deviceID: String = (UIApplication.sharedApplication().delegate as! AppDelegate).deviceToken
         let pwHash: String = password.MD5()
         let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
 
@@ -100,30 +89,3 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
 }
 
-extension Int {
-    func hexString() -> String {
-        return NSString(format:"%02x", self) as String
-    }
-}
-
-extension NSData {
-    func hexString() -> String {
-        var string = String()
-        for i in UnsafeBufferPointer<UInt8>(start: UnsafeMutablePointer<UInt8>(bytes), count: length) {
-            string += Int(i).hexString()
-        }
-        return string
-    }
-    
-    func MD5() -> NSData {
-        let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
-        CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
-        return NSData(data: result)
-    }
-}
-
-extension String {
-    func MD5() -> String {
-        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)!.MD5().hexString()
-    }
-}

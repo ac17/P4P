@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class ViewController: UIViewController, LoginViewControllerDelegate {
+class ViewController: UIViewController, UITextFieldDelegate {
     //var tabBarController;
     
     var backgroundView: UIImageView?
     
-    var userValidated = false  // Whether the user's username and password were authenticated.
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var failedLoginLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        userValidated = true   // Replace this with login logic
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
         
         backgroundView = UIImageView(image: UIImage(named: "HomeScreen.png"))
         backgroundView!.frame = UIScreen.mainScreen().bounds
@@ -38,39 +43,90 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func openDash(sender: AnyObject) {
-        if userValidated {
-            performSegueWithIdentifier("openDash", sender: sender)
-        }
+    // dismisses iOS keyboard after you open a textfield and touch anywhere else
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    // called when you hit enter in a text field. dismisses keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 
-    @IBAction func cancelReturnToHome(segue:UIStoryboardSegue) {
+    @IBAction func login(sender: AnyObject) {
+        let username: String = self.usernameTextField.text
+        let password: String = self.passwordTextField.text
+        let deviceID: String = (UIApplication.sharedApplication().delegate as! AppDelegate).deviceToken
+        let pwHash: String = password.MD5()
+        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
+        
+        var loginViewController = self;
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            let json = JSON(data: data)
+            if let authResult = json.array {
+                println(authResult)
+                if count(authResult) > 0 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.parentViewController!.dismissViewControllerAnimated(true, completion: {
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
+                            self.performSegueWithIdentifier("openDash", sender: self)
+                            if let firstName = json["firstName"].string {
+                                (UIApplication.sharedApplication().delegate as! AppDelegate).firstName = firstName
+                            }
+                            if let lastName = json["lastName"].string {
+                                (UIApplication.sharedApplication().delegate as! AppDelegate).lastName = lastName
+                            }
+                            
+                        });
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        println("coudln't login")
+                    }
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    println("couldn't login")
+                }
+            }
+            
+        }
+        task.resume()
+        
         
     }
     
-    @IBAction func presentLoginScreen(sender: AnyObject) {
-        performSegueWithIdentifier("presentLogin", sender: sender)
-    }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "presentLogin" {
-            let viewControllers: NSArray = segue.destinationViewController.viewControllers
-            let loginViewController1: LoginViewController = viewControllers[0] as! LoginViewController
-            loginViewController1.delegate = self
-        }
-        if segue.identifier == "presentRegister" {
-            let viewControllers: NSArray = segue.destinationViewController.viewControllers
-            let registerViewController: RegisterViewController = viewControllers[0] as! RegisterViewController
-            registerViewController.delegate = self
-        }
-        
-    }
-    
-    func completeLogin() {
-        performSegueWithIdentifier("openDash", sender: self)
-    }
+}
 
+extension Int {
+    func hexString() -> String {
+        return NSString(format:"%02x", self) as String
+    }
+}
+
+extension NSData {
+    func hexString() -> String {
+        var string = String()
+        for i in UnsafeBufferPointer<UInt8>(start: UnsafeMutablePointer<UInt8>(bytes), count: length) {
+            string += Int(i).hexString()
+        }
+        return string
+    }
     
-    
+    func MD5() -> NSData {
+        let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
+        CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
+        return NSData(data: result)
+    }
+}
+
+extension String {
+    func MD5() -> String {
+        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)!.MD5().hexString()
+    }
 }
 

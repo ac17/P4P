@@ -15,7 +15,7 @@ enum SlideOutState {
 
 class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate {
 
-    var textEntry: UITextView!
+    var textEntry: ChatEntryTextView!
     var chatTextView: UITextView!
     var sendButton: UIButton!
     var toggleSidePanelButton: UIButton!
@@ -42,7 +42,7 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        textEntry = UITextView()
+        textEntry = ChatEntryTextView()
         textEntry.delegate = self
         textEntry.becomeFirstResponder()
         textEntry.scrollEnabled = false
@@ -82,6 +82,12 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         self.view.addGestureRecognizer(closeSidePanelRecognizer)
     }
 
+    // dismisses iOS keyboard after you open a textfield and touch anywhere else
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
