@@ -208,13 +208,44 @@ SIGNUP;
                 <div class="col-md-6">
                     <h2>Comments? Questions? Concerns? Tell us below.</h2>
                     <form method="post" id="contactForm">
-                        <input type="text" name="firstName" id="firstName" placeholder="First Name"><br><br>
-                        <input type="text" name="lastName" id="lastName" placeholder="Last Name"><br><br>
-                        <input type="email" name="emailAdd" id="emailAdd" placeholder="jsmith@princeton.edu"><br><br>
-                        <textarea rows="5" cols="40">Message</textarea><br><br>
+                        <input type="text" name="firstName" id="firstName" placeholder="First Name" required><br><br>
+                        <input type="text" name="lastName" id="lastName" placeholder="Last Name" required><br><br>
+                        <input type="email" name="emailAdd" id="emailAdd" placeholder="jsmith@princeton.edu" required><br><br>
+                        <textarea name="emailMsg" id="emailMsg" rows="5" cols="40">Message</textarea><br><br>
                         <div class="g-recaptcha" data-sitekey="6LdV3QQTAAAAADzwPlAoGytMDhlc0E9G1Pjp_f7_"></div>
+                        <input type="hidden" name="hiddenContact" id="hiddenContact" value="true">
                         <button class="btn btn-default" id="contactSubmit" type="submit" form="contactForm" value="Submit">Submit</button>
                     </form>
+
+                    <?php
+                    /* Send message to our inbox. */
+                    if (isset($_POST["hiddenContact"]) && $_POST["hiddenContact"] == "true") {
+                        $contactMsg = "From " . $_POST["firstName"] . " " . $_POST["lastName"] . " (" . $_POST["emailAdd"] . "): <br><br>" . $_POST["emailMsg"];
+                        $resultMsg = "Thanks for your message! We'll get back to you as soon as possible.";
+                        mailer("Passes for Passes", "passesforpasses@gmail.com", "Message from Contact Form", $contactMsg);
+                        echo <<< CONTACTCONFIRMATION
+        <script type="text/javascript">
+            $(window).load(function(){
+                $('#contactModal').modal('show');
+            });
+        </script>
+CONTACTCONFIRMATION;
+                    }
+                    ?>
+
+                    <!-- Message Received Modal -->
+                    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <p><?php echo $resultMsg; ?></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
                 </div>
             </div>
         </div>
