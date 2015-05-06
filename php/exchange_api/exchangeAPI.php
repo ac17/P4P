@@ -32,9 +32,7 @@ function pursueOffer($currentUserNetId, $offerId)
 	if ($deviceToken != NULL)
 	{ 
 		$message = getUserNameByNetId($currentUserNetId) . " requested your pass.";
-		echo $deviceToken;
-		echo $message;
-		shell_exec(PHP_BINDIR . "/php pushNotification.php " . $deviceToken . " '" . $message . "'");
+		echo shell_exec(PHP_BINDIR . "/php ./exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
 	}
 	
 	// add a request
@@ -209,7 +207,16 @@ function getExchangeById($exchangeId)
 		die("Could not query the database. " . mysql_error());
 	}
 	
-	
+	$names = array();
+	if($exchange['type'] == "Offer")
+	{
+	   $netIds = json_decode($exchange['associatedExchanges']);
+	   foreach ($netIds as $netId)
+	   {
+		  array_push($names, getUserNameByNetId($netId));
+	   }
+	}
+			
 	$exchanges = array();
 	
 	if ($query_result !== false)
@@ -221,6 +228,7 @@ function getExchangeById($exchangeId)
 										 'passDate' =>$exchange['passDate'],
 										 'comments' =>$exchange['comments'],
 										 'associatedExchanges' =>$exchange['associatedExchanges'],
+										 'names' =>$names,
 										 'type' =>$exchange['type'])); 
 		}
 	}
@@ -661,6 +669,23 @@ function cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $reques
 		return; 
 	}
 	
+	// send a push notification
+	$deviceToken = NULL; 
+	if ($currentUserNetId == $provider)
+	{
+		$deviceToken = getDeviceId($recipient);
+	}
+	else 
+	{
+		$deviceToken = getDeviceId($provider);
+	}
+	
+	if ($deviceToken != NULL)
+	{ 
+		$message = getUserNameByNetId($currentUserNetId) . " canceled  your trade.";
+		echo shell_exec(PHP_BINDIR . "/php ./exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
+	}
+	
 	// punish the cancelling user 
 	$query = 'UPDATE Users SET reputation=reputation-1 WHERE netId="'.$currentUserNetId.'"';
 	//Execute the query
@@ -733,6 +758,15 @@ function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 	{ 
 		echo "The request has been cancelled.";
 		return; 
+	}
+	
+	
+	// send a push notification
+	$deviceToken = getDeviceId($requesterNetId);
+	if ($deviceToken != NULL)
+	{ 
+		$message = getUserNameByNetId($currentUserNetId) . " accepted your offer.";
+		echo shell_exec(PHP_BINDIR . "/php ./exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
 	}
 	
 	$requestId = $result['id'];

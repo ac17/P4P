@@ -8,7 +8,7 @@ $passphrase = 'p4ppush';
 ////////////////////////////////////////////////////////////////////////////////
 
 $ctx = stream_context_create();
-stream_context_set_option($ctx, 'ssl', 'local_cert', 'P4Pck.pem');
+stream_context_set_option($ctx, 'ssl', 'local_cert', '/opt/lampp/htdocs/php/exchange_api/P4Pck.pem');
 stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
 
 // Open a connection to the APNS server
