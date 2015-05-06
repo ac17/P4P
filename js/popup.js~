@@ -158,7 +158,7 @@ $(document).ready(function(){
     function loadLog(element){
         for (var iii = 0; iii < popups.length; iii++){
             (function(i) {
-                var oldscrollHeight = $("#" + popups[i] + " .popup-messages").attr("scrollHeight") - 20; //Scroll height before the request
+                var oldscrollHeight = $("#" + popups[i]).attr("scrollHeight") - 20; //Scroll height before the request
                 $.ajax({
                     type: "GET",
                     url: "php/chatRetrieve.php?recipient=" + popups[i],
@@ -168,9 +168,9 @@ $(document).ready(function(){
                         $("#" + popups[i] + ' .popup-messages').html(response); //Insert chat log into the #chatbox div
 
                         //Auto-scroll           
-                        var newscrollHeight = $("#" + popups[i] + " .popup-messages").attr("scrollHeight") - 20; //Scroll height after the request
+                        var newscrollHeight = $("#" + popups[i]).attr("scrollHeight") - 20; //Scroll height after the request
                         if(newscrollHeight > oldscrollHeight){
-                            $("#" + popups[i] + " .popup-messages").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                            $("#" + popups[i]).animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
                         }               
                     },
                 });

@@ -120,7 +120,7 @@ input { font:12px arial; }
 }
 
 .usermsg {
-    width: 238px;
+    width: 2350px;
     border:1px solid #ACD8F0; 
     float: left;}
   
