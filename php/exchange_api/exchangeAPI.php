@@ -84,14 +84,16 @@ function userActiveTrades($currentUserNetId)
 			$offerId = $exchange['id'];
 			$provider = $exchange['requesterNetId'];
 			
-			$request = getCorrespodingRequest($offerId);
+			$request = getCorrespodingRequest($offerId); 
 			$recipient = $request['requesterNetId'];
 			$requestId = $request['id'];
-			
+
 			array_push($trades, array('offerId' =>$offerId,
 									  'requestId' =>$requestId,
 									  'provider' =>$provider,
-									  'recipient' =>$recipient, 
+									  'providerName' =>getUserNameByNetId($provider),
+									  'recipient' =>$recipient,
+									  'recipientName' =>getUserNameByNetId($recipient),
 									  'club' =>$club,
 									  'passNum' =>$passNum,
 									  'passDate' =>$passDate,
@@ -155,13 +157,25 @@ function userActiveExchanges($currentUserNetId)
 	//Display the results from the query
 	if ($query_result !== false)
 	{
-		while($exchange = mysql_fetch_array(($query_result))){	
+		while($exchange = mysql_fetch_array(($query_result))){
+			
+			$names = array();
+			if($exchange['type'] == "Offer")
+			{
+			   $netIds = json_decode($exchange['associatedExchanges']);
+			   foreach ($netIds as $netId)
+			   {
+			   	  array_push($names, getUserNameByNetId($netId));
+			   }
+			}
+			
 			array_push($exchanges, array('id' =>$exchange['id'], 
 										 'club' =>$exchange['passClub'],
 										 'passNum' =>$exchange['passNum'],
 										 'passDate' =>$exchange['passDate'],
 										 'comments' =>$exchange['comments'],
 										 'associatedExchanges' =>$exchange['associatedExchanges'],
+										 'names' =>$names,
 										 'type' =>$exchange['type'])); 
 		}
 	}
@@ -294,6 +308,27 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 	return $users;
 }
 
+function getUserNameByNetId($netId)
+{
+	
+	//Build a query
+	$select = ' SELECT '; 
+	$column =  ' firstName ';  
+	$from = ' FROM ';  
+	$tables = ' Users ';
+	$where = 'WHERE netId="' . $netId . '" LIMIT 1';
+	$query = $select . $column . $from . $tables . $where; 
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
+	$query_result = mysql_fetch_array(($query_result));
+
+	return $query_result['firstName'];
+}
 
 function getArrayOfUserRequestIds($userNetId)
 {
@@ -499,7 +534,7 @@ function deleteOffer($netId, $offerId)
 function deleteRequestByOfferId($currentUserNetId, $requesterNetId, $offerId)
 {	
 	// get correspoding offer's request's id 
-	$query = ' SELECT id FROM Active_exchanges WHERE requesterNetId="' . $currentUserNetId . '" AND associatedExchanges LIKE "%'.$offerId.'%"';
+	$query = ' SELECT id FROM Active_exchanges WHERE requesterNetId="' . $requesterNetId . '" AND associatedExchanges LIKE "%'.$offerId.'%"';
 	//Execute the query
 	$query_result = mysql_query($query);
 	//Provide an error message if the query failed
@@ -702,15 +737,15 @@ function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 	}
 	$offer = mysql_fetch_array(($query_result));
 	$associatedExchanges = json_decode( $offer['associatedExchanges'] );
-	
+
 	// temporarly remove $requesterNetId from the offer's associatedExchanges
 	$associatedExchanges = array_diff($associatedExchanges, array($requesterNetId));
-
+	
 	if(!empty($associatedExchanges))
 	{
 		// remove all requests based on netids in offer's associatedExchanges
-		$query = 'DELETE FROM Active_exchanges WHERE associatedExchanges LIKE "%'. $offerId . '%" AND requesterNetId IN (' . implode(',', array_map('intval', $associatedExchanges)) . ')';
-		//Execute the query
+		$query = 'DELETE FROM Active_exchanges WHERE associatedExchanges LIKE "%'. $offerId . '%" AND requesterNetId IN ("' . implode('","', $associatedExchanges) . '")';
+		//Execute the query	
 		$query_result = mysql_query($query);
 		//Provide an error message if the query failed
 		if(!$query_result){
