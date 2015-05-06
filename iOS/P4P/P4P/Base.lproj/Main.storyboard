@@ -935,7 +935,4 @@
         <image name="chaticon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="QIk-LZ-Ci4"/>
-    </inferredMetricsTieBreakers>
 </document>
