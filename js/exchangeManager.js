@@ -38,9 +38,9 @@ function getUserActiveExchanges(currentUserNetId)
 					{
 						if (exchange.passNum > 1)
 						{
-							passNoun = "passes";
+							passNoun = "pasdfdfdsses";
 						}
-						document.getElementById("requestList").innerHTML = document.getElementById("requestList").innerHTML + '<li class="ui-widget-content col-md-12" requestId="'+exchange.id+'"><div class="col-md-12" ><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + " " + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + "</div></div></li>";
+						document.getElementById("requestList").innerHTML = document.getElementById("requestList").innerHTML + '<li class="ui-widget-content col-md-12" requestid="'+exchange.id+'"><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + " " + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + "</div></li>";
 					}
 					else
 					{
@@ -48,16 +48,16 @@ function getUserActiveExchanges(currentUserNetId)
 						{
 							passNoun = "passes";
 						}
-						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + '<li class="ui-widget-content col-md-12" offerId="'+exchange.id+'"><div class="col-md-12" ><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + ' ' + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + '</div></div></li>';
+						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + '<li class="ui-widget-content col-md-12" offerid="'+exchange.id+'"><div class="col-md-12" ><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + ' ' + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + '</div></div>';
 						
 						var listOfRequests = "";
 						var associatedExchanges = JSON.parse(exchange.associatedExchanges);
 						for (j=0; j<associatedExchanges.length; j++)
 						{
 							// associatedExchanges[j] contains the netId of the user who made the request
-							listOfRequests = listOfRequests + '<li class="requestSubListItem">Request From: ' + associatedExchanges[j] + ' <input type="submit" value="Decline" style="float:right" onMouseDown="declineRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"><input type="submit" value="Accept" style="float:right" onMouseDown="acceptRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"></li>';
+							listOfRequests = listOfRequests + '<div class="requestSubListItem col-md-12">Request From: ' + associatedExchanges[j] + ' <input type="submit" value="Decline" style="float:right" onMouseDown="declineRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"><input type="submit" value="Accept" style="float:right" onMouseDown="acceptRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"></div>';
 						}						
-						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + listOfRequests + "</ul>";
+						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + listOfRequests + "</li>";
 						
 					}
 				}

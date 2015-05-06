@@ -135,6 +135,7 @@ $(function() {
 	
 	// current user's active offer and request lists 
 	$( "#requestList" ).selectable({
+		filter: 'li',
 		selecting: function( event, ui ) {
 			selectedRequests = [];
 		},
@@ -144,11 +145,12 @@ $(function() {
 	});
 	
 	$( "#offerList" ).selectable({
+		filter: 'li',
 		selecting: function( event, ui ) {
 			selectedOffers = [];
 		},
 		selected: function( event, ui ) {
-			selectedOffers.push([ui.selected.attributes.offerId.nodeValue,"Offer"]);
+			selectedOffers.push([ui.selected.attributes.offerid.nodeValue,"Offer"]);
 		}
 	});
 	

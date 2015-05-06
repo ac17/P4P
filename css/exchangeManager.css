@@ -10,7 +10,8 @@
 
 
 .requestSubListItem {
-	padding-left:5em;
+	padding-left:3px;
+	font-size:12px;
 }
 
 .tradeDiv {
