@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -20,14 +20,22 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-8X-q0q">
                                 <rect key="frame" x="281" y="337" width="38" height="30"/>
+                                <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="8"/>
                                 <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="181" y="301" width="38" height="30"/>
+                                    <rect key="frame" x="171" y="305" width="58" height="32"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="181" y="364" width="38" height="30"/>
+                                    <rect key="frame" x="168" y="363" width="64" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="presentLoginScreen:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sWC-uA-cnd"/>
@@ -35,32 +43,42 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9Y-gT-h8T">
                                 <rect key="frame" x="272" y="446" width="57" height="30"/>
+                                <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="8"/>
                                 <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="167" y="388" width="57" height="30"/>
+                                    <rect key="frame" x="162" y="384" width="77" height="32"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="172" y="430" width="57" height="30"/>
+                                    <rect key="frame" x="155" y="430" width="90" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="0gL-Ct-hBa" kind="presentation" id="iJ9-8O-eAv"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U3h-2m-c2b">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="80" y="213" width="240" height="128"/>
-                                </variation>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmO-id-AOy">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="8"/>
                                 <state key="normal" title="Open dashboard">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="143" y="502" width="115" height="30"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="127" y="502" width="146" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="openDash:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0IW-2d-e02"/>
@@ -68,16 +86,26 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="LmO-id-AOy" secondAttribute="trailing" constant="111" id="DGE-Nr-xCj"/>
+                            <constraint firstItem="LmO-id-AOy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="111" id="EQB-wp-sc4"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="U3h-2m-c2b"/>
                                 <exclude reference="LmO-id-AOy"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="DGE-Nr-xCj"/>
+                                <exclude reference="EQB-wp-sc4"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="U3h-2m-c2b"/>
                                 <include reference="LmO-id-AOy"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="DGE-Nr-xCj"/>
+                                <include reference="EQB-wp-sc4"/>
                             </mask>
                         </variation>
                     </view>
@@ -88,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-180" y="78"/>
+            <point key="canvasLocation" x="-211.5" y="160.5"/>
         </scene>
         <!--Login-->
         <scene sceneID="ZMb-Ia-rLO">
@@ -316,7 +344,7 @@
                         <viewControllerLayoutGuide type="top" id="q2t-gb-57W"/>
                         <viewControllerLayoutGuide type="bottom" id="4Ne-Go-ket"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Nma-z3-pfu">
+                    <view key="view" contentMode="scaleToFill" id="Nma-z3-pfu" customClass="PopupView" customModule="P4P" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -810,7 +838,7 @@
                         <viewControllerLayoutGuide type="top" id="QIl-9k-KXu"/>
                         <viewControllerLayoutGuide type="bottom" id="rbZ-2d-JKN"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BcK-iT-JfK">
+                    <view key="view" contentMode="scaleToFill" id="BcK-iT-JfK" customClass="PopupView" customModule="P4P" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -889,20 +917,20 @@
                                 <exclude reference="nL9-NT-Ybx"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="AlK-bD-Xdj"/>
+                                <exclude reference="XwU-dc-sw3"/>
+                                <exclude reference="oWP-V0-84w"/>
+                                <exclude reference="sYI-X6-4Gj"/>
+                                <exclude reference="MYF-hy-kyF"/>
+                                <exclude reference="Ofx-8w-b3U"/>
+                                <exclude reference="TkE-lj-sHU"/>
+                                <exclude reference="pyl-pe-vTs"/>
                                 <exclude reference="1N1-nl-rxp"/>
                                 <exclude reference="ihz-fo-L3g"/>
                                 <exclude reference="p0H-5u-5NL"/>
                                 <exclude reference="rSa-5L-V4p"/>
-                                <exclude reference="TkE-lj-sHU"/>
-                                <exclude reference="pyl-pe-vTs"/>
-                                <exclude reference="MYF-hy-kyF"/>
-                                <exclude reference="Ofx-8w-b3U"/>
-                                <exclude reference="XwU-dc-sw3"/>
-                                <exclude reference="AlK-bD-Xdj"/>
-                                <exclude reference="oWP-V0-84w"/>
-                                <exclude reference="sYI-X6-4Gj"/>
-                                <exclude reference="SpQ-2U-bSe"/>
                                 <exclude reference="LDs-Bp-jXV"/>
+                                <exclude reference="SpQ-2U-bSe"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -913,20 +941,20 @@
                                 <include reference="nL9-NT-Ybx"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="AlK-bD-Xdj"/>
+                                <include reference="XwU-dc-sw3"/>
+                                <include reference="oWP-V0-84w"/>
+                                <include reference="sYI-X6-4Gj"/>
+                                <include reference="MYF-hy-kyF"/>
+                                <include reference="Ofx-8w-b3U"/>
+                                <include reference="TkE-lj-sHU"/>
+                                <include reference="pyl-pe-vTs"/>
                                 <include reference="1N1-nl-rxp"/>
                                 <include reference="ihz-fo-L3g"/>
                                 <include reference="p0H-5u-5NL"/>
                                 <include reference="rSa-5L-V4p"/>
-                                <include reference="TkE-lj-sHU"/>
-                                <include reference="pyl-pe-vTs"/>
-                                <include reference="MYF-hy-kyF"/>
-                                <include reference="Ofx-8w-b3U"/>
-                                <include reference="XwU-dc-sw3"/>
-                                <include reference="AlK-bD-Xdj"/>
-                                <include reference="oWP-V0-84w"/>
-                                <include reference="sYI-X6-4Gj"/>
-                                <include reference="SpQ-2U-bSe"/>
                                 <include reference="LDs-Bp-jXV"/>
+                                <include reference="SpQ-2U-bSe"/>
                             </mask>
                         </variation>
                     </view>
@@ -951,6 +979,6 @@
         <image name="mapicon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QIk-LZ-Ci4"/>
+        <segue reference="gnR-HL-sUD"/>
     </inferredMetricsTieBreakers>
 </document>

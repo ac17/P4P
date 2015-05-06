@@ -11,13 +11,26 @@ import UIKit
 class ViewController: UIViewController, LoginViewControllerDelegate {
     //var tabBarController;
     
+    var backgroundView: UIImageView?
+    
     var userValidated = false  // Whether the user's username and password were authenticated.
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         userValidated = true   // Replace this with login logic
-        //self.tabBarController.selectedIndex = 1
+        
+        backgroundView = UIImageView(image: UIImage(named: "HomeScreen.png"))
+        backgroundView!.frame = UIScreen.mainScreen().bounds
+        self.view.insertSubview(backgroundView!, atIndex: 0)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
 
     override func didReceiveMemoryWarning() {

@@ -23,6 +23,8 @@ class PopupViewController: UIViewController, UIPickerViewDataSource,UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        (self.view as! PopupView).popupViewController = self
+        
         // make wheel of clubs and set textbox to use as input
         clubWheel = UIPickerView()
         clubWheel.dataSource = self

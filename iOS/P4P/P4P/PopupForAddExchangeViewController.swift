@@ -23,6 +23,8 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        (self.view as! PopupView).popupForAddExchangeViewController = self
+        
         // make wheel of clubs and set textbox to use as input
         clubWheel = UIPickerView()
         clubWheel.dataSource = self
@@ -66,7 +68,9 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
     //MARK: - Delegates and data sources
     //MARK: Data Sources
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        if pickerView === numPassesWheel && numPassesField.text == "" {
+        if pickerView === clubWheel && clubField.text == "" {
+            clubField.text = "Cannon"
+        } else if pickerView === numPassesWheel && numPassesField.text == "" {
             numPassesField.text = "1"
         }
         return 1

@@ -35,12 +35,14 @@
 		DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */; };
 		DC64ED791AF84A090014E48A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED781AF84A090014E48A /* ChatView.swift */; };
 		DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */; };
+		DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86CF531AF95CD000E0054F /* PopupView.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
 		DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB768B1AD3015B004A2CD9 /* ViewController.swift */; };
 		DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB768D1AD3015B004A2CD9 /* Main.storyboard */; };
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
+		DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDC303A1AF97892008C13E8 /* HomeScreen.png */; };
 		DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE489D81AF1CC65009599D3 /* menuicon.png */; };
 		DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -87,6 +89,7 @@
 		DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		DC64ED781AF84A090014E48A /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		DC86CF531AF95CD000E0054F /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 		DCAB76991AD3015B004A2CD9 /* P4PTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P4PTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
+		DCDC303A1AF97892008C13E8 /* HomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeScreen.png; sourceTree = "<group>"; };
 		DCE489D81AF1CC65009599D3 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuicon.png; path = Images.xcassets/menuicon.png; sourceTree = "<group>"; };
 		DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +204,8 @@
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
 				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				DC86CF531AF95CD000E0054F /* PopupView.swift */,
+				DCDC303A1AF97892008C13E8 /* HomeScreen.png */,
 				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
 				DCE489D81AF1CC65009599D3 /* menuicon.png */,
@@ -323,6 +329,7 @@
 			files = (
 				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
+				DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
 				A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */,
 				DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */,
@@ -401,6 +408,7 @@
 				DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */,
 				DC64ED791AF84A090014E48A /* ChatView.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,
+				DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
 				DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */,
