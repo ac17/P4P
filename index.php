@@ -14,7 +14,7 @@ include('login.php');
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- favicon.ico is in the root directory -->
-        <link rel="icon" href="img/ticket.png">
+        <link rel="icon" href="img/icon.png">
         
         <!-- Boilerplate -->
         <link rel="stylesheet" href="css/normalize.css">

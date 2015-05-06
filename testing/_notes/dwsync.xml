@@ -4,7 +4,7 @@
 <file name="randName.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744837200000000" remote="130744837200000000" />
 <file name="NPCs.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753664400000000" remote="130753664400000000" />
 <file name="AI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754114061221203" remote="130754365800000000" />
-<file name="controlRoom.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754167927752193" remote="130754428800000000" />
+<file name="controlRoom.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754258446837283" remote="130754509800000000" />
 <file name="controlRoom.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754183462818443" remote="130754434800000000" />
 <file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751312001470514" remote="130753795200000000" />
 <file name="getAllNPCs.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753409939566138" remote="130753661400000000" />

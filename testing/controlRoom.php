@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="User Dashboard">
     <meta name="author" content="">
-    <link rel="icon" href="../img/ticket.png">
+    <link rel="icon" href="../img/icon.png">
 
 	<!-- for HTML5 App -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>

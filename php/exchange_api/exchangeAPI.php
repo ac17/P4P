@@ -206,22 +206,22 @@ function getExchangeById($exchangeId)
 	if(!$query_result){
 		die("Could not query the database. " . mysql_error());
 	}
-	
-	$names = array();
-	if($exchange['type'] == "Offer")
-	{
-	   $netIds = json_decode($exchange['associatedExchanges']);
-	   foreach ($netIds as $netId)
-	   {
-		  array_push($names, getUserNameByNetId($netId));
-	   }
-	}
-			
+				
 	$exchanges = array();
 	
 	if ($query_result !== false)
 	{
-		while($exchange = mysql_fetch_array(($query_result))){	
+		while($exchange = mysql_fetch_array(($query_result))){
+			$names = array();
+			if($exchange['type'] == "Offer")
+			{
+			   $netIds = json_decode($exchange['associatedExchanges']);
+			   foreach ($netIds as $netId)
+			   {
+				  array_push($names, getUserNameByNetId($netId));
+			   }
+			}
+	
 			array_push($exchanges, array('id' =>$exchange['id'], 
 										 'club' =>$exchange['passClub'],
 										 'passNum' =>$exchange['passNum'],
