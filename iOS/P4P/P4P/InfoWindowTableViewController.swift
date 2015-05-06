@@ -16,6 +16,7 @@ class InfoWindowTableViewController: UITableViewController {
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
     var mapInfoExchangeIDArray: [String] = []
+    var mapInfoExchangeAlreadyMade: [String] = []
     var appNetID = ""
     
     override func viewDidLoad() {
@@ -52,11 +53,15 @@ class InfoWindowTableViewController: UITableViewController {
         var offer = mapInfoExchangeArray[indexPath.row]
         cell.textLabel!.text = offer
         
-        // nned to check if the offer contains the current logged in user
+        // need to check if the offer contains the current logged in user
         var offerID = mapInfoExchangeIDArray[indexPath.row]
         
-        // html request - get offer information; parse into users; check if contains current user
-        /******************* need to take care of ***********************/
+        println("current array of tapped exchanges")
+        println(mapInfoExchangeAlreadyMade)
+        // check if current user has already made that request
+        if contains(mapInfoExchangeAlreadyMade, offerID) {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        }
         
         // Configure the cell...
         return cell
@@ -65,6 +70,9 @@ class InfoWindowTableViewController: UITableViewController {
     // if you select a cell, make the request and change how the cell is displayed
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
+        mapInfoExchangeAlreadyMade.append(mapInfoExchangeIDArray[indexPath.row])
+        println("appended something i think")
+        println(mapInfoExchangeAlreadyMade)
         if cell!.accessoryType != UITableViewCellAccessoryType.Checkmark
         {
             cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
