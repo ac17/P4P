@@ -470,18 +470,6 @@ PROFPIC;
                   echo "</table>"; //Close the table in HTML
                 ?>  
               
-              <!-- <div class="chat-sidebar"> 
-              <?php 
-                //foreach($usersInteractedWith as $user) {
-                  /* retrieve the name of the user
-                    $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$user.'";'); 
-                    if (!$getName)
-                      $userName = "";
-                    else
-                      $userName = mysql_result($getName, 0);
-                  echo '<div class="sidebar-name"><a href="javascript:register_popup(\''.$user.'\', \''.$userName.'\');"><span>'.$userName.'</span></a></div>';
-                }*/
-              ?>-->
               </div> 
             </div>
           </div>        

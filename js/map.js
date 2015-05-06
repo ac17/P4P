@@ -102,7 +102,7 @@ function addUserToMap(user) {
 
       // link for chatting
       contentString = contentString + 
-      '<span id = "chatlink"><a onclick = "register_popup('+ user + ',' + user.name + ');" >Click here to chat</a></span>';
+      '<span id = "chatlink"><a onclick = "register_popup('+ user.netId + ',' + user.name + ');" >Click here to chat</a></span>';
 
       //offers
 	  var i;
