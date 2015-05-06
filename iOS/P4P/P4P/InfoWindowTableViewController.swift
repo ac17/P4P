@@ -16,7 +16,6 @@ class InfoWindowTableViewController: UITableViewController {
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
     var mapInfoExchangeIDArray: [String] = []
-    var mapInfoExchangeAlreadyMade: [String] = []
     var appNetID = ""
     
     override func viewDidLoad() {
@@ -56,27 +55,58 @@ class InfoWindowTableViewController: UITableViewController {
         // need to check if the offer contains the current logged in user
         var offerID = mapInfoExchangeIDArray[indexPath.row]
         
-        println("current array of tapped exchanges")
-        println(mapInfoExchangeAlreadyMade)
         // check if current user has already made that request
-        if contains(mapInfoExchangeAlreadyMade, offerID) {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        var getExchangeWithID = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/getExchangeById.php?exchangeId=" + offerID
+
+        println(getExchangeWithID)
+        // pull exchange information from server and check if user has made a request for it
+        let url = NSURL(string: getExchangeWithID)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            let json = JSON(data: data)
+            //println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            
+            println(json[0]["associatedExchanges"])
+            
+            var arrayExchangeString = (json[0]["associatedExchanges"].string)
+            
+            if let dataFromString = arrayExchangeString!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                let jsonExchange = JSON(data: dataFromString)
+                
+                var index = 0
+                for (key: String, subJson: JSON) in jsonExchange {
+                    if (jsonExchange[index].string == self.appNetID) {
+                        println("shit there's a match")
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                            cell.selectionStyle = UITableViewCellSelectionStyle.None
+                            cell.setNeedsDisplay()
+                        }
+                    }
+                    index++
+                }
+            }
+            
+
         }
+
+        task.resume()
+        println("this cell might've changed")
+
+        return cell
         
         // Configure the cell...
-        return cell
     }
     
     // if you select a cell, make the request and change how the cell is displayed
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        mapInfoExchangeAlreadyMade.append(mapInfoExchangeIDArray[indexPath.row])
-        println("appended something i think")
-        println(mapInfoExchangeAlreadyMade)
         if cell!.accessoryType != UITableViewCellAccessoryType.Checkmark
         {
             cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
-            
+            cell!.selectionStyle = UITableViewCellSelectionStyle.None
+
             var pursueOfferString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/pursueOffer.php?"
             pursueOfferString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
             //println(pursueOfferString)
