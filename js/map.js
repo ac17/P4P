@@ -85,24 +85,22 @@ function addUserToMap(user) {
 	
 	if(user.photo == "" || user.photo == null)
 	{
-		photo = '<img class="miniProfilePic" src="img/default.jpg" width="100%"></img>';
+		photo = '<div id = "chatlink"><a onclick="register_popup(\''+user.netId+'\', \''+user.name+'\')" ><img class="miniProfilePic" src="img/default.jpg" width="100%"></img>';
 	}
 	else
 	{
-		photo = '<img class="miniProfilePic" src="img/'+user.photo+'" width="100%"></img>';
+		photo = '<div id = "chatlink"><a onclick="register_popup(\''+user.netId+'\', \''+user.name+'\')" ><img class="miniProfilePic" src="img/'+user.photo+'" width="100%"></img>';
 	}
-		
+	
+	var chat = '<div id = "chatlink"><a onclick="register_popup(\''+user.netId+'\', \''+user.name+'\')" >Chat</a></div>';
+	
 	var contentString = '<div class="infoWinContent">'+
       '<h4 class="infoWinHeading">'+
 	  photo+
 	  " "+
 	  user.name +
-	  '</h4>'+
+	  '</h4></a>'+
       '<div class="infoWinbodyContent">';
-
-      // link for chatting
-      //contentString = contentString + 
-      //'<div id = "chatlink"><a href = "./php/chat.php?recipient='+user.netId+'">Click here to chat</a><div>';
 
       //offers
 	  var i;
