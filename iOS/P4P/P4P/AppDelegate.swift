@@ -14,10 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var userNetid: String = ""
-    var pwHash: String = ""
-    var firstName: String = ""
-    var lastName: String = ""
+    var userNetid: String = "ffjiang"
+    var pwHash: String = "5d41402abc4b2a76b9719d911017c59"
+    var firstName: String = "Frank"
+    var lastName: String = "Jiang"
 
     let googleMapsApiKey = "AIzaSyCFo0cjrjm2JkotEwtNkDeFrZLrqSFWjLk"
     

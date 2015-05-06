@@ -27,11 +27,11 @@ class SidePanelViewController: UITableViewController {
         
         // Allow selections
         (self.view as! UITableView).allowsSelection = true
-        /*
+        
         fillerView = UIView(frame: CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + self.view.frame.size.height, self.view.frame.size.width, UIScreen.mainScreen().bounds.size.height - self.view.frame.origin.y - self.view.frame.size.height))
         fillerView.backgroundColor = UIColor.grayColor()
         self.view.insertSubview(fillerView, atIndex: 10)
-        */
+        
         // Cache conversations
         for (user, conv) in convos {
             let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/chatRetrieveJSON.php?recipient=" + user + "&user=" + (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid)
@@ -63,8 +63,8 @@ class SidePanelViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         self.view.frame.size.height = (self.view as! UITableView).contentSize.height
-        /*fillerView.frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height
-        fillerView.frame.size.height = UIScreen.mainScreen().bounds.size.height - self.view.frame.origin.y - self.view.frame.size.height*/
+        fillerView.frame.origin.y = self.view.frame.origin.y + self.view.frame.size.height
+        fillerView.frame.size.height = UIScreen.mainScreen().bounds.size.height - self.view.frame.origin.y - self.view.frame.size.height
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

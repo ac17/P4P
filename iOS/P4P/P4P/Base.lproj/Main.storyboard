@@ -64,8 +64,30 @@
                                     <segue destination="0gL-Ct-hBa" kind="presentation" identifier="presentRegister" id="iJ9-8O-eAv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmR-cX-z7Q">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Open Dashboard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="122" y="619" width="117" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="aJd-5x-5cz" kind="show" id="mAv-vg-nPU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="YmR-cX-z7Q"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="YmR-cX-z7Q"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <segue destination="aJd-5x-5cz" kind="show" identifier="openDash" id="gnR-HL-sUD"/>
@@ -935,4 +957,7 @@
         <image name="chaticon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mAv-vg-nPU"/>
+    </inferredMetricsTieBreakers>
 </document>
