@@ -514,7 +514,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sh4-1C-gsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xPi-st-NcB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2077.5" y="2387.25"/>
+            <point key="canvasLocation" x="2050.5" y="2427.75"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="xtG-CM-7QI">
+            <objects>
+                <tableViewController id="oVw-IY-jxw" customClass="OfferMoreInformationViewController" customModule="P4P" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rgY-dV-QnM">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OfferAcceptReject" id="vHG-Mw-jcG">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vHG-Mw-jcG" id="1lD-6n-sp2">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oVw-IY-jxw" id="Aze-jC-jd9"/>
+                            <outlet property="delegate" destination="oVw-IY-jxw" id="KDp-31-DVI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="nt6-FF-ss7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="yCS-8m-3GC">
+                            <connections>
+                                <segue destination="tbO-S5-i6v" kind="unwind" unwindAction="returnToUserActiveExchanges:" id="meR-Jp-Xnj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HDv-hp-H08" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tbO-S5-i6v" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2937" y="1471.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AX7-pq-TPm">
+            <objects>
+                <navigationController id="OyN-QQ-6JG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RTZ-A6-QbD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oVw-IY-jxw" kind="relationship" relationship="rootViewController" id="Dzo-0r-dr6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FS9-Kl-lna" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2181" y="1471.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NF1-YD-NIg">
@@ -584,11 +633,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activeExchangeTableView" destination="V9u-ze-cUr" id="BI5-2L-OM4"/>
+                        <segue destination="OyN-QQ-6JG" kind="presentation" identifier="offerAcceptDeclinePop" id="IvP-1E-mXk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7k-NM-P6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="1388"/>
+            <point key="canvasLocation" x="1381.5" y="1471.5"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="BC9-0E-z0h">
@@ -971,7 +1021,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dqu-Mb-4MX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="kkL-8w-chW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2343" y="1505.25"/>
+            <point key="canvasLocation" x="2160" y="1967.25"/>
         </scene>
     </scenes>
     <resources>
