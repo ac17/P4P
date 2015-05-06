@@ -38,7 +38,7 @@ function getUserActiveExchanges(currentUserNetId)
 					{
 						if (exchange.passNum > 1)
 						{
-							passNoun = "pasdfdfdsses";
+							passNoun = "passes";
 						}
 						document.getElementById("requestList").innerHTML = document.getElementById("requestList").innerHTML + '<li class="ui-widget-content col-md-12" requestid="'+exchange.id+'"><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + " " + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + "</div></li>";
 					}
