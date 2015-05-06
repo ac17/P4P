@@ -13,11 +13,10 @@ function randString($length)
 }
 
 /* Enter account info in table and send verification email. */
-function signup($netId, $fName, $lName, $pw, &$err) {
+function signup($netId, $fName, $lName, $pwHash, &$err) {
 	$netId = stripslashes(htmlspecialchars($netId));
 	$fName = stripslashes(htmlspecialchars($fName));
 	$lName = stripslashes(htmlspecialchars($lName));
-	$pw = stripslashes(htmlspecialchars($pw));
 	
 	/* check for duplicate */
 	$checkForDupQ = "SELECT * FROM Users WHERE netId='{$netId}';";
@@ -36,7 +35,7 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 	
 	/* generate random verification code and insert non-verified user info into table */
 	$vc = randString(12);
-	$query = "INSERT INTO Users (firstName, lastName, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', '" . $netId . "', md5('" . $pw . "'), 'FALSE', '{$vc}');";
+	$query = "INSERT INTO Users (firstName, lastName, photo, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', NULL, '" . $netId . "', '" . $pwHash . "', 'FALSE', '{$vc}');";
 	$result = mysql_query($query);
 	if (!$result) {
 		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
@@ -50,9 +49,6 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 	/* send verification email */
 	$to = $netId . "@princeton.edu";
 	$subject = "Welcome to Passes for Passes!";
-	$headers = "From: ec2-54-149-32-72.us-west-2.compute.amazonaws.com";
-	$headers .= "MIME-Version: 1.0" . "\r\n";
-	$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
 	$message = "
 	<html>
 	<head>
@@ -64,7 +60,7 @@ function signup($netId, $fName, $lName, $pw, &$err) {
 		<p>Best,<br>The Passes for Passes Team</p>
 	</body>
 	</html>";
-	/* mail($to, $subject, "Testing!"); */
+	mailer($fName, $to, $subject, $message);
 	return TRUE;
 }
 ?>

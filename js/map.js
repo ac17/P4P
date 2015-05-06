@@ -9,6 +9,7 @@ function initialize() {
 	  zoom: 17
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -35,12 +36,45 @@ function getMatchingExchanges()
 				for (i=0; i<json.Users.length; i++) { 
 					var user = json.Users[i];
 					addUserToMap(user);
-				}  
-			} 
+				} 
+				updateMapToShowAllMarkers();
+			}
 		}
 	}
 	
 	xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
+	xmlhttp.send();
+}
+
+function getAllExchanges()
+{
+	deleteMarkers();
+	if (window.XMLHttpRequest)
+	{//  IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{//  IE6, IE5
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	  
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{			
+			var json = JSON.parse(xmlhttp.responseText);
+			if (json.Users.length>0) {
+				var i;
+				for (i=0; i<json.Users.length; i++) { 
+					var user = json.Users[i];
+					addUserToMap(user);
+				} 
+				updateMapToShowAllMarkers();
+			}
+		}
+	}
+	
+	xmlhttp.open("GET", "./php/getAllExchanges.php", true);
 	xmlhttp.send();
 }
 
@@ -88,7 +122,8 @@ function addUserToMap(user) {
 	var marker = new google.maps.Marker({
 	  position: myLatlng,
 	  map: map,
-	  title: location.name
+	  title: location.name,
+	  icon: '../img/ticket.png'
 	});
 	
 	google.maps.event.addListener(marker, 'click', function() {
@@ -119,6 +154,11 @@ function pursueOffer(offerId) {
 			{
 				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
+					if(xmlhttp.responseText != "")
+					{
+						showError("A Small Problem...", xmlhttp.responseText);
+						getMatchingExchanges();
+					}
 				}
 			}
 
@@ -148,6 +188,28 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
   infoWindows = [];
+}
+
+function updateMapToShowAllMarkers()
+{
+	var bounds = new google.maps.LatLngBounds();
+	for(i=0;i<markers.length;i++) {
+	   bounds.extend(markers[i].getPosition());
+	}
+	
+	//center the map to the geometric center of all markers
+	map.setCenter(bounds.getCenter());
+	
+	map.fitBounds(bounds);
+	
+	//remove one zoom level to ensure no marker is on the edge.
+	map.setZoom(map.getZoom()-1); 
+	
+	// set a minimum zoom 
+	// if you got only 1 marker or all markers are on the same address map will be zoomed too much.
+	if(map.getZoom()> 15){
+	  map.setZoom(15);
+	}
 }
 
 function shareCurrentLocation(currentUserNetId)

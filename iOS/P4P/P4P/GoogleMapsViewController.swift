@@ -165,9 +165,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // replace spaces in club name with pluses
         clubString = clubString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchanges.php?"
-        requestString += "date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
-        //println(requestString)
+        var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchangesUserSpecific.php?"
+        requestString += "netId=" + appNetID + "&date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
+        println(requestString)
         
         // pull info from server, display markers
         let url = NSURL(string: requestString)

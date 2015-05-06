@@ -25,7 +25,7 @@ if(isset($_SESSION['user'])){
     			$name = mysql_result($result, 0);
     	}
     		
-        echo "<div class='msgln'>(".$row['Time'].") <b>".$name."</b>: ".stripslashes(htmlspecialchars($row['Conversation']))."<br></div>";
+        echo "<div class='msgln'><span title = '".$row['Time']."'><b>".$name."</b>: ".stripslashes(htmlspecialchars($row['Conversation']))."</span><br></div>";
     }
 }
 ?>

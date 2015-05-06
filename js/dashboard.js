@@ -26,10 +26,13 @@ $(function() {
 	
 	// functions for the elements of search form 
 	$( "#searchPassDate" ).datepicker({
+	  defaultDate: new Date(),
 	  onSelect: function( dateText ) {
 		getMatchingExchanges();
 	  }
 	 });
+	
+	$("#searchPassDate").val($.datepicker.formatDate("mm/dd/yy", new Date()));
 	
 	$( "#searchEatingClub" ).selectmenu({
 	  change: function( event, data ) {
@@ -58,8 +61,12 @@ $(function() {
 	 });       
 
 	// functions for the elements of request/offer form 
-	$( "#passDate" ).datepicker();
+	$( "#passDate" ).datepicker({
+		defaultDate: new Date()
+	});
 	
+	$("#passDate").val($.datepicker.formatDate("mm/dd/yy", new Date()));
+
 	$( "#eatingClub" ).selectmenu();
 	
 	var spinner = $( "#spinner" ).spinner({
@@ -102,7 +109,7 @@ $(function() {
 					getUserActiveExchanges(document.getElementById("netId").value);
 					spinner.spinner( "value", 0 );
 					document.getElementById("comment").value = "";
-					$( "#passDate" ).val("");
+					$("#passDate").val($.datepicker.formatDate("mm/dd/yy", new Date()));
 				}
 			}
 
@@ -158,10 +165,12 @@ $(function() {
 
 function showError(errorTitle, errorMsg)
 {
-	document.getElementById("error-dialog").title = errorTitle;
+	alert(errorTitle); 
+	document.getElementById("error-dialog").setAttribute("title", errorTitle);
 	document.getElementById("errorMessage").innerHTML = errorMsg;
 	$( "#error-dialog" ).dialog( "open" );
 }
+
 
 function loadUserData(netId)
 {

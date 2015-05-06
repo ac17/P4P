@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744572785518175" remote="130745553600000000" />
-<file name="exchangeManager.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744566617305373" remote="130745553600000000" />
+<file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130749943709819682" remote="130753683600000000" />
+<file name="exchangeManager.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753440210207519" remote="130753692000000000" />
 <file name="ie10-viewport-bug-workaround.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130736659619213031" remote="130745553600000000" />
-<file name="dashboard.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744560679922443" remote="130745553600000000" />
+<file name="dashboard.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753421123415817" remote="130753672800000000" />
 <file name="smoothscroll.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741419138086506" remote="130745553600000000" />
+<file name="popup.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130749708430402469" remote="130749960000000000" />
 </dwsync>

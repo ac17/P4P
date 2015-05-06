@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="createUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745280819704088" remote="130745532600000000" />
+<file name="createUsers.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745291694826109" remote="130753656600000000" />
 <file name="randName.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744837200000000" remote="130744837200000000" />
-<file name="NPCs.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745582400000000" remote="130745582400000000" />
-<file name="AI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130745337838329651" remote="130745589600000000" />
+<file name="NPCs.txt" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753664400000000" remote="130753664400000000" />
+<file name="AI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752219403735792" remote="130753656600000000" />
+<file name="controlRoom.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753405629269603" remote="130753657800000000" />
+<file name="controlRoom.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753411549588226" remote="130753663200000000" />
+<file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751312001470514" remote="130751563800000000" />
+<file name="getAllNPCs.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753409939566138" remote="130753661400000000" />
+<file name="purgeAllNPCs.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750010039933548" remote="130753656600000000" />
+<file name="asyncAI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130750006927265513" remote="130753656600000000" />
+<file name="getServerStats.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130752340174103461" remote="130753656600000000" />
+<file name="controlRoom.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751743289410938" remote="130753656600000000" />
+<file name="getGarbage.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751307574337296" remote="130753656600000000" />
+<file name="cleanChatMessages.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751305330728969" remote="130753656600000000" />
+<file name="cleanExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130751307696724297" remote="130753656600000000" />
+<file name="deleteNPC.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753410433044363" remote="130753662000000000" />
 </dwsync>

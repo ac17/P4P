@@ -40,10 +40,10 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/inbox.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/chat_style.css" />
+    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
-    <link type="text/css" rel="stylesheet" href="/css/chatPopup.css"/>
+    <link type="text/css" rel="stylesheet" href="css/chatPopup.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -70,6 +70,15 @@
         </script>
 CHANGESETTINGS;
     }
+        if (isset($_POST['hiddenProf']) && $_POST['hiddenProf'] == 'true') {
+            echo <<< CHANGEPP
+            <script type="text/javascript">
+                $(window).load(function(){
+                    $('#settingsModal').modal('show');
+                });
+            </script>
+CHANGEPP;
+        }
     ?>
 
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -105,16 +114,27 @@ CHANGESETTINGS;
                     $settingsForm = <<< SETTINGS
                     <form action="{$_SERVER['PHP_SELF']}" method="post" id="settingsForm">
                       <h3>Change your password.</h3>
-                        <input type="password" class="form-control" placeholder="Old password" id="oldPW" name="oldPW" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" placeholder="Old password" id="oldPW" name="oldPW" aria-describedby="basic-addon1" required>
                         <br>
-                        <input type="password" class="form-control" placeholder="New password" id="newPW" name="newPW" aria-describedby="basic-addon1">
+                        <input type="password" class="form-control" placeholder="New password" id="newPW" name="newPW" aria-describedby="basic-addon1" required>
                         <br>
                         <input type="hidden" name="hiddenSettings" id="hiddenSettings" value="true">
                         <button class="btn btn-default" id="settingsSubmit" type="submit" form="settingsForm" value="Submit">Submit</button>
                     </form>
 SETTINGS;
+                    $changePhotoForm = <<<PROFPIC
+                    <form action="{$_SERVER['PHP_SELF']}" method="post" id="photoForm" enctype="multipart/form-data">
+                      <h3>Change your profile photo.</h3>
+                      New profile photo: <input type="file" name="profPic" id="profPic" required><br>
+                      <input type="hidden" name="hiddenProf" id="hiddenProf" value="true">
+                      <button class="btn btn-default" id="profSubmit" type="submit" form="photoForm" value="Submit">Submit</button>
+                    </form>
+PROFPIC;
                     $err = array();
                     $success['changeSettings'] = FALSE;
+                    $success['changeProfPic'] = FALSE;
+
+                    /* Process password change. */
                     if (isset($_POST['hiddenSettings']) && $_POST['hiddenSettings'] == 'true') {
                       $old = stripslashes(htmlspecialchars($_POST['oldPW']));
                       $new = stripslashes(htmlspecialchars($_POST['newPW']));
@@ -144,6 +164,68 @@ SETTINGS;
                     else {
                       echo $settingsForm;
                     }
+
+                    /* Process profile photo change. */
+                    if (isset($_POST['hiddenProf']) && $_POST['hiddenProf'] == 'true') {
+                      $target_dir = "img/";
+                      $target_file = $target_dir . basename($_FILES["profPic"]["name"]);
+                      $uploadOk = 1;
+                      $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+                      // Check if image file is a actual image or fake image
+                      if(isset($_POST["submit"])) {
+                          $check = getimagesize($_FILES["profPic"]["tmp_name"]);
+                          if($check !== false) {
+                              $err['changeProfPic'] = "File is an image - " . $check["mime"] . ".";
+                              $uploadOk = 1;
+                          } else {
+                              $err['changeProfPic'] = "File is not an image.";
+                              $uploadOk = 0;
+                          }
+                      }
+                      // Check if file already exists
+                      if (file_exists($target_file)) {
+                          $err['changeProfPic'] = "Sorry, file already exists.";
+                          $uploadOk = 0;
+                      }
+                      // Check file size
+                      if ($_FILES["profPic"]["size"] > 5000000) {
+                          $err['changeProfPic'] = "Sorry, your file is too large.";
+                          $uploadOk = 0;
+                      }
+                      // Allow certain file formats
+                      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                      && $imageFileType != "gif" ) {
+                          $err['changeProfPic'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                          $uploadOk = 0;
+                      }
+                      // Check if $uploadOk is set to 0 by an error
+                      if ($uploadOk == 0) {
+                          // $err['changeProfPic'] = "Sorry, your file was not uploaded.";
+                      // if everything is ok, try to upload file
+                      } else {
+                          if (move_uploaded_file($_FILES["profPic"]["tmp_name"], $target_file)) {
+                            /* Store name of profile photo in database. */
+                            $profQ = 'UPDATE Users SET photo="' . basename($_FILES["profPic"]["name"]) . '" WHERE netId="' . $_SESSION['user']['netId'] . '";';
+                            $profR = mysql_query($profQ);
+                            if ($profR)
+                              $success['changeProfPic'] = "The file ". basename($_FILES["profPic"]["name"]). " has been uploaded.";
+                            else
+                              $err['changeProfPic'] = "Sorry, there was an error uploading your file.";
+                          } else {
+                              $err['changeProfPic'] = "Sorry, there was an error uploading your file.";
+                          }
+                      }
+
+                      /* Print appropriate success or error message. */
+                      if ($success['changeProfPic'])
+                        echo "<p>" . $success['changeProfPic'] . "</p>";
+                      else
+                        echo '<div class="alert alert-danger" role="alert">'. $err['changeProfPic'] .'</div>';
+                    }
+                    else {
+                      echo $changePhotoForm;
+                    }
                     ?>
                 </div>
                 <div class="modal-footer">
@@ -159,11 +241,14 @@ SETTINGS;
           <ul class="nav nav-sidebar">
           <!-- User Info -->
           <?php
-          		echo '<img src="img/palm.jpg" width="100%" height="100%"></img>';
+            if (!empty($_SESSION['user']['photo']))
+              echo '<img src="img/' . $_SESSION['user']['photo'] . '" width="100%"></img>';
+            else
+          		echo '<img src="img/default.jpg" width="100%"></img>';
 				$RequestedQuery = "SELECT reputation FROM Users WHERE netId='{$_SESSION['user']['netId']}' LIMIT 1;";
               	$RequestedResult = mysql_query($RequestedQuery);
 				$Reputation = mysql_fetch_array(($RequestedResult));
-				echo "Reputation: " . $Reputation['reputation'];
+				echo "<br>Reputation: " . $Reputation['reputation'];
           ?>
           <br /><br /><br />
           <!-- Notifications -->
@@ -223,27 +308,24 @@ SETTINGS;
               <div id="tab-1">
               	<div class="col-md-12">          
                     <div class="col-md-4">
-                    <form action="#">
-                      <fieldset>
-                        <label for="searchEatingClub">Eating Club: </label>
-                        <select name="searchEatingClub" id="searchEatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap & Gown</option>
-                          <option>Tiger Inn</option>
-                          <option>All</option>
-                        </select>
-                        </fieldset>
-                    </form>
+                    <label for="searchEatingClub">Eating Club: </label>
+                    <select name="searchEatingClub" id="searchEatingClub">
+                      <option>Ivy Club</option>
+                      <option>Tiger Inn</option>
+                      <option selected="selected">Colonial</option>
+                      <option>Cottage</option>
+                      <option>Cap and Gown</option>
+                      <option>Tiger Inn</option>
+                      <option>All</option>
+                    </select>
                     </div>
                     <div class="col-md-4">
                     <label for="numPasses">Number of Passes:</label>
                     <input id="numPasses" name="value">
                     </div>
                     <div class="col-md-4">
-                    <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
+                    <label for="passDate">Pass Date:</label>
+                    <input type="text" id="searchPassDate" onChange=""><br />
                     </div>
                 </div>
                 
@@ -262,7 +344,8 @@ SETTINGS;
               <div id="tab-2">                    
                 <div class="col-md-12">          
                     <div class="col-md-4">
-                    Pass Date: <br /><input type="text" id="passDate"><br /><br />
+                    <label for="passDate">Pass Date:</label>
+                    <input type="text" id="passDate"><br /><br />
 					</div>
                 	<div class="col-md-4">
                     <label for="spinner">Number of Passes:</label>
@@ -277,7 +360,7 @@ SETTINGS;
                           <option>Tiger Inn</option>
                           <option selected="selected">Colonial</option>
                           <option>Cottage</option>
-                          <option>Cap & Gown</option>
+                          <option>Cap and Gown</option>
                         </select>
                         </fieldset>
                     </form>
@@ -296,14 +379,14 @@ SETTINGS;
                  </div>
 
                 <div class="col-md-12"><br  /></div>
-              	<div class="col-md-12">Trades</div>
                 <div class="col-md-12"><br  /></div>
+              	<div class="col-md-12"><div class="tableTite">Trades</div></div>
                 <div class="col-md-12"><br  /></div>
                 <div class="col-md-12" id="tradeList">
                 </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Open Offers</div>
+                <div class="col-md-12"><div class="tableTite">Your Open Offers</div></div>
                 <div class="col-md-12">
                     <ol id="offerList" class="selectable">
                     </ol>
@@ -313,7 +396,7 @@ SETTINGS;
                 </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Pending Requests</div>
+                <div class="col-md-12"><div class="tableTite">Your Pending Requests</div></div>
                 <div class="col-md-12">
                     <ol id="requestList" class="selectable">
                     </ol>
@@ -357,6 +440,9 @@ SETTINGS;
                     $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$otherUser.'";'); 
                     if (!$getName)
                       $otherUsername = "";
+                    else if (mysql_num_rows($getName) == 0){
+                      $otherUsername = "";
+                    }
                     else
                       $otherUsername = mysql_result($getName, 0);
 
@@ -368,176 +454,27 @@ SETTINGS;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
-                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:70%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');" >'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
-                    /*else
-                      echo '<tr><td>' . $userFrom . '</td><td>' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name*/
                     $counter = $counter + 1;    
                   }
 
                   echo "</table>"; //Close the table in HTML
                 ?>  
-
-
-                <!-- Popup Chat like facebook -->
-                <script>
-                //this function can remove a array element.
-                Array.remove = function(array, from, to) {
-                  var rest = array.slice((to || from) + 1 || array.length);
-                  array.length = from < 0 ? array.length + from : from;
-                  return array.push.apply(array, rest);
-                };
-
-                //this variable represents the total number of popups can be displayed according to the viewport width
-                var total_popups = 0;
-            
-                //arrays of popups ids
-                var popups = [];
-
-                //this is used to close a popup
-                function close_popup(id)
-                {
-                  for(var iii = 0; iii < popups.length; iii++)
-                  {
-                    if(id == popups[iii])
-                    {
-                      Array.remove(popups, iii);
-
-                      document.getElementById(id).style.display = "none";
-
-                      calculate_popups();
-
-                      return;
-                    }
-                  }   
-                }
-
-                //displays the popups. Displays based on the maximum number of popups that can be displayed on the current viewport width
-                function display_popups()
-                {
-                  var right = 220;
-
-                  var iii = 0;
-                  for(iii; iii < total_popups; iii++)
-                  {
-                    if(popups[iii] != undefined)
-                    {
-                      var element = document.getElementById(popups[iii]);
-                      element.style.right = right + "px";
-                      right = right + 320;
-                      element.style.display = "block";
-                    }
-                  }
-
-                  for(var jjj = iii; jjj < popups.length; jjj++)
-                  {
-                    var element = document.getElementById(popups[jjj]);
-                    element.style.display = "none";
-                  }
-                }
-            
-                //creates markup for a new popup. Adds the id to popups array.
-                function register_popup(id, name)
-                {
-
-                  for(var iii = 0; iii < popups.length; iii++)
-                  {   
-                    //already registered. Bring it to front.
-                    if(id == popups[iii])
-                    {
-                      Array.remove(popups, iii);
-
-                      popups.unshift(id);
-
-                      calculate_popups();
-
-
-                      return;
-                    }
-                  }               
-
-                  var element = '<div class="popup-box chat-popup" id="'+ id +'">';
-                  element = element + '<div class="popup-head">';
-                  element = element + '<div class="popup-head-left">'+ name +'</div>';
-                  element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-                  element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';
-
-                  document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
-
-                  popups.unshift(id);
-
-                  calculate_popups();
-
-                }
-
-                //calculate the total number of popups suitable and then populate the toatal_popups variable.
-                function calculate_popups()
-                {
-                  var width = window.innerWidth;
-                  if(width < 540)
-                  {
-                    total_popups = 0;
-                  }
-                  else
-                  {
-                    width = width - 200;
-                    //320 is width of a single popup box
-                    total_popups = parseInt(width/320);
-                  }
-
-                  display_popups();
-
-                }
-
-               //recalculate when window is loaded and also when window is resized.
-                window.addEventListener("resize", calculate_popups);
-                window.addEventListener("load", calculate_popups);           
-              </script>
               
-              <div class="chat-sidebar">
-              <?php
-                foreach($usersInteractedWith as $user) {
-                  /* retrieve the name of the user*/
+              <!-- <div class="chat-sidebar"> 
+              <?php 
+                //foreach($usersInteractedWith as $user) {
+                  /* retrieve the name of the user
                     $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$user.'";'); 
                     if (!$getName)
                       $userName = "";
                     else
                       $userName = mysql_result($getName, 0);
-                  echo '<div class="sidebar-name"><a href="javascript:register_popup("'.$user.'", "'.$userName.'");"><span>'.$userName.'</span></a></div>';
-                }
-              ?>
-              </div>
-              <!--
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('narayan-prusty', 'Narayan Prusty');">
-                     <span>Narayan Prusty</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qnimate', 'QNimate');">
-                    <span>QNimate</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qscutter', 'QScutter');">
-                    <span>QScutter</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qidea', 'QIdea');">                    
-                    <span>QIdea</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qazy', 'QAzy');">
-                    <span>QAzy</span>
-                  </a>
-                </div>
-                <div class="sidebar-name">
-                  <a href="javascript:register_popup('qblock', 'QBlock');">
-                    <span>QBlock</span>
-                  </a>
-                </div> -->             
+                  echo '<div class="sidebar-name"><a href="javascript:register_popup(\''.$user.'\', \''.$userName.'\');"><span>'.$userName.'</span></a></div>';
+                }*/
+              ?>-->
+              </div> 
             </div>
           </div>        
         </div>
@@ -555,6 +492,7 @@ SETTINGS;
 	<script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/popup.js"></script>
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
@@ -563,7 +501,7 @@ SETTINGS;
   </p>
   </div>
 
-  <div id="error-dialog" title="Invalid Number of Passes">
+   <div id="error-dialog" title="We ran into a problem...">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
     <div id="errorMessage"></div>
