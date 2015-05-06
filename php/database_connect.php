@@ -3,6 +3,7 @@
 session_start();
 //Get login information 
 require("database_login_info.php");
+global $error, $connection, $database_select;
 //Create a generic error message
 $error = "An error occurred. Please refresh this page.";
 //Connect to to the server 

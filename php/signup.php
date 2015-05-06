@@ -29,7 +29,7 @@ function signup($netId, $fName, $lName, $pwHash, &$err) {
 		}
 	}
 	else {
-		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
+		echo mysql_error() . "\n";
 		return FALSE;
 	}
 	
@@ -38,7 +38,7 @@ function signup($netId, $fName, $lName, $pwHash, &$err) {
 	$query = "INSERT INTO Users (firstName, lastName, photo, netId, password, verified, verifCode) VALUES ('" . $fName . "', '" . $lName . "', NULL, '" . $netId . "', '" . $pwHash . "', 'FALSE', '{$vc}');";
 	$result = mysql_query($query);
 	if (!$result) {
-		echo mysql_errno($connection) . ": " . mysql_error($connection) . "\n";
+		echo mysql_error() . "\n";
 		return FALSE;
 	}
 
