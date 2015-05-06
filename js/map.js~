@@ -19,18 +19,18 @@ function getMatchingExchanges()
 	deleteMarkers();
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  getMatchingExchanges_xmlhttp = new XMLHttpRequest();
+	  xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  getMatchingExchanges_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	getMatchingExchanges_xmlhttp.onreadystatechange=function()
+	xmlhttp.onreadystatechange=function()
 	{
-		if (getMatchingExchanges_xmlhttp.readyState==4 && getMatchingExchanges_xmlhttp.status==200)
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{			
-			var json = JSON.parse(getMatchingExchanges_xmlhttp.responseText);
+			var json = JSON.parse(xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
 				for (i=0; i<json.Users.length; i++) { 
@@ -43,8 +43,8 @@ function getMatchingExchanges()
 		}
 	}
 	
-	getMatchingExchanges_xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
-	getMatchingExchanges_xmlhttp.send();
+	xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
+	xmlhttp.send();
 }
 
 function getAllExchanges()
@@ -52,18 +52,18 @@ function getAllExchanges()
 	deleteMarkers();
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  getAllExchanges_xmlhttp = new XMLHttpRequest();
+	  xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  getAllExchanges_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	getAllExchanges_xmlhttp.onreadystatechange=function()
+	xmlhttp.onreadystatechange=function()
 	{
-		if (getAllExchanges_xmlhttp.readyState==4 && getAllExchanges_xmlhttp.status==200)
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{			
-			var json = JSON.parse(getAllExchanges_xmlhttp.responseText);
+			var json = JSON.parse(xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
 				for (i=0; i<json.Users.length; i++) { 
@@ -76,8 +76,8 @@ function getAllExchanges()
 		}
 	}
 	
-	getAllExchanges_xmlhttp.open("GET", "./php/getAllExchanges.php", true);
-	getAllExchanges_xmlhttp.send();
+	xmlhttp.open("GET", "./php/getAllExchanges.php", true);
+	xmlhttp.send();
 }
 
 function addUserToMap(user) {
@@ -104,8 +104,8 @@ function addUserToMap(user) {
 
 
       // link for chatting
-      //contentString = contentString + 
-      //'<span id = "chatlink"><a onclick = "register_popup(\''+ user.netId + '\',\'' + user.name + '\');" >Chat</a></span>';
+      contentString = contentString + 
+      '<span id = "chatlink"><a onclick = "register_popup(\''+ user.netId + '\',\'' + user.name + '\');" >Chat</a></span>';
 
 
       //offers
@@ -162,27 +162,27 @@ function pursueOffer(offerId) {
 	
 	if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
-			  pursueOffer_xmlhttp = new XMLHttpRequest();
+			  xmlhttp = new XMLHttpRequest();
 			}
 			else
 			{//  IE6, IE5
-			  pursueOffer_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			  
-			pursueOffer_xmlhttp.onreadystatechange=function()
+			xmlhttp.onreadystatechange=function()
 			{
-				if (pursueOffer_xmlhttp.readyState==4 && pursueOffer_xmlhttp.status==200)
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
-					if(pursueOffer_xmlhttp.responseText != "")
+					if(xmlhttp.responseText != "")
 					{
-						showError("A Small Problem...", pursueOffer_xmlhttp.responseText);
+						showError("A Small Problem...", xmlhttp.responseText);
 						getMatchingExchanges();
 					}
 				}
 			}
 
-			pursueOffer_xmlhttp.open("GET", "./php/pursueOffer.php?netId=" + document.getElementById("netId").value + "&offerId=" + offerId, true);
-			pursueOffer_xmlhttp.send();
+			xmlhttp.open("GET", "./php/pursueOffer.php?netId=" + document.getElementById("netId").value + "&offerId=" + offerId, true);
+			xmlhttp.send();
 }
 
 // Sets the map on all markers in the array.
