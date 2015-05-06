@@ -81,15 +81,28 @@ function getAllExchanges()
 }
 
 function addUserToMap(user) {
+	var photo; 
+	
+	if(user.photo == "" || user.photo == null)
+	{
+		photo = '<img class="miniProfilePic" src="img/default.jpg" width="100%"></img>';
+	}
+	else
+	{
+		photo = '<img class="miniProfilePic" src="img/'+user.photo+'" width="100%"></img>';
+	}
+		
 	var contentString = '<div class="infoWinContent">'+
       '<h4 class="infoWinHeading">'+
+	  photo+
+	  " "+
 	  user.name +
 	  '</h4>'+
       '<div class="infoWinbodyContent">';
 
       // link for chatting
-      contentString = contentString + 
-      '<div id = "chatlink"><a href = "./php/chat.php?recipient='+user.netId+'">Click here to chat</a><div>';
+      //contentString = contentString + 
+      //'<div id = "chatlink"><a href = "./php/chat.php?recipient='+user.netId+'">Click here to chat</a><div>';
 
       //offers
 	  var i;

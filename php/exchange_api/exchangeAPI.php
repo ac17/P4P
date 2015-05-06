@@ -263,6 +263,7 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 															'name' =>$exchange['firstName'],
 															'lat' =>$exchange['my_point_x'], 
 															'lng' =>$exchange['my_point_y'],
+															'photo' =>$exchange['photo'],
 															'exchanges' => array(array('id' =>$exchange['exchangeId'], 
 																				'club' =>$exchange['passClub'],
 																				'passNum' =>$exchange['passNum'],
