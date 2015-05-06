@@ -13,6 +13,13 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
     @IBOutlet var activeExchangeTableView: UITableView!
     var popoverViewController: PopupForAddExchangeViewController!
+    
+    var offerAcceptRejectWindowNavigationController: UINavigationController!
+    var offerMoreInfoWindowViewController: OfferMoreInformationViewController!
+    var offerMoreInfoWindowTitle = ""
+    var offerMoreInfoWindowID = ""
+    
+
     var appNetID = ""
 
     var offerClubNumberArray:[String] = []
@@ -38,6 +45,14 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
     
     func userActiveExchangesPull() {
+        offerClubNumberArray.removeAll()
+        offerDateArray.removeAll()
+        offerIDArray.removeAll()
+        requestClubNumberArray.removeAll()
+        requestDateArray.removeAll()
+        requestAssociatedIDArray.removeAll()
+        
+        
         var getActiveExchangesString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/userActiveExchanges.php?"
         getActiveExchangesString += "currentUserNetId=" + appNetID
         //println(getActiveExchangesString)
@@ -130,6 +145,19 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         return cell
     }
     
+    // if you select a cell, make the request and change how the cell is displayed
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if indexPath.section == 0 {
+            offerMoreInfoWindowID = offerIDArray[indexPath.row]
+            offerMoreInfoWindowTitle = offerClubNumberArray[indexPath.row] + " " + offerDateArray[indexPath.row]
+            performSegueWithIdentifier("offerAcceptDeclinePop", sender: self)
+        } else if indexPath.section == 1 {
+            
+        }
+    }
+
+    
     /***** popover for creating an exchange ****/
     
     // create exchange button pressed on popup
@@ -189,11 +217,22 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverViewController.popoverPresentationController!.delegate = self
         }
+        else if segue.identifier == "offerAcceptDeclinePop" {
+                offerAcceptRejectWindowNavigationController = segue.destinationViewController as! UINavigationController
+                offerMoreInfoWindowViewController = offerAcceptRejectWindowNavigationController.topViewController as! OfferMoreInformationViewController
+                offerMoreInfoWindowViewController.title = offerMoreInfoWindowTitle
+                offerMoreInfoWindowViewController.offerMoreInfoID = offerMoreInfoWindowID
+        }
     }
     
     // has to be a popover; otherwise unaccepted
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.None
+    }
+
+    // allow for returning to user active exchanges view controller
+    @IBAction func returnToUserActiveExchanges(segue:UIStoryboardSegue) {
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4531AABC5C8392591800CBA6 /* Pods_P4P.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A0490CC51AF9CB510093B636 /* OfferMoreInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */; };
 		A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */; };
 		A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */; };
 		A05AE4111AF8A54700C59B5B /* UserActiveExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		4531AABC5C8392591800CBA6 /* Pods_P4P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P4P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.release.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.release.xcconfig"; sourceTree = "<group>"; };
+		A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferMoreInformationViewController.swift; sourceTree = "<group>"; };
 		A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowTableViewController.swift; sourceTree = "<group>"; };
 		A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupForAddExchangeViewController.swift; sourceTree = "<group>"; };
 		A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActiveExchangesViewController.swift; sourceTree = "<group>"; };
@@ -206,13 +208,15 @@
 				DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */,
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
-				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
-				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
-				A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */,
 				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
+				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
+				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
+				A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */,
+				A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */,
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
 				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				DC86CF531AF95CD000E0054F /* PopupView.swift */,
 				DCDC303E1AF9AF06008C13E8 /* AppBackground.png */,
 				DCDC303A1AF97892008C13E8 /* HomeScreen.png */,
@@ -421,6 +425,7 @@
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
 				A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */,
 				A05AE4111AF8A54700C59B5B /* UserActiveExchangesViewController.swift in Sources */,
+				A0490CC51AF9CB510093B636 /* OfferMoreInformationViewController.swift in Sources */,
 				A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */,
 				DC1BFAC71AE7393D0067184A /* ignore-CurrentExchangesViewController.swift in Sources */,
 				DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */,
