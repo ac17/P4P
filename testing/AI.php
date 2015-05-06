@@ -4,6 +4,9 @@ require('../php/database_connect.php');
 require('../php/exchange_api/exchangeAPI.php');
 
 $heatbeats = $_GET['hb'];
+$actions = file_get_contents( "php://input" );
+$actions = json_decode( $actions );
+$numActions = count($actions) - 1; 
 
 // close session to allow for parallel requests
 session_write_close();
@@ -17,28 +20,23 @@ foreach ($userIds as $userId)
 {
 	$user = loadUserInfo($userId);
 	for ($h = 0; $h < $heatbeats; $h++)
-	{
-		for ($x = 0; $x < 1000; $x++)
-		{
-			randomOffer($user['netId']);
-		}
-		
-		$choice = mt_rand(0,4);
+	{		
+		$choice = $actions[mt_rand(0, $numActions)];
 		
 		switch ($choice) {
-			case 0:
+			case "moveUser":
 				moveUser($user['netId']);
 				break; 
-			case 1:
+			case "randomOffer":
 				randomOffer($user['netId']);
 				break;
-			case 2:
+			case "seekAndPursueOffer":
 				seekAndPursueOffer($user['netId']);
 				break;
-			case 3:
+			case "manageOffersAndRequests":
 				manageOffersAndRequests($user['netId']);
 				break;
-			case 4:
+			case "trade":
 				trade($user['netId']);
 				break;
 		}

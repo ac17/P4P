@@ -62,13 +62,16 @@ $(function() {
 
 	$( "#range-slider" ).slider({
       range: "min",
-      value: 37,
-      min: 1,
-      max: 700,
+      value: 1,
+      min: 0.1,
+      max: 5,
+	  step: 0.1,
       slide: function( event, ui ) {
         $( "#amount" ).val( ui.value );
-		showMarkersWithinRange( ui.value );
-      }
+      },
+	  stop: function( event, ui ) {
+	  	showMarkersWithinRange( ui.value );
+	  }
     });
 	
     $( "#amount" ).val( $( "#range-slider" ).slider( "value" ) );

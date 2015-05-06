@@ -77,15 +77,32 @@ $(function() {
 				}
 			}
 
-			aixmlhttp.open("GET", "./AI.php?hb=" + spinner.spinner( "value" ), true);
-			aixmlhttp.send();
+			var checkedActions = new Array(); 
+			var inputElements = document.getElementsByClassName('actionCheckBox');
+			for(var i=0; i < 5; ++i){
+			  if(inputElements[i].checked){
+				   checkedActions.push(inputElements[i].value);
+			  }
+			}
+			
+			aixmlhttp.open("POST", "./AI.php?hb=" + spinner.spinner( "value" ), true);
+			aixmlhttp.setRequestHeader( "Content-Type", "application/json" );
+			aixmlhttp.send(JSON.stringify(checkedActions));
 			document.getElementById("output").innerHTML = "Running";
 	});
 		
 	$( "#runAsyncAI" )
 		.button()
 		.click(function( event ) {
-			window.open("./asyncAI.php?hb=" + spinner.spinner( "value" ),'_blank');
+			var checkedActions = new Array(); 
+			var inputElements = document.getElementsByClassName('actionCheckBox');
+			for(var i=0; i < 5; ++i){
+			  if(inputElements[i].checked){
+				   checkedActions.push(inputElements[i].value);
+			  }
+			}
+			
+			window.open("./asyncAI.php?hb=" + spinner.spinner( "value" ) + "&actions="+JSON.stringify(checkedActions),'_blank');
 	});	
 	
 	$( "#addNPC" )

@@ -332,7 +332,7 @@ PROFPIC;
                 <div class="col-md-12" ><br /></div>
                 
                 <div class="col-md-12" align="center">
-                    <label for="amount">Distance: <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></label>       
+                    <label for="amount">Distance: <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">mi</label>       
                     <div id="range-slider"></div>
                 </div>
                 
@@ -343,6 +343,7 @@ PROFPIC;
                 <div class="col-md-12" ><br /><br /></div>
 
                 	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                    <input type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
 
                 <!--chatclient -->
               </div>
@@ -495,7 +496,7 @@ PROFPIC;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4&libraries=geometry"></script>
 	<script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>

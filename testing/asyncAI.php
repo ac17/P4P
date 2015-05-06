@@ -1,4 +1,8 @@
 <html>
+
+<div id="output" style="text-align:left; font-family:'MS Serif', 'New York', serif; font-size:14px">
+</div>
+
 <script>
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -19,12 +23,12 @@
 		}
 	}
 
-	xmlhttp.open("GET", "./AI.php?hb=" + <?php echo $_GET['hb']; ?>, true);
-	xmlhttp.send();
+	var checkedActions = JSON.parse('<?php echo $_GET['actions']; ?>');
+	
+	xmlhttp.open("POST", "./AI.php?hb=" + <?php echo $_GET['hb']; ?>, true);
+	xmlhttp.setRequestHeader( "Content-Type", "application/json" );
+	xmlhttp.send(JSON.stringify(checkedActions));
 	document.getElementById("output").innerHTML = "Running";
 </script>
-
-<div id="output" style="text-align:left; font-family:'MS Serif', 'New York', serif; font-size:14px">
-</div>
 
 </html>

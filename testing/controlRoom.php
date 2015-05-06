@@ -216,11 +216,21 @@ SETTINGS;
               <div class = "container-fluid" id="tab-4">  
                 
                  <div class="col-md-12">          
-                	<div class="col-md-6">
+                	<div class="col-md-4">
                     <label for="spinner">Heartbeats:</label>
                     <input id="spinner" name="value">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4" align="left">
+                    <label for="checkbox">Actions:</label>
+                    <form action="">
+                    	<input type="checkbox" class="actionCheckBox" name="action" value="moveUser"> moveUser <br>
+                    	<input type="checkbox" class="actionCheckBox" name="action" value="randomOffer"> randomOffer  <br>
+                        <input type="checkbox" class="actionCheckBox" name="action" value="seekAndPursueOffer"> seekAndPursueOffer  <br>
+                        <input type="checkbox" class="actionCheckBox" name="action" value="manageOffersAndRequests"> manageOffersAndRequests  <br>
+                        <input type="checkbox" class="actionCheckBox" name="action" value="trade"> trade <br>
+                    </form>
+                    </div>
+                    <div class="col-md-4">
                     <input type="submit" value="Run AI" id="runAI">
                     <input type="submit" value="Run Async AI" id="runAsyncAI">
                     </div>

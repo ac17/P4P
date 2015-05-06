@@ -37,6 +37,7 @@ function getMatchingExchanges()
 					var user = json.Users[i];
 					addUserToMap(user);
 				} 
+				showMarkersWithinRange($( "#range-slider" ).slider( "value" ));
 				updateMapToShowAllMarkers();
 			}
 		}
@@ -69,6 +70,7 @@ function getAllExchanges()
 					var user = json.Users[i];
 					addUserToMap(user);
 				} 
+				showMarkersWithinRange($( "#range-slider" ).slider( "value" ));
 				updateMapToShowAllMarkers();
 			}
 		}
@@ -175,12 +177,18 @@ function setAllMap(map) {
 
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
-  setAllMap(null);
+  setAllMap(null); 
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setVisible(false);
+  }
 }
 
 // Shows any markers currently in the array.
 function showMarkers() {
   setAllMap(map);
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setVisible(true);
+  }
 }
 
 // Deletes all markers in the array by removing references to them.
@@ -192,28 +200,41 @@ function deleteMarkers() {
 
 function updateMapToShowAllMarkers()
 {
+	var atLeastOneMarker = false; 
+	
 	var bounds = new google.maps.LatLngBounds();
 	for(i=0;i<markers.length;i++) {
-	   bounds.extend(markers[i].getPosition());
+		if (markers[i].getVisible() == true)
+		{
+			atLeastOneMarker = true; 
+	   		bounds.extend(markers[i].getPosition());
+		}
 	}
 	
 	//center the map to the geometric center of all markers
-	map.setCenter(bounds.getCenter());
+	if (atLeastOneMarker == true)
+	{
+		map.setCenter(bounds.getCenter());
 	
-	map.fitBounds(bounds);
+		map.fitBounds(bounds);
 	
-	//remove one zoom level to ensure no marker is on the edge.
-	map.setZoom(map.getZoom()-1); 
-	
-	// set a minimum zoom 
-	// if you got only 1 marker or all markers are on the same address map will be zoomed too much.
-	if(map.getZoom()> 15){
-	  map.setZoom(15);
+		//remove one zoom level to ensure no marker is on the edge.
+		map.setZoom(map.getZoom()-1); 
+		
+		// set a minimum zoom 
+		// if you got only 1 marker or all markers are on the same address map will be zoomed too much.
+		if(map.getZoom()> 15){
+		  map.setZoom(15);
+		}
 	}
+
 }
 
 function showMarkersWithinRange(range)
 {
+	// the range is in miles
+	var milesToMeters = 1609.34;
+	range = range*milesToMeters;
 	// Try W3C Geolocation (Preferred)
 	if(navigator.geolocation) {
 	browserSupportFlag = true;
@@ -221,13 +242,16 @@ function showMarkersWithinRange(range)
 	  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 	  
 	  clearMarkers();
-	  
+
 	  for(i=0;i<markers.length;i++) {
-	   	if (computeDistanceBetween(initialLocation, markers[i].getPosition()) <= range)
-		{
+	   	if (google.maps.geometry.spherical.computeDistanceBetween(initialLocation, markers[i].getPosition()) <= range)
+		{ 
 			markers[i].setMap(map);
+			markers[i].setVisible(true);
 		}																	   
 	  }
+	  
+	  updateMapToShowAllMarkers();
 	
 	}, function() {
 	  handleNoGeolocation(browserSupportFlag);
@@ -240,12 +264,12 @@ function showMarkersWithinRange(range)
 	}
 	
 	function handleNoGeolocation(errorFlag) {
-	if (errorFlag == true) {
-	  showError("A Small Problem...", "Geolocation service failed.");
+	if (errorFlag == true) { 
 	  showMarkers();
+	  updateMapToShowAllMarkers();
 	} else {
-	  showError("A Small Problem...", "Your browser doesn't support geolocation. :( ");
 	  showMarkers();
+	  updateMapToShowAllMarkers();
 	}
 	}
 }
