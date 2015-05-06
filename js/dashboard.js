@@ -188,6 +188,11 @@ function showError(errorTitle, errorMsg)
 }
 
 
+function pushNotification()
+{
+	
+}
+
 function loadUserData(netId)
 {
 	getUserActiveTrades(netId);

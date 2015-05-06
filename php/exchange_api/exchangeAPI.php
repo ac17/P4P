@@ -27,6 +27,16 @@ function pursueOffer($currentUserNetId, $offerId)
 		return; 
 	}
 	
+	// send a push notification 
+	$deviceToken = getDeviceId($offer['requesterNetId']);
+	if ($deviceToken != NULL)
+	{ 
+		$message = getUserNameByNetId($currentUserNetId) . " requested your pass.";
+		echo $deviceToken;
+		echo $message;
+		shell_exec(PHP_BINDIR . "/php pushNotification.php " . $deviceToken . " '" . $message . "'");
+	}
+	
 	// add a request
 	$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $currentUserNetId . '","' . $offer['passClub'] . '","' . $offer['passNum'] . '","' . date ("Y-m-d", strtotime($offer['passDate'])) . '","","Request", "0", \''. json_encode(array($offer['id'])) .'\')';
 	//Execute the query
@@ -836,6 +846,27 @@ function getAllExchanges()
 	}
 
 	return $users;
+}
+
+function getDeviceId($netId)
+{
+	//Build a query
+	$select = ' SELECT '; 
+	$column =  ' deviceID ';  
+	$from = ' FROM ';  
+	$tables = ' Users ';
+	$where = 'WHERE netId="' . $netId . '" LIMIT 1';
+	$query = $select . $column . $from . $tables . $where; 
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
+	$query_result = mysql_fetch_array(($query_result));
+
+	return $query_result['deviceID'];
 }
 
 ?>

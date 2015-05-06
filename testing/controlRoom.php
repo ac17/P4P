@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="../css/global.css">
     <link type="text/css" rel="stylesheet" href="../css/chatPopup.css"/>
     <link type="text/css" rel="stylesheet" href="controlRoom.css"/>
+    <link type="text/css" rel="stylesheet" href="scroller.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -168,6 +169,7 @@ SETTINGS;
                 <li><a href="#tab-3">NPCs</a></li>
                 <li><a href="#tab-4">AI</a></li>
                 <li><a href="#tab-5">Garbage Collector</a></li>
+                <li><a href="#tab-6">?</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">
@@ -243,6 +245,23 @@ SETTINGS;
               <div class = "container-fluid" id="tab-5">  
                 <div class="col-md-12" id="garbageCollector"></div>
                 <input type="submit" value="Refresh" onClick="getGarbageStats()">
+              </div>
+              
+              <div class = "container-fluid" id="tab-6">
+              	<div id="scroller" style="width: 550px; height: 400px; margin: 0 auto;">
+                	<div class="innerScrollArea">
+                        <ul>
+                        <!-- Define photos here -->
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                        </ul>
+                	</div>
+                </div>
               </div> 
             </div>
           </div>        
@@ -271,6 +290,8 @@ SETTINGS;
     <script src="../js/exchangeManager.js"></script>
     <script src="controlRoom.js"></script>
     <script src="../js/popup.js"></script>
+    
+    
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>

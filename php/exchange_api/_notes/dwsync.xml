@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="exchangeAPI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753939357108700" remote="130754193000000000" />
+<file name="exchangeAPI.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754163513439709" remote="130754416200000000" />
+<file name="pushNotification.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754137496551628" remote="130754389200000000" />
+<file name="P4Pck.pem" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754085709549581" remote="130754383800000000" />
+<file name="testPush.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754165677603492" remote="130754417400000000" />
 </dwsync>
