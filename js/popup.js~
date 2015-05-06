@@ -80,8 +80,8 @@ function register_popup(id, name)
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ name +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-    element = element + '<div style="clear: both"></div></div><div class = "message-area"><div class ="form"></div>';
-    element = element + '<div class="popup-messages"></div></div></div>';   
+    element = element + '<div style="clear: both"></div></div><div class = "message-area">';
+    element = element + '<div class="popup-messages"></div><div class ="form"></div></div></div>';   
 
 
     document.getElementById("chats").innerHTML = document.getElementById("chats").innerHTML + element;  
@@ -96,6 +96,7 @@ function register_popup(id, name)
         i.setAttribute('type',"text");
         i.setAttribute('name',"usermsg");
         i.setAttribute('class',"usermsg");
+	i.setAttribute('id', 'input' + id);
         i.setAttribute('size',"63");
 
         var s = document.createElement("input"); //input element, Submit button
@@ -149,8 +150,7 @@ $(document).ready(function(){
         var id = event.target.id.substring(4);  
         var clientmsg = $("#" + id + " .usermsg").val();
         $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
-        $("#" + id + " .usermsg").attr("value", "");
-	console.log("done");
+        $("#input" + id).val("");
         return false;
     });
     

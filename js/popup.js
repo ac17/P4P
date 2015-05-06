@@ -96,6 +96,7 @@ function register_popup(id, name)
         i.setAttribute('type',"text");
         i.setAttribute('name',"usermsg");
         i.setAttribute('class',"usermsg");
+	i.setAttribute('id', 'input' + id);
         i.setAttribute('size',"63");
 
         var s = document.createElement("input"); //input element, Submit button
@@ -149,8 +150,7 @@ $(document).ready(function(){
         var id = event.target.id.substring(4);  
         var clientmsg = $("#" + id + " .usermsg").val();
         $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
-        $("#" + id + " .usermsg").attr("value", "");
-	console.log("done");
+        $("#input" + id).val("");
         return false;
     });
     
