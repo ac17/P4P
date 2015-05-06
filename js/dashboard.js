@@ -5,24 +5,22 @@ var selectedOffers = new Array();
 
 // Jquery ui funstions 
 $(function() {
-    $(function() {
-    	$( "#tabs" ).tabs({
-			activate: function (event, ui) {
-				// upon enterting the tab which contains the map, refresh the map
-				if (ui.newPanel.attr('id') == "tab-1")
-				{
-					getMatchingExchanges();
-				}
-				
-				// upon enterting the tab which contains exchange manager, refresh the requests and offers
-				if (ui.newPanel.attr('id') == "tab-2")
-				{
-					getUserActiveTrades(document.getElementById("netId").value);
-					getUserActiveExchanges(document.getElementById("netId").value);
-				}
-			}			  
-		});
- 	});
+	$( "#tabs" ).tabs({
+		activate: function (event, ui) {
+			// upon enterting the tab which contains the map, refresh the map
+			if (ui.newPanel.attr('id') == "tab-1")
+			{
+				getMatchingExchanges();
+			}
+			
+			// upon enterting the tab which contains exchange manager, refresh the requests and offers
+			if (ui.newPanel.attr('id') == "tab-2")
+			{
+				getUserActiveTrades(document.getElementById("netId").value);
+				getUserActiveExchanges(document.getElementById("netId").value);
+			}
+		}			  
+	});
 	
 	// functions for the elements of search form 
 	$( "#searchPassDate" ).datepicker({
@@ -195,3 +193,5 @@ function loadUserData(netId)
 	getUserActiveTrades(netId);
 	getUserActiveExchanges(netId);
 }
+
+

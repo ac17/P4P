@@ -84,7 +84,7 @@ function register_popup(id, name)
     element = element + '<div class="popup-messages"></div></div></div>';   
 
 
-    document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+    document.getElementById("chats").innerHTML = document.getElementById("chats").innerHTML + element;  
 
         var f = document.createElement("form");
         f.setAttribute('action',"");
