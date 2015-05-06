@@ -120,9 +120,13 @@ input { font:12px arial; }
 }
 
 .usermsg {
-    width:300px;
-    border:1px solid #ACD8F0; }
+    width: 220px;
+    border:1px solid #ACD8F0; 
+    float: left;}
   
-.submit { width: 60px; }
+.submitmsg { 
+    width: 60px;
+    float: right;
+}
 
 .msgln { margin:0 0 2px 0; }

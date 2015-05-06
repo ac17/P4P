@@ -80,7 +80,8 @@ function register_popup(id, name)
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ name +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-    element = element + '<div style="clear: both"></div></div><div class="popup-messages"></div></div>';   
+    element = element + '<div style="clear: both"></div></div><div class = "message-area"><div class ="form"></div>';
+    element = element + '<div class="popup-messages"></div></div></div>';   
 
 
     document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
@@ -88,6 +89,8 @@ function register_popup(id, name)
         var f = document.createElement("form");
         f.setAttribute('action',"");
         f.setAttribute('name',"message");
+        f.setAttribute('id', 'form' + id);
+        //f.setAttribute('onSubmit', "return false");
 
         var i = document.createElement("input"); //input element, text
         i.setAttribute('type',"text");
@@ -104,7 +107,7 @@ function register_popup(id, name)
         f.appendChild(i);
         f.appendChild(s);
 
-        document.getElementById(id).appendChild(f);
+        document.getElementById(id).getElementsByClassName("form")[0].appendChild(f);
 
     //and some more input elements here
     //and dont forget to add a submit button   
@@ -139,56 +142,35 @@ window.addEventListener("load", calculate_popups);*/
 //jquery for submitting loading and logging message
 $(document).ready(function(){
     ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-    $(".submitmsg").click(function(element){
-        console.log(element + "hello");
-        var id = $(element).attr("id");   
-        var clientmsg = $("#" + id, ".usermsg").val();
+    $(document).on("submit", "form", function(event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        
+        var id = event.target.id.substring(4);  
+        var clientmsg = $("#" + id + " .usermsg").val();
         $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
-        $("#" + id, ".usermsg").attr("value", "");
+        $("#" + id + " .usermsg").attr("value", "");
         return false;
     });
-    
-    //Load the data containing the chat log by querying the chat_history table through chat_retrieve.php
-    function loadLog(element){
-        for(var iii = 0; iii < popups.length; iii++){
-            var netid = popups[iii];
-            $.ajax({
-                type: "GET",
-                url: "php/chatRetrieve.php?recipient=" + popups[iii],
-                dataType: "html",
-                cache: false,
-                success: function(response){
-                    console.log(popups[iii]);
-                    var x = document.getElementById(popups[iii]); 
-                    var y = document.getElementsByClassName("popup-messages");
-                    console.log(y);
-                    console.log(x);
-                    $("#" + netid + ' .popup-messages').html(response); //Insert chat log into the #chatbox div             
-                },
-            });
-        }
-    }
     
     //Load the data containing the chat log by querying the chat_history table through chat_query.php
     function loadLog(element){
         for (var iii = 0; iii < popups.length; iii++){
             (function(i) {
-                //var oldscrollHeight = $(".pop" + popups[iii]).attr("scrollHeight") - 20; //Scroll height before the request
+                var oldscrollHeight = $(popups[i]).attr("scrollHeight") - 20; //Scroll height before the request
                 $.ajax({
                     type: "GET",
                     url: "php/chatRetrieve.php?recipient=" + popups[i],
                     dataType: "html",
                     cache: false,
                     success: function(response){   
-                        console.log(response);
                         $("#" + popups[i] + ' .popup-messages').html(response); //Insert chat log into the #chatbox div
 
                         //Auto-scroll           
-                        /*var newscrollHeight = $(".pop" + popups[iii]).attr("scrollHeight") - 20; //Scroll height after the request
+                        var newscrollHeight = $(popups[i]).attr("scrollHeight") - 20; //Scroll height after the request
                         if(newscrollHeight > oldscrollHeight){
-                            $(".pop" + popups[iii]).animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-                        }  
-                        */             
+                            $(popups[i]).animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                        }               
                     },
                 });
             })(iii);
