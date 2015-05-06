@@ -16,9 +16,6 @@ mysql_query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
 // include Google PHP API
 set_include_path(get_include_path() . PATH_SEPARATOR . 'google_php_api/src');
 
-if (!isUserLoggedIn())
-    header('Location: loginUser.php');
-
 // Checks if the current user is logged in and returns TRUE or FALSE accordingly. If yes, then store the user's info in $_SESSION['user'].
 function isUserLoggedIn() {
 	$query = 'SELECT * FROM Users WHERE session_id="' . session_id() . '" LIMIT 1;';
