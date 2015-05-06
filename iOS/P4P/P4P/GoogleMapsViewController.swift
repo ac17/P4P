@@ -45,7 +45,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         var tabBarController = self.tabBarController as! TabBarViewController
         tabBarController.lastScreen = 1
     }
-    
+
     // function called when authorization revoked or granted
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedAlways {

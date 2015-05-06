@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -17,12 +18,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var userPhotoView: UIImageView!
     
+    var delegate: LoginViewControllerDelegate! = nil
+    
     var imagePicker: UIImagePickerController!
     
     let tapRec = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.clearColor()
 
         // Do any additional setup after loading the view.
         
@@ -71,27 +76,43 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
 
     @IBAction func register(sender: AnyObject) {
-        var netid = self.netIDTextField.text
-        var firstName = self.firstNameTextField.text
-        var lastName = self.lastNameTextField.text
-        var password = self.passwordTextField.text
         
-        var validated = false
+        println("lololol")
+        let netid = self.netIDTextField.text
+        let firstName = self.firstNameTextField.text
+        let lastName = self.lastNameTextField.text
+        let password = self.passwordTextField.text
+        let pwHash = password.MD5()
+    
         
-        let url = NSURL(string: "http://www.stackoverflow.com")
+        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
         
 
         var registerViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            validated = true
-            println(validated)
-            if validated {
-                dispatch_async(dispatch_get_main_queue()) {
-                    registerViewController.performSegueWithIdentifier("loginToDash", sender: sender)
+            let json = JSON(data: data)
+            if let authResult = json["regResults"].array {
+                if authResult[0] == "TRUE" {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.parentViewController!.dismissViewControllerAnimated(true, completion: {
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = netid
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
+                            self.delegate.completeLogin()
+                        });
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    // INDICATE THAT IT FAILED TO REGISTER
                 }
-                
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                }
+                // INDICATE THAT IT FAILED TO REGISTER
             }
+            
         }
         task.resume()
     }
@@ -107,3 +128,4 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     */
 
 }
+

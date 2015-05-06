@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol LoginViewControllerDelegate : NSObjectProtocol {
     func completeLogin()  // Segues to screen
@@ -45,25 +46,42 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login(sender: AnyObject) {
-        let url = NSURL(string: "http://www.stackoverflow.com")
-        let username = self.usernameTextField.text
-        let password = self.passwordTextField.text
-        
-        var validated = false
+        let username: String = self.usernameTextField.text
+        let password: String = self.passwordTextField.text
+        let deviceID: String = "0f744707bebcf74f9b7c25d48e3358945f6aa01da5ddb387462c7eaf61bbad78"
+        let pwHash: String = password.MD5()
+        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
+
         var loginViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            validated = true
-            println(validated)
-            if validated {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.parentViewController!.dismissViewControllerAnimated(true, completion: {
-                        (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
-                        self.delegate.completeLogin()
-                    });
+            let json = JSON(data: data)
+            if let authResult = json.array {
+                if count(authResult) > 0 {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.parentViewController!.dismissViewControllerAnimated(true, completion: {
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
+                            (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
+                                self.delegate.completeLogin()
+                            if let firstName = json["firstName"].string {
+                                (UIApplication.sharedApplication().delegate as! AppDelegate).firstName = firstName
+                            }
+                            if let lastName = json["lastName"].string {
+                                (UIApplication.sharedApplication().delegate as! AppDelegate).lastName = lastName
+                            }
+                            
+                        });
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
-
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
+            
         }
         task.resume()
         
@@ -80,4 +98,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     */
 
+}
+
+extension Int {
+    func hexString() -> String {
+        return NSString(format:"%02x", self) as String
+    }
+}
+
+extension NSData {
+    func hexString() -> String {
+        var string = String()
+        for i in UnsafeBufferPointer<UInt8>(start: UnsafeMutablePointer<UInt8>(bytes), count: length) {
+            string += Int(i).hexString()
+        }
+        return string
+    }
+    
+    func MD5() -> NSData {
+        let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
+        CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
+        return NSData(data: result)
+    }
+}
+
+extension String {
+    func MD5() -> String {
+        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)!.MD5().hexString()
+    }
 }

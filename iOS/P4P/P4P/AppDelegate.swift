@@ -14,9 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var userNetid: String = "arturf"
-    var userPass: String = "fred"
-    var userHash: String = "abc"
+    var userNetid: String = "ffjiang"
+    var pwHash: String = "5d41402abc4b2a76b9719d911017c59"
+    var firstName: String = "Frank"
+    var lastName: String = "Jiang"
 
     let googleMapsApiKey = "AIzaSyCFo0cjrjm2JkotEwtNkDeFrZLrqSFWjLk"
     
@@ -38,6 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         GMSServices.provideAPIKey(googleMapsApiKey)
+        
+        window!.backgroundColor = UIColor(patternImage: (UIImage(named: "AppBackground.png")!))
+        
         return true
     }
     
@@ -135,6 +139,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
+
 
