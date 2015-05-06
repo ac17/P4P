@@ -109,16 +109,16 @@ $(function() {
 			
 			if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp = new XMLHttpRequest();
+			  postExchange_xmlhttp = new XMLHttpRequest();
 			}
 			else
 			{//  IE6, IE5
-			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			  postExchange_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			  
-			xmlhttp.onreadystatechange=function()
+			postExchange_xmlhttp.onreadystatechange=function()
 			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				if (postExchange_xmlhttp.readyState==4 && postExchange_xmlhttp.status==200)
 				{
 					getUserActiveExchanges(document.getElementById("netId").value);
 					spinner.spinner( "value", 0 );
@@ -127,8 +127,8 @@ $(function() {
 				}
 			}
 
-			xmlhttp.open("GET", "./php/addExchange.php?netId=" + document.getElementById("netId").value + "&passDate=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text() + "&comment=" + document.getElementById("comment").value, true);
-			xmlhttp.send();
+			postExchange_xmlhttp.open("GET", "./php/addExchange.php?netId=" + document.getElementById("netId").value + "&passDate=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text() + "&comment=" + document.getElementById("comment").value, true);
+			postExchange_xmlhttp.send();
 	});
 	
 	// current user's active offer and request lists 

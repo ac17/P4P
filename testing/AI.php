@@ -98,7 +98,7 @@ function seekAndPursueOffer($netId)
 {
 	$passDate = "04/" . mt_rand(26,30) . "/2015";
 	$numPasses = mt_rand(1,3);
-	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap & Gown", "All"];
+	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap and Gown", "All"];
 	$passClub = $clubs[mt_rand(0,4)];
 	
 	echo "Searching for offer for  Date " . $passDate . " Num " . $numPasses . " Club " . $passClub . "<br />";	

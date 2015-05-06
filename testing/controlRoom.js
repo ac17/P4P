@@ -111,23 +111,23 @@ $(function() {
 			
 			if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp = new XMLHttpRequest();
+			  npc_xmlhttp = new XMLHttpRequest();
 			}
 			else
 			{//  IE6, IE5
-			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			  npc_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			  
-			xmlhttp.onreadystatechange=function()
+			npc_xmlhttp.onreadystatechange=function()
 			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				if (npc_xmlhttp.readyState==4 && npc_xmlhttp.status==200)
 				{			
 					getAllNPCs();
 				}
 			}
 
-			xmlhttp.open("GET", "./createUsers.php", true);
-			xmlhttp.send();
+			npc_xmlhttp.open("GET", "./createUsers.php", true);
+			npc_xmlhttp.send();
 	});
 		
 	$( "#purgeNPCs" )
@@ -136,23 +136,23 @@ $(function() {
 		
 		if (window.XMLHttpRequest)
 		{//  IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp = new XMLHttpRequest();
+		  purgeNPC_xmlhttp = new XMLHttpRequest();
 		}
 		else
 		{//  IE6, IE5
-		  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		  purgeNPC_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		  
-		xmlhttp.onreadystatechange=function()
+		purgeNPC_xmlhttp.onreadystatechange=function()
 		{
-			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			if (purgeNPC_xmlhttp.readyState==4 && purgeNPC_xmlhttp.status==200)
 			{				
 				getAllNPCs();
 			}
 		}
 
-		xmlhttp.open("GET", "./purgeAllNPCs.php", true);
-		xmlhttp.send();
+		purgeNPC_xmlhttp.open("GET", "./purgeAllNPCs.php", true);
+		purgeNPC_xmlhttp.send();
 	});
 		
 	// current user's active offer and request lists 
@@ -208,151 +208,151 @@ function showError(errorTitle, errorMsg)
 
 function loadUserData(netId)
 {
-	//setInterval(getAllExchanges, 3000);
+	setInterval(getAllExchanges, 3000);
 }
 
 function getAllNPCs()
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  getNPC_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  getNPC_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	getNPC_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (getNPC_xmlhttp.readyState==4 && getNPC_xmlhttp.status==200)
 		{
-			document.getElementById("npcList").innerHTML = xmlhttp.responseText;
+			document.getElementById("npcList").innerHTML = getNPC_xmlhttp.responseText;
 		}
 	}
 
-	xmlhttp.open("GET", "./getAllNPCs.php", true);
-	xmlhttp.send();
+	getNPC_xmlhttp.open("GET", "./getAllNPCs.php", true);
+	getNPC_xmlhttp.send();
 }
 
 function deleteNPC(NPCid)
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  delNPC_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  delNPC_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	delNPC_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (delNPC_xmlhttp.readyState==4 && delNPC_xmlhttp.status==200)
 		{
 			getAllNPCs();
 		}
 	}
 
-	xmlhttp.open("GET", "./deleteNPC.php?npcId=" + NPCid, true);
-	xmlhttp.send();
+	delNPC_xmlhttp.open("GET", "./deleteNPC.php?npcId=" + NPCid, true);
+	delNPC_xmlhttp.send();
 }
 
 function getServerStats()
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  stats_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  stats_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	stats_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (stats_xmlhttp.readyState==4 && stats_xmlhttp.status==200)
 		{
-			document.getElementById("serverStats").innerHTML = xmlhttp.responseText;
+			document.getElementById("serverStats").innerHTML = stats_xmlhttp.responseText;
 		}
 	}
 
-	xmlhttp.open("GET", "./getServerStats.php", true);
-	xmlhttp.send();
+	stats_xmlhttp.open("GET", "./getServerStats.php", true);
+	stats_xmlhttp.send();
 }
 
 function getGarbageStats()
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  garbage_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  garbage_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	garbage_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (garbage_xmlhttp.readyState==4 && garbage_xmlhttp.status==200)
 		{
-			document.getElementById("garbageCollector").innerHTML = xmlhttp.responseText;
+			document.getElementById("garbageCollector").innerHTML = garbage_xmlhttp.responseText;
 		}
 	}
 
-	xmlhttp.open("GET", "./getGarbage.php", true);
-	xmlhttp.send();
+	garbage_xmlhttp.open("GET", "./getGarbage.php", true);
+	garbage_xmlhttp.send();
 }
 
 function cleanChatMessages()
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  clean_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  clean_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	clean_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (clean_xmlhttp.readyState==4 && clean_xmlhttp.status==200)
 		{
-			if(xmlhttp.responseText != "")
+			if(clean_xmlhttp.responseText != "")
 			{
-				showError("A Small Problem...", xmlhttp.responseText);
+				showError("A Small Problem...", clean_xmlhttp.responseText);
 			}
 			getGarbageStats();
 		}
 	}
 
-	xmlhttp.open("GET", "./cleanChatMessages.php", true);
-	xmlhttp.send();
+	clean_xmlhttp.open("GET", "./cleanChatMessages.php", true);
+	clean_xmlhttp.send();
 }
 
 function cleanExchanges()
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  cleanExch_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  cleanExch_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	cleanExch_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (cleanExch_xmlhttp.readyState==4 && cleanExch_xmlhttp.status==200)
 		{
-			if(xmlhttp.responseText != "")
+			if(cleanExch_xmlhttp.responseText != "")
 			{
-				showError("A Small Problem...", xmlhttp.responseText);
+				showError("A Small Problem...", cleanExch_xmlhttp.responseText);
 			}
 			getGarbageStats();
 		}
 	}
 
-	xmlhttp.open("GET", "./cleanExchanges.php", true);
-	xmlhttp.send();
+	cleanExch_xmlhttp.open("GET", "./cleanExchanges.php", true);
+	cleanExch_xmlhttp.send();
 }

@@ -19,18 +19,18 @@ function getMatchingExchanges()
 	deleteMarkers();
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  getMatchingExchanges_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  getMatchingExchanges_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	getMatchingExchanges_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (getMatchingExchanges_xmlhttp.readyState==4 && getMatchingExchanges_xmlhttp.status==200)
 		{			
-			var json = JSON.parse(xmlhttp.responseText);
+			var json = JSON.parse(getMatchingExchanges_xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
 				for (i=0; i<json.Users.length; i++) { 
@@ -43,8 +43,8 @@ function getMatchingExchanges()
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
-	xmlhttp.send();
+	getMatchingExchanges_xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
+	getMatchingExchanges_xmlhttp.send();
 }
 
 function getAllExchanges()
@@ -52,18 +52,18 @@ function getAllExchanges()
 	deleteMarkers();
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  getAllExchanges_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  getAllExchanges_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	getAllExchanges_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (getAllExchanges_xmlhttp.readyState==4 && getAllExchanges_xmlhttp.status==200)
 		{			
-			var json = JSON.parse(xmlhttp.responseText);
+			var json = JSON.parse(getAllExchanges_xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
 				for (i=0; i<json.Users.length; i++) { 
@@ -76,8 +76,8 @@ function getAllExchanges()
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/getAllExchanges.php", true);
-	xmlhttp.send();
+	getAllExchanges_xmlhttp.open("GET", "./php/getAllExchanges.php", true);
+	getAllExchanges_xmlhttp.send();
 }
 
 function addUserToMap(user) {
@@ -162,27 +162,27 @@ function pursueOffer(offerId) {
 	
 	if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp = new XMLHttpRequest();
+			  pursueOffer_xmlhttp = new XMLHttpRequest();
 			}
 			else
 			{//  IE6, IE5
-			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			  pursueOffer_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			  
-			xmlhttp.onreadystatechange=function()
+			pursueOffer_xmlhttp.onreadystatechange=function()
 			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				if (pursueOffer_xmlhttp.readyState==4 && pursueOffer_xmlhttp.status==200)
 				{
-					if(xmlhttp.responseText != "")
+					if(pursueOffer_xmlhttp.responseText != "")
 					{
-						showError("A Small Problem...", xmlhttp.responseText);
+						showError("A Small Problem...", pursueOffer_xmlhttp.responseText);
 						getMatchingExchanges();
 					}
 				}
 			}
 
-			xmlhttp.open("GET", "./php/pursueOffer.php?netId=" + document.getElementById("netId").value + "&offerId=" + offerId, true);
-			xmlhttp.send();
+			pursueOffer_xmlhttp.open("GET", "./php/pursueOffer.php?netId=" + document.getElementById("netId").value + "&offerId=" + offerId, true);
+			pursueOffer_xmlhttp.send();
 }
 
 // Sets the map on all markers in the array.

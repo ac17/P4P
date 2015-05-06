@@ -7,26 +7,26 @@ function getUserActiveExchanges(currentUserNetId)
 	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  getUserActiveExchanges_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  getUserActiveExchanges_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	getUserActiveExchanges_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (getUserActiveExchanges_xmlhttp.readyState==4 && getUserActiveExchanges_xmlhttp.status==200)
 		{			
 			var json;
 			
 			try 
 			{
-				json = JSON.parse(xmlhttp.responseText);
+				json = JSON.parse(getUserActiveExchanges_xmlhttp.responseText);
 			}
 			catch(err)
 			{
-				showError("A Small Problem...", xmlhttp.responseText);
+				showError("A Small Problem...", getUserActiveExchanges_xmlhttp.responseText);
 			}
 			
 			if (json.Exchanges.length>0) { 
@@ -65,8 +65,8 @@ function getUserActiveExchanges(currentUserNetId)
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/userActiveExchanges.php?currentUserNetId=" + currentUserNetId, true);
-	xmlhttp.send();
+	getUserActiveExchanges_xmlhttp.open("GET", "./php/userActiveExchanges.php?currentUserNetId=" + currentUserNetId, true);
+	getUserActiveExchanges_xmlhttp.send();
 }
 
 
@@ -78,18 +78,18 @@ function getUserActiveTrades(currentUserNetId)
 	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp1 = new XMLHttpRequest();
+	  getUserActiveTrades_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+	  getUserActiveTrades_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp1.onreadystatechange=function()
+	getUserActiveTrades_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp1.readyState==4 && xmlhttp1.status==200)
+		if (getUserActiveTrades_xmlhttp.readyState==4 && getUserActiveTrades_xmlhttp.status==200)
 		{
-			var json = JSON.parse(xmlhttp1.responseText);
+			var json = JSON.parse(getUserActiveTrades_xmlhttp.responseText);
 			if (json.Trades.length>0) { 
 				for (i=0; i<json.Trades.length; i++) { 
 					var trade = json.Trades[i];	
@@ -114,8 +114,8 @@ function getUserActiveTrades(currentUserNetId)
 		}
 	}
 	
-	xmlhttp1.open("GET", "./php/userActiveTrades.php?currentUserNetId=" + currentUserNetId, true);
-	xmlhttp1.send();
+	getUserActiveTrades_xmlhttp.open("GET", "./php/userActiveTrades.php?currentUserNetId=" + currentUserNetId, true);
+	getUserActiveTrades_xmlhttp.send();
 }
 
 
@@ -123,20 +123,20 @@ function completeTrade(currentUserNetId, provider, recipient, offerId, requestId
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  completeTrade_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  completeTrade_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	completeTrade_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (completeTrade_xmlhttp.readyState==4 && completeTrade_xmlhttp.status==200)
 		{
-			if(xmlhttp.responseText != "")
+			if(completeTrade_xmlhttp.responseText != "")
 			{
-				showError("A Small Problem...", xmlhttp.responseText);
+				showError("A Small Problem...", completeTrade_xmlhttp.responseText);
 			}
 			
 			getUserActiveTrades(currentUserNetId);
@@ -144,32 +144,32 @@ function completeTrade(currentUserNetId, provider, recipient, offerId, requestId
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/completeTrade.php?currentUserNetId=" + currentUserNetId + "&provider=" + provider + "&recipient=" + recipient + "&offerId=" + offerId +"&requestId=" + requestId, true);
-	xmlhttp.send();
+	completeTrade_xmlhttp.open("GET", "./php/completeTrade.php?currentUserNetId=" + currentUserNetId + "&provider=" + provider + "&recipient=" + recipient + "&offerId=" + offerId +"&requestId=" + requestId, true);
+	completeTrade_xmlhttp.send();
 }
 
 function cancelTrade(currentUserNetId, provider, recipient, offerId, requestId)
 {
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  cancelTrade_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  cancelTrade_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	cancelTrade_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (cancelTrade_xmlhttp.readyState==4 && cancelTrade_xmlhttp.status==200)
 		{
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/cancelTrade.php?currentUserNetId=" + currentUserNetId + "&provider=" + provider + "&recipient=" + recipient + "&offerId=" + offerId +"&requestId=" + requestId, true);
-	xmlhttp.send();
+	cancelTrade_xmlhttp.open("GET", "./php/cancelTrade.php?currentUserNetId=" + currentUserNetId + "&provider=" + provider + "&recipient=" + recipient + "&offerId=" + offerId +"&requestId=" + requestId, true);
+	cancelTrade_xmlhttp.send();
 }
 
 
@@ -177,50 +177,50 @@ function removeSelectedOffers(currentUserNetId)
 {	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  removeSelectedOffers_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  removeSelectedOffers_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	removeSelectedOffers_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (removeSelectedOffers_xmlhttp.readyState==4 && removeSelectedOffers_xmlhttp.status==200)
 		{
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("POST", "./php/removeExchanges.php?currentUserNetId=" + currentUserNetId, true);
-	xmlhttp.setRequestHeader( "Content-Type", "application/json" );
-	xmlhttp.send(JSON.stringify(selectedOffers));
+	removeSelectedOffers_xmlhttp.open("POST", "./php/removeExchanges.php?currentUserNetId=" + currentUserNetId, true);
+	removeSelectedOffers_xmlhttp.setRequestHeader( "Content-Type", "application/json" );
+	removeSelectedOffers_xmlhttp.send(JSON.stringify(selectedOffers));
 }
 	
 function removeSelectedRequests(currentUserNetId)
 {	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  removeSelectedRequests_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  removeSelectedRequests_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	removeSelectedRequests_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (removeSelectedRequests_xmlhttp.readyState==4 && removeSelectedRequests_xmlhttp.status==200)
 		{
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("POST", "./php/removeExchanges.php?currentUserNetId=" + currentUserNetId, true);
-	xmlhttp.setRequestHeader( "Content-Type", "application/json" );
-	xmlhttp.send(JSON.stringify(selectedRequests));
+	removeSelectedRequests_xmlhttp.open("POST", "./php/removeExchanges.php?currentUserNetId=" + currentUserNetId, true);
+	removeSelectedRequests_xmlhttp.setRequestHeader( "Content-Type", "application/json" );
+	removeSelectedRequests_xmlhttp.send(JSON.stringify(selectedRequests));
 }
 
 function declineRequest(offerId, currentUserNetId, requesterNetId)
@@ -228,24 +228,24 @@ function declineRequest(offerId, currentUserNetId, requesterNetId)
 
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  declineRequest_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  declineRequest_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	declineRequest_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (declineRequest_xmlhttp.readyState==4 && declineRequest_xmlhttp.status==200)
 		{
 			getUserActiveTrades(currentUserNetId);
 			getUserActiveExchanges(currentUserNetId);
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/declineRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "&offerId=" + offerId, true);
-	xmlhttp.send();
+	declineRequest_xmlhttp.open("GET", "./php/declineRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "&offerId=" + offerId, true);
+	declineRequest_xmlhttp.send();
 }
 
 function acceptRequest(offerId, currentUserNetId, requesterNetId)
@@ -253,20 +253,20 @@ function acceptRequest(offerId, currentUserNetId, requesterNetId)
 	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
-	  xmlhttp = new XMLHttpRequest();
+	  acceptRequest_xmlhttp = new XMLHttpRequest();
 	}
 	else
 	{//  IE6, IE5
-	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  acceptRequest_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	  
-	xmlhttp.onreadystatechange=function()
+	acceptRequest_xmlhttp.onreadystatechange=function()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		if (acceptRequest_xmlhttp.readyState==4 && acceptRequest_xmlhttp.status==200)
 		{
-			if(xmlhttp.responseText != "")
+			if(acceptRequest_xmlhttp.responseText != "")
 			{
-				showError("A Small Problem...", xmlhttp.responseText);
+				showError("A Small Problem...", acceptRequest_xmlhttp.responseText);
 			}
 			
 			getUserActiveTrades(currentUserNetId);
@@ -274,6 +274,6 @@ function acceptRequest(offerId, currentUserNetId, requesterNetId)
 		}
 	}
 	
-	xmlhttp.open("GET", "./php/acceptRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "&offerId=" + offerId, true);
-	xmlhttp.send();
+	acceptRequest_xmlhttp.open("GET", "./php/acceptRequest.php?requesterNetId=" + requesterNetId + "&currentUserNetId=" +currentUserNetId+ "&offerId=" + offerId, true);
+	acceptRequest_xmlhttp.send();
 }
