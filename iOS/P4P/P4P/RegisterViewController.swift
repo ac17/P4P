@@ -92,7 +92,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let json = JSON(data: data)
             if let authResult = json["regResults"].array {
-                println(authResult[0])
                 if authResult[0] == "TRUE" {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.parentViewController!.dismissViewControllerAnimated(true, completion: {
@@ -107,6 +106,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                     }
                     // INDICATE THAT IT FAILED TO REGISTER
                 }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
+                }
+                // INDICATE THAT IT FAILED TO REGISTER
             }
             
         }

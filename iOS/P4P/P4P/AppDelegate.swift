@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var userNetid: String = ""
     var pwHash: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
 
     let googleMapsApiKey = "AIzaSyCFo0cjrjm2JkotEwtNkDeFrZLrqSFWjLk"
     

@@ -48,25 +48,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func login(sender: AnyObject) {
         let username: String = self.usernameTextField.text
         let password: String = self.passwordTextField.text
+        let deviceID: String = "0f744707bebcf74f9b7c25d48e3358945f6aa01da5ddb387462c7eaf61bbad78"
         let pwHash: String = password.MD5()
-        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileLogin.php?un=" + username + "&pwHash=" + pwHash)
+        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
 
         var loginViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let json = JSON(data: data)
-            if let authResult = json["authResults"].array {
-                if authResult[0] == "TRUE" {
+            if let authResult = json.array {
+                if count(authResult) > 0 {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.parentViewController!.dismissViewControllerAnimated(true, completion: {
                             (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
                             (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
-                            self.delegate.completeLogin()
+                                self.delegate.completeLogin()
+                            if let firstName = json["firstName"].string {
+                                (UIApplication.sharedApplication().delegate as! AppDelegate).firstName = firstName
+                            }
+                            if let lastName = json["lastName"].string {
+                                (UIApplication.sharedApplication().delegate as! AppDelegate).lastName = lastName
+                            }
+                            
                         });
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
                     }
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
             
