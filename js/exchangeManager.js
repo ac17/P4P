@@ -48,7 +48,7 @@ function getUserActiveExchanges(currentUserNetId)
 						{
 							passNoun = "passes";
 						}
-						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + '<li class="ui-widget-content col-md-12" offerId="'+exchange.id+'"><div class="col-md-12" ><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + ' ' + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + '</div></div>';
+						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + '<li class="ui-widget-content col-md-12" offerId="'+exchange.id+'"><div class="col-md-12" ><div class="col-md-4 tableCell">' + exchange.club + '</div><div class="col-md-4 tableCell">' + exchange.passNum + ' ' + passNoun + '</div><div class="col-md-4 tableCell">' +  exchange.passDate + '</div></div></li>';
 						
 						var listOfRequests = "";
 						var associatedExchanges = JSON.parse(exchange.associatedExchanges);
@@ -57,7 +57,7 @@ function getUserActiveExchanges(currentUserNetId)
 							// associatedExchanges[j] contains the netId of the user who made the request
 							listOfRequests = listOfRequests + '<li class="requestSubListItem">Request From: ' + associatedExchanges[j] + ' <input type="submit" value="Decline" style="float:right" onMouseDown="declineRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"><input type="submit" value="Accept" style="float:right" onMouseDown="acceptRequest('+exchange.id+',\''+document.getElementById("netId").value+'\',\''+associatedExchanges[j]+'\')"></li>';
 						}						
-						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + listOfRequests + "</ul></li>";
+						document.getElementById("offerList").innerHTML = document.getElementById("offerList").innerHTML + listOfRequests + "</ul>";
 						
 					}
 				}

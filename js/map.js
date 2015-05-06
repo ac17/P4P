@@ -102,6 +102,12 @@ function addUserToMap(user) {
 	  '</h4></a>'+
       '<div class="infoWinbodyContent">';
 
+
+      // link for chatting
+      //contentString = contentString + 
+      //'<span id = "chatlink"><a onclick = "register_popup(\''+ user.netId + '\',\'' + user.name + '\');" >Chat</a></span>';
+
+
       //offers
 	  var i;
 	  for (i=0; i<user.exchanges.length; i++) {

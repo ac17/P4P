@@ -462,7 +462,7 @@ PROFPIC;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
-                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');" >'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a href = "#" onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');" >'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
                     $counter = $counter + 1;    
                   }
@@ -470,18 +470,6 @@ PROFPIC;
                   echo "</table>"; //Close the table in HTML
                 ?>  
               
-              <!-- <div class="chat-sidebar"> 
-              <?php 
-                //foreach($usersInteractedWith as $user) {
-                  /* retrieve the name of the user
-                    $getName = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$user.'";'); 
-                    if (!$getName)
-                      $userName = "";
-                    else
-                      $userName = mysql_result($getName, 0);
-                  echo '<div class="sidebar-name"><a href="javascript:register_popup(\''.$user.'\', \''.$userName.'\');"><span>'.$userName.'</span></a></div>';
-                }*/
-              ?>-->
               </div> 
             </div>
           </div>        
@@ -497,10 +485,11 @@ PROFPIC;
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4&libraries=geometry"></script>
-	<script src="js/map.js"></script>
+	<script src="js/popup.js"></script>
+  <script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
-    <script src="js/popup.js"></script>
+    
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>
