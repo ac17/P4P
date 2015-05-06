@@ -4,13 +4,13 @@
  * and email recipEmail. Returns TRUE upon success and FALSE upon error.
  */
 
+require 'PHPMailer-master/PHPMailerAutoload.php';
+
 function mailer($recipName, $recipEmail, $subject, $msg) {
 	/* path to php mailer files */
 	$path = 'PHPMailer-master';
 	set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 	date_default_timezone_set('America/New_York');
-
-	require 'PHPMailer-master/PHPMailerAutoload.php';
 
 	//Create a new PHPMailer instance
 	$mail = new PHPMailer(true);
