@@ -16,6 +16,12 @@ body
     background-color: #e9eaed;
 }
 
+form, p, span {
+    margin:0;
+    padding:0; }
+  
+input { font:12px arial; }
+
 .chat-sidebar
 {
     width: 200px;
@@ -68,14 +74,14 @@ body
     bottom: 0px;
     right: 220px;
     height: 285px;
-    background-color: rgb(237, 239, 244);
+    background-color: #f5f5f5;
     width: 300px;
     border: 1px solid rgba(29, 49, 91, .3);
 }
 
 .popup-box .popup-head
 {
-    background-color: #6d84b4;
+    background-color: #1fbad6;
     padding: 5px;
     color: white;
     font-weight: bold;
@@ -102,6 +108,21 @@ body
 
 .popup-box .popup-messages
 {
-    height: 100%;
-    overflow-y: scroll;
+    text-align:left;
+    margin:0 auto;
+    margin-bottom:25px;
+    padding:10px;
+    background:#fff;
+    height:270px;
+    width:300px;
+    border:1px solid #ACD8F0;
+    overflow-y:scroll;
 }
+
+.usermsg {
+    width:300px;
+    border:1px solid #ACD8F0; }
+  
+.submit { width: 60px; }
+
+.msgln { margin:0 0 2px 0; }

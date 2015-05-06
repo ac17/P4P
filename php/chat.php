@@ -69,7 +69,7 @@ $(document).ready(function(){
 			cache: false,
 			success: function(response){		
 				$("#chatbox").html(response); //Insert chat log into the #chatbox div	
-				
+
 				//Auto-scroll			
 				var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
 				if(newscrollHeight > oldscrollHeight){

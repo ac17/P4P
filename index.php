@@ -1,5 +1,6 @@
 <?php
 include_once('php/database_connect.php');
+include_once('mailer.php');
 include_once('php/signup.php');
 include_once('login.php');
 ?>
@@ -143,11 +144,12 @@ LOGINCONFIRMATION;
                     </form>
 SIGNUP;
                     $dupUser = "Sorry, you have already signed up!";
-                    $welcomeUser = "Thank you for signing up! Check your @princeton.edu email address for a verification email - you must verify your account before using Passes for Passes.";
+                    $welcomeUser = "Thank you for signing up! Check your @princeton.edu email address (including your spam inbox) for a verification email - you must verify your account before using Passes for Passes.";
                     /* sign up new user */
                     if (isset($_POST['hiddenSignup']) && $_POST['hiddenSignup'] == 'true') {
                     $err = 0;
-                        if (signup($_POST['netid'], $_POST['fName'], $_POST['lName'], $_POST['pw'], $err)) {
+                    $_POST['pw'] = stripslashes($_POST['pw']);
+                        if (signup($_POST['netid'], $_POST['fName'], $_POST['lName'], md5($_POST['pw']), $err)) {
                             echo $welcomeUser;
                         }
                         elseif ($err == -1)

@@ -18,3 +18,22 @@
 	border:thin, #CCC, solid;
 	vertical-align:middle;
 }
+
+#requestList {
+	width: 100%;
+	font-size:16px;
+}
+
+#offerList {
+	width: 100%;
+	font-size:16px;
+}
+
+.tableCell {
+	text-align:center;
+}
+
+.tableTite {
+	font-size:16px;
+	font-weight:900;
+}
