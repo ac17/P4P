@@ -332,7 +332,7 @@ PROFPIC;
                 <div class="col-md-12" ><br /></div>
                 
                 <div class="col-md-12" align="center">
-                    <label for="amount">Distance: <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">mi</label>       
+                    <b><div id="amount" style="font-weight:bold;"></div></b>       
                     <div id="range-slider"></div>
                 </div>
                 

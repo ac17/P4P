@@ -67,14 +67,14 @@ $(function() {
       max: 5,
 	  step: 0.1,
       slide: function( event, ui ) {
-        $( "#amount" ).val( ui.value );
+		document.getElementById("amount").innerHTML = "Distance: " + ui.value + " mi";
       },
 	  stop: function( event, ui ) {
 	  	showMarkersWithinRange( ui.value );
 	  }
     });
 	
-    $( "#amount" ).val( $( "#range-slider" ).slider( "value" ) );
+	document.getElementById("amount").innerHTML = "Distance: " + $( "#range-slider" ).slider( "value" ) + " mi";
 
 	// functions for the elements of request/offer form 
 	$( "#passDate" ).datepicker({
