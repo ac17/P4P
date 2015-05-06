@@ -308,27 +308,24 @@ PROFPIC;
               <div id="tab-1">
               	<div class="col-md-12">          
                     <div class="col-md-4">
-                    <form action="#">
-                      <fieldset>
-                        <label for="searchEatingClub">Eating Club: </label>
-                        <select name="searchEatingClub" id="searchEatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap & Gown</option>
-                          <option>Tiger Inn</option>
-                          <option>All</option>
-                        </select>
-                        </fieldset>
-                    </form>
+                    <label for="searchEatingClub">Eating Club: </label>
+                    <select name="searchEatingClub" id="searchEatingClub">
+                      <option>Ivy Club</option>
+                      <option>Tiger Inn</option>
+                      <option selected="selected">Colonial</option>
+                      <option>Cottage</option>
+                      <option>Cap and Gown</option>
+                      <option>Tiger Inn</option>
+                      <option>All</option>
+                    </select>
                     </div>
                     <div class="col-md-4">
                     <label for="numPasses">Number of Passes:</label>
                     <input id="numPasses" name="value">
                     </div>
                     <div class="col-md-4">
-                    <br />Pass Date: <br /><input type="text" id="searchPassDate" onChange=""><br />
+                    <label for="passDate">Pass Date:</label>
+                    <input type="text" id="searchPassDate" onChange=""><br />
                     </div>
                 </div>
                 
@@ -347,7 +344,8 @@ PROFPIC;
               <div id="tab-2">                    
                 <div class="col-md-12">          
                     <div class="col-md-4">
-                    Pass Date: <br /><input type="text" id="passDate"><br /><br />
+                    <label for="passDate">Pass Date:</label>
+                    <input type="text" id="passDate"><br /><br />
 					</div>
                 	<div class="col-md-4">
                     <label for="spinner">Number of Passes:</label>
@@ -362,7 +360,7 @@ PROFPIC;
                           <option>Tiger Inn</option>
                           <option selected="selected">Colonial</option>
                           <option>Cottage</option>
-                          <option>Cap & Gown</option>
+                          <option>Cap and Gown</option>
                         </select>
                         </fieldset>
                     </form>
@@ -381,14 +379,14 @@ PROFPIC;
                  </div>
 
                 <div class="col-md-12"><br  /></div>
-              	<div class="col-md-12">Trades</div>
                 <div class="col-md-12"><br  /></div>
+              	<div class="col-md-12"><div class="tableTite">Trades</div></div>
                 <div class="col-md-12"><br  /></div>
                 <div class="col-md-12" id="tradeList">
                 </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Open Offers</div>
+                <div class="col-md-12"><div class="tableTite">Your Open Offers</div></div>
                 <div class="col-md-12">
                     <ol id="offerList" class="selectable">
                     </ol>
@@ -398,7 +396,7 @@ PROFPIC;
                 </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
-                <div class="col-md-12">Your Pending Requests</div>
+                <div class="col-md-12"><div class="tableTite">Your Pending Requests</div></div>
                 <div class="col-md-12">
                     <ol id="requestList" class="selectable">
                     </ol>
@@ -495,7 +493,6 @@ PROFPIC;
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/popup.js"></script>
-    
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>

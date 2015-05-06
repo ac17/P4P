@@ -73,7 +73,7 @@ function randomOffer($netId)
 {
 	$passDate = "04/" . mt_rand(26,30) . "/2015";
 	$numPasses = mt_rand(1,3);
-	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap & Gown"];
+	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap and Gown"];
 	$passClub = $clubs[mt_rand(0,4)];
 	$comment = "";
 	echo "Adding offer for " . $netId . " Date " . $passDate . " Num " . $numPasses . " Club " . $passClub . "<br />";
