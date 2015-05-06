@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon" href="img/palm.png"/>
     <link rel="apple-touch-startup-image" href="img/palm.png" />
     
-    <title>Dashboard</title>
+    <title>Control Room</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">

@@ -88,8 +88,7 @@ function avgTime($file)
 		$temp = explode(" ", $line);
 		$total = $total + $temp[0];
 		$dataPoints = $dataPoints + 1;
-	}
-	
+	}	
 	return $total/$dataPoints;
 }
 ?>
