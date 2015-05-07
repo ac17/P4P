@@ -95,7 +95,7 @@ CHANGEPP;
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a><button type="button" data-toggle="modal" data-target="#settingsModal" class = "btn btn-default">Settings</button></a></li>
-            <li><a href="#"><button type="button" class = "btn btn-default">Help</button></a></li>
+            <li><button type="button" class = "btn btn-default"><a href="#">Help</a></button></li>
             <li><a href="logout.php"><button type="button" class = "btn btn-default">Log Out</button></a></li>
           </ul>
         </div>
@@ -380,9 +380,9 @@ PROFPIC;
                 	<div class="col-md-4">
                     </div>
                     <div class="col-md-4">
+			<div class = "inputCenter">
                     <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>      
-			<div class = "inputCenter">              
+                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>                  
 			<input class = "btn btn-default" type="submit" value="Post" id="postExchange"></div>
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
