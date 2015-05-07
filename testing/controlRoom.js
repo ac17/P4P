@@ -33,7 +33,7 @@ $(function() {
 				if (ui.newPanel.attr('id') == "tab-6")
 				{
 					tweenToNewSpeed(controller.fullSpeed);
-					setTimeout(stopWheel, 4000); 
+					setTimeout(stopWheel, 3000); 
 				}
 			}			  
 		});
@@ -41,7 +41,7 @@ $(function() {
 	      
 	function stopWheel()
 	{
-		tweenToNewSpeed(0, 5000);
+		tweenToNewSpeed(0, 3500);
 	}
 	
 	// functions for the elements of request/offer form 	

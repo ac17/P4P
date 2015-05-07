@@ -37,14 +37,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom -->
-    <link type="text/css" rel="stylesheet" href="css/chatPopup.css"/>
-    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/inbox.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
-    
+    <link type="text/css" rel="stylesheet" href="css/chatPopup.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -121,7 +120,7 @@ CHANGEPP;
                         <br>
                         <input type="hidden" name="hiddenSettings" id="hiddenSettings" value="true">
                         <button class="btn btn-default" id="settingsSubmit" type="submit" form="settingsForm" value="Submit">Submit</button>
-                    </form><br>
+                    </form>
 SETTINGS;
                     $changePhotoForm = <<<PROFPIC
                     <form action="{$_SERVER['PHP_SELF']}" method="post" id="photoForm" enctype="multipart/form-data">
@@ -381,12 +380,14 @@ PROFPIC;
                 	<div class="col-md-4">
                     </div>
                     <div class="col-md-4">
-			<div class = "inputCenter">
+					<div class = "inputCenter">
                     <label for="comment">Comment:</label>
                     <textarea id="comment" rows="5" cols="20"></textarea> <br/>                  
 			<input class = "btn btn-default" type="submit" value="Post" id="postExchange"></div>
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
+                    </div>
+                    <div class="col-md-4">
                     </div>
                  </div>
 
@@ -403,10 +404,12 @@ PROFPIC;
                     <ol id="offerList" class="selectable">
                     </ol>
                 </div>
+                
                 <div class="col-md-12">
-		<div class = "inputCenter">
-                <input class = "btn btn-default" type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                </div></div>
+					<div class = "inputCenter">
+                		<input class = "btn btn-default" type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
+                	</div>
+                </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
                 <div class="col-md-12"><div class="tableTite">Your Pending Requests</div></div>
@@ -414,10 +417,15 @@ PROFPIC;
                     <ol id="requestList" class="selectable">
                     </ol>
                 </div>
-                <div class = "inputCenter">
-                <input class = "btn btn-default" type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-		</div>
+                
+                <div class="col-md-12">
+					<div class = "inputCenter">
+                	<input class = "btn btn-default" type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
+                	</div>
+				</div>
+                <font color="#FFFFFF">.</font>
              </div>
+             
 
              <!-- Chat Manager -->
               <div class = "container-fluid" id="tab-3">  

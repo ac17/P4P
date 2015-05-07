@@ -18,4 +18,5 @@
 <file name="deleteNPC.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753996742710968" remote="130754249400000000" />
 <file name="scroller.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754169820420447" remote="130754421600000000" />
 <file name="controlRoom.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754423069981250" remote="130754674800000000" />
+<file name="controlRoom.js" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754432660999825" remote="130754684400000000" />
 </dwsync>
