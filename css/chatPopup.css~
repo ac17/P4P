@@ -16,12 +16,12 @@ body
     background-color: #e9eaed;
 }
 
-form, p, span {
+#chat form, #chat p, #chat span {
     margin:0;
     padding:0;
     height: 25px; }
   
-input { font:12px arial; }
+#chat input { font:12px arial; }
 
 .chat-sidebar
 {
