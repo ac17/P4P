@@ -402,7 +402,7 @@ PROFPIC;
                     </ol>
                 </div>
                 <div class="col-md-12">
-                <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
+                <input class = "btn btn-default" type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
                 </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
@@ -412,7 +412,7 @@ PROFPIC;
                     </ol>
                 </div>
                 
-                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
+                <input class = "btn btn-default" type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
 
              </div>
 

@@ -342,8 +342,8 @@ PROFPIC;
                 
                 <div class="col-md-12" ><br /><br /></div>
 
-                	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
-                    <input type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
+                	<input class = "btn btn-default" type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                    <input class = "btn btn-default" type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
 
                 <!--chatclient -->
               </div>
@@ -382,7 +382,7 @@ PROFPIC;
                     <div class="col-md-4">
                     <label for="comment">Comment:</label>
                     <textarea id="comment" rows="5" cols="20"></textarea> <br/>
-                    <input type="submit" value="Post" id="postExchange">
+                    <input class = "btn btn-default" type="submit" value="Post" id="postExchange">
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
                     </div>
