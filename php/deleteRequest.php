@@ -5,18 +5,16 @@
 require('../php/database_connect.php');
 require('exchange_api/exchangeAPI.php');
 //Get the id of the note to be displayed returned
-$offerId = $_GET["offerId"];
+$requestId = $_GET["requestId"];
 $requesterNetId=$_GET["requesterNetId"];
-$currentUserNetId=$_GET["currentUserNetId"];
 
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
-	$offerId = stripslashes(mysql_real_escape_string($offerId));
+	$requestId = stripslashes(mysql_real_escape_string($requestId));
 	$requesterNetId = stripslashes(mysql_real_escape_string($requesterNetId));
-	$currentUserNetId = stripslashes(mysql_real_escape_string($currentUserNetId));
 }
 
-deleteRequestByOfferId($currentUserNetId, $requesterNetId, $offerId);
+deleteRequest($requesterNetId, $requestId);
 	
 
 mysql_close($connection);
