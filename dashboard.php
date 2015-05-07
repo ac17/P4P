@@ -37,13 +37,14 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom -->
+    <link type="text/css" rel="stylesheet" href="css/chatPopup.css"/>
+    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/inbox.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/chatStyle.css" />
     <link href="css/exchangeManager.css" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
-    <link type="text/css" rel="stylesheet" href="css/chatPopup.css"/>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -120,7 +121,7 @@ CHANGEPP;
                         <br>
                         <input type="hidden" name="hiddenSettings" id="hiddenSettings" value="true">
                         <button class="btn btn-default" id="settingsSubmit" type="submit" form="settingsForm" value="Submit">Submit</button>
-                    </form>
+                    </form><br>
 SETTINGS;
                     $changePhotoForm = <<<PROFPIC
                     <form action="{$_SERVER['PHP_SELF']}" method="post" id="photoForm" enctype="multipart/form-data">

@@ -28,10 +28,20 @@ if (isValidUser($un, $pwHash)) {
 	$result = mysql_query($query);
 	if ($result) {
 		$resultArray[] = mysql_fetch_assoc($result);
+		foreach ($resultArray as &$x)
+			array_splice($x, 4, 1);
+
+		/* $row = mysql_fetch_assoc($result);
+		$resultArray['id'] = $row['id'];
+		$resultArray['firstName'] = $row['firstName'];
+		$resultArray['lastName'] = $row['lastName'];
+		$resultArray['photo'] = $row['photo'];
+		$resultArray['netId'] = $row['netId'];
+		$resultArray['reputation'] = $row['reputation'];
+		$resultArray['password'] = $row['password']; */
 	}
 }
 
 // return the results array in JSON form
-echo json_encode($resultArray); 
-mysql_close($connection);
+echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
 ?>
