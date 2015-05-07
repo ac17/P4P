@@ -143,7 +143,7 @@ window.addEventListener("load", calculate_popups);*/
 //jquery for submitting loading and logging message
 $(document).ready(function(){
     ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-    $(document).on("submit", "form", function(event) {
+    $("#chat").on("submit", "form", function(event) {
         event.preventDefault();
         //event.stopImmediatePropagation();
         
