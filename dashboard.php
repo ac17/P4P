@@ -94,9 +94,9 @@ CHANGEPP;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a><button type="button" data-toggle="modal" data-target="#settingsModal">Settings</button></a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="logout.php">Log Out</a></li>
+            <li><a><button type="button" data-toggle="modal" data-target="#settingsModal" class = "btn btn-default">Settings</button></a></li>
+            <li><a href="#"><button type="button" class = "btn btn-default">Help</button></a></li>
+            <li><a href="logout.php"><button type="button" class = "btn btn-default">Log Out</button></a></li>
           </ul>
         </div>
       </div>
@@ -311,9 +311,10 @@ PROFPIC;
                     <label for="searchEatingClub">Eating Club: </label>
                     <select name="searchEatingClub" id="searchEatingClub">
                       <option>Ivy Club</option>
-                      <option selected="selected">Colonial</option>
+                      <option selected="selected">Tower Club</option>
                       <option>Cottage</option>
-                      <option>Cap and Gown</option>
+                      <option>Capp and Gown</option>
+		      <option>Cannon</option>
                       <option>Tiger Inn</option>
                       <option>All</option>
                     </select>
