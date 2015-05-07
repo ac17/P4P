@@ -180,8 +180,7 @@ $(function() {
 });
 
 function showError(errorTitle, errorMsg)
-{
-	alert(errorTitle); 
+{ 
 	document.getElementById("error-dialog").setAttribute("title", errorTitle);
 	document.getElementById("errorMessage").innerHTML = errorMsg;
 	$( "#error-dialog" ).dialog( "open" );
