@@ -54,6 +54,7 @@ body {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+  text-align: center;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
@@ -63,7 +64,7 @@ body {
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #1fbad6;
 }
 
 
@@ -116,7 +117,7 @@ body {
 table {
 	width:100%;	
 }
-th {
+.inboxheader {
 	padding:10px; 
 	vertical-align:middle;
 	text-align:center;	

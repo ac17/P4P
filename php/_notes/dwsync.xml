@@ -14,7 +14,7 @@
 <file name="chat.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741750959215741" remote="130744617000000000" />
 <file name="searchExchangesUserSpecific.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744362996284629" remote="130754440200000000" />
 <file name="acceptRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754112103529230" remote="130754440200000000" />
-<file name="declineRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754112073247498" remote="130754440200000000" />
+<file name="declineRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754341994174924" remote="130754593800000000" />
 <file name="userActiveTrades.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744362683187983" remote="130754440200000000" />
 <file name="completeTrade.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130744378233955898" remote="130754440200000000" />
 <file name="cancelTrade.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754112559405304" remote="130754440200000000" />
@@ -25,4 +25,9 @@
 <file name="verification.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130734300940055857" remote="130744617000000000" />
 <file name="getAllExchanges.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130749940181617881" remote="130754440200000000" />
 <file name="getExchangeById.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754027425705935" remote="130754440200000000" />
+<file name="deleteRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754328593958476" remote="130754583000000000" />
+<file name="deleteOffer.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754342416799097" remote="130754593800000000" />
+<file name="savePicture.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754354960346547" remote="130754607000000000" />
+<file name="database_login_info.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130754615400000000" />
+<file name="database_connect.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754180284196636" remote="130754615400000000" />
 </dwsync>

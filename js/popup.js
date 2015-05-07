@@ -96,6 +96,7 @@ function register_popup(id, name)
         i.setAttribute('type',"text");
         i.setAttribute('name',"usermsg");
         i.setAttribute('class',"usermsg");
+	i.setAttribute('id', 'input' + id);
         i.setAttribute('size',"63");
 
         var s = document.createElement("input"); //input element, Submit button
@@ -142,23 +143,23 @@ window.addEventListener("load", calculate_popups);*/
 //jquery for submitting loading and logging message
 $(document).ready(function(){
     ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-    $(document).on("submit", "form", function(event) {
-        event.preventDefault();
-        //event.stopImmediatePropagation();
-        
-        var id = event.target.id.substring(4);  
-        var clientmsg = $("#" + id + " .usermsg").val();
-        $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
-        $("#" + id + " .usermsg").attr("value", "");
-	console.log("done");
-        return false;
-    });
+     $("#chats").on("submit", "form", function(event) {
+	event.preventDefault();
+	//event.stopImmediatePropagation();
+	var id = event.target.id.substring(4);
+	var clientmsg = $("#" + id + " .usermsg").val();
+	if (clientmsg !== "")
+		$.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});	
+	$("#input" + id).val("");
+	return false;
+	});
     
     //Load the data containing the chat log by querying the chat_history table through chat_query.php
     function loadLog(element){
         for (var iii = 0; iii < popups.length; iii++){
             (function(i) {
-                var oldscrollHeight = $("#" + popups[i] + " .popup-messages").attr("scrollHeight") - 20; //Scroll height before the request
+                var oldscrollHeight = $("#" + popups[i] + " .popup-messages").prop("scrollHeight") - 20; //Scroll height before the request
+		console.log($("#" + popups[i] + " .popup-messages").prop("scrollHeight"));
                 $.ajax({
                     type: "GET",
                     url: "php/chatRetrieve.php?recipient=" + popups[i],
@@ -168,8 +169,9 @@ $(document).ready(function(){
                         $("#" + popups[i] + ' .popup-messages').html(response); //Insert chat log into the #chatbox div
 
                         //Auto-scroll           
-                        var newscrollHeight = $("#" + popups[i] + " .popup-messages").attr("scrollHeight") - 20; //Scroll height after the request
-                        if(newscrollHeight > oldscrollHeight){
+                        var newscrollHeight = $("#" + popups[i] + " .popup-messages").prop("scrollHeight") - 20; //Scroll height after the request
+			console.log(newscrollHeight);                        
+			if(newscrollHeight > oldscrollHeight){
                             $("#" + popups[i] + " .popup-messages").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
                         }               
                     },

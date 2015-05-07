@@ -11,4 +11,11 @@
 <file name="chatStyle.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754225501182900" remote="130754510400000000" />
 <file name="inbox.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130743050400000000" remote="130743050400000000" />
 <file name="chatPopup.css" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754257048627310" remote="130754510400000000" />
+<file name="inbox.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130743050400000000" remote="130743050400000000" />
+<file name="dashboard.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754619000000000" remote="130754619000000000" />
+<file name="map.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754616000000000" remote="130754616000000000" />
+<file name="chatStyle.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754616000000000" remote="130754616000000000" />
+<file name="exchangeManager.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754420010126236" remote="130754673600000000" />
+<file name="global.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754616000000000" remote="130754616000000000" />
+<file name="chatPopup.css" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754616000000000" remote="130754616000000000" />
 </dwsync>
