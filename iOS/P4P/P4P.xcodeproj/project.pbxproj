@@ -29,6 +29,7 @@
 		A05C3E4B1AD48BA0007185A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */; };
 		A05C3E4D1AD48BA5007185A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */; };
 		A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */; };
+		A0AF80791AFB475400C9C69E /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AF80781AFB475400C9C69E /* KeychainWrapper.m */; };
 		A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CE551AE4B894005FA89A /* PopupViewController.swift */; };
 		DC1BFAC71AE7393D0067184A /* ignore-CurrentExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC61AE7393D0067184A /* ignore-CurrentExchangesViewController.swift */; };
 		DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC81AE875A10067184A /* TabBarViewController.swift */; };
@@ -92,6 +93,8 @@
 		A05C3E4A1AD48BA0007185A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A05C3E4C1AD48BA5007185A0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		A0AF80771AFB475400C9C69E /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		A0AF80781AFB475400C9C69E /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		A0D3CE551AE4B894005FA89A /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1BFAC61AE7393D0067184A /* ignore-CurrentExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ignore-CurrentExchangesViewController.swift"; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 		DCAB76831AD3015B004A2CD9 /* P4P */ = {
 			isa = PBXGroup;
 			children = (
+				A0AF80771AFB475400C9C69E /* KeychainWrapper.h */,
+				A0AF80781AFB475400C9C69E /* KeychainWrapper.m */,
 				DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */,
 				DC1BFACC1AF0700D0067184A /* ChatViewController.swift */,
 				DC64ED781AF84A090014E48A /* ChatView.swift */,
@@ -447,6 +452,7 @@
 				A0490CC51AF9CB510093B636 /* OfferMoreInformationViewController.swift in Sources */,
 				A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */,
 				DC1BFAC71AE7393D0067184A /* ignore-CurrentExchangesViewController.swift in Sources */,
+				A0AF80791AFB475400C9C69E /* KeychainWrapper.m in Sources */,
 				DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */,
 				DC64ED791AF84A090014E48A /* ChatView.swift in Sources */,
 				DCAB768C1AD3015B004A2CD9 /* ViewController.swift in Sources */,

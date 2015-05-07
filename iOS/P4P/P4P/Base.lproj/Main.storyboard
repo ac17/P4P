@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -47,7 +47,8 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="171" y="305" width="58" height="32"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="125" y="626" width="150" height="32"/>
                                     <mask key="constraints">
                                         <include reference="lEN-yo-Fjw"/>
                                         <include reference="unM-dd-3Y9"/>
@@ -75,7 +76,8 @@
                                         <exclude reference="fKa-5A-ocR"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="83" y="526" width="235" height="30"/>
                                     <mask key="constraints">
                                         <include reference="fKa-5A-ocR"/>
                                     </mask>
@@ -123,7 +125,8 @@
                                         <exclude reference="tMk-kP-1Jj"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="83" y="576" width="235" height="30"/>
                                     <mask key="constraints">
                                         <include reference="Yt9-Wn-WzP"/>
                                         <include reference="tMk-kP-1Jj"/>
@@ -145,7 +148,8 @@
                                         <exclude reference="51e-nJ-87e"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="90" y="500" width="220" height="18"/>
                                     <mask key="constraints">
                                         <include reference="3yW-gx-s5B"/>
                                         <include reference="51e-nJ-87e"/>
@@ -649,6 +653,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Current Exchanges" id="BKV-xg-ATA">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="M5K-hi-Ets">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logoutAccount:" destination="hwc-jt-Urh" id="Hfd-Os-9CN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pqu-nE-giD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
@@ -661,6 +671,7 @@
                     <connections>
                         <outlet property="activeExchangeTableView" destination="V9u-ze-cUr" id="BI5-2L-OM4"/>
                         <segue destination="OyN-QQ-6JG" kind="presentation" identifier="offerAcceptDeclinePop" id="IvP-1E-mXk"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="returnToLogInScreen" id="MqY-Cf-Noc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7k-NM-P6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
