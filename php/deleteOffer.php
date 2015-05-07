@@ -14,7 +14,7 @@ if(get_magic_quotes_gpc()){
 	$requesterNetId = stripslashes(mysql_real_escape_string($requesterNetId));
 }
 
-deleteOffer($requesterNetId, $requestId);
+deleteOffer($requesterNetId, $offerId);
 	
 mysql_close($connection);
 
