@@ -39,3 +39,8 @@
 	font-weight:900;
 	text-align:center;
 }
+
+#tab-2 input {
+	text-align: center;
+	vertical-align:middle;
+}

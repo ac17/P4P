@@ -37,5 +37,9 @@
 .tableTite {
 	font-size:16px;
 	font-weight:900;
-	vertical-align:middle;
+	text-align:center;
+}
+
+#tab-2 input {
+	text-align: center;
 }

@@ -158,7 +158,8 @@ $(document).ready(function(){
     function loadLog(element){
         for (var iii = 0; iii < popups.length; iii++){
             (function(i) {
-                var oldscrollHeight = $("#" + popups[i] + " .popup-messages").attr("scrollHeight") - 20; //Scroll height before the request
+                var oldscrollHeight = $("#" + popups[i] + " .popup-messages").prop("scrollHeight") - 20; //Scroll height before the request
+		console.log($("#" + popups[i] + " .popup-messages").prop("scrollHeight"));
                 $.ajax({
                     type: "GET",
                     url: "php/chatRetrieve.php?recipient=" + popups[i],
@@ -168,8 +169,9 @@ $(document).ready(function(){
                         $("#" + popups[i] + ' .popup-messages').html(response); //Insert chat log into the #chatbox div
 
                         //Auto-scroll           
-                        var newscrollHeight = $("#" + popups[i] + " .popup-messages").attr("scrollHeight") - 20; //Scroll height after the request
-                        if(newscrollHeight > oldscrollHeight){
+                        var newscrollHeight = $("#" + popups[i] + " .popup-messages").prop("scrollHeight") - 20; //Scroll height after the request
+			console.log(newscrollHeight);                        
+			if(newscrollHeight > oldscrollHeight){
                             $("#" + popups[i] + " .popup-messages").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
                         }               
                     },
