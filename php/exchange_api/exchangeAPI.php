@@ -249,11 +249,11 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 	// Select between searching for all clubs
 	if($passClub != "All")
 	{
-		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.type="' .$type. '" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.passClub="'.$passClub.'" AND requesterNetId !="' .$currentUserNetId. '"';
+		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.type="' .$type. '" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.passClub="'.$passClub.'" AND requesterNetId !="' .$currentUserNetId. '" AND Active_exchanges.isPartOfTransaction="0"';
 	}
 	else 
 	{
-		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'" AND requesterNetId !="' .$currentUserNetId. '"';
+		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'" AND requesterNetId !="' .$currentUserNetId. '" AND Active_exchanges.isPartOfTransaction="0"';
 	}
 	$order = " ORDER BY Users.reputation DESC ";
 	 
