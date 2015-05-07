@@ -148,7 +148,8 @@ $(document).ready(function(){
 	//event.stopImmediatePropagation();
 	var id = event.target.id.substring(4);
 	var clientmsg = $("#" + id + " .usermsg").val();
-	$.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});	
+	if (clientmsg !== "")
+		$.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});	
 	$("#input" + id).val("");
 	return false;
 	});
