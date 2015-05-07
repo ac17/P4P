@@ -357,10 +357,12 @@ PROFPIC;
                         <label for="eatingClub">Eating Club: </label>
                         <select name="eatingClub" id="eatingClub">
                           <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap and Gown</option>
+                      	  <option selected="selected">Tower Club</option>
+                      	<option>Cottage</option>
+                      <option>Capp and Gown</option>
+		      <option>Cannon</option>
+                      <option>Tiger Inn</option>
+                      <option>All</option>
                         </select>
                         </fieldset>
                     </form>
