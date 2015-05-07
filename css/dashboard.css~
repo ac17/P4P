@@ -105,9 +105,6 @@ body {
 <<<<<<< HEAD
 }
 
-a.clickable:hover{
-	cursor: hand;
-}
 
 /* CSS for active exchange lists */
 .feedback { font-size: 1.4em; }
@@ -119,7 +116,7 @@ a.clickable:hover{
 table {
 	width:100%;	
 }
-th {
+.header {
 	padding:10px; 
 	vertical-align:middle;
 	text-align:center;	

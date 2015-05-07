@@ -426,7 +426,7 @@ PROFPIC;
 
                   echo '<table class = "table table-striped table-bordered table-hover table-condensed">'; // start a table to present the chat
 		  //title row
-		  echo '<tr><th style="width:20%">Time</th><th style="width:20%">Friend</th><th style="width:60%">Most recent Conversation</th></tr>';
+		  echo '<tr><th class = "inboxheader" style="width:20%">Time</th><th class = "inboxheader" style="width:20%">Friend</th><th class = "inboxheader" style="width:60%">Most recent Conversation</th></tr>';
 
                   //Creates a loop to loop through results
                   $counter = 1;
