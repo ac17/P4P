@@ -14,7 +14,7 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var numPassesField: UITextField!
     
-    let clubPickerData = ["Cannon", "Cap & Gown", "Charter", "Cloister", "Colonial", "Cottage", "Ivy Club", "Terrace", "Tiger Inn", "Tower"]
+    let clubPickerData = ["Cannon", "Cap and Gown", "Charter", "Cloister", "Colonial", "Cottage", "Ivy Club", "Terrace", "Tiger Inn", "Tower"]
     var clubWheel: UIPickerView!
     var datePickerView: UIDatePicker!
     var numPassesWheel: UIPickerView!

@@ -15,6 +15,7 @@ class OfferMoreInformationViewController: UITableViewController {
     var offerMoreInfoID: String = ""
     var appNetID = ""
     var offerAssociatedNetIDs:[String] = []
+    var offerAssociatedNames:[String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,12 @@ class OfferMoreInformationViewController: UITableViewController {
     }
 
     func passRelatedRequests() {
+        offerAssociatedNetIDs.removeAll()
+        offerAssociatedNames.removeAll()
+
         // check if current user has already made that request
         var getExchangeWithID = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/getExchangeById.php?exchangeId=" + offerMoreInfoID
-        
+        println(getExchangeWithID)
         // pull exchange information from server and check if user has made a request for it
         let url = NSURL(string: getExchangeWithID)
         
@@ -36,8 +40,8 @@ class OfferMoreInformationViewController: UITableViewController {
             
             var arrayExchangeString = (json[0]["associatedExchanges"].string)
             
-            if let dataFromString = arrayExchangeString!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                let jsonExchange = JSON(data: dataFromString)
+            if let dataFromStringNetIDs = arrayExchangeString!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                let jsonExchange = JSON(data: dataFromStringNetIDs)
                 
                 var index = 0
                 for (key: String, subJson: JSON) in jsonExchange {
@@ -45,7 +49,13 @@ class OfferMoreInformationViewController: UITableViewController {
                     index++
                 }
             }
-            
+
+            var otherIndex = 0
+            for (key: String, subJson:JSON) in json[0]["names"] {
+                self.offerAssociatedNames.append(json[0]["names"][otherIndex].string!)
+                otherIndex++
+            }
+
             dispatch_async(dispatch_get_main_queue()) {
                 self.offerMoreInfoTableView.reloadData()
             }
@@ -63,12 +73,12 @@ class OfferMoreInformationViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return count(offerAssociatedNetIDs)
+        return count(offerAssociatedNames)
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OfferAcceptReject", forIndexPath: indexPath) as! UITableViewCell
-        cell.textLabel!.text = offerAssociatedNetIDs[indexPath.row]
+        cell.textLabel!.text = offerAssociatedNames[indexPath.row]
         //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         // Configure the cell...
         
@@ -78,22 +88,50 @@ class OfferMoreInformationViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
-    // ioscreator.com/tutorials/swipe-table-view-cell-custom-actions-tutorial-ios8-swift
+    // swipe left and right to generate buttons on a table cell
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
 
         var acceptAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Accept" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            println("you pressed accept")
-            // do stuff for accepting - need to as a result reject all others (not sure if php script does ask artur)
+            // do stuff for accepting - also rejects all others on the backend
+            var acceptRequest = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/acceptRequest.php?offerId=" + self.offerMoreInfoID + "&requesterNetId=" + self.offerAssociatedNetIDs[indexPath.row] + "&currentUserNetId=" + self.appNetID
+            
+            // pull exchange information from server and check if user has made a request for it
+            let url = NSURL(string: acceptRequest)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                let json = JSON(data: data)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.performSegueWithIdentifier("returnToActiveExchanges", sender: self)
+                }
+                
+            }
+            task.resume()
         })
 
-        var rejectAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Reject" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            println("you pressed reject")
+        var rejectAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Decline" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // do stuff for rejecting
+            var rejectRequest = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/declineRequest.php?offerId=" + self.offerMoreInfoID + "&requesterNetId=" + self.offerAssociatedNetIDs[indexPath.row] + "&currentUserNetId=" + self.appNetID
+            
+            // pull exchange information from server and check if user has made a request for it
+            let url = NSURL(string: rejectRequest)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                let json = JSON(data: data)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.reloadDataAndTable()
+                }
+                
+            }
+            task.resume()
+
         })
 
         var chatAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Chat" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            println("you pressed reject")
+            println("you pressed chat")
             // do stuff for linking to chat panel with user
+            self.performSegueWithIdentifier("returnThenChat", sender: self)
         })
 
         
@@ -101,10 +139,15 @@ class OfferMoreInformationViewController: UITableViewController {
         
         acceptAction.backgroundColor = UIColor.greenColor()
         rejectAction.backgroundColor = UIColor.redColor()
+        chatAction.backgroundColor = UIColor.blueColor()
         
         return [acceptAction,rejectAction, chatAction]
     }
 
+    func reloadDataAndTable() {
+        passRelatedRequests()
+        self.tableView.reloadData()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

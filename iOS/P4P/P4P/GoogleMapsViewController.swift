@@ -237,6 +237,10 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     
     }
 
+    @IBAction func returnBeforeCallingChatFromMap (segue:UIStoryboardSegue) {
+        self.tabBarController!.selectedIndex = 2
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
