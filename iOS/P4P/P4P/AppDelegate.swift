@@ -14,11 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var userNetid: String = "arturf"
-    var pwHash: String = "570a90bfbf8c7eab5dc5d4e26832d5b1"
-    var firstName: String = "Artur"
-    var lastName: String = "Filipowicz"
+    var userNetid: String = ""
+    var pwHash: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
     var deviceToken: String = "0"
+    var loggedIn: Bool = false
+    
+    var tabBarController: TabBarViewController?
 
     let googleMapsApiKey = "AIzaSyAaBguvi8hXnGsUUdUx_Mem8k7Yk_zBzBs"
     
@@ -47,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let launchOptions = launchOptions {
             if let notificationsPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-                println("swift")
+                println("I guess there's no point in doing anything here until we store a password")
             }
         }
         return true
@@ -55,9 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         if application.applicationState == .Active {
-            println("swift")
+            println("should a little badge")
         } else {
-            println("hi")
+            if loggedIn {
+                if let tabBarController = self.tabBarController {
+                    tabBarController.selectedIndex = 0
+                }
+            }
         }
 
     }

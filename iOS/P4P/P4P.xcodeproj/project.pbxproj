@@ -12,7 +12,7 @@
 		A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */; };
 		A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */; };
 		A05AE4111AF8A54700C59B5B /* UserActiveExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */; };
-		A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E281AD4802C007185A0 /* LoginViewController.swift */; };
+		A05C3E291AD4802C007185A0 /* ignore-LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E281AD4802C007185A0 /* ignore-LoginViewController.swift */; };
 		A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */; };
 		A05C3E331AD48B44007185A0 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05C3E321AD48B44007185A0 /* GoogleMaps.framework */; };
 		A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A05C3E341AD48B5A007185A0 /* GoogleMaps.bundle */; };
@@ -37,6 +37,9 @@
 		DC344CBA1AF9DDA600080812 /* ChatEntryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */; };
 		DC64ED791AF84A090014E48A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED781AF84A090014E48A /* ChatView.swift */; };
 		DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */; };
+		DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE21AFAC41000285F63 /* emptyhead.png */; };
+		DC687CE51AFACA3E00285F63 /* darkbluebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE41AFACA3E00285F63 /* darkbluebackground.png */; };
+		DC687CE71AFAF15600285F63 /* SRWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC687CE61AFAF15600285F63 /* SRWebClient.swift */; };
 		DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86CF531AF95CD000E0054F /* PopupView.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
@@ -69,7 +72,7 @@
 		A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowTableViewController.swift; sourceTree = "<group>"; };
 		A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupForAddExchangeViewController.swift; sourceTree = "<group>"; };
 		A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActiveExchangesViewController.swift; sourceTree = "<group>"; };
-		A05C3E281AD4802C007185A0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A05C3E281AD4802C007185A0 /* ignore-LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ignore-LoginViewController.swift"; sourceTree = "<group>"; };
 		A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "P4P-Bridging-Header.h"; sourceTree = "<group>"; };
 		A05C3E321AD48B44007185A0 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -96,6 +99,9 @@
 		DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatEntryTextView.swift; sourceTree = "<group>"; };
 		DC64ED781AF84A090014E48A /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		DC687CE21AFAC41000285F63 /* emptyhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyhead.png; sourceTree = "<group>"; };
+		DC687CE41AFACA3E00285F63 /* darkbluebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkbluebackground.png; sourceTree = "<group>"; };
+		DC687CE61AFAF15600285F63 /* SRWebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRWebClient.swift; sourceTree = "<group>"; };
 		DC86CF531AF95CD000E0054F /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -207,8 +213,8 @@
 				DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */,
 				DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */,
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
+				DC687CE61AFAF15600285F63 /* SRWebClient.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
-				A05C3E281AD4802C007185A0 /* LoginViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
 				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
@@ -216,11 +222,12 @@
 				A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */,
 				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
 				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
-				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				DC86CF531AF95CD000E0054F /* PopupView.swift */,
 				DCDC303E1AF9AF06008C13E8 /* AppBackground.png */,
 				DCDC303A1AF97892008C13E8 /* HomeScreen.png */,
+				DC687CE41AFACA3E00285F63 /* darkbluebackground.png */,
 				DCB9630E1AFAAB8000A43033 /* icon@2x.png */,
+				DC687CE21AFAC41000285F63 /* emptyhead.png */,
 				DCB9630F1AFAAB8000A43033 /* icon@3x.png */,
 				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
 				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
@@ -230,6 +237,7 @@
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
 				A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */,
+				A05C3E281AD4802C007185A0 /* ignore-LoginViewController.swift */,
 				DC1BFAC61AE7393D0067184A /* ignore-CurrentExchangesViewController.swift */,
 			);
 			path = P4P;
@@ -345,9 +353,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC687CE51AFACA3E00285F63 /* darkbluebackground.png in Resources */,
 				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
 				DCB963101AFAAB8000A43033 /* icon@2x.png in Resources */,
 				DCB963111AFAAB8000A43033 /* icon@3x.png in Resources */,
+				DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */,
 				DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */,
@@ -419,7 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A05C3E291AD4802C007185A0 /* LoginViewController.swift in Sources */,
+				A05C3E291AD4802C007185A0 /* ignore-LoginViewController.swift in Sources */,
 				A05C3E2B1AD482B0007185A0 /* RegisterViewController.swift in Sources */,
 				DC344CBA1AF9DDA600080812 /* ChatEntryTextView.swift in Sources */,
 				A05C3E511AD48DF9007185A0 /* GoogleMapsViewController.swift in Sources */,
@@ -437,6 +447,7 @@
 				DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */,
 				DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */,
 				DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */,
+				DC687CE71AFAF15600285F63 /* SRWebClient.swift in Sources */,
 				A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

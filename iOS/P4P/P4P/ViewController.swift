@@ -56,6 +56,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func login(sender: AnyObject) {
+        if self.failedLoginLabel.alpha != 0.0 {
+            dispatch_async(dispatch_get_main_queue()) {
+                UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.failedLoginLabel.alpha = 0.0
+                    
+                    }, completion: nil)
+            }
+
+        }
+        
         let username: String = self.usernameTextField.text
         let password: String = self.passwordTextField.text
         let deviceID: String = (UIApplication.sharedApplication().delegate as! AppDelegate).deviceToken
@@ -66,30 +76,38 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let json = JSON(data: data)
             if let authResult = json.array {
-                println(authResult)
+
                 if count(authResult) > 0 {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.parentViewController!.dismissViewControllerAnimated(true, completion: {
-                            (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
-                            (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
-                            self.performSegueWithIdentifier("openDash", sender: self)
-                            if let firstName = json["firstName"].string {
-                                (UIApplication.sharedApplication().delegate as! AppDelegate).firstName = firstName
-                            }
-                            if let lastName = json["lastName"].string {
-                                (UIApplication.sharedApplication().delegate as! AppDelegate).lastName = lastName
-                            }
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appDelegate.userNetid = username
+                        appDelegate.pwHash = pwHash
+                        if let firstName = json["firstName"].string {
+                            appDelegate.firstName = firstName
+                        }
+                        if let lastName = json["lastName"].string {
+                            appDelegate.lastName = lastName
+                        }
+                        appDelegate.loggedIn = true
+                        
+                        // Open dashboard
+                        self.performSegueWithIdentifier("openDash", sender: self)
                             
-                        });
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
-                        println("coudln't login")
+                        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                            self.failedLoginLabel.alpha = 1.0
+                            
+                        }, completion: nil)
                     }
                 }
             } else {
                 dispatch_async(dispatch_get_main_queue()) {
-                    println("couldn't login")
+                    UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                        self.failedLoginLabel.alpha = 1.0
+                        
+                    }, completion: nil)
                 }
             }
             
