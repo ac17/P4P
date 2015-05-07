@@ -92,7 +92,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         return false
     }
 
-    
     // specifics to happen when you call a segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "popoverSegue" {
