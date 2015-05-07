@@ -123,7 +123,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             }
         }
         
-        let netid = self.netIDTextField.text
+        var netid = self.netIDTextField.text
+        netid = netid.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         var firstName = self.firstNameTextField.text
         firstName = firstName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         var lastName = self.lastNameTextField.text
@@ -140,6 +141,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
         let url = NSURL(string: self.websiteURLbase + "/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
         println(url)
+        println(pwHash)
 
         var registerViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
