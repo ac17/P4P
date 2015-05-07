@@ -130,7 +130,10 @@ img
     float: right;
 }
 
-.msgln { margin:0 0 2px 0; }
+.msgln { 
+    margin:0 0 2px 0; 
+    color: black;	
+}
 
 .othermsg{
 	float:left;
