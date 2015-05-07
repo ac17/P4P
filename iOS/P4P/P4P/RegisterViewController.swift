@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var userPhotoView: UIImageView!
     
+    var userPhotoSet: Bool = false
+    
     var imagePicker: UIImagePickerController!
     
     var backgroundView: UIImageView?
@@ -88,7 +90,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        self.userPhotoView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.userPhotoView.image = image
+            self.userPhotoSet = true
+        }
     }
     
     @IBAction func returnToHomeScreen(sender: AnyObject) {
@@ -139,6 +144,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.successRegisterLabel.alpha = 1.0
                             }, completion: nil)
+                        if self.userPhotoSet {
+                            let url = "hi"
+                            self.uploadImage(self.userPhotoView.image!, url: url)
+                        }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
@@ -157,6 +166,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             
         }
         task.resume()
+    }
+    
+    func uploadImage(image:UIImage, url: String) {
+        let imageData:NSData = UIImageJPEGRepresentation(image, 100)
+        SRWebClient.POST(url)
+            .data(imageData, fieldName:"photo", data: ["foo":"bar","baz":"qux"])
+            .send({(response:AnyObject!, status:Int) -> Void in
+                // process success response
+                },failure:{(error:NSError!) -> Void in
+                    // process failure response
+            })
     }
     
     /*
