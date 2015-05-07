@@ -16,7 +16,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         (UIApplication.sharedApplication().delegate as! AppDelegate).tabBarController = self
-        
+
         self.selectedIndex = 1
         // Do any additional setup after loading the view.
     }

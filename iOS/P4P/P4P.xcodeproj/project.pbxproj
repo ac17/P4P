@@ -39,6 +39,9 @@
 		DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */; };
 		DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE21AFAC41000285F63 /* emptyhead.png */; };
 		DC687CE51AFACA3E00285F63 /* darkbluebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE41AFACA3E00285F63 /* darkbluebackground.png */; };
+		DC687CEB1AFB0B8B00285F63 /* exchangesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE81AFB0B8B00285F63 /* exchangesicon.png */; };
+		DC687CEC1AFB0B8B00285F63 /* exchangesicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE91AFB0B8B00285F63 /* exchangesicon@2x.png */; };
+		DC687CED1AFB0B8B00285F63 /* exchangesicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CEA1AFB0B8B00285F63 /* exchangesicon@3x.png */; };
 		DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86CF531AF95CD000E0054F /* PopupView.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
@@ -100,6 +103,9 @@
 		DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		DC687CE21AFAC41000285F63 /* emptyhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyhead.png; sourceTree = "<group>"; };
 		DC687CE41AFACA3E00285F63 /* darkbluebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkbluebackground.png; sourceTree = "<group>"; };
+		DC687CE81AFB0B8B00285F63 /* exchangesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exchangesicon.png; path = Images.xcassets/exchangesicon.png; sourceTree = "<group>"; };
+		DC687CE91AFB0B8B00285F63 /* exchangesicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "exchangesicon@2x.png"; path = "Images.xcassets/exchangesicon@2x.png"; sourceTree = "<group>"; };
+		DC687CEA1AFB0B8B00285F63 /* exchangesicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "exchangesicon@3x.png"; path = "Images.xcassets/exchangesicon@3x.png"; sourceTree = "<group>"; };
 		DC86CF531AF95CD000E0054F /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -230,6 +236,9 @@
 				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
 				DCE489D81AF1CC65009599D3 /* menuicon.png */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
+				DC687CE81AFB0B8B00285F63 /* exchangesicon.png */,
+				DC687CE91AFB0B8B00285F63 /* exchangesicon@2x.png */,
+				DC687CEA1AFB0B8B00285F63 /* exchangesicon@3x.png */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
@@ -351,12 +360,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC687CE51AFACA3E00285F63 /* darkbluebackground.png in Resources */,
+				DC687CED1AFB0B8B00285F63 /* exchangesicon@3x.png in Resources */,
 				DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */,
 				DCB963101AFAAB8000A43033 /* icon@2x.png in Resources */,
+				DC687CEC1AFB0B8B00285F63 /* exchangesicon@2x.png in Resources */,
 				DCB963111AFAAB8000A43033 /* icon@3x.png in Resources */,
 				DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */,
 				DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
+				DC687CEB1AFB0B8B00285F63 /* exchangesicon.png in Resources */,
 				DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
 				A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */,

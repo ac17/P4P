@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -104,18 +104,6 @@
                                     <segue destination="0gL-Ct-hBa" kind="presentation" identifier="presentRegister" id="iJ9-8O-eAv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YmR-cX-z7Q">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.12941176470588237" green="0.61176470588235299" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="6" maxX="10" maxY="8"/>
-                                <state key="normal" title="Open Dashboard">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="28" width="137" height="32"/>
-                                </variation>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UZ6-8p-TUH">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                 <constraints>
@@ -183,7 +171,6 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="5r3-0m-zkj"/>
-                                <exclude reference="YmR-cX-z7Q"/>
                                 <exclude reference="UZ6-8p-TUH"/>
                                 <exclude reference="hob-Qe-7I0"/>
                             </mask>
@@ -205,7 +192,6 @@
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="5r3-0m-zkj"/>
-                                <include reference="YmR-cX-z7Q"/>
                                 <include reference="UZ6-8p-TUH"/>
                                 <include reference="hob-Qe-7I0"/>
                             </mask>
@@ -253,6 +239,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="SG4-KC-Z5h">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="wWt-Pj-LyI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="leaveChatScreen" destination="sk5-uP-bPk" id="rBa-E0-TED"/>
                             </connections>
@@ -516,11 +503,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="UserExchange" id="YIf-U9-b4H">
                         <barButtonItem key="leftBarButtonItem" title="Map" id="gn1-TP-RXq">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="xPi-st-NcB" kind="unwind" unwindAction="returnToMap:" id="oMp-Lo-But"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Chat" id="0bm-ET-NM3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="xPi-st-NcB" kind="unwind" unwindAction="returnBeforeCallingChatFromMap:" id="SS7-Ju-BNg"/>
                             </connections>
@@ -556,6 +545,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="nt6-FF-ss7">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="yCS-8m-3GC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="tbO-S5-i6v" kind="unwind" identifier="returnToActiveExchanges" unwindAction="returnToUserActiveExchanges:" id="meR-Jp-Xnj"/>
                             </connections>
@@ -575,9 +565,13 @@
         <scene sceneID="AX7-pq-TPm">
             <objects>
                 <navigationController id="OyN-QQ-6JG" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RTZ-A6-QbD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="RTZ-A6-QbD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.12941176469999999" green="0.67450980390000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="oVw-IY-jxw" kind="relationship" relationship="rootViewController" id="Dzo-0r-dr6"/>
@@ -594,6 +588,15 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pfk-Kv-szU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="translucent" value="NO"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="barTintColor">
+                                <color key="value" red="0.12941176470588237" green="0.6705882352941176" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Yb1-T9-HRs" kind="relationship" relationship="rootViewController" id="DoG-zx-6fY"/>
@@ -646,6 +649,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Current Exchanges" id="BKV-xg-ATA">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pqu-nE-giD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="5WN-Gk-W2s" kind="popoverPresentation" identifier="popoverSegueAddExchange" popoverAnchorBarButtonItem="Pqu-nE-giD" id="Alb-4T-5kX">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -1059,15 +1063,24 @@
             </objects>
             <point key="canvasLocation" x="1530" y="229.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Exchanges-->
         <scene sceneID="gEf-WH-cNY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="er0-F0-4sh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="oEx-dL-vCr"/>
+                    <tabBarItem key="tabBarItem" title="Exchanges" image="exchangesicon" id="oEx-dL-vCr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kjL-ZU-P2Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="translucent" value="NO"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="barTintColor">
+                                <color key="value" red="0.086274509803921567" green="0.6588235294117647" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1087,6 +1100,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Ca-mS-jjG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.12941176470588237" green="0.67450980392156867" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1261,6 +1276,7 @@
     <resources>
         <image name="chaticon" width="30" height="30"/>
         <image name="emptyhead.png" width="900" height="1200"/>
+        <image name="exchangesicon" width="30" height="30"/>
         <image name="mapicon" width="30" height="30"/>
     </resources>
 </document>

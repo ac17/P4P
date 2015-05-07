@@ -57,6 +57,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // called when you hit enter in a text field. dismisses keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)
+        
+        if textField === self.passwordTextField && self.usernameTextField.text != "" {
+            self.login(self)
+        }
         return false
     }
 

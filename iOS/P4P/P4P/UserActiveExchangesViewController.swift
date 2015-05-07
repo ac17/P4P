@@ -39,6 +39,8 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     var activeTradesClubArray:[String] = []
     var activeTradesNumPassesArray:[String] = []
     var activeTradesDateArray:[String] = []
+    
+    var backgroundView: UIImageView?
 
 
     override func viewDidLoad() {
@@ -47,6 +49,13 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
         websiteURLbase = appDelegate.websiteURLBase
+        
+        /*
+        // Set background color to dark blue
+        backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
+        backgroundView!.frame = UIScreen.mainScreen().bounds
+        self.view.insertSubview(backgroundView!, atIndex: 0)
+        */
         
         activeExchangeTableView.dataSource = self
         activeExchangeTableView.delegate = self
@@ -230,6 +239,11 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         }
         
         // Configure the cell...
+        /*
+        cell.contentView.backgroundColor = UIColor(netHex: 0x1FBAD6)
+        cell.textLabel!.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        */
         
         return cell
     }
@@ -263,6 +277,17 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     
     // part of making swipe left and right
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    
+    // Add a separator between sections of the table
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        var headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+
+        var sepFrame: CGRect = CGRectMake(0, view.frame.size.height-1, view.frame.size.width, 2)
+        let seperatorView = UIView(frame: sepFrame)
+        seperatorView.backgroundColor = UIColor(white: 224.0/255.0, alpha:1.0)
+        headerView.addSubview(seperatorView)
     }
 
     // swipe left and right to generate buttons on a table cell
