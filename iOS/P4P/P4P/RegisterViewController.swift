@@ -26,6 +26,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     let tapRec = UITapGestureRecognizer()
     
+    var websiteURLbase = ""
+
     @IBOutlet weak var failedRegisterLabel: UILabel!
     @IBOutlet weak var successRegisterLabel: UILabel!
     @IBOutlet weak var emptyFormsLabel: UILabel!
@@ -35,6 +37,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
 
         // Do any additional setup after loading the view.
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        websiteURLbase = appDelegate.websiteURLBase
+
         // Set background color to dark blue
         backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
         backgroundView!.frame = UIScreen.mainScreen().bounds
@@ -132,7 +137,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
     
         
-        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
+        let url = NSURL(string: self.websiteURLbase + "/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
         
 
         var registerViewController = self;
@@ -146,7 +151,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                             }, completion: nil)
                         if self.userPhotoSet {
                             let url = "hi"
-                            self.uploadImage(self.userPhotoView.image!, url: url)
+                            //self.uploadImage(self.userPhotoView.image!, url: url)
                         }
                     }
                 } else {
@@ -167,7 +172,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
         task.resume()
     }
-    
+    /*
     func uploadImage(image:UIImage, url: String) {
         let imageData:NSData = UIImageJPEGRepresentation(image, 100)
         SRWebClient.POST(url)
@@ -178,7 +183,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                     // process failure response
             })
     }
-    
+    */
     /*
     // MARK: - Navigation
 

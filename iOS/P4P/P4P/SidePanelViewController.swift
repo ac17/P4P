@@ -9,7 +9,9 @@
 import UIKit
 
 class SidePanelViewController: UITableViewController {
-    
+
+    var websiteURLbase = ""
+
     var users:[String] = ["ffjiang", "dan", "vibhaa", "ac17", "arturf"]
     var convos:[String: String] = ["ffjiang": "FRANK SAYS HI", "dan": "DAN SAYS HI", "vibhaa": "VIBHAA SAYS HI", "ac17": "ANGELICA SAYS HI", "arturf": "ARTUR SAYS HI"]
     
@@ -17,6 +19,10 @@ class SidePanelViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        websiteURLbase = appDelegate.websiteURLBase
+
         let tableView = self.view as! UITableView
         tableView.registerClass(ChatTableViewCell.self, forCellReuseIdentifier: "userCell")
         
@@ -39,7 +45,7 @@ class SidePanelViewController: UITableViewController {
         
         // Cache conversations
         for (user, conv) in convos {
-            let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/chatRetrieveJSON.php?recipient=" + user + "&user=" + (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid)
+            let url = NSURL(string: self.websiteURLbase + "/php/chatRetrieveJSON.php?recipient=" + user + "&user=" + (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid)
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                 self.convos[user] = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
             }

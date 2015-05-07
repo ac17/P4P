@@ -16,7 +16,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
     var popoverViewController: PopupViewController!
     var infoWindowViewController: InfoWindowTableViewController!
     var infoWindowNavigationController: UINavigationController!
+    
     var appNetID = ""
+    var websiteURLbase = ""
 
     var mapInfoWindowNetID: String = ""
     var mapInfoWindowName: String = ""
@@ -39,6 +41,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
+        websiteURLbase = appDelegate.websiteURLBase
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -62,7 +65,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
             mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             
             // update location on database
-            var updateLocationString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/updateLocation.php?"
+            var updateLocationString = self.websiteURLbase + "/php/updateLocation.php?"
             var latitude = String(stringInterpolationSegment: location.coordinate.latitude)
             var longitude = String(stringInterpolationSegment: location.coordinate.longitude)
             updateLocationString += "currentUserNetId=" + appNetID + "&lat=" + latitude + "&lng=" + longitude
@@ -165,7 +168,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // replace spaces in club name with pluses
         clubString = clubString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        var requestString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/searchExchangesUserSpecific.php?"
+        var requestString = self.websiteURLbase + "/php/searchExchangesUserSpecific.php?"
         requestString += "netId=" + appNetID + "&date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
         println(requestString)
         

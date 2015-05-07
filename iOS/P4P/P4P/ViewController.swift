@@ -13,7 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //var tabBarController;
     
     var backgroundView: UIImageView?
-    
+    var websiteURLbase = ""
+
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -21,6 +22,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        websiteURLbase = appDelegate.websiteURLBase
+
         // Do any additional setup after loading the view, typically from a nib.
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -70,7 +75,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let password: String = self.passwordTextField.text
         let deviceID: String = (UIApplication.sharedApplication().delegate as! AppDelegate).deviceToken
         let pwHash: String = password.MD5()
-        let url = NSURL(string: "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
+        let url = NSURL(string: self.websiteURLbase + "/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
         
         var loginViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -80,7 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if count(authResult) > 0 {
                     dispatch_async(dispatch_get_main_queue()) {
                         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        appDelegate.userNetid = username
+                        appDelegate.userNetid = username.lowercaseString
                         appDelegate.pwHash = pwHash
                         if let firstName = json["firstName"].string {
                             appDelegate.firstName = firstName

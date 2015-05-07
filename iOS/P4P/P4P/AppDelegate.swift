@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tabBarController: TabBarViewController?
 
     let googleMapsApiKey = "AIzaSyAaBguvi8hXnGsUUdUx_Mem8k7Yk_zBzBs"
+    let websiteURLBase = "http://ec2-52-24-152-91.us-west-2.compute.amazonaws.com"
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

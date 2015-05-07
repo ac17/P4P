@@ -39,7 +39,6 @@
 		DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */; };
 		DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE21AFAC41000285F63 /* emptyhead.png */; };
 		DC687CE51AFACA3E00285F63 /* darkbluebackground.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE41AFACA3E00285F63 /* darkbluebackground.png */; };
-		DC687CE71AFAF15600285F63 /* SRWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC687CE61AFAF15600285F63 /* SRWebClient.swift */; };
 		DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86CF531AF95CD000E0054F /* PopupView.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
@@ -101,7 +100,6 @@
 		DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		DC687CE21AFAC41000285F63 /* emptyhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyhead.png; sourceTree = "<group>"; };
 		DC687CE41AFACA3E00285F63 /* darkbluebackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkbluebackground.png; sourceTree = "<group>"; };
-		DC687CE61AFAF15600285F63 /* SRWebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRWebClient.swift; sourceTree = "<group>"; };
 		DC86CF531AF95CD000E0054F /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 				DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */,
 				DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */,
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
-				DC687CE61AFAF15600285F63 /* SRWebClient.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
@@ -447,7 +444,6 @@
 				DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */,
 				DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */,
 				DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */,
-				DC687CE71AFAF15600285F63 /* SRWebClient.swift in Sources */,
 				A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

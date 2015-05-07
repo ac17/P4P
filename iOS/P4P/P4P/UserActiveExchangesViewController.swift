@@ -20,6 +20,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     var offerMoreInfoWindowID = ""
 
     var appNetID = ""
+    var websiteURLbase = ""
 
     var offerClubNumberArray:[String] = []
     var offerDateArray:[String] = []
@@ -45,7 +46,8 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
-
+        websiteURLbase = appDelegate.websiteURLBase
+        
         activeExchangeTableView.dataSource = self
         activeExchangeTableView.delegate = self
         
@@ -68,7 +70,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         activeTradesNumPassesArray.removeAll()
         activeTradesDateArray.removeAll()
 
-        var getActiveTradesString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/userActiveTrades.php?"
+        var getActiveTradesString = self.websiteURLbase + "/php/userActiveTrades.php?"
         getActiveTradesString += "currentUserNetId=" + appNetID
         //println(getActiveTradesString)
         
@@ -127,7 +129,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         requestDateArray.removeAll()
         requestIDArray.removeAll()
         
-        var getActiveExchangesString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/userActiveExchanges.php?"
+        var getActiveExchangesString = self.websiteURLbase + "/php/userActiveExchanges.php?"
         getActiveExchangesString += "currentUserNetId=" + appNetID
         //println(getActiveExchangesString)
         
@@ -212,6 +214,9 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             cell.detailTextLabel!.text = activeTradesDateArray[indexPath.row]
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             cell.accessoryType = UITableViewCellAccessoryType.None
+            println("hello")
+            println("string" + textLabelString)
+            println("appNetID" + appNetID)
         } else if indexPath.section == 1 { //offer stuff - Set title as the club and number, and subtitle as the date
             cell.textLabel!.text = offerClubNumberArray[indexPath.row]
             cell.detailTextLabel!.text = offerDateArray[indexPath.row]
@@ -265,7 +270,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         if indexPath.section == 0 { // active trades
             var completeTrade = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Completed" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
                 // do stuff for accepting - also rejects all others on the backend
-                var completeTrade = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/completeTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
+                var completeTrade = self.websiteURLbase + "/php/completeTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
                 
                 // pull exchange information from server and check if user has made a request for it
                 let url = NSURL(string: completeTrade)
@@ -284,7 +289,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             var cancelTrade = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Cancel" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
                 // do stuff for cancelling a trade
                 
-                var cancelTrade = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/cancelTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
+                var cancelTrade = self.websiteURLbase + "/php/cancelTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
                 
                 // pull exchange information from server and check if user has made a request for it
                 let url = NSURL(string: cancelTrade)
@@ -316,7 +321,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             var deleteOffer = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
                 // do stuff for cancelling on offer
                 
-                var deleteOfferURL = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/deleteOffer.php?offerId=" + self.offerIDArray[indexPath.row] + "&requesterNetId=" + self.appNetID
+                var deleteOfferURL = self.websiteURLbase + "/php/deleteOffer.php?offerId=" + self.offerIDArray[indexPath.row] + "&requesterNetId=" + self.appNetID
                 println(deleteOfferURL)
                 // pull exchange information from server and check if user has made a request for it
                 let url = NSURL(string: deleteOfferURL)
@@ -338,7 +343,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             var deleteRequest = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
                 // do stuff for cancelling a request
 
-                var deleteRequestURL = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/deleteRequest.php?requestId=" + self.requestIDArray[indexPath.row] + "&requesterNetId=" + self.appNetID
+                var deleteRequestURL = self.websiteURLbase + "/php/deleteRequest.php?requestId=" + self.requestIDArray[indexPath.row] + "&requesterNetId=" + self.appNetID
                 println(deleteRequestURL)
                 // pull exchange information from server and check if user has made a request for it
                 let url = NSURL(string: deleteRequestURL)
@@ -393,7 +398,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         // replace spaces in club name with pluses
         clubString = clubString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        var exchangeString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/addExchange.php?"
+        var exchangeString = self.websiteURLbase + "/php/addExchange.php?"
         exchangeString += "netId=" + appNetID + "&passDate=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString + "&comment=" + ""
         //println(exchangeString)
         

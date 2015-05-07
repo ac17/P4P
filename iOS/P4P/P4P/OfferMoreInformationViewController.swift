@@ -13,12 +13,19 @@ class OfferMoreInformationViewController: UITableViewController {
     
     @IBOutlet var offerMoreInfoTableView: UITableView!
     var offerMoreInfoID: String = ""
+
     var appNetID = ""
+    var websiteURLbase = ""
+
     var offerAssociatedNetIDs:[String] = []
     var offerAssociatedNames:[String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appNetID = appDelegate.userNetid
+        websiteURLbase = appDelegate.websiteURLBase
 
         passRelatedRequests()
 
@@ -30,7 +37,7 @@ class OfferMoreInformationViewController: UITableViewController {
         offerAssociatedNames.removeAll()
 
         // check if current user has already made that request
-        var getExchangeWithID = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/getExchangeById.php?exchangeId=" + offerMoreInfoID
+        var getExchangeWithID = self.websiteURLbase + "/php/getExchangeById.php?exchangeId=" + offerMoreInfoID
         println(getExchangeWithID)
         // pull exchange information from server and check if user has made a request for it
         let url = NSURL(string: getExchangeWithID)
@@ -93,7 +100,7 @@ class OfferMoreInformationViewController: UITableViewController {
 
         var acceptAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Accept" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // do stuff for accepting - also rejects all others on the backend
-            var acceptRequest = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/acceptRequest.php?offerId=" + self.offerMoreInfoID + "&requesterNetId=" + self.offerAssociatedNetIDs[indexPath.row] + "&currentUserNetId=" + self.appNetID
+            var acceptRequest = self.websiteURLbase + "/php/acceptRequest.php?offerId=" + self.offerMoreInfoID + "&requesterNetId=" + self.offerAssociatedNetIDs[indexPath.row] + "&currentUserNetId=" + self.appNetID
             
             // pull exchange information from server and check if user has made a request for it
             let url = NSURL(string: acceptRequest)
@@ -111,7 +118,7 @@ class OfferMoreInformationViewController: UITableViewController {
 
         var rejectAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Decline" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             // do stuff for rejecting
-            var rejectRequest = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/declineRequest.php?offerId=" + self.offerMoreInfoID + "&requesterNetId=" + self.offerAssociatedNetIDs[indexPath.row] + "&currentUserNetId=" + self.appNetID
+            var rejectRequest = self.websiteURLbase + "/php/declineRequest.php?offerId=" + self.offerMoreInfoID + "&requesterNetId=" + self.offerAssociatedNetIDs[indexPath.row] + "&currentUserNetId=" + self.appNetID
             
             // pull exchange information from server and check if user has made a request for it
             let url = NSURL(string: rejectRequest)

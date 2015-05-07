@@ -17,6 +17,7 @@ class InfoWindowTableViewController: UITableViewController {
     var mapInfoExchangeArray: [String] = []
     var mapInfoExchangeIDArray: [String] = []
     var appNetID = ""
+    var websiteURLbase = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class InfoWindowTableViewController: UITableViewController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
+        websiteURLbase = appDelegate.websiteURLBase
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +57,7 @@ class InfoWindowTableViewController: UITableViewController {
         var offerID = mapInfoExchangeIDArray[indexPath.row]
         
         // check if current user has already made that request
-        var getExchangeWithID = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/getExchangeById.php?exchangeId=" + offerID
+        var getExchangeWithID = self.websiteURLbase + "/php/getExchangeById.php?exchangeId=" + offerID
 
         println(getExchangeWithID)
         // pull exchange information from server and check if user has made a request for it
@@ -100,7 +102,7 @@ class InfoWindowTableViewController: UITableViewController {
             cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
             cell!.selectionStyle = UITableViewCellSelectionStyle.None
 
-            var pursueOfferString = "http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/pursueOffer.php?"
+            var pursueOfferString = self.websiteURLbase + "/php/pursueOffer.php?"
             pursueOfferString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
             //println(pursueOfferString)
             
