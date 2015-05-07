@@ -16,10 +16,12 @@ if(isset($_SESSION['user'])){
     //print the appropriate first name//
     while($row=mysql_fetch_array($results)){
     	if (strcmp($row['User_From'], $recipient) !== 0){
-    		$name = $_SESSION['user']['firstName'];
+    		$name = 'You';
+		$class = 'ownmsg';
 		$photolink = $_SESSION['user']['photo'];
 	}
     	else {
+		$class = "othermsg";
     		$result = mysql_query('SELECT firstName FROM Users WHERE netId = "'.$recipient.'";'); 
     		if (!$result)
     			$name = "";
@@ -42,7 +44,7 @@ if(isset($_SESSION['user'])){
 		$photo = '<img class="miniProfilePic" src="img/'.$photolink.'"></img>';
 	}
 
-        echo "<div class='msgln'><span title = '".$row['Time']."'>".$photo."<b>".$name."</b>: ".stripslashes(htmlspecialchars($row['Conversation']))."</span><br></div>";
+        echo "<div class='msgln ".$class."'><span title = '".$row['Time']."'>".$photo."<b>".$name."</b>: ".stripslashes(htmlspecialchars($row['Conversation']))."</span><br></div>";
     }
 }
 ?>

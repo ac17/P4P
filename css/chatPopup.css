@@ -131,3 +131,11 @@ img
 }
 
 .msgln { margin:0 0 2px 0; }
+
+.othermsg{
+	float:left;
+}
+
+.ownmsg{
+	float: right;
+}
