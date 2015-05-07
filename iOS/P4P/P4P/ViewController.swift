@@ -79,15 +79,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
                 if count(authResult) > 0 {
                     dispatch_async(dispatch_get_main_queue()) {
-                        (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid = username
-                        (UIApplication.sharedApplication().delegate as! AppDelegate).pwHash = pwHash
-                        self.performSegueWithIdentifier("openDash", sender: self)
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appDelegate.userNetid = username
+                        appDelegate.pwHash = pwHash
                         if let firstName = json["firstName"].string {
-                            (UIApplication.sharedApplication().delegate as! AppDelegate).firstName = firstName
+                            appDelegate.firstName = firstName
                         }
                         if let lastName = json["lastName"].string {
-                            (UIApplication.sharedApplication().delegate as! AppDelegate).lastName = lastName
+                            appDelegate.lastName = lastName
                         }
+                        appDelegate.loggedIn = true
+                        
+                        // Open dashboard
+                        self.performSegueWithIdentifier("openDash", sender: self)
                             
                     }
                 } else {
