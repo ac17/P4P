@@ -116,7 +116,7 @@ body {
 table {
 	width:100%;	
 }
-.header {
+.inboxheader {
 	padding:10px; 
 	vertical-align:middle;
 	text-align:center;	
