@@ -143,17 +143,15 @@ window.addEventListener("load", calculate_popups);*/
 //jquery for submitting loading and logging message
 $(document).ready(function(){
     ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
-    $("#chat").on("submit", "form", function(event) {
-        event.preventDefault();
+     $("#chats").on("submit", "form", function(event) {
+	event.preventDefault();
 	//event.stopImmediatePropagation();
-        
-        var id = event.target.id.substring(4);  
-        var clientmsg = $("#" + id + " .usermsg").val();
-	if (clientmsg !== "")
-	    $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
-        $("#input" + id).val("");
-        return false;
-    });
+	var id = event.target.id.substring(4);
+	var clientmsg = $("#" + id + " .usermsg").val();
+	$.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});	
+	$("#input" + id).val("");
+	return false;
+	});
     
     //Load the data containing the chat log by querying the chat_history table through chat_query.php
     function loadLog(element){
