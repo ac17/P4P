@@ -341,10 +341,10 @@ PROFPIC;
                 <div class="col-md-12" id="map-canvas"></div>
                 
                 <div class="col-md-12" ><br /><br /></div>
-
-                	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
-                    <input type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
-
+			
+                	<input class = "btn btn-default" type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                    <input class = "btn btn-default" type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
+			
                 <!--chatclient -->
               </div>
               
@@ -381,8 +381,9 @@ PROFPIC;
                     </div>
                     <div class="col-md-4">
                     <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>
-                    <input type="submit" value="Post" id="postExchange">
+                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>      
+			<div class = "inputCenter">              
+			<input class = "btn btn-default" type="submit" value="Post" id="postExchange"></div>
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
                     </div>
@@ -402,8 +403,9 @@ PROFPIC;
                     </ol>
                 </div>
                 <div class="col-md-12">
+		<div class = "inputCenter">
                 <input class = "btn btn-default" type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                </div>
+                </div></div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
                 <div class="col-md-12"><div class="tableTite">Your Pending Requests</div></div>
@@ -411,9 +413,9 @@ PROFPIC;
                     <ol id="requestList" class="selectable">
                     </ol>
                 </div>
-                
+                <div class = "inputCenter">
                 <input class = "btn btn-default" type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-
+		</div>
              </div>
 
              <!-- Chat Manager -->
@@ -506,7 +508,7 @@ PROFPIC;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_TP0TtPiuDslXloAv3TKPMDnKgIQu65U&libraries=geometry"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYvY6acR2OUH98E6icuclS44Gkp1378yo&libraries=geometry"></script>
     <script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>

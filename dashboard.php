@@ -341,10 +341,10 @@ PROFPIC;
                 <div class="col-md-12" id="map-canvas"></div>
                 
                 <div class="col-md-12" ><br /><br /></div>
-
+			
                 	<input class = "btn btn-default" type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
                     <input class = "btn btn-default" type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
-
+			
                 <!--chatclient -->
               </div>
               
@@ -380,9 +380,10 @@ PROFPIC;
                 	<div class="col-md-4">
                     </div>
                     <div class="col-md-4">
+			<div class = "inputCenter">
                     <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>
-                    <input class = "btn btn-default" type="submit" value="Post" id="postExchange">
+                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>                  
+			<input class = "btn btn-default" type="submit" value="Post" id="postExchange"></div>
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
                     </div>
@@ -402,8 +403,9 @@ PROFPIC;
                     </ol>
                 </div>
                 <div class="col-md-12">
+		<div class = "inputCenter">
                 <input class = "btn btn-default" type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
-                </div>
+                </div></div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
                 <div class="col-md-12"><div class="tableTite">Your Pending Requests</div></div>
@@ -411,9 +413,9 @@ PROFPIC;
                     <ol id="requestList" class="selectable">
                     </ol>
                 </div>
-                
+                <div class = "inputCenter">
                 <input class = "btn btn-default" type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-
+		</div>
              </div>
 
              <!-- Chat Manager -->
