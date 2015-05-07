@@ -339,6 +339,21 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             
             var chatAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Chat" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
                 self.tabBarController!.selectedIndex = 2
+                
+                var userID = ""
+                if self.activeTradesProviderNetIDArray[indexPath.row] == self.appNetID { // user is provider
+                    userID = self.activeTradesRecipientNetIDArray[indexPath.row]
+                } else if self.activeTradesRecipientNetIDArray[indexPath.row] == self.appNetID { // user is recipient
+                    userID = self.activeTradesProviderNetIDArray[indexPath.row]
+                }
+                
+                for index in 0...2 {
+                    if let controller = self.tabBarController!.viewControllers![index] as? UINavigationController {
+                        if let chatController = controller.topViewController as? ChatViewController {
+                            chatController.sidePanelCurrentlySelectedUser = userID
+                        }
+                    }
+                }
             })
             
             // in both cases, need to reload data after doing thing with more or less things.
@@ -483,6 +498,13 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
     @IBAction func returnBeforeCallingChat (segue:UIStoryboardSegue) {
         self.tabBarController!.selectedIndex = 2
+        for index in 0...2 {
+            if let controller = self.tabBarController!.viewControllers![index] as? UINavigationController {
+                if let chatController = controller.topViewController as? ChatViewController {
+                    chatController.sidePanelCurrentlySelectedUser = self.offerMoreInfoWindowViewController.offerNetID
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

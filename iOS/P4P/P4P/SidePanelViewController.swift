@@ -15,7 +15,7 @@ class SidePanelViewController: UITableViewController {
     var appNetid = ""
     var pwHash = ""
     
-    var users:[String] = ["ffjiang", "dxyang", "vibhaa", "ac17", "arturf"]
+    var users:[String] = []
     var convos:[String: String] = ["ffjiang": "FRANK SAYS HI", "dxyang": "DAN SAYS HI", "vibhaa": "VIBHAA SAYS HI", "ac17": "ANGELICA SAYS HI", "arturf": "ARTUR SAYS HI"]
     
     var fillerView: UIView!
@@ -32,7 +32,7 @@ class SidePanelViewController: UITableViewController {
         tableView.registerClass(ChatTableViewCell.self, forCellReuseIdentifier: "userCell")
         
         // Make side panel - move to left and down, and make thinner
-        self.view.frame.size.width = self.view.frame.size.width - 250
+        self.view.frame.size.width = self.view.frame.size.width - 150
         self.view.frame.origin.x = -self.view.frame.size.width
         self.view.frame.origin.y = 65
         
@@ -59,7 +59,8 @@ class SidePanelViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        println("swift")
+
+        /*
         // Set the currently selected user as the first user if one is not already chosen
         if let currentUser = (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser {
             if !contains(users, currentUser) {
@@ -70,6 +71,7 @@ class SidePanelViewController: UITableViewController {
             (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = users[0]
             (self.view as! UITableView).selectRowAtIndexPath(NSIndexPath(indexes: [0, 0], length: 2), animated: false, scrollPosition: UITableViewScrollPosition.None)
         }
+*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,10 +95,6 @@ class SidePanelViewController: UITableViewController {
         cell.contentView.backgroundColor = UIColor.darkGrayColor()
         cell.textLabel!.backgroundColor = UIColor.darkGrayColor()
         cell.textLabel!.textColor = UIColor.whiteColor()
-        
-        let tapRec = UITapGestureRecognizer(target: self.parentViewController!, action: "loadConversation:")
-        cell.addGestureRecognizer(tapRec)
-        
         
         return cell
     }

@@ -16,7 +16,7 @@ enum SlideOutState {
 
 class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate {
 
-    var users:[String] = ["ffjiang", "dxyang", "vibhaa", "ac17", "arturf"]
+    var users:[String] = []
     var convos:[String: String] = ["ffjiang": "FRANK SAYS HI", "dxyang": "DAN SAYS HI", "vibhaa": "VIBHAA SAYS HI", "ac17": "ANGELICA SAYS HI", "arturf": "ARTUR SAYS HI"]
     
     var textEntry: ChatEntryTextView!
@@ -35,7 +35,7 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
     }
     var leftViewController: SidePanelViewController?
     
-    var mainPanelExpandedOffset: CGFloat = 250
+    var mainPanelExpandedOffset: CGFloat = 150
     
     var openSidePanelRecognizer: UISwipeGestureRecognizer!
     var closeSidePanelRecognizer: UISwipeGestureRecognizer!
@@ -58,7 +58,7 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
     
         (self.view as! ChatView).viewController = self
         
-        (self.view as! ChatView).scrollEnabled = false
+        (self.view as! ChatView).scrollEnabled = true
         
         self.automaticallyAdjustsScrollViewInsets = false
         (self.view as! ChatView).contentInset = UIEdgeInsetsMake(0, 0, 49, 0)
@@ -108,6 +108,30 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         closeSidePanelRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(closeSidePanelRecognizer)
         
+        // Find users
+        let url = NSURL(string: self.websiteURLbase + "/mobileChatRetrieval.php?user2=" + appNetid + "&user1=" + appNetid + "&pwHash1=" + pwHash)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            let json = JSON(data:data)
+            var index = 0
+            for (informationExchange:String, subJson: JSON) in json {
+                var userFromString = json[index]["User_From"].string
+                var userToString = json[index]["User_To"].string
+                
+                if userFromString! != self.appNetid {
+                    if !contains(self.users, userFromString!) {
+                        self.users.append(userFromString!)
+                    }
+                } else if userToString! != self.appNetid {
+                    if !contains(self.users, userToString!) {
+                        self.users.append(userToString!)
+                    }
+                }
+                    
+                index++
+            }
+        }
+        task.resume()
+        
         
         // Recognise keyboard appearing and disappearing
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: self.view.window)
@@ -115,7 +139,7 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         
         // Set the content size to be larger than the scrollsize, so there is a scrollbar
         var scrollContentSize: CGSize = UIScreen.mainScreen().bounds.size
-        (self.view as! ChatView).contentSize = scrollContentSize
+        //(self.view as! ChatView).contentSize = scrollContentSize
         
         // Poll for new convos
         var timer = NSTimer.scheduledTimerWithTimeInterval(2.5, target: self, selector: "loadConversation:", userInfo: nil, repeats: true)
@@ -123,6 +147,9 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
     
     func keyboardWillHide(notification: NSNotification) {
         // Get the size of the keyboard
+        if !self.keyboardIsShown || currentState == .LeftPanelExpanded {
+            return
+        }
         if let userInfo = notification.userInfo {
             if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
                 
@@ -206,7 +233,8 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         chatTextView.frame.origin.y -= heightDiff
         chatTextView.scrollRangeToVisible(NSMakeRange(count(chatTextView.text) - 1, 0))
         
-        (self.view as! ChatView).contentSize.height = textEntry.frame.size.height + chatTextView.frame.size.height
+        //(self.view as! ChatView).contentSize.height = textEntry.frame.size.height + chatTextView.frame.size.height
+        
         
         if count(textView.text) > 0 {
             sendButton.enabled = true
@@ -221,6 +249,8 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         if currentState == .Normal {
             addLeftPanelViewController()
             animateLeftPanel(shouldExpand: true)
+            self.view.endEditing(true)
+            self.keyboardIsShown = false
         }
     }
         
@@ -228,11 +258,14 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
         if currentState == .LeftPanelExpanded {
             animateLeftPanel(shouldExpand: false)
         }
+        self.view.endEditing(true)
+        self.keyboardIsShown = false
     }
     
     func addLeftPanelViewController() {
         if leftViewController == nil {
             leftViewController = SidePanelViewController()
+            leftViewController!.users = self.users
         }
         self.addChildViewController(leftViewController!)
         leftViewController?.didMoveToParentViewController(self)
@@ -267,25 +300,31 @@ class ChatViewController: UIViewController, UITextViewDelegate, UIGestureRecogni
     
     func loadConversation(sender: AnyObject) {
         if let user = sidePanelCurrentlySelectedUser {
+            if !contains(users, user) {
+                users.append(user)
+            }
+            
             let url = NSURL(string: self.websiteURLbase + "/mobileChatRetrieval.php?user2=" + user + "&user1=" + appNetid + "&pwHash1=" + pwHash)
             
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                 let json = JSON(data:data)
                 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.chatTextView.text! = ""
-                }
+                var chatText = ""
                 
                 var index = 0
                 for (informationExchange:String, subJson: JSON) in json {
                     var userString = json[index]["User_From"].string
                     var conversationString = json[index]["Conversation"].string
                     
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.chatTextView.text! += userString! + ": " + conversationString! + "\n"
-                    }
+                    chatText += userString! + ": " + conversationString! + "\n"
                     
                     index++
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    if chatText != self.chatTextView.text {
+                        self.chatTextView.text = chatText
+                        self.chatTextView.scrollRangeToVisible(NSMakeRange(count(self.chatTextView.text) - 1, 0))
+                    }
                 }
                 
             }
