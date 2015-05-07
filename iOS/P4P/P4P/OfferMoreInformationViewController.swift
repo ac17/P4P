@@ -20,6 +20,8 @@ class OfferMoreInformationViewController: UITableViewController {
     var offerAssociatedNetIDs:[String] = []
     var offerAssociatedNames:[String] = []
 
+    var offerNetID = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -138,6 +140,7 @@ class OfferMoreInformationViewController: UITableViewController {
         var chatAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Chat" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             println("you pressed chat")
             // do stuff for linking to chat panel with user
+            self.offerNetID = self.offerAssociatedNetIDs[indexPath.row]
             self.performSegueWithIdentifier("returnThenChat", sender: self)
         })
 

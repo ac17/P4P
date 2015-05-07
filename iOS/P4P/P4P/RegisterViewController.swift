@@ -123,11 +123,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             }
         }
         
-        let netid = self.netIDTextField.text
-        let firstName = self.firstNameTextField.text
-        let lastName = self.lastNameTextField.text
+        var netid = self.netIDTextField.text
+        netid = netid.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        var firstName = self.firstNameTextField.text
+        firstName = firstName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        var lastName = self.lastNameTextField.text
+        lastName = lastName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         let password = self.passwordTextField.text
-        let pwHash = password.MD5()
+        let pwHash: String = password.MD5()
         
         if netid == "" || firstName == "" || lastName == "" || password == "" {
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -135,10 +138,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                 }, completion: nil)
             return
         }
-    
         
         let url = NSURL(string: self.websiteURLbase + "/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
-        
+        println(url)
+        println(pwHash)
 
         var registerViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -149,10 +152,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.successRegisterLabel.alpha = 1.0
                             }, completion: nil)
-                        if self.userPhotoSet {
-                            let url = "hi"
-                            //self.uploadImage(self.userPhotoView.image!, url: url)
-                        }
+                        /*if self.userPhotoSet {
+                            let url2 = "hi"
+                            self.uploadImage(self.userPhotoView.image!, url: url)
+                        }*/
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {

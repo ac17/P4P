@@ -28,6 +28,7 @@ class ChatView: UIScrollView {
                 return viewController!.leftViewController!.view
             }
         }
+        println("hittest")
         
         return super.hitTest(point, withEvent: event)
     }

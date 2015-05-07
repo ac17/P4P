@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,24 +10,13 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="palm" translatesAutoresizingMaskIntoConstraints="NO" id="mpH-CE-dxr">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="mpH-CE-dxr">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Passes for Passes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="20" y="140" width="441" height="43"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                        <rect key="frame" x="89" y="219" width="304" height="43"/>
-                    </variation>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="kId-c2-rCX" secondAttribute="centerY" id="MDe-GS-ifr"/>
                 <constraint firstItem="mpH-CE-dxr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Mtr-Pc-vcA"/>
-                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Xz3-AT-6Xq"/>
                 <constraint firstAttribute="trailing" secondItem="mpH-CE-dxr" secondAttribute="trailing" id="aIV-R0-OzG"/>
                 <constraint firstAttribute="bottom" secondItem="mpH-CE-dxr" secondAttribute="bottom" id="rTy-gC-YOd"/>
                 <constraint firstItem="mpH-CE-dxr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="v4D-gv-m90"/>
@@ -43,8 +32,6 @@
                     <exclude reference="aIV-R0-OzG"/>
                     <exclude reference="rTy-gC-YOd"/>
                     <exclude reference="v4D-gv-m90"/>
-                    <exclude reference="MDe-GS-ifr"/>
-                    <exclude reference="Xz3-AT-6Xq"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -56,14 +43,12 @@
                     <include reference="aIV-R0-OzG"/>
                     <include reference="rTy-gC-YOd"/>
                     <include reference="v4D-gv-m90"/>
-                    <include reference="MDe-GS-ifr"/>
-                    <include reference="Xz3-AT-6Xq"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="palm" width="640" height="400"/>
+        <image name="SplashScreen.png" width="750" height="1334"/>
     </resources>
 </document>

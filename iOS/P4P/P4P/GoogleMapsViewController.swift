@@ -241,6 +241,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
 
     @IBAction func returnBeforeCallingChatFromMap (segue:UIStoryboardSegue) {
         self.tabBarController!.selectedIndex = 2
+        for index in 0...2 {
+            if let controller = self.tabBarController!.viewControllers![index] as? UINavigationController {
+                if let chatController = controller.topViewController as? ChatViewController {
+                    chatController.sidePanelCurrentlySelectedUser = mapInfoWindowNetID
+                }
+            }
+        }
     }
 
     
