@@ -21,6 +21,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
     var appNetID = ""
     var websiteURLbase = ""
+    var keychainWrapper:KeychainWrapper!
 
     var offerClubNumberArray:[String] = []
     var offerDateArray:[String] = []
@@ -50,7 +51,8 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
         websiteURLbase = appDelegate.websiteURLBase
-        
+        keychainWrapper = appDelegate.keychainWrapper
+
         /*
         // Set background color to dark blue
         backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
@@ -234,6 +236,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             cell.textLabel!.text = offerClubNumberArray[indexPath.row]
             cell.detailTextLabel!.text = offerDateArray[indexPath.row]
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
         } else if indexPath.section == 2 { // request stuff
             // Set title as the club and number, and subtitle as the date
             cell.textLabel!.text = requestClubNumberArray[indexPath.row]
@@ -459,6 +462,8 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             offerMoreInfoWindowViewController = offerAcceptRejectWindowNavigationController.topViewController as! OfferMoreInformationViewController
             offerMoreInfoWindowViewController.title = offerMoreInfoWindowTitle
             offerMoreInfoWindowViewController.offerMoreInfoID = offerMoreInfoWindowID
+        } else if segue.identifier == "returnToLogInScreen" {
+            self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -486,6 +491,14 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
 
 
+    @IBAction func logoutAccount(sender: AnyObject) {
+        keychainWrapper.mySetObject(nil, forKey: kSecAttrAccount)
+        keychainWrapper.mySetObject(nil, forKey: kSecValueData)
+        NSUserDefaults.standardUserDefaults().setValue(false, forKey: "hasLoginKey")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        self.performSegueWithIdentifier("returnToLogInScreen", sender: self)
+    }
     /*
     // MARK: - Navigation
 

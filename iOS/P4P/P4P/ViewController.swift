@@ -14,6 +14,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var backgroundView: UIImageView?
     var websiteURLbase = ""
+    
+    var keychainWrapper:KeychainWrapper!
+    let createLoginButtonTag = 0
+    let loginButtonTag = 1
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,9 +26,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         websiteURLbase = appDelegate.websiteURLBase
+        keychainWrapper = appDelegate.keychainWrapper
+        
+        // Check if the user login info is stored
+        let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+        if hasLoginKey == true {
+            var userName = keychainWrapper.myObjectForKey(kSecAttrAccount) as! String
+            var password = keychainWrapper.myObjectForKey(kSecValueData) as! String
+            
+            login(userName, password: password)
+        }
 
         // Do any additional setup after loading the view, typically from a nib.
         self.usernameTextField.delegate = self
@@ -69,14 +83,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             dispatch_async(dispatch_get_main_queue()) {
                 UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                     self.failedLoginLabel.alpha = 0.0
-                    
                     }, completion: nil)
             }
-
         }
-        
-        let username: String = self.usernameTextField.text
-        let password: String = self.passwordTextField.text
+        login(self.usernameTextField.text.lowercaseString, password: self.passwordTextField.text)
+    }
+    
+    func login(username:String, password:String) {
+        usernameTextField.text = ""
+        passwordTextField.text = ""
+
         let deviceID: String = (UIApplication.sharedApplication().delegate as! AppDelegate).deviceToken
         let pwHash: String = password.MD5()
         let url = NSURL(string: self.websiteURLbase + "/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
@@ -85,12 +101,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let json = JSON(data: data)
             if let authResult = json.array {
-
+                
                 if count(authResult) > 0 {
                     dispatch_async(dispatch_get_main_queue()) {
+                        
+                        let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+                        if hasLoginKey == false {
+                            NSUserDefaults.standardUserDefaults().setValue(true, forKey: "hasLoginKey")
+                            NSUserDefaults.standardUserDefaults().synchronize()
+                            self.keychainWrapper.mySetObject(username, forKey:kSecAttrAccount)
+                            self.keychainWrapper.mySetObject(password, forKey:kSecValueData)
+                        }
+                        
                         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        appDelegate.userNetid = username.lowercaseString
+                        appDelegate.userNetid = username
                         appDelegate.pwHash = pwHash
+                        
                         if let firstName = json["firstName"].string {
                             appDelegate.firstName = firstName
                         }
@@ -101,14 +127,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         
                         // Open dashboard
                         self.performSegueWithIdentifier("openDash", sender: self)
-                            
+                        
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
                         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.failedLoginLabel.alpha = 1.0
                             
-                        }, completion: nil)
+                            }, completion: nil)
                     }
                 }
             } else {
@@ -116,17 +142,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                         self.failedLoginLabel.alpha = 1.0
                         
-                    }, completion: nil)
+                        }, completion: nil)
                 }
             }
             
         }
         task.resume()
-        
-        
     }
-    
-    
 }
 
 extension Int {

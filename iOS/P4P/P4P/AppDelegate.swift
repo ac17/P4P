@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var deviceToken: String = "0"
     var loggedIn: Bool = false
     
+    let keychainWrapper = KeychainWrapper()
+    
     var tabBarController: TabBarViewController?
 
     let googleMapsApiKey = "AIzaSyAaBguvi8hXnGsUUdUx_Mem8k7Yk_zBzBs"
@@ -28,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+                
         // Register for Push Notitications, if running iOS 8
         if application.respondsToSelector("registerUserNotificationSettings:") {
             
