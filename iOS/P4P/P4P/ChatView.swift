@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatView: UIView {
+class ChatView: UIScrollView {
 
     var viewController: ChatViewController?
     var i = 1
