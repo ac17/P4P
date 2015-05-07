@@ -145,11 +145,12 @@ $(document).ready(function(){
     ///If user submits the form, log the message in the chat_history table using chat_logmessage.php
     $(document).on("submit", "form", function(event) {
         event.preventDefault();
-        //event.stopImmediatePropagation();
+	//event.stopImmediatePropagation();
         
         var id = event.target.id.substring(4);  
         var clientmsg = $("#" + id + " .usermsg").val();
-        $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
+	if (clientmsg !== "")
+	    $.post("php/chatLogmessage.php", {text: clientmsg, recipient: id});                
         $("#input" + id).val("");
         return false;
     });
