@@ -554,6 +554,7 @@
                     <connections>
                         <outlet property="offerMoreInfoTableView" destination="rgY-dV-QnM" id="Txf-wS-6tc"/>
                         <segue destination="tbO-S5-i6v" kind="unwind" identifier="returnThenChat" unwindAction="returnBeforeCallingChat:" id="1a8-cX-zje"/>
+                        <segue destination="tbO-S5-i6v" kind="unwind" identifier="returnToActiveExchangesWithReload" unwindAction="returnToUserActiveExchangesWithReload:" id="H5d-Zs-qk1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDv-hp-H08" userLabel="First Responder" sceneMemberID="firstResponder"/>

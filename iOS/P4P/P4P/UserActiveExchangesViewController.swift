@@ -41,6 +41,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     var activeTradesDateArray:[String] = []
     
     var backgroundView: UIImageView?
+    var globalFlagForReturnFrom = false
 
 
     override func viewDidLoad() {
@@ -64,8 +65,11 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
     
     override func viewWillAppear(animated: Bool) {
-        userActiveExchangesPull()
-        userActiveTradesPull()
+        if (!globalFlagForReturnFrom) {
+            userActiveExchangesPull()
+            userActiveTradesPull()
+        }
+        globalFlagForReturnFrom = false
     }
     
     func userActiveTradesPull() {
@@ -465,8 +469,13 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
     // allow for returning to user active exchanges view controller
     @IBAction func returnToUserActiveExchanges(segue:UIStoryboardSegue) {
+        self.globalFlagForReturnFrom = true
     }
-    
+
+    @IBAction func returnToUserActiveExchangesWithReload(segue:UIStoryboardSegue) {
+        self.globalFlagForReturnFrom = false
+    }
+
     @IBAction func returnBeforeCallingChat (segue:UIStoryboardSegue) {
         self.tabBarController!.selectedIndex = 2
     }

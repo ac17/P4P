@@ -109,7 +109,7 @@ class OfferMoreInformationViewController: UITableViewController {
                 let json = JSON(data: data)
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.performSegueWithIdentifier("returnToActiveExchanges", sender: self)
+                    self.performSegueWithIdentifier("returnToActiveExchangesWithReload", sender: self)
                 }
                 
             }
