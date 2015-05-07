@@ -14,7 +14,7 @@ class PopupViewController: UIViewController, UIPickerViewDataSource,UIPickerView
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var numPassesField: UITextField!
     
-    let clubPickerData = ["All", "Cannon", "Cap and Gown", "Charter", "Cloister", "Colonial", "Cottage", "Ivy Club", "Terrace", "Tiger Inn", "Tower"]
+    let clubPickerData = ["All", "Cannon", "Cap and Gown", "Cottage", "Ivy Club", "Tiger Inn", "Tower"]
     var clubWheel: UIPickerView!
     var datePickerView: UIDatePicker!
     var numPassesWheel: UIPickerView!
