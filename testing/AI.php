@@ -8,6 +8,10 @@ $actions = file_get_contents( "php://input" );
 $actions = json_decode( $actions );
 $numActions = count($actions) - 1; 
 
+if (empty($actions))
+{
+	exit(); 
+}
 // close session to allow for parallel requests
 session_write_close();
 
