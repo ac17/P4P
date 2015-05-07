@@ -27,4 +27,7 @@
 <file name="getExchangeById.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754027425705935" remote="130754440200000000" />
 <file name="deleteRequest.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754328593958476" remote="130754583000000000" />
 <file name="deleteOffer.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754342416799097" remote="130754593800000000" />
+<file name="savePicture.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754354960346547" remote="130754607000000000" />
+<file name="database_login_info.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130754615400000000" />
+<file name="database_connect.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754180284196636" remote="130754615400000000" />
 </dwsync>

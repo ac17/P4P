@@ -291,7 +291,7 @@ SETTINGS;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyYWgi9UywiXgHkDZBkTtRiWDpgt6IGVQ"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_TP0TtPiuDslXloAv3TKPMDnKgIQu65U"></script>
 	<script src="map.js"></script>
     <script src="../js/exchangeManager.js"></script>
     <script src="controlRoom.js"></script>
