@@ -506,7 +506,7 @@ PROFPIC;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_TP0TtPiuDslXloAv3TKPMDnKgIQu65U&libraries=geometry"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYvY6acR2OUH98E6icuclS44Gkp1378yo&libraries=geometry"></script>
     <script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
