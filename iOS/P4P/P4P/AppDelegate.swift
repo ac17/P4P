@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey(googleMapsApiKey)
         
-        window!.backgroundColor = UIColor(patternImage: (UIImage(named: "AppBackground.png")!))
+        window!.backgroundColor = UIColor(patternImage: (UIImage(named: "darkbluebackground.png")!))
         
         // Check if there was a push notification
         

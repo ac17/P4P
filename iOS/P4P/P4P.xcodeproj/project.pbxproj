@@ -42,6 +42,7 @@
 		DC687CEB1AFB0B8B00285F63 /* exchangesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE81AFB0B8B00285F63 /* exchangesicon.png */; };
 		DC687CEC1AFB0B8B00285F63 /* exchangesicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CE91AFB0B8B00285F63 /* exchangesicon@2x.png */; };
 		DC687CED1AFB0B8B00285F63 /* exchangesicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CEA1AFB0B8B00285F63 /* exchangesicon@3x.png */; };
+		DC687CF11AFB495E00285F63 /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = DC687CF01AFB495E00285F63 /* SplashScreen.png */; };
 		DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86CF531AF95CD000E0054F /* PopupView.swift */; };
 		DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */; };
 		DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */; };
@@ -106,6 +107,7 @@
 		DC687CE81AFB0B8B00285F63 /* exchangesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = exchangesicon.png; path = Images.xcassets/exchangesicon.png; sourceTree = "<group>"; };
 		DC687CE91AFB0B8B00285F63 /* exchangesicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "exchangesicon@2x.png"; path = "Images.xcassets/exchangesicon@2x.png"; sourceTree = "<group>"; };
 		DC687CEA1AFB0B8B00285F63 /* exchangesicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "exchangesicon@3x.png"; path = "Images.xcassets/exchangesicon@3x.png"; sourceTree = "<group>"; };
+		DC687CF01AFB495E00285F63 /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
 		DC86CF531AF95CD000E0054F /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DCAB76811AD3015B004A2CD9 /* P4P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = P4P.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB76851AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				DC687CE81AFB0B8B00285F63 /* exchangesicon.png */,
 				DC687CE91AFB0B8B00285F63 /* exchangesicon@2x.png */,
 				DC687CEA1AFB0B8B00285F63 /* exchangesicon@3x.png */,
+				DC687CF01AFB495E00285F63 /* SplashScreen.png */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
 				DCAB76881AD3015B004A2CD9 /* P4P.xcdatamodeld */,
 				DCAB76841AD3015B004A2CD9 /* Supporting Files */,
@@ -366,6 +369,7 @@
 				DC687CEC1AFB0B8B00285F63 /* exchangesicon@2x.png in Resources */,
 				DCB963111AFAAB8000A43033 /* icon@3x.png in Resources */,
 				DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */,
+				DC687CF11AFB495E00285F63 /* SplashScreen.png in Resources */,
 				DCDC303F1AF9AF06008C13E8 /* AppBackground.png in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
 				DC687CEB1AFB0B8B00285F63 /* exchangesicon.png in Resources */,

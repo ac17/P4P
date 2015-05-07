@@ -150,7 +150,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                             self.successRegisterLabel.alpha = 1.0
                             }, completion: nil)
                         if self.userPhotoSet {
-                            let url = "hi"
+                            let url2 = "hi"
                             //self.uploadImage(self.userPhotoView.image!, url: url)
                         }
                     }

@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SidePanelViewController: UITableViewController {
 
     var websiteURLbase = ""
-
-    var users:[String] = ["ffjiang", "dan", "vibhaa", "ac17", "arturf"]
-    var convos:[String: String] = ["ffjiang": "FRANK SAYS HI", "dan": "DAN SAYS HI", "vibhaa": "VIBHAA SAYS HI", "ac17": "ANGELICA SAYS HI", "arturf": "ARTUR SAYS HI"]
+    var appNetid = ""
+    var pwHash = ""
+    
+    var users:[String] = ["ffjiang", "dxyang", "vibhaa", "ac17", "arturf"]
+    var convos:[String: String] = ["ffjiang": "FRANK SAYS HI", "dxyang": "DAN SAYS HI", "vibhaa": "VIBHAA SAYS HI", "ac17": "ANGELICA SAYS HI", "arturf": "ARTUR SAYS HI"]
     
     var fillerView: UIView!
     
@@ -22,6 +25,8 @@ class SidePanelViewController: UITableViewController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         websiteURLbase = appDelegate.websiteURLBase
+        appNetid = appDelegate.userNetid
+        pwHash = appDelegate.pwHash
 
         let tableView = self.view as! UITableView
         tableView.registerClass(ChatTableViewCell.self, forCellReuseIdentifier: "userCell")
@@ -45,7 +50,7 @@ class SidePanelViewController: UITableViewController {
         
         // Cache conversations
         for (user, conv) in convos {
-            let url = NSURL(string: self.websiteURLbase + "/php/chatRetrieveJSON.php?recipient=" + user + "&user=" + (UIApplication.sharedApplication().delegate as! AppDelegate).userNetid)
+            let url = NSURL(string: self.websiteURLbase + "/php/mobileChatRetrieval.php?user2=" + user + "&user1=" + appNetid + "&pwHash1=" + pwHash)
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                 self.convos[user] = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
             }
@@ -98,7 +103,33 @@ class SidePanelViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user: String = tableView.cellForRowAtIndexPath(indexPath)!.textLabel!.text!
-        (self.parentViewController as! ChatViewController).chatTextView.text = convos[user]
+        
+        let url = NSURL(string: self.websiteURLbase + "/mobileChatRetrieval.php?user2=" + user + "&user1=" + appNetid + "&pwHash1=" + pwHash)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            let json = JSON(data:data)
+            //var convo = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+            
+            (self.parentViewController as! ChatViewController).sidePanelCurrentlySelectedUser = user
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                (self.parentViewController as! ChatViewController).chatTextView.text! = ""
+            }
+            
+            var index = 0
+            for (informationExchange:String, subJson: JSON) in json {
+                var userString = json[index]["User_From"].string
+                var conversationString = json[index]["Conversation"].string
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    (self.parentViewController as! ChatViewController).chatTextView.text! += userString! + ": " + conversationString! + "\n"
+                }
+                
+                index++
+            }
+            
+        }
+        task.resume()
     }
     
     /*
