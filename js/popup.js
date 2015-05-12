@@ -122,7 +122,7 @@ function register_popup(id, name)
 function calculate_popups()
 {
     var width = window.innerWidth;
-    if(width < 540)
+    if(width - 210 < 330)
     {
         total_popups = 0;
     }
