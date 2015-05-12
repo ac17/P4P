@@ -45,7 +45,3 @@
 	vertical-align:middle;
 	position: relative;
 }
-
-.inputCenter{
-	text-align: center;
-}

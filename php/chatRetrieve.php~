@@ -44,7 +44,7 @@ if(isset($_SESSION['user'])){
 		$photo = '<img class="miniProfilePic" src="img/'.$photolink.'"></img>';
 	}
 
-        echo "<div class='msgln'><span title = '".$row['Time']."'>".$photo."<b>".$name."</b>: ".stripslashes(htmlspecialchars($row['Conversation']))."</span><br></div>";
+        echo "<div class='msgln ".$class."'><span title = '".$row['Time']."'>".$photo."<b>".$name."</b>: ".stripslashes(htmlspecialchars($row['Conversation']))."</span><br></div>";
     }
 }
 ?>

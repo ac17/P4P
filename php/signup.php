@@ -56,7 +56,7 @@ function signup($netId, $fName, $lName, $pwHash, &$err) {
 	</head>
 	<body>
 		<p>Hi {$fName}!</p>
-		<p>We're so excited to have you join Passes for Passes. In order to verify your account, please click <a href='http://ec2-54-149-32-72.us-west-2.compute.amazonaws.com/php/verification.php?uID={$uID}&vc={$vc}'>here</a>. If this wasn't you, then just ignore this email.</p>
+		<p>We're so excited to have you join Passes for Passes. In order to verify your account, please click <a href='www.passesforpasses.com/php/verification.php?uID={$uID}&vc={$vc}'>here</a>. If this wasn't you, then just ignore this email.</p>
 		<p>Best,<br>The Passes for Passes Team</p>
 	</body>
 	</html>";

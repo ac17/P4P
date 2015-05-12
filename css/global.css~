@@ -1,0 +1,73 @@
+/* Fonts */
+@font-face {
+    font-family: RalewayThin;
+    src: url("../fonts/RalewayThin.ttf");
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: RalewayThin;
+}
+
+/* Navbar styles */
+.navbar {
+  height: 50px;
+  font-weight: bold;
+}
+
+.navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+}
+
+/* Sticky footer styles */
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+  background-color: black;
+  color: white;
+}
+#footerInner {
+  text-align: center;
+}
+
+/* Buttons */
+.btn-default {
+  background: #1fbad6;
+  text-shadow: 0px 0px 0px;
+  border: none;
+  color: white;
+  box-shadow: 0px 0px 0px;
+}
+
+.btn-default:hover {
+  background: #1fbad6;
+  text-shadow: 0px 0px 0px;
+  border: none;
+  box-shadow: none;
+}
+
+.btn-close {
+  background: none;
+  color: black;
+}
+
+.btn-close:hover {
+  background: none;
+  color: black;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}

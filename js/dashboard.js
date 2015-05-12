@@ -1,28 +1,30 @@
 // JavaScript Document
+
+/* Functions which handel actions of the user interface. */
+
 var numPasses;
 var selectedRequests = new Array();
 var selectedOffers = new Array();
 
 // Jquery ui funstions 
 $(function() {
-    $(function() {
-    	$( "#tabs" ).tabs({
-			activate: function (event, ui) {
-				// upon enterting the tab which contains the map, refresh the map
-				if (ui.newPanel.attr('id') == "tab-1")
-				{
-					getMatchingExchanges();
-				}
-				
-				// upon enterting the tab which contains exchange manager, refresh the requests and offers
-				if (ui.newPanel.attr('id') == "tab-2")
-				{
-					getUserActiveTrades(document.getElementById("netId").value);
-					getUserActiveExchanges(document.getElementById("netId").value);
-				}
-			}			  
-		});
- 	});
+	/* Function for the three main tabs. */
+	$( "#tabs" ).tabs({
+		activate: function (event, ui) {
+			// upon enterting the tab which contains the map, refresh the map
+			if (ui.newPanel.attr('id') == "tab-1")
+			{
+				getMatchingExchanges();
+			}
+			
+			// upon enterting the tab which contains exchange manager, refresh the requests and offers
+			if (ui.newPanel.attr('id') == "tab-2")
+			{
+				getUserActiveTrades(document.getElementById("netId").value);
+				getUserActiveExchanges(document.getElementById("netId").value);
+			}
+		}			  
+	});
 	
 	// functions for the elements of search form 
 	$( "#searchPassDate" ).datepicker({
@@ -67,13 +69,16 @@ $(function() {
       max: 5,
 	  step: 0.1,
       slide: function( event, ui ) {
+		// Update the distance display 
 		document.getElementById("amount").innerHTML = "Distance: " + ui.value + " mi";
       },
 	  stop: function( event, ui ) {
+		// Filter markers on map based on distance. */
 	  	showMarkersWithinRange( ui.value );
 	  }
     });
 	
+	/* Displays the current selected distance. */
 	document.getElementById("amount").innerHTML = "Distance: " + $( "#range-slider" ).slider( "value" ) + " mi";
 
 	// functions for the elements of request/offer form 
@@ -111,16 +116,16 @@ $(function() {
 			
 			if (window.XMLHttpRequest)
 			{//  IE7+, Firefox, Chrome, Opera, Safari
-			  xmlhttp = new XMLHttpRequest();
+			  postExchange_xmlhttp = new XMLHttpRequest();
 			}
 			else
 			{//  IE6, IE5
-			  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			  postExchange_xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			  
-			xmlhttp.onreadystatechange=function()
+			postExchange_xmlhttp.onreadystatechange=function()
 			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				if (postExchange_xmlhttp.readyState==4 && postExchange_xmlhttp.status==200)
 				{
 					getUserActiveExchanges(document.getElementById("netId").value);
 					spinner.spinner( "value", 0 );
@@ -128,18 +133,21 @@ $(function() {
 					$("#passDate").val($.datepicker.formatDate("mm/dd/yy", new Date()));
 				}
 			}
-
-			xmlhttp.open("GET", "./php/addExchange.php?netId=" + document.getElementById("netId").value + "&passDate=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text() + "&comment=" + document.getElementById("comment").value, true);
-			xmlhttp.send();
+			
+			// Call script to create a new offer
+			postExchange_xmlhttp.open("GET", "./php/addExchange.php?netId=" + document.getElementById("netId").value + "&passDate=" + $( "#passDate" ).val() + "&type=Offer" + "&numPasses=" + spinner.spinner( "value" ) + "&club=" + $('#eatingClub :selected').text() + "&comment=" + document.getElementById("comment").value, true);
+			postExchange_xmlhttp.send();
 	});
 	
 	// current user's active offer and request lists 
 	$( "#requestList" ).selectable({
 		filter: 'li',
 		selecting: function( event, ui ) {
+			// Clear the array of selected requests 
 			selectedRequests = [];
 		},
 		selected: function( event, ui ) {
+			// another selected request
 			selectedRequests.push([ui.selected.attributes.requestid.nodeValue,"Request"]);
 		}
 	});
@@ -147,9 +155,11 @@ $(function() {
 	$( "#offerList" ).selectable({
 		filter: 'li',
 		selecting: function( event, ui ) {
+			// Clear the array of selected offers 
 			selectedOffers = [];
 		},
 		selected: function( event, ui ) {
+			// another selected offer
 			selectedOffers.push([ui.selected.attributes.offerid.nodeValue,"Offer"]);
 		}
 	});
@@ -181,17 +191,21 @@ $(function() {
 	
 });
 
+/* Function called to create and show a dialog box 
+with an error message errorMsg. */ 
 function showError(errorTitle, errorMsg)
-{
-	alert(errorTitle); 
+{ 
 	document.getElementById("error-dialog").setAttribute("title", errorTitle);
 	document.getElementById("errorMessage").innerHTML = errorMsg;
 	$( "#error-dialog" ).dialog( "open" );
 }
 
-
+/* Function used to load user data when the page is opened
+and the body on load event occours. */
 function loadUserData(netId)
 {
 	getUserActiveTrades(netId);
 	getUserActiveExchanges(netId);
 }
+
+

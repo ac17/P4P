@@ -19,6 +19,12 @@ foreach ($userIds as $userId)
 		die("Could not query the database. " . mysql_error());
 	}
 	
+	$query = 'DELETE FROM chat_history WHERE User_From="'. $user['netId'] . '" OR User_To="'. $user['netId'] .'"';
+	$query_result = mysql_query($query);
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
 	$query = 'DELETE FROM Users WHERE id="'. $userId . '"';
 	$query_result = mysql_query($query);
 	if(!$query_result){

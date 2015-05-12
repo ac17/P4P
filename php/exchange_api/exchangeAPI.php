@@ -27,6 +27,14 @@ function pursueOffer($currentUserNetId, $offerId)
 		return; 
 	}
 	
+	// send a push notification 
+	$deviceToken = getDeviceId($offer['requesterNetId']);
+	if ($deviceToken != NULL)
+	{ 
+		$message = getUserNameByNetId($currentUserNetId) . " requested your pass.";
+		shell_exec(PHP_BINDIR . "/php /opt/lampp/htdocs/php/exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
+	}
+	
 	// add a request
 	$query = 'INSERT INTO Active_exchanges VALUES(NULL,"'. $currentUserNetId . '","' . $offer['passClub'] . '","' . $offer['passNum'] . '","' . date ("Y-m-d", strtotime($offer['passDate'])) . '","","Request", "0", \''. json_encode(array($offer['id'])) .'\')';
 	//Execute the query
@@ -198,19 +206,29 @@ function getExchangeById($exchangeId)
 	if(!$query_result){
 		die("Could not query the database. " . mysql_error());
 	}
-	
-	
+				
 	$exchanges = array();
 	
 	if ($query_result !== false)
 	{
-		while($exchange = mysql_fetch_array(($query_result))){	
+		while($exchange = mysql_fetch_array(($query_result))){
+			$names = array();
+			if($exchange['type'] == "Offer")
+			{
+			   $netIds = json_decode($exchange['associatedExchanges']);
+			   foreach ($netIds as $netId)
+			   {
+				  array_push($names, getUserNameByNetId($netId));
+			   }
+			}
+	
 			array_push($exchanges, array('id' =>$exchange['id'], 
 										 'club' =>$exchange['passClub'],
 										 'passNum' =>$exchange['passNum'],
 										 'passDate' =>$exchange['passDate'],
 										 'comments' =>$exchange['comments'],
 										 'associatedExchanges' =>$exchange['associatedExchanges'],
+										 'names' =>$names,
 										 'type' =>$exchange['type'])); 
 		}
 	}
@@ -231,11 +249,11 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 	// Select between searching for all clubs
 	if($passClub != "All")
 	{
-		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.type="' .$type. '" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.passClub="'.$passClub.'" AND requesterNetId !="' .$currentUserNetId. '"';
+		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) . '" AND Active_exchanges.type="' .$type. '" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.passClub="'.$passClub.'" AND requesterNetId !="' .$currentUserNetId. '" AND Active_exchanges.isPartOfTransaction="0"';
 	}
 	else 
 	{
-		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'" AND requesterNetId !="' .$currentUserNetId. '"';
+		$where = ' WHERE Active_exchanges.passDate="' . date ("Y-m-d", strtotime($date)) .'" AND Active_exchanges.passNum >= '.$numPasses.' AND Active_exchanges.type="'.$type.'" AND requesterNetId !="' .$currentUserNetId. '" AND Active_exchanges.isPartOfTransaction="0"';
 	}
 	$order = " ORDER BY Users.reputation DESC ";
 	 
@@ -651,6 +669,23 @@ function cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $reques
 		return; 
 	}
 	
+	// send a push notification
+	$deviceToken = NULL; 
+	if ($currentUserNetId == $provider)
+	{
+		$deviceToken = getDeviceId($recipient);
+	}
+	else 
+	{
+		$deviceToken = getDeviceId($provider);
+	}
+	
+	if ($deviceToken != NULL)
+	{ 
+		$message = getUserNameByNetId($currentUserNetId) . " canceled  your trade.";
+		shell_exec(PHP_BINDIR . "/php /opt/lampp/htdocs/php/exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
+	}
+	
 	// punish the cancelling user 
 	$query = 'UPDATE Users SET reputation=reputation-1 WHERE netId="'.$currentUserNetId.'"';
 	//Execute the query
@@ -723,6 +758,15 @@ function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 	{ 
 		echo "The request has been cancelled.";
 		return; 
+	}
+	
+	
+	// send a push notification
+	$deviceToken = getDeviceId($requesterNetId);
+	if ($deviceToken != NULL)
+	{ 
+		$message = getUserNameByNetId($currentUserNetId) . " accepted your offer.";
+		shell_exec(PHP_BINDIR . "/php /opt/lampp/htdocs/php/exchange_api/pushNotification.php " . $deviceToken . " '" . $message . "'");
 	}
 	
 	$requestId = $result['id'];
@@ -836,6 +880,27 @@ function getAllExchanges()
 	}
 
 	return $users;
+}
+
+function getDeviceId($netId)
+{
+	//Build a query
+	$select = ' SELECT '; 
+	$column =  ' deviceID ';  
+	$from = ' FROM ';  
+	$tables = ' Users ';
+	$where = 'WHERE netId="' . $netId . '" LIMIT 1';
+	$query = $select . $column . $from . $tables . $where; 
+	//Execute the query
+	$query_result = mysql_query($query);
+	//Provide an error message if the query failed
+	if(!$query_result){
+		die("Could not query the database. " . mysql_error());
+	}
+	
+	$query_result = mysql_fetch_array(($query_result));
+
+	return $query_result['deviceID'];
 }
 
 ?>

@@ -9,7 +9,7 @@
     margin:0;
     padding:0; }
   
-#chat input { font:12px arial; }
+#chat > input { font:12px arial; }
   
 #tab-3 > a {
     color:#1fbad6;

@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="User Dashboard">
     <meta name="author" content="">
-    <link rel="icon" href="img/ticket.png">
+    <link rel="icon" href="img/icon.png">
 
 	<!-- for HTML5 App -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
@@ -94,9 +94,9 @@ CHANGEPP;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a><button type="button" data-toggle="modal" data-target="#settingsModal">Settings</button></a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="logout.php">Log Out</a></li>
+            <li><a><button type="button" data-toggle="modal" data-target="#settingsModal" class = "btn btn-default">Settings</button></a></li>
+            <li><a href="#"><button type="button" class = "btn btn-default">Help</button></a></li>
+            <li><a href="logout.php"><button type="button" class = "btn btn-default">Log Out</button></a></li>
           </ul>
         </div>
       </div>
@@ -311,10 +311,10 @@ PROFPIC;
                     <label for="searchEatingClub">Eating Club: </label>
                     <select name="searchEatingClub" id="searchEatingClub">
                       <option>Ivy Club</option>
-                      <option>Tiger Inn</option>
-                      <option selected="selected">Colonial</option>
+                      <option selected="selected">Tower Club</option>
                       <option>Cottage</option>
                       <option>Cap and Gown</option>
+		      <option>Cannon</option>
                       <option>Tiger Inn</option>
                       <option>All</option>
                     </select>
@@ -341,10 +341,10 @@ PROFPIC;
                 <div class="col-md-12" id="map-canvas"></div>
                 
                 <div class="col-md-12" ><br /><br /></div>
-
-                	<input type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
-                    <input type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
-
+			
+                	<input class = "btn btn-default" type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
+                    <input class = "btn btn-default" type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
+			
                 <!--chatclient -->
               </div>
               
@@ -356,11 +356,12 @@ PROFPIC;
                       <fieldset>
                         <label for="eatingClub">Eating Club: </label>
                         <select name="eatingClub" id="eatingClub">
-                          <option>Ivy Club</option>
-                          <option>Tiger Inn</option>
-                          <option selected="selected">Colonial</option>
-                          <option>Cottage</option>
-                          <option>Cap and Gown</option>
+                          	<option>Ivy Club</option>
+                      	  	<option selected="selected">Tower Club</option>
+                      		<option>Cottage</option>
+                      		<option>Cap and Gown</option>
+		      				<option>Cannon</option>
+                      		<option>Tiger Inn</option>
                         </select>
                         </fieldset>
                     </form>
@@ -378,11 +379,14 @@ PROFPIC;
                 	<div class="col-md-4">
                     </div>
                     <div class="col-md-4">
+					<div class = "inputCenter">
                     <label for="comment">Comment:</label>
-                    <textarea id="comment" rows="5" cols="20"></textarea>
-                    <input type="submit" value="Post" id="postExchange">
+                    <textarea id="comment" rows="5" cols="20"></textarea> <br/>                  
+			<input class = "btn btn-default" type="submit" value="Post" id="postExchange"></div>
                     <!-- used to pass netid to on click function for Post -->
                     <input type="hidden" id="netId" value="<?php echo $_SESSION['user']['netId']; ?>">
+                    </div>
+                    <div class="col-md-4">
                     </div>
                  </div>
 
@@ -399,8 +403,11 @@ PROFPIC;
                     <ol id="offerList" class="selectable">
                     </ol>
                 </div>
+                
                 <div class="col-md-12">
-                <input type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
+					<div class = "inputCenter">
+                		<input class = "btn btn-default" type="submit" value="Delete Selected Offers" onMouseDown="removeSelectedOffers('<?php echo $_SESSION['user']['netId']; ?>')">
+                	</div>
                 </div>
                 
                 <div class="col-md-12"><br  /><br  /></div>
@@ -410,9 +417,14 @@ PROFPIC;
                     </ol>
                 </div>
                 
-                <input type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
-
+                <div class="col-md-12">
+					<div class = "inputCenter">
+                	<input class = "btn btn-default" type="submit" value="Delete Selected Requests" onMouseDown="removeSelectedRequests('<?php echo $_SESSION['user']['netId']; ?>')">
+                	</div>
+				</div>
+                <font color="#FFFFFF">.</font>
              </div>
+             
 
              <!-- Chat Manager -->
               <div class = "container-fluid" id="tab-3">  
@@ -426,6 +438,8 @@ PROFPIC;
                   }
 
                   echo '<table class = "table table-striped table-bordered table-hover table-condensed">'; // start a table to present the chat
+		  //title row
+		  echo '<tr><th class = "inboxheader" style="width:20%">Time</th><th class = "inboxheader" style="width:20%">Friend</th><th class = "inboxheader" style="width:60%">Most recent Conversation</th></tr>';
 
                   //Creates a loop to loop through results
                   $counter = 1;
@@ -453,6 +467,24 @@ PROFPIC;
                     }
                     else
                       $otherUsername = mysql_result($getName, 0);
+			
+		    /*get photo of the otherUser*/
+		    $getphoto = mysql_query('SELECT photo FROM Users WHERE netId = "'.$otherUser.'";'); 
+    		    if (!$getphoto)
+    			$photolink = "";
+    		    else if (mysql_num_rows($getphoto) == 0){
+                      $photolink = "";
+                    }
+		    else
+    			$photolink = mysql_result($getphoto, 0);
+
+		    /*html to insert picture*/
+		    if($photolink === "" || $photolink === null) {
+		    	$photo = '<div><img class="miniProfilePic" src="img/default.jpg"></img></div>';
+	            } else {
+			$photo = '<div><img class="miniProfilePic" src="img/'.$photolink.'"></img></div>';
+		    }
+
 
                     /* identify if the message was sent by "You" or the other user*/
                     if (strcmp($row['User_From'], $_SESSION['user']['netId']) !== 0) 
@@ -462,7 +494,11 @@ PROFPIC;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
+<<<<<<< HEAD
                       echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');" >'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+=======
+                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:20%"><a class = "clickable" onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\')" >'.$otherUsername.$photo.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
+>>>>>>> b42d706b945668a79b9d07b15a0c80c00c7d683c
                     }
                     $counter = $counter + 1;    
                   }
@@ -484,11 +520,11 @@ PROFPIC;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr4bn-X3zDwAemTNf8KEnTGbc8yFnoio4&libraries=geometry"></script>
-	<script src="js/popup.js"></script>
-  <script src="js/map.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYvY6acR2OUH98E6icuclS44Gkp1378yo&libraries=geometry"></script>
+    <script src="js/map.js"></script>
     <script src="js/exchangeManager.js"></script>
     <script src="js/dashboard.js"></script>
+	<script src="js/popup.js"></script>
     
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
@@ -504,7 +540,8 @@ PROFPIC;
     <div id="errorMessage"></div>
   </p>
   </div>
-
+	
+  <div id="chats"></div>
 	
   </body>
 

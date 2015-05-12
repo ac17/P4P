@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="User Dashboard">
     <meta name="author" content="">
-    <link rel="icon" href="../img/ticket.png">
+    <link rel="icon" href="../img/icon.png">
 
 	<!-- for HTML5 App -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon" href="img/palm.png"/>
     <link rel="apple-touch-startup-image" href="img/palm.png" />
     
-    <title>Dashboard</title>
+    <title>Control Room</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="../css/global.css">
     <link type="text/css" rel="stylesheet" href="../css/chatPopup.css"/>
     <link type="text/css" rel="stylesheet" href="controlRoom.css"/>
+    <link type="text/css" rel="stylesheet" href="scroller.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -168,6 +169,7 @@ SETTINGS;
                 <li><a href="#tab-3">NPCs</a></li>
                 <li><a href="#tab-4">AI</a></li>
                 <li><a href="#tab-5">Garbage Collector</a></li>
+                <li><a href="#tab-6">?</a></li>
               </ul>
               <!-- Map -->
               <div id="tab-1">
@@ -236,6 +238,12 @@ SETTINGS;
                     </div>
                  </div>
                  <br />
+                 <br />
+                 <br />
+                 <br /><br />
+                 <br /><br />
+                 <br /><br />
+                 <br /><br />
                  <div class="col-md-12" id="output" style="text-align:left; font-family:'MS Serif', 'New York', serif; font-size:14px">
                  </div>
               </div> 
@@ -243,6 +251,23 @@ SETTINGS;
               <div class = "container-fluid" id="tab-5">  
                 <div class="col-md-12" id="garbageCollector"></div>
                 <input type="submit" value="Refresh" onClick="getGarbageStats()">
+              </div>
+              
+              <div class = "container-fluid" id="tab-6">
+              	<div id="scroller" style="width: 550px; height: 400px; margin: 0 auto;">
+                	<div class="innerScrollArea">
+                        <ul>
+                        <!-- Define photos here -->
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
+                        </ul>
+                	</div>
+                </div>
               </div> 
             </div>
           </div>        
@@ -266,11 +291,13 @@ SETTINGS;
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyYWgi9UywiXgHkDZBkTtRiWDpgt6IGVQ"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYvY6acR2OUH98E6icuclS44Gkp1378yo"></script>
 	<script src="map.js"></script>
     <script src="../js/exchangeManager.js"></script>
     <script src="controlRoom.js"></script>
     <script src="../js/popup.js"></script>
+    
+    
 
   <div id="invalid-passNum-dialog" title="Invalid Number of Passes">
   <p>

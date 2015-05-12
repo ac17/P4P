@@ -8,6 +8,10 @@ $actions = file_get_contents( "php://input" );
 $actions = json_decode( $actions );
 $numActions = count($actions) - 1; 
 
+if (empty($actions))
+{
+	exit(); 
+}
 // close session to allow for parallel requests
 session_write_close();
 
@@ -69,9 +73,9 @@ function sendRequest()
 // Creating offers
 function randomOffer($netId)
 {
-	$passDate = "04/" . mt_rand(26,30) . "/2015";
+	$passDate = "05/" . mt_rand(3,9) . "/2015";
 	$numPasses = mt_rand(1,3);
-	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap and Gown"];
+	$clubs = ["Ivy Club", "Tower Club", "Tiger Inn", "Colonial", "Cottage", "Cap and Gown", "Cannon"];
 	$passClub = $clubs[mt_rand(0,4)];
 	$comment = "";
 	echo "Adding offer for " . $netId . " Date " . $passDate . " Num " . $numPasses . " Club " . $passClub . "<br />";
@@ -98,7 +102,7 @@ function seekAndPursueOffer($netId)
 {
 	$passDate = "04/" . mt_rand(26,30) . "/2015";
 	$numPasses = mt_rand(1,3);
-	$clubs = ["Ivy Club", "Tiger Inn", "Colonial", "Cottage", "Cap & Gown", "All"];
+	$clubs = ["Ivy Club", "Tower Club", "Tiger Inn", "Colonial", "Cottage", "Cap and Gown", "Cannon", "All"];
 	$passClub = $clubs[mt_rand(0,4)];
 	
 	echo "Searching for offer for  Date " . $passDate . " Num " . $numPasses . " Club " . $passClub . "<br />";	

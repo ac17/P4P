@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753830591577667" remote="130754082600000000" />
-<file name="exchangeManager.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753939854247134" remote="130754191200000000" />
+<file name="map.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754105312140785" remote="130754510400000000" />
+<file name="exchangeManager.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754225298721320" remote="130754476800000000" />
 <file name="ie10-viewport-bug-workaround.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130736659619213031" remote="130745553600000000" />
-<file name="dashboard.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130753850458954016" remote="130754101800000000" />
+<file name="dashboard.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754104465832379" remote="130754510400000000" />
 <file name="smoothscroll.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130741419138086506" remote="130745553600000000" />
-<file name="popup.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130749708430402469" remote="130749960000000000" />
+<file name="popup.js" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754180284176635" remote="130754510400000000" />
+<file name="ie10-viewport-bug-workaround.js" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130745553600000000" remote="130745553600000000" />
+<file name="map.js" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130758723550983774" remote="130758975000000000" />
+<file name="exchangeManager.js" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130758697006865537" remote="130758950400000000" />
+<file name="dashboard.js" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130758699014330357" remote="130758950400000000" />
+<file name="popup.js" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754616000000000" remote="130754616000000000" />
 </dwsync>
