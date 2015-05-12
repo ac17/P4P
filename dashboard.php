@@ -119,9 +119,13 @@ CHANGEPP;
                   <h3>Offering a Pass</h3>
                   <p>To <b>offer a pass</b>, click the "Your Offer/Request" tab and use the dropdown menus to describe the passes you wish to offer. Additional comments can be entered in the text box below. Click "Post" to submit the offer.</p>
                   <h3>Accepting a Request</h3>
-                  <p>Once you've offered a pass and another user has requested </p>
+                  <p>Once you've offered a pass and another user has requested to trade, a request description will appear underneath the offer listed in "Your Open Offers" on the "Your Offer/Request" tab. To agree to trade, click "Accept." You can also cancel or chat with the requester.</p>
+                  <h3>Completing a Trade</h3>
+                  <p>After you've met up with another user to trade passes, click the "Complete" button underneath "Trades" on your "Your Offer/Request" tab. This will increase your reputation!</p>
                   <h3>Chatting</h3>
+                  <p>To chat with a pass offerer, click the location marker of the pass on the map in the "Search for Passes" tab and click their name in the pop-up that appears. This will produce a chat pop-up in the lower right corner of the page. The chat log will be stored in the "Inbox" tab, where you can chat with the user again simply by clicking their name.</p>
                   <h3>Further Help</h3>
+                  <p>Still confused? Don't worry! Feel free to contact us anytime using our <a href="index.php/#contactUs">contact form</a> on the home page.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
