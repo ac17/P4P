@@ -97,12 +97,32 @@ CHANGEPP;
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a><button type="button" data-toggle="modal" data-target="#settingsModal" class = "btn btn-default">Settings</button></a></li>
-            <li><a href="#"><button type="button" class = "btn btn-default">Help</button></a></li>
+            <li><a href="#"><button type="button" data-toggle="modal" data-target="#helpModal" class = "btn btn-default">Help</button></a></li>
             <li><a href="logout.php"><button type="button" class = "btn btn-default">Log Out</button></a></li>
           </ul>
         </div>
       </div>
     </nav>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Help</h2>
+                </div>
+                <div class="modal-body">
+                  <h3>Searching for Passes</h3>
+                  <h3>Requesting a Pass</h3>
+                  <h3>Chatting</h3>
+                  <h3>Further Help</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
+                </div>
+              </div><!-- ./content -->
+            </div><!-- ./dialog -->
+          </div><!-- ./modal -->
 
     <!-- Settings Modal-->
     <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-hidden="true">
