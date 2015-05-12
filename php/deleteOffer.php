@@ -4,7 +4,7 @@
 //Get login information 
 require('../php/database_connect.php');
 require('exchange_api/exchangeAPI.php');
-//Get the id of the note to be displayed returned
+//Get the id of the offer and the offer's owner
 $offerId = $_GET["offerId"];
 $requesterNetId=$_GET["requesterNetId"];
 
@@ -14,6 +14,7 @@ if(get_magic_quotes_gpc()){
 	$requesterNetId = stripslashes(mysql_real_escape_string($requesterNetId));
 }
 
+/* Function to delete a single offer which has the id $requestId and belongs to $netId */
 deleteOffer($requesterNetId, $offerId);
 	
 mysql_close($connection);

@@ -3,7 +3,7 @@ header('Content-type: application/json');
 //Get login information 
 require('./database_connect.php');
 require('exchange_api/exchangeAPI.php');
-//Get the id of the note to be displayed returned
+//Get the netId of user
 $currentUserNetId = $_GET["currentUserNetId"];
 //Protect against SQL injection
 if(get_magic_quotes_gpc()){
@@ -11,6 +11,7 @@ if(get_magic_quotes_gpc()){
 }
 
 $trades = array();
+/*Function returns all the active trades of user with $currentUserNetId.*/
 $trades = userActiveTrades($currentUserNetId);
 
 echo json_encode(array("Trades"=>$trades)); 

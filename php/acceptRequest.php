@@ -4,7 +4,7 @@
 //Get login information 
 require('../php/database_connect.php');
 require('exchange_api/exchangeAPI.php');
-//Get the id of the note to be displayed returned
+//Get the id of offer the request
 $offerId = $_GET["offerId"];
 $requesterNetId=$_GET["requesterNetId"];
 $currentUserNetId=$_GET["currentUserNetId"];
@@ -16,9 +16,10 @@ if(get_magic_quotes_gpc()){
 	$currentUserNetId = stripslashes(mysql_real_escape_string($currentUserNetId));
 }
 
+/* Function to accept a request from $requesterNetId to offer with id $offerId 
+owned by $currentUserNetId. All other requests for this offer are deleted. */
 acceptRequest($currentUserNetId, $requesterNetId, $offerId);
 	
-
 mysql_close($connection);
 
 ?>

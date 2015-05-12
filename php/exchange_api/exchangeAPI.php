@@ -1,5 +1,7 @@
 <?php
 
+/*Function which adds the user to the offer with $offerId list of associated 
+exchanges and creates a new reuqest. The offer owner is push notifed of the request.*/
 function pursueOffer($currentUserNetId, $offerId)
 {
 	// get correspoding offer 
@@ -56,7 +58,7 @@ function pursueOffer($currentUserNetId, $offerId)
 	}
 }
 
-
+/*Function returns all the active trades of user with $currentUserNetId. An array is returned.*/
 function userActiveTrades($currentUserNetId)
 {
 	//Build a query to get all offer which are part of trades and have the current user's net id 
@@ -75,9 +77,7 @@ function userActiveTrades($currentUserNetId)
 	
 	
 	$trades = array();
-	
-	//echo "Results for ".$queryTerms.": <br/><br/>";
-	//Display the results from the query
+
 	if ($query_result !== false)
 	{
 		while($exchange = mysql_fetch_array(($query_result))){
@@ -95,7 +95,8 @@ function userActiveTrades($currentUserNetId)
 			$request = getCorrespodingRequest($offerId); 
 			$recipient = $request['requesterNetId'];
 			$requestId = $request['id'];
-
+			
+			// add trade 
 			array_push($trades, array('offerId' =>$offerId,
 									  'requestId' =>$requestId,
 									  'provider' =>$provider,
@@ -111,7 +112,7 @@ function userActiveTrades($currentUserNetId)
 return $trades;
 }
 
-
+/* Helper function returns all information on the offer with $offerId in an array. */
 function getCorrespodingRequest($offerId)
 {
 	// get correspoding offer's request's id 
@@ -127,6 +128,7 @@ function getCorrespodingRequest($offerId)
 	return $result;
 }
 
+/* Helper function returns all information on the offer based on id in $requestAssociatedExchanges in an array. */
 function getCorrespodingOffer($requestAssociatedExchanges)
 {
 	// get the offer's associatedExchanges
@@ -142,6 +144,7 @@ function getCorrespodingOffer($requestAssociatedExchanges)
 	return $offer;
 }
 
+/*Function returns all the active requests and offers of user with $currentUserNetId. An array is returned.*/
 function userActiveExchanges($currentUserNetId)
 {
 	//Build a query
@@ -161,12 +164,11 @@ function userActiveExchanges($currentUserNetId)
 	
 	$exchanges = array();
 	
-	//echo "Results for ".$queryTerms.": <br/><br/>";
-	//Display the results from the query
 	if ($query_result !== false)
 	{
 		while($exchange = mysql_fetch_array(($query_result))){
 			
+			// add each exchange 
 			$names = array();
 			if($exchange['type'] == "Offer")
 			{
@@ -187,10 +189,11 @@ function userActiveExchanges($currentUserNetId)
 										 'type' =>$exchange['type'])); 
 		}
 	}
+	
 return $exchanges;
 }
 
-
+/*Function returns exchange with id $exchangeId as an array.*/
 function getExchangeById($exchangeId)
 {
 	//Build a query
@@ -235,9 +238,12 @@ function getExchangeById($exchangeId)
 return $exchanges;
 }
 
+/*Function returns all offer which match the passes parameters. This function ignores all offers which 
+are part of trades and offers which are owned by user with netId $currentUserNetId. There is a bulit in 
+limit of ten users to return. Results are returned in an array. */
 function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPasses, $type)
 {	
-	// number of exchanges to return
+	// number of users to return
 	$numOfUsers = 10;
 	
 	//Build a query
@@ -269,8 +275,6 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 	$users = array();
 	$requestedByUser = 0;
 	 
-	//echo "Results for ".$queryTerms.": <br/><br/>";
-	//Display the results from the query
 	if ($query_result !== false)
 	{
 		// netId of the previous user whose exhanges are being added
@@ -326,6 +330,7 @@ function searchExchangesUserSpecific($currentUserNetId, $date, $passClub, $numPa
 	return $users;
 }
 
+/* Helper function which returns the information about user with netId $netId in an array. */
 function getUserNameByNetId($netId)
 {
 	
@@ -348,6 +353,8 @@ function getUserNameByNetId($netId)
 	return $query_result['firstName'];
 }
 
+/* Helper function which returns an array of id of all requests made 
+by user with netId $userNetId */
 function getArrayOfUserRequestIds($userNetId)
 {
 	require('./database_connect.php');
@@ -377,6 +384,8 @@ function getArrayOfUserRequestIds($userNetId)
 	return $requestIds;
 }
 
+/*Function returns all offer which match the passes parameters. This function doesn't ignores all offers which 
+are part of trades and offers which are owned by user any user. Results are returned in an array. */
 function searchExchanges($date, $passClub, $numPasses, $type)
 {
 	//Build a query
@@ -407,8 +416,6 @@ function searchExchanges($date, $passClub, $numPasses, $type)
 	
 	$users = array();
 	
-	//echo "Results for ".$queryTerms.": <br/><br/>";
-	//Display the results from the query
 	if ($query_result !== false)
 	{
 		// netId of the previous user whose exhanges are being added
@@ -452,7 +459,8 @@ function searchExchanges($date, $passClub, $numPasses, $type)
 	return $users;
 }
 
-
+/* Remove all exchanges in the array of ids $exchanges to remove 
+which belong to $currentUserNetId */
 function removeExchanges($currentUserNetId, $exchangesToRemove)
 {
 	foreach ($exchangesToRemove as $exchange)
@@ -468,6 +476,7 @@ function removeExchanges($currentUserNetId, $exchangesToRemove)
 	}
 }
 
+/* Function to delete a single request which has the id $requestId and belongs to $netId */
 function deleteRequest($netId, $requestId)
 {
 	// get correspoding request's offer's id 
@@ -512,6 +521,7 @@ function deleteRequest($netId, $requestId)
 	}
 }
 
+/* Function to delete a single offer which has the id $requestId and belongs to $netId */
 function deleteOffer($netId, $offerId)
 {	
 	// get the offer's associatedExchanges
@@ -548,7 +558,7 @@ function deleteOffer($netId, $offerId)
 	}
 }
 
-
+/* Function to delete request of $currentUserNetId from offer with id $offerId. */
 function deleteRequestByOfferId($currentUserNetId, $requesterNetId, $offerId)
 {	
 	// get correspoding offer's request's id 
@@ -593,7 +603,8 @@ function deleteRequestByOfferId($currentUserNetId, $requesterNetId, $offerId)
 	}
 }
 
-
+/* Function to complete a trade betwee $provider (netId) and $recipient ($netId).
+Both users are rewarded with 1 reputation point. */
 function completeTrade($currentUserNetId, $provider, $recipient, $offerId, $requestId)
 {
 	// get the offer info
@@ -651,6 +662,9 @@ function completeTrade($currentUserNetId, $provider, $recipient, $offerId, $requ
 	}
 }
 
+/* Function to cancel a trade betwee $provider (netId) and $recipient ($netId).
+$currentUserNetId is penalized and loses 1 reputation point. A push notification is sent 
+to the other party.*/
 function cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $requestId)
 {
 	// get the offer info
@@ -729,6 +743,7 @@ function cancelTrade($currentUserNetId, $provider, $recipient, $offerId, $reques
 	}
 }
 
+/* Function to add a new request or offer.*/
 function addExchange($currentUserNetId, $passDate, $type, $numPasses, $passClub, $comment)
 {
 	//Build query
@@ -741,6 +756,8 @@ function addExchange($currentUserNetId, $passDate, $type, $numPasses, $passClub,
 	}
 }
 
+/* Function to accept a request from $requesterNetId to offer with id $offerId 
+owned by $currentUserNetId. All other requests for this offer are deleted. */
 function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 {	
 	// get correspoding offer's request's id 
@@ -818,6 +835,8 @@ function acceptRequest($currentUserNetId, $requesterNetId, $offerId)
 	}
 }
 
+/* Function to get all requests and offers in the database. 
+Return an array of the offer */
 function getAllExchanges()
 {
 	//Build a query
@@ -837,8 +856,6 @@ function getAllExchanges()
 	
 	$users = array();
 	
-	//echo "Results for ".$queryTerms.": <br/><br/>";
-	//Display the results from the query
 	if ($query_result !== false)
 	{
 		// netId of the previous user whose exhanges are being added
@@ -882,6 +899,8 @@ function getAllExchanges()
 	return $users;
 }
 
+/* Helper function for push notifications. Gets the id of the device 
+to which the push notification should be send. */
 function getDeviceId($netId)
 {
 	//Build a query
