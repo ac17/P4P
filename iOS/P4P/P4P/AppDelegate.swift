@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pwHash: String = ""
     var firstName: String = ""
     var lastName: String = ""
-    var deviceToken: String = "8354187b9656beb7c54c15239fef3696d03194586976b9e8cd11345cfcc614e3"
+    var deviceToken: String = "aa20d2d96dda121d1b2705ba6ca79bb1621d79e5e231999989609fa79c7ffe89"
     var loggedIn: Bool = false
     
     let keychainWrapper = KeychainWrapper()
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let launchOptions = launchOptions {
             if let notificationsPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-                println("I guess there's no point in doing anything here until we store a password")
+                //println("I guess there's no point in doing anything here until we store a password")
             }
         }
         return true
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         if application.applicationState == .Active {
-            println("should a little badge")
+            //println("should a little badge")
         } else {
             if loggedIn {
                 if let tabBarController = self.tabBarController {
@@ -75,11 +75,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
         // Clear <> tags and spaces from device token
         self.deviceToken = String(stringInterpolationSegment: deviceToken).stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>")).stringByReplacingOccurrencesOfString(" ", withString: "")
-        println("My token is " + self.deviceToken)
+        //println("My token is " + self.deviceToken)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
-        println("Failed to get notifications, error: " + String(stringInterpolationSegment: error))
+        //println("Failed to get notifications, error: " + String(stringInterpolationSegment: error))
     }
 
     func applicationWillResignActive(application: UIApplication) {

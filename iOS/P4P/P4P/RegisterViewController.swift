@@ -140,8 +140,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
         
         let url = NSURL(string: self.websiteURLbase + "/mobileRegistration.php?fName=" + firstName + "&lName=" + lastName +  "&netId=" + netid + "&pwHash=" + pwHash)
-        println(url)
-        println(pwHash)
 
         var registerViewController = self;
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -187,16 +185,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             })
     }
     */
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension UIColor {

@@ -5,20 +5,25 @@
 //  Created by Daniel Yang on 5/4/15.
 //  Copyright (c) 2015 P4P. All rights reserved.
 //
+//
+//  view controller for the window that appears when you want to add an exchange
+//  from the "Exchanges" tab displaying your exchange dashboard
+//
 
 import UIKit
 
 class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate {
 
+    // outlets for text fields in the view controller
     @IBOutlet weak var clubField: UITextField!
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var numPassesField: UITextField!
     
+    // global variables
     let clubPickerData = ["Cannon", "Cap and Gown", "Cottage", "Ivy Club", "Tiger Inn", "Tower"]
     var clubWheel: UIPickerView!
     var datePickerView: UIDatePicker!
     var numPassesWheel: UIPickerView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +51,10 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
         numPassesField.inputView = numPassesWheel
     }
     
-    // whenever the date picker changed, do this
+    // whenever the date picker changed, format the date and set the text field
     func datePickerChanged(datePicker:UIDatePicker) {
         var dateFormatter = NSDateFormatter()
-        
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        
         var strDate = dateFormatter.stringFromDate(datePicker.date)
         dateField.text = strDate
     }
@@ -67,6 +70,8 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
     
     //MARK: - Delegates and data sources
     //MARK: Data Sources
+    
+    // set default values when you tap the text box
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         if pickerView === clubWheel && clubField.text == "" {
             clubField.text = "Cannon"
@@ -76,6 +81,7 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
         return 1
     }
     
+    // set limits for data input
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView === clubWheel {
             return clubPickerData.count
@@ -85,7 +91,7 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
         return 0
     }
     
-    //MARK: Delegates
+    // provide data for picker views
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if pickerView === clubWheel {
             return clubPickerData[row]
@@ -99,15 +105,4 @@ class PopupForAddExchangeViewController: UIViewController, UIPickerViewDataSourc
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }
