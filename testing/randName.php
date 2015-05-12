@@ -26,6 +26,9 @@ function getRandomName()
 	// first name is element 32 and last name is element 33
 	$name = $array[32] . " " .$array[33];
 	
+	// Remove any non-ASCII Characters
+ 	$name = preg_replace("/[^\x01-\x7F]/","", $name);
+	
 	return $name; 
 }
 ?>

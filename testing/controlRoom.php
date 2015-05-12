@@ -4,7 +4,13 @@
 
   /* If the user is not logged in, redirect to the login page. */
   if (!isUserLoggedIn())
-    header('Location: loginUser.php');
+    header('Location: http://passesforpasses.com/loginUser.php');
+	
+  if ($_SESSION['user']['netId'] != "arturf")
+  {
+	echo "You are not authorized to view this page.";
+	exit(); 
+  }
 ?>
 
 <!DOCTYPE html>
@@ -87,9 +93,7 @@ CHANGESETTINGS;
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a><button type="button" data-toggle="modal" data-target="#settingsModal">Settings</button></a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="logout.php">Log Out</a></li>
+            <li><a href="http://passesforpasses.com/logout.php">Log Out</a></li>
           </ul>
         </div>
       </div>
