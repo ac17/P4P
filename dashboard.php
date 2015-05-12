@@ -113,7 +113,13 @@ CHANGEPP;
                 </div>
                 <div class="modal-body">
                   <h3>Searching for Passes</h3>
+                  <p>To <b>search for a pass</b>, click the "Search for Passes" tab and use the dropdown menus to select your search parameters. The date field is the trigger, so select the date last. To filter the results by how far away the pass offerer is from you, click the "Share Current Position" button below the map, then adjust the Distance slider above the map as needed. Passes that fit the search criteria will appear on the map as location markers.</p>
                   <h3>Requesting a Pass</h3>
+                  <p>Once you've found a pass you'd like to request on the map, click its location marker and select the name of the eating club in the pop-up that appears. Once the pass offerer approves your request, you will receive a push notification on your mobile device and the trade will appear underneath "Trades" on the "Your Offer/Request" tab.</p>
+                  <h3>Offering a Pass</h3>
+                  <p>To <b>offer a pass</b>, click the "Your Offer/Request" tab and use the dropdown menus to describe the passes you wish to offer. Additional comments can be entered in the text box below. Click "Post" to submit the offer.</p>
+                  <h3>Accepting a Request</h3>
+                  <p>Once you've offered a pass and another user has requested </p>
                   <h3>Chatting</h3>
                   <h3>Further Help</h3>
                 </div>
