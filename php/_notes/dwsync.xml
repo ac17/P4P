@@ -44,4 +44,5 @@
 <file name="addExchange.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759232078816547" remote="130759483800000000" />
 <file name="getAllExchanges.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759232750404960" remote="130759484400000000" />
 <file name="acceptRequest.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759233976025061" remote="130759485600000000" />
+<file name="declineRequest.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759241342466397" remote="130759492800000000" />
 </dwsync>
