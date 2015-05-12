@@ -97,7 +97,7 @@ CHANGEPP;
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a><button type="button" data-toggle="modal" data-target="#settingsModal" class = "btn btn-default">Settings</button></a></li>
-            <li><a href="#"><button type="button" data-toggle="modal" data-target="#helpModal" class = "btn btn-default">Help</button></a></li>
+            <li><a><button type="button" data-toggle="modal" data-target="#helpModal" class = "btn btn-default">Help</button></a></li>
             <li><a href="logout.php"><button type="button" class = "btn btn-default">Log Out</button></a></li>
           </ul>
         </div>
@@ -114,18 +114,22 @@ CHANGEPP;
                 <div class="modal-body">
                   <h3>Searching for Passes</h3>
                   <p>To <b>search for a pass</b>, click the "Search for Passes" tab and use the dropdown menus to select your search parameters. The date field is the trigger, so select the date last. To filter the results by how far away the pass offerer is from you, click the "Share Current Position" button below the map, then adjust the Distance slider above the map as needed. Passes that fit the search criteria will appear on the map as location markers.</p>
+                  <center><img src="img/example-1.jpg" width="80%"></center>
                   <h3>Requesting a Pass</h3>
-                  <p>Once you've found a pass you'd like to request on the map, click its location marker and select the name of the eating club in the pop-up that appears. Once the pass offerer approves your request, you will receive a push notification on your mobile device and the trade will appear underneath "Trades" on the "Your Offer/Request" tab.</p>
+                  <p>Once you've found a pass you'd like to request on the map, click its location marker and select the name of the eating club in the pop-up that appears. The request will now appear under "Your Pending Requests" in the "Your Offer/Request" tab. Once the pass offerer approves your request, you will receive a push notification on your mobile device and the trade will appear underneath "Trades" on the "Your Offer/Request" tab.</p>
+                  <center><img src="img/example-2.jpg" width="80%"></center>
                   <h3>Offering a Pass</h3>
                   <p>To <b>offer a pass</b>, click the "Your Offer/Request" tab and use the dropdown menus to describe the passes you wish to offer. Additional comments can be entered in the text box below. Click "Post" to submit the offer.</p>
                   <h3>Accepting a Request</h3>
                   <p>Once you've offered a pass and another user has requested to trade, a request description will appear underneath the offer listed in "Your Open Offers" on the "Your Offer/Request" tab. To agree to trade, click "Accept." You can also cancel or chat with the requester.</p>
+                  <center><img src="img/example-3.jpg" width="80%"></center>
                   <h3>Completing a Trade</h3>
                   <p>After you've met up with another user to trade passes, click the "Complete" button underneath "Trades" on your "Your Offer/Request" tab. This will increase your reputation!</p>
+                  <center><img src="img/example-4.jpg" width="80%"></center>
                   <h3>Chatting</h3>
                   <p>To chat with a pass offerer, click the location marker of the pass on the map in the "Search for Passes" tab and click their name in the pop-up that appears. This will produce a chat pop-up in the lower right corner of the page. The chat log will be stored in the "Inbox" tab, where you can chat with the user again simply by clicking their name.</p>
                   <h3>Further Help</h3>
-                  <p>Still confused? Don't worry! Feel free to contact us anytime using our <a href="index.php/#contactUs">contact form</a> on the home page.</p>
+                  <p>Still confused? Don't worry! Feel free to contact us anytime using our <a href="http://www.passesforpasses.com/#contactUs">contact form</a> on the home page.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default btn-close" data-dismiss="modal"><i class="fa fa-close fa-2x"></i></button>
