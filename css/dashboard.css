@@ -107,8 +107,8 @@ body {
 }
 
 /* CSS for help modal */
-#helpModal {
-  height: 70%;
+#helpModal .modal-body {
+  height: 300px;
   overflow: scroll;
 }
 
