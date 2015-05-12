@@ -113,7 +113,6 @@ class InfoWindowTableViewController: UITableViewController {
             // make the request
             let url = NSURL(string: pursueOfferString)
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
                 dispatch_async(dispatch_get_main_queue()) {
                     
                 }

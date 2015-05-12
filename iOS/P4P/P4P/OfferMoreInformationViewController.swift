@@ -37,6 +37,8 @@ class OfferMoreInformationViewController: UITableViewController {
 
         // retrieve data from server
         passRelatedRequests()
+        
+
 
     }
 
@@ -140,7 +142,6 @@ class OfferMoreInformationViewController: UITableViewController {
 
         // chat with person making the request
         var chatAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Chat" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-            println("you pressed chat")
             self.offerNetID = self.offerAssociatedNetIDs[indexPath.row]
             self.performSegueWithIdentifier("returnThenChat", sender: self)
         })

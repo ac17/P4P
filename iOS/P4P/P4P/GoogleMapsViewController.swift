@@ -179,7 +179,6 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate, GMS
         // generate HTTP request string with parameters
         var requestString = self.websiteURLbase + "/php/searchExchangesUserSpecific.php?"
         requestString += "netId=" + appNetID + "&date=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString
-        println(requestString)
         
         // pull info from server, display markers
         let url = NSURL(string: requestString)

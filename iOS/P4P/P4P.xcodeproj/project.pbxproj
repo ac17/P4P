@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		244F35AC9ED76217C986553F /* Pods_P4P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4531AABC5C8392591800CBA6 /* Pods_P4P.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A02B6EF31B024B200050C97E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02B6EF21B024B200050C97E /* ChatViewController.swift */; };
 		A0490CC51AF9CB510093B636 /* OfferMoreInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */; };
 		A05AE40D1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */; };
 		A05AE40F1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */; };
@@ -31,7 +32,6 @@
 		A0AF80791AFB475400C9C69E /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AF80781AFB475400C9C69E /* KeychainWrapper.m */; };
 		A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D3CE551AE4B894005FA89A /* PopupViewController.swift */; };
 		DC1BFAC91AE875A10067184A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFAC81AE875A10067184A /* TabBarViewController.swift */; };
-		DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACC1AF0700D0067184A /* ChatViewController.swift */; };
 		DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */; };
 		DC344CBA1AF9DDA600080812 /* ChatEntryTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */; };
 		DC64ED791AF84A090014E48A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64ED781AF84A090014E48A /* ChatView.swift */; };
@@ -64,6 +64,7 @@
 /* Begin PBXFileReference section */
 		4531AABC5C8392591800CBA6 /* Pods_P4P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P4P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9433520212FF40F329C6F679 /* Pods-P4P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.release.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.release.xcconfig"; sourceTree = "<group>"; };
+		A02B6EF21B024B200050C97E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferMoreInformationViewController.swift; sourceTree = "<group>"; };
 		A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoWindowTableViewController.swift; sourceTree = "<group>"; };
 		A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupForAddExchangeViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 		A0D3CE551AE4B894005FA89A /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		C08273B264A60D36242B1CFB /* Pods-P4P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-P4P.debug.xcconfig"; path = "Pods/Target Support Files/Pods-P4P/Pods-P4P.debug.xcconfig"; sourceTree = "<group>"; };
 		DC1BFAC81AE875A10067184A /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		DC1BFACC1AF0700D0067184A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = ../ChatViewController.swift; sourceTree = "<group>"; };
 		DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatEntryTextView.swift; sourceTree = "<group>"; };
 		DC64ED781AF84A090014E48A /* ChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -155,6 +155,47 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A02B6EF41B024BB40050C97E /* Exchanges Tab Related */ = {
+			isa = PBXGroup;
+			children = (
+				A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */,
+				A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */,
+				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
+			);
+			name = "Exchanges Tab Related";
+			sourceTree = "<group>";
+		};
+		A02B6EF51B024BF30050C97E /* Maps Tab Related */ = {
+			isa = PBXGroup;
+			children = (
+				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
+				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
+			);
+			name = "Maps Tab Related";
+			sourceTree = "<group>";
+		};
+		A02B6EF61B024C040050C97E /* Keychain (Obj-C) */ = {
+			isa = PBXGroup;
+			children = (
+				A0AF80771AFB475400C9C69E /* KeychainWrapper.h */,
+				A0AF80781AFB475400C9C69E /* KeychainWrapper.m */,
+			);
+			name = "Keychain (Obj-C)";
+			sourceTree = "<group>";
+		};
+		A02B6EF71B024C170050C97E /* Chat Tab Related */ = {
+			isa = PBXGroup;
+			children = (
+				DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */,
+				DC64ED781AF84A090014E48A /* ChatView.swift */,
+				A02B6EF21B024B200050C97E /* ChatViewController.swift */,
+				DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */,
+				DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */,
+			);
+			name = "Chat Tab Related";
+			sourceTree = "<group>";
+		};
 		A05C3E311AD48B28007185A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,26 +253,17 @@
 		DCAB76831AD3015B004A2CD9 /* P4P */ = {
 			isa = PBXGroup;
 			children = (
-				A0AF80771AFB475400C9C69E /* KeychainWrapper.h */,
-				A0AF80781AFB475400C9C69E /* KeychainWrapper.m */,
-				DC344CB91AF9DDA600080812 /* ChatEntryTextView.swift */,
-				DC1BFACC1AF0700D0067184A /* ChatViewController.swift */,
-				DC64ED781AF84A090014E48A /* ChatView.swift */,
-				DC1BFACE1AF1AF600067184A /* SidePanelViewController.swift */,
-				DC64ED7A1AF89A240014E48A /* ChatTableViewCell.swift */,
+				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
 				DCAB76861AD3015B004A2CD9 /* AppDelegate.swift */,
 				DCAB768B1AD3015B004A2CD9 /* ViewController.swift */,
 				A05C3E2A1AD482B0007185A0 /* RegisterViewController.swift */,
 				DC1BFAC81AE875A10067184A /* TabBarViewController.swift */,
-				DCAB768D1AD3015B004A2CD9 /* Main.storyboard */,
-				A0490CC41AF9CB510093B636 /* OfferMoreInformationViewController.swift */,
-				A05AE4101AF8A54700C59B5B /* UserActiveExchangesViewController.swift */,
-				A05C3E501AD48DF9007185A0 /* GoogleMapsViewController.swift */,
-				A0D3CE551AE4B894005FA89A /* PopupViewController.swift */,
+				A02B6EF71B024C170050C97E /* Chat Tab Related */,
+				A02B6EF41B024BB40050C97E /* Exchanges Tab Related */,
+				A02B6EF51B024BF30050C97E /* Maps Tab Related */,
 				DC86CF531AF95CD000E0054F /* PopupView.swift */,
-				A05AE40E1AF84A9100C59B5B /* PopupForAddExchangeViewController.swift */,
-				A05AE40C1AF3BFCD00C59B5B /* InfoWindowTableViewController.swift */,
 				A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */,
+				A02B6EF61B024C040050C97E /* Keychain (Obj-C) */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				A0B432C81B01A9A500FA38FB /* Other Images */,
 				DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */,
@@ -439,9 +471,9 @@
 				DC86CF541AF95CD000E0054F /* PopupView.swift in Sources */,
 				DCAB768A1AD3015B004A2CD9 /* P4P.xcdatamodeld in Sources */,
 				DCAB76871AD3015B004A2CD9 /* AppDelegate.swift in Sources */,
-				DC1BFACD1AF0700E0067184A /* ChatViewController.swift in Sources */,
 				DC64ED7B1AF89A240014E48A /* ChatTableViewCell.swift in Sources */,
 				DC1BFACF1AF1AF610067184A /* SidePanelViewController.swift in Sources */,
+				A02B6EF31B024B200050C97E /* ChatViewController.swift in Sources */,
 				A0D3CE561AE4B894005FA89A /* PopupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
