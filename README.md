@@ -1,6 +1,6 @@
 # P4P - Passes for Passes
 
-Web and mobile apps for Princeton University students to exchange eating club passes amongst each other.
+Web and mobile apps for Princeton University students to exchange eating club passes with each other.
 
 ## Developers
 
@@ -12,4 +12,4 @@ Web and mobile apps for Princeton University students to exchange eating club pa
 
 ## Contact
 
-To contact us, please use the [contact form](www.passesforpasses.com/#contactUs) on our home page.
+To contact us, please use the [contact form](http://www.passesforpasses.com/#contactUs) on our home page.
