@@ -5,17 +5,25 @@
 //  Created by Daniel Yang on 5/1/15.
 //  Copyright (c) 2015 P4P. All rights reserved.
 //
+//  view controller for the information window that appears when you tap on a
+//  marker on the Google Maps view. shows the person that you tapped on, what open 
+//  offers they have posted, and allows you to pursue that offer (ie, make requests)
+//
 
 import UIKit
 import SwiftyJSON
 
 class InfoWindowTableViewController: UITableViewController {
 
+    // global variables
+    // information passed from GoogleMapsViewController
     var mapInfoWindowNetID: String = ""
     var mapInfoWindowName: String = ""
     var mapInfoWindowNumberOffers: String = ""
     var mapInfoExchangeArray: [String] = []
     var mapInfoExchangeIDArray: [String] = []
+    
+    // information recovered from global app delegate
     var appNetID = ""
     var websiteURLbase = ""
     
@@ -23,6 +31,7 @@ class InfoWindowTableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // pull the base for website URL for making http requests and the current logged in user netID
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
         websiteURLbase = appDelegate.websiteURLBase
@@ -36,45 +45,41 @@ class InfoWindowTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         return (mapInfoExchangeArray.count)
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // create a generic cell and set the text as the exchange details: "ClubName (NumberPasses)"
         let cell = tableView.dequeueReusableCellWithIdentifier("MarkerOfferCells", forIndexPath: indexPath) as! UITableViewCell
-        var offer = mapInfoExchangeArray[indexPath.row]
-        cell.textLabel!.text = offer
+        cell.textLabel!.text = mapInfoExchangeArray[indexPath.row]
         
         // need to check if the offer contains the current logged in user
         var offerID = mapInfoExchangeIDArray[indexPath.row]
-        
-        // check if current user has already made that request
         var getExchangeWithID = self.websiteURLbase + "/php/getExchangeById.php?exchangeId=" + offerID
 
-        println(getExchangeWithID)
-        // pull exchange information from server and check if user has made a request for it
         let url = NSURL(string: getExchangeWithID)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let json = JSON(data: data)
-            //println(NSString(data: data, encoding: NSUTF8StringEncoding))
             
+            // obtain list of netIDs of people who have made a request for an exchange
             var arrayExchangeString = (json[0]["associatedExchanges"].string)
             
             if let dataFromString = arrayExchangeString!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                 let jsonExchange = JSON(data: dataFromString)
                 
                 var index = 0
+                
+                // check every netID to see if matches current user netID
                 for (key: String, subJson: JSON) in jsonExchange {
                     if (jsonExchange[index].string == self.appNetID) {
+                        // if so, make the current cell unselectable and display a checkmark to indicate
                         dispatch_async(dispatch_get_main_queue()) {
                             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -90,8 +95,6 @@ class InfoWindowTableViewController: UITableViewController {
 
         task.resume()
         return cell
-        
-        // Configure the cell...
     }
     
     // if you select a cell, make the request and change how the cell is displayed
@@ -99,16 +102,16 @@ class InfoWindowTableViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell!.accessoryType != UITableViewCellAccessoryType.Checkmark
         {
+            // make the current cell unselectable and display a checkmark to indicate
             cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
             cell!.selectionStyle = UITableViewCellSelectionStyle.None
 
+            // generate URL to http request pursuing an offer
             var pursueOfferString = self.websiteURLbase + "/php/pursueOffer.php?"
             pursueOfferString += "netId=" + appNetID + "&offerId=" + mapInfoExchangeIDArray[indexPath.row]
-            //println(pursueOfferString)
             
-            // make a request to an offer (passes current user netid and desired offer id)
+            // make the request
             let url = NSURL(string: pursueOfferString)
-            
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                 //println(NSString(data: data, encoding: NSUTF8StringEncoding))
                 dispatch_async(dispatch_get_main_queue()) {
@@ -118,15 +121,5 @@ class InfoWindowTableViewController: UITableViewController {
             task.resume()
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

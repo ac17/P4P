@@ -5,32 +5,41 @@
 //  Created by Daniel Yang on 5/5/15.
 //  Copyright (c) 2015 P4P. All rights reserved.
 //
+//  View Controller that manages all the exchanges listed in the exchanges tab including pending trades
+//  waiting for completion, a user's posted open offers, and a user's requests
+//
 
 import UIKit
 import SwiftyJSON
 
 class UserActiveExchangesViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
 
+    // global variables from app delegate
+    var appNetID = ""
+    var websiteURLbase = ""
+    var keychainWrapper:KeychainWrapper! // necessary reference for use when logging out
+
+    // global variables
     @IBOutlet var activeExchangeTableView: UITableView!
-    var popoverViewController: PopupForAddExchangeViewController!
+    var popoverViewController: PopupForAddExchangeViewController!               // for addExchange functionality
     
+    // support for the window that pops up when you click on your open offer- accept/reject requests from people
     var offerAcceptRejectWindowNavigationController: UINavigationController!
     var offerMoreInfoWindowViewController: OfferMoreInformationViewController!
     var offerMoreInfoWindowTitle = ""
     var offerMoreInfoWindowID = ""
 
-    var appNetID = ""
-    var websiteURLbase = ""
-    var keychainWrapper:KeychainWrapper!
-
+    // open offers you've posted
     var offerClubNumberArray:[String] = []
     var offerDateArray:[String] = []
     var offerIDArray:[String] = []
     
+    // pending requests you've made
     var requestClubNumberArray:[String] = []
     var requestDateArray:[String] = []
     var requestIDArray:[String] = []
     
+    // information about trades pending completion
     var activeTradesOfferIDArray:[String] = []
     var activeTradesRequestIDArray:[String] = []
     var activeTradesProviderNetIDArray:[String] = []
@@ -41,31 +50,25 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     var activeTradesNumPassesArray:[String] = []
     var activeTradesDateArray:[String] = []
     
-    var backgroundView: UIImageView?
+    // trying to minimze data reloads
     var globalFlagForReturnFrom = false
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // pull information from app delegate
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appNetID = appDelegate.userNetid
         websiteURLbase = appDelegate.websiteURLBase
         keychainWrapper = appDelegate.keychainWrapper
 
-        /*
-        // Set background color to dark blue
-        backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
-        backgroundView!.frame = UIScreen.mainScreen().bounds
-        self.view.insertSubview(backgroundView!, atIndex: 0)
-        */
-        
+        // set tableView data souce and delegate
         activeExchangeTableView.dataSource = self
         activeExchangeTableView.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
     
+    // trying to minimze calls to reload data
     override func viewWillAppear(animated: Bool) {
         if (!globalFlagForReturnFrom) {
             userActiveExchangesPull()
@@ -74,7 +77,9 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         globalFlagForReturnFrom = false
     }
     
+    // reload all active trades a person is involved in
     func userActiveTradesPull() {
+        // clear current data
         activeTradesOfferIDArray.removeAll()
         activeTradesRequestIDArray.removeAll()
         activeTradesProviderNetIDArray.removeAll()
@@ -85,11 +90,11 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         activeTradesNumPassesArray.removeAll()
         activeTradesDateArray.removeAll()
 
+        // generate HTTP request string
         var getActiveTradesString = self.websiteURLbase + "/php/userActiveTrades.php?"
         getActiveTradesString += "currentUserNetId=" + appNetID
-        //println(getActiveTradesString)
         
-        // pull info from server of all active trades, categorize info into offer/request arrays
+        // pull info, parse JSON and categorize info into offer/request arrays
         let url = NSURL(string: getActiveTradesString)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -134,8 +139,9 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
     }
     
-    
+    // reload all active exchanges (open offers, pending requests) a person is involved in
     func userActiveExchangesPull() {
+        // clear current data
         offerClubNumberArray.removeAll()
         offerDateArray.removeAll()
         offerIDArray.removeAll()
@@ -144,11 +150,11 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         requestDateArray.removeAll()
         requestIDArray.removeAll()
         
+        // generate HTTP request string
         var getActiveExchangesString = self.websiteURLbase + "/php/userActiveExchanges.php?"
         getActiveExchangesString += "currentUserNetId=" + appNetID
-        //println(getActiveExchangesString)
         
-        // pull info from server of all exchanges, categorize info into offer/request arrays
+        // pull info from server, parse JSON and categorize info into offer/request arrays
         let url = NSURL(string: getActiveExchangesString)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -193,7 +199,6 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         return 3
     }
@@ -213,7 +218,8 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ExchangeCell", forIndexPath: indexPath) as! UITableViewCell
 
-        if indexPath.section == 0 { // active trade stuff
+        // active trade cells - need to generate a sentence telling relation of trade pending completion
+        if indexPath.section == 0 {
             var textLabelString = ""
             var exchangeContents = self.activeTradesClubArray[indexPath.row] + " (" + self.activeTradesNumPassesArray[indexPath.row] + ")"
             var providerString = self.activeTradesProviderNameArray[indexPath.row] + " (" + self.activeTradesProviderNetIDArray[indexPath.row] + ")"
@@ -229,15 +235,13 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             cell.detailTextLabel!.text = activeTradesDateArray[indexPath.row]
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             cell.accessoryType = UITableViewCellAccessoryType.None
-            println("hello")
-            println("string" + textLabelString)
-            println("appNetID" + appNetID)
-        } else if indexPath.section == 1 { //offer stuff - Set title as the club and number, and subtitle as the date
+        } else if indexPath.section == 1 { //offer table
+            //Set title as the club and number, and subtitle as the date
             cell.textLabel!.text = offerClubNumberArray[indexPath.row]
             cell.detailTextLabel!.text = offerDateArray[indexPath.row]
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-        } else if indexPath.section == 2 { // request stuff
+        } else if indexPath.section == 2 { // request table
             // Set title as the club and number, and subtitle as the date
             cell.textLabel!.text = requestClubNumberArray[indexPath.row]
             cell.detailTextLabel!.text = requestDateArray[indexPath.row]
@@ -245,28 +249,22 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             cell.accessoryType = UITableViewCellAccessoryType.None
         }
         
-        // Configure the cell...
-        /*
-        cell.contentView.backgroundColor = UIColor(netHex: 0x1FBAD6)
-        cell.textLabel!.textColor = UIColor.whiteColor()
-        cell.detailTextLabel?.textColor = UIColor.whiteColor()
-        */
-        
         return cell
     }
     
-    // if you select a cell, make the request and change how the cell is displayed
+    // if you select a cell....
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
         if indexPath.section == 0 { // active trades
-            
+            // doesn't matter if selected; do nothing
         } else if indexPath.section == 1 { // offers
+            // make popup with people who have requested your offer that allows for you to accept/reject
             offerMoreInfoWindowID = offerIDArray[indexPath.row]
             offerMoreInfoWindowTitle = offerClubNumberArray[indexPath.row] + " " + offerDateArray[indexPath.row]
             performSegueWithIdentifier("offerAcceptDeclinePop", sender: self)
         } else if indexPath.section == 2 { // requests
-            
+            // doesn't matter if selected; do nothing
         }
     }
     
@@ -282,7 +280,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         return ""
     }
     
-    // part of making swipe left and right
+    // part of making swipe left and right cell functionality
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
@@ -299,18 +297,20 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
 
     // swipe left and right to generate buttons on a table cell
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
-        if indexPath.section == 0 { // active trades
+        if indexPath.section == 0 { // trades
+            
+            // notify system that a trade is copmleted
             var completeTrade = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Completed" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-                // do stuff for accepting - also rejects all others on the backend
-                var completeTrade = self.websiteURLbase + "/php/completeTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
                 
-                // pull exchange information from server and check if user has made a request for it
-                let url = NSURL(string: completeTrade)
+                // generate necessary HTTP request url
+                var completeTradeURL = self.websiteURLbase + "/php/completeTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
                 
+                let url = NSURL(string: completeTradeURL)
                 let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                     let json = JSON(data: data)
                     
                     dispatch_async(dispatch_get_main_queue()) {
+                        // reload data
                         self.userActiveTradesPull()
                         self.activeExchangeTableView.reloadData()
                     }
@@ -318,18 +318,18 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
                 task.resume()
             })
             
+            // notify system of a trade cancellation
             var cancelTrade = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Cancel" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-                // do stuff for cancelling a trade
                 
-                var cancelTrade = self.websiteURLbase + "/php/cancelTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
+                // generate necessary HTTP request URL
+                var cancelTradeURL = self.websiteURLbase + "/php/cancelTrade.php?currentUserNetId=" + self.appNetID + "&provider=" + self.activeTradesProviderNetIDArray[indexPath.row] + "&recipient=" + self.activeTradesRecipientNetIDArray[indexPath.row] + "&offerId=" + self.activeTradesOfferIDArray[indexPath.row] + "&requestId=" + self.activeTradesRequestIDArray[indexPath.row]
                 
-                // pull exchange information from server and check if user has made a request for it
-                let url = NSURL(string: cancelTrade)
-                
+                let url = NSURL(string: cancelTradeURL)
                 let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                     let json = JSON(data: data)
                     
                     dispatch_async(dispatch_get_main_queue()) {
+                        // reload data
                         self.userActiveTradesPull()
                         self.activeExchangeTableView.reloadData()
                     }
@@ -337,6 +337,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
                 task.resume()
             })
             
+            // chat with person involved in exchange
             var chatAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Chat" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
                 self.tabBarController!.selectedIndex = 2
                 
@@ -356,8 +357,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
                 }
             })
             
-            // in both cases, need to reload data after doing thing with more or less things.
-            
+            // set button colors
             completeTrade.backgroundColor = UIColor.greenColor()
             cancelTrade.backgroundColor = UIColor.redColor()
             chatAction.backgroundColor = UIColor.blueColor()
@@ -365,47 +365,50 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
             return [completeTrade, cancelTrade, chatAction]
             
         } else if indexPath.section == 1 { // offers
+            
+            // delete an offer from the system
             var deleteOffer = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-                // do stuff for cancelling on offer
-                
+
+                // generate HTTP request URL
                 var deleteOfferURL = self.websiteURLbase + "/php/deleteOffer.php?offerId=" + self.offerIDArray[indexPath.row] + "&requesterNetId=" + self.appNetID
-                println(deleteOfferURL)
-                // pull exchange information from server and check if user has made a request for it
+
                 let url = NSURL(string: deleteOfferURL)
-                
                 let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                     let json = JSON(data: data)
                     
                     dispatch_async(dispatch_get_main_queue()) {
+                        // reload data
                         self.userActiveExchangesPull()
                         self.activeExchangeTableView.reloadData()
                     }
-                    
                 }
                 task.resume()
             })
+            
+            // set background color of button
             deleteOffer.backgroundColor = UIColor.redColor()
             return [deleteOffer]
         } else if indexPath.section == 2 { // requests
+           
+            // delete a request from the system
             var deleteRequest = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
-                // do stuff for cancelling a request
 
+                // generate HTTP request URL
                 var deleteRequestURL = self.websiteURLbase + "/php/deleteRequest.php?requestId=" + self.requestIDArray[indexPath.row] + "&requesterNetId=" + self.appNetID
-                println(deleteRequestURL)
-                // pull exchange information from server and check if user has made a request for it
+
                 let url = NSURL(string: deleteRequestURL)
-                
                 let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                     let json = JSON(data: data)
                     
                     dispatch_async(dispatch_get_main_queue()) {
+                        // reload data
                         self.userActiveExchangesPull()
                         self.activeExchangeTableView.reloadData()
                     }
-                    
                 }
                 task.resume()
             })
+            // set background color of button
             deleteRequest.backgroundColor = UIColor.redColor()
             return [deleteRequest]
         }
@@ -413,11 +416,12 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
     }
     
     /***** popover for creating an exchange ****/
-    
     // create exchange button pressed on popup
     @IBAction func addExchangePopup(segue:UIStoryboardSegue)
     {
-        var validRequest = true
+        var validRequest = true // used to check all fields were filled in
+        
+        // retrieve data from fields
         var clubString = popoverViewController.clubField.text
         var dateString = popoverViewController.dateField.text
         var numPassesString = popoverViewController.numPassesField.text
@@ -445,17 +449,16 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         // replace spaces in club name with pluses
         clubString = clubString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
+        // generate HTTP request URL
         var exchangeString = self.websiteURLbase + "/php/addExchange.php?"
         exchangeString += "netId=" + appNetID + "&passDate=" + formattedDateString + "&type=Offer" + "&numPasses=" + numPassesString + "&club=" + clubString + "&comment=" + ""
-        //println(exchangeString)
         
         if (validRequest) {
             let url = NSURL(string: exchangeString)
             
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-                //println(NSString(data: data, encoding: NSUTF8StringEncoding))
-                
                 dispatch_async(dispatch_get_main_queue()) {
+                    // reload data
                     self.userActiveExchangesPull()
                     self.userActiveTradesPull()
                 }
@@ -487,15 +490,17 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         return UIModalPresentationStyle.None
     }
 
-    // allow for returning to user active exchanges view controller
+    // allow for returning to user active exchanges view controller w/o reload of data
     @IBAction func returnToUserActiveExchanges(segue:UIStoryboardSegue) {
         self.globalFlagForReturnFrom = true
     }
 
+    // allow for returning to user active exchanges view controller w/ reload of data
     @IBAction func returnToUserActiveExchangesWithReload(segue:UIStoryboardSegue) {
         self.globalFlagForReturnFrom = false
     }
 
+    // allow for returning to user active exchanges view controller and then go to chat
     @IBAction func returnBeforeCallingChat (segue:UIStoryboardSegue) {
         self.tabBarController!.selectedIndex = 2
         for index in 0...2 {
@@ -512,7 +517,7 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         // Dispose of any resources that can be recreated.
     }
 
-
+    // clear data stored in keychain if user logs out
     @IBAction func logoutAccount(sender: AnyObject) {
         keychainWrapper.mySetObject(nil, forKey: kSecAttrAccount)
         keychainWrapper.mySetObject(nil, forKey: kSecValueData)
@@ -521,14 +526,4 @@ class UserActiveExchangesViewController: UITableViewController, UIPopoverPresent
         
         self.performSegueWithIdentifier("returnToLogInScreen", sender: self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pwHash: String = ""
     var firstName: String = ""
     var lastName: String = ""
-    var deviceToken: String = "0"
+    var deviceToken: String = "aa20d2d96dda121d1b2705ba6ca79bb1621d79e5e231999989609fa79c7ffe89"
     var loggedIn: Bool = false
     
     let keychainWrapper = KeychainWrapper()
