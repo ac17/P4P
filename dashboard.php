@@ -345,7 +345,6 @@ PROFPIC;
                 	<input class = "btn btn-default" type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
                     <input class = "btn btn-default" type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
 			
-                <!--chatclient -->
               </div>
               
               <!-- Exchange Manager -->
