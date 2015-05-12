@@ -493,11 +493,8 @@ PROFPIC;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
-<<<<<<< HEAD
-                      echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:10%"><a onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\');" >'.$otherUsername.'</a></td><td style="width:10%"><a href = "/php/chat.php?recipient='.$otherUser.'" target="popup" onclick="window.open("/php/chat.php?recipient='.$otherUser.'","Chat","width=600,height=400")>'.$otherUsername.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
-=======
+
                       echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:20%"><a class = "clickable" onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\')" >'.$otherUsername.$photo.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
->>>>>>> b42d706b945668a79b9d07b15a0c80c00c7d683c
                     }
                     $counter = $counter + 1;    
                   }
