@@ -142,6 +142,7 @@ LOGINCONFIRMATION;
                         <input type="text" class="form-control" placeholder="Princeton netID" name="netid" id="netid" required><br>
                         <input type="password" class="form-control" placeholder="Password" name = "pw" id="pw" required><br>
                         <input type="hidden" name="hiddenSignup" id="hiddenSignup" value="true">
+                        <div class="g-recaptcha" data-sitekey="6LdV3QQTAAAAADzwPlAoGytMDhlc0E9G1Pjp_f7_"></div>
                         <button class="btn btn-default" id="signupSubmit" type="submit" form="signupForm" value="Submit">Submit</button>
                     </form>
 SIGNUP;
