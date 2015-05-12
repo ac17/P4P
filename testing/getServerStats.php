@@ -1,6 +1,9 @@
 <?php 
 require('../php/database_connect.php');
 
+/* Script to get the statictics on the server */ 
+
+// Increase memory limit
 ini_set('memory_limit','1000M');
 
 // close session to allow for parallel requests
@@ -63,7 +66,7 @@ echo '<div class="col-md-6 tableHeader">Questions: </div><div class="col-md-6 ta
 
 mysql_close($connection);
 
-
+// Compute average times for each API function
 echo '<div class="col-md-6 tableHeader">addExchange() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/addExchange.txt').'</div>';
 echo '<div class="col-md-6 tableHeader">getUserLocation() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/getUserLocation.txt').'</div>';
 echo '<div class="col-md-6 tableHeader">updateLocation() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/updateLocation.txt').'</div>';
@@ -77,6 +80,7 @@ echo '<div class="col-md-6 tableHeader">userActiveTrades() Average Time: </div><
 echo '<div class="col-md-6 tableHeader">cancelTrade() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/cancelTrade.txt').'</div>';
 echo '<div class="col-md-6 tableHeader">completeTrade() Average Time: </div><div class="col-md-6 tableCell">'.avgTime('./runtimeData/completeTrade.txt').'</div>';
 
+// Function for calucalting the average time, the times are in $file
 function avgTime($file)
 {
 	$lines = file($file, FILE_IGNORE_NEW_LINES);

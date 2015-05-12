@@ -1,5 +1,7 @@
 <html>
 
+<!-- Page for running a AI script outside of the control room -->
+
 <div id="output" style="text-align:left; font-family:'MS Serif', 'New York', serif; font-size:14px">
 </div>
 

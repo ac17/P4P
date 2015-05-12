@@ -1,7 +1,12 @@
 // JavaScript Document
+
+/* Functions which handel actions performed on the map. */
+
 var map;
 var markers = [];
 var infoWindows = [];
+
+/* Function to initialize the map. */
 
 function initialize() {
 	var mapOptions = {
@@ -12,10 +17,13 @@ function initialize() {
 		
 }
 
+/* Initialize the map when the page loads. */
 google.maps.event.addDomListener(window, 'load', initialize);
 
+/* Function to load all offers which match the query specified by the user interface */
 function getAllExchanges()
 {
+	// Clear the map of all markers.
 	deleteMarkers();
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -25,7 +33,8 @@ function getAllExchanges()
 	{//  IE6, IE5
 	  mapxmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	  
+	
+	// On sucessful AJAX return 
 	mapxmlhttp.onreadystatechange=function()
 	{
 		if (mapxmlhttp.readyState==4 && mapxmlhttp.status==200)
@@ -41,10 +50,13 @@ function getAllExchanges()
 		}
 	}
 	
+	// Get all exchanges to display them on the map
 	mapxmlhttp.open("GET", "../php/getAllExchanges.php", true);
 	mapxmlhttp.send();
 }
 
+/* Function to get all exchanges and display them on map.
+Used for the control room map. */
 function addUserToMap(user) {
 	var contentString = '<div class="infoWinContent">'+
       '<h4 class="infoWinHeading">'+
@@ -91,6 +103,7 @@ function addUserToMap(user) {
 	infoWindows.push(infowindow);
 }
 
+/* Function to pursue an offer with offerID */
 function pursueOffer(offerId) {
 	// show the offer as selected
 	document.getElementById(offerId).className = "selectedOfferDiv";
@@ -123,30 +136,42 @@ function pursueOffer(offerId) {
 			xmlhttp.send();
 }
 
-// Sets the map on all markers in the array.
+/* Below helper functions are based on code from:
+https://developers.google.com/maps/documentation/javascript/examples/marker-remove */ 
+
+/* Function to show all markers on the map */
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
 }
 
-// Removes the markers from the map, but keeps them in the array.
+/* Function to clear the markers from the map */
 function clearMarkers() {
-  setAllMap(null);
+  setAllMap(null); 
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setVisible(false);
+  }
 }
 
-// Shows any markers currently in the array.
+/* Function to shows markers the array.*/
 function showMarkers() {
   setAllMap(map);
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setVisible(true);
+  }
 }
 
-// Deletes all markers in the array by removing references to them.
+/* Function to delete all markers in the array*/
 function deleteMarkers() {
   clearMarkers();
   markers = [];
   infoWindows = [];
 }
 
+/* Function to change map zoom and center to show all markers. 
+Based on code from: 
+http://stackoverflow.com/questions/19304574/center-set-zoom-of-map-to-cover-all-markers-visible-markers */
 function updateMapToShowAllMarkers()
 {
 	var bounds = new google.maps.LatLngBounds();
@@ -169,6 +194,7 @@ function updateMapToShowAllMarkers()
 	}
 }
 
+/* Function to get the users current location and upload it to the database */
 function shareCurrentLocation(currentUserNetId)
 {
 	// Try W3C Geolocation (Preferred)

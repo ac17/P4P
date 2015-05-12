@@ -169,9 +169,8 @@ SETTINGS;
                 <li><a href="#tab-3">NPCs</a></li>
                 <li><a href="#tab-4">AI</a></li>
                 <li><a href="#tab-5">Garbage Collector</a></li>
-                <li><a href="#tab-6">?</a></li>
               </ul>
-              <!-- Map -->
+              <!-- Server Stats -->
               <div id="tab-1">
               	<div class="col-md-12" ><br /><br /></div>
                 
@@ -188,7 +187,7 @@ SETTINGS;
                 <input type="submit" value="Refresh" onClick="getServerStats()">
               </div>
               
-              <!-- NPC -->
+              <!-- NPC controls -->
               <div id="tab-3">
 
                   <div class="col-md-12">                    
@@ -214,7 +213,7 @@ SETTINGS;
               <input type="submit" value="Refresh" onClick="getAllNPCs()">
               </div>
               
-             <!-- Chat Manager -->
+             <!-- AI Manager -->
               <div class = "container-fluid" id="tab-4">  
                 
                  <div class="col-md-12">          
@@ -248,27 +247,12 @@ SETTINGS;
                  </div>
               </div> 
               
+              <!-- Garbage Collection -->
               <div class = "container-fluid" id="tab-5">  
                 <div class="col-md-12" id="garbageCollector"></div>
                 <input type="submit" value="Refresh" onClick="getGarbageStats()">
               </div>
               
-              <div class = "container-fluid" id="tab-6">
-              	<div id="scroller" style="width: 550px; height: 400px; margin: 0 auto;">
-                	<div class="innerScrollArea">
-                        <ul>
-                        <!-- Define photos here -->
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                            <li><img src="../img/BrianKernighan.jpg" height="300" width="200"/></li>
-                        </ul>
-                	</div>
-                </div>
-              </div> 
             </div>
           </div>        
         </div>
