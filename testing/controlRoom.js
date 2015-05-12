@@ -29,20 +29,10 @@ $(function() {
 				{
 					getGarbageStats();
 				}
-				
-				if (ui.newPanel.attr('id') == "tab-6")
-				{
-					tweenToNewSpeed(controller.fullSpeed);
-					setTimeout(stopWheel, 3000); 
-				}
 			}			  
 		});
  	});
 	      
-	function stopWheel()
-	{
-		tweenToNewSpeed(0, 3500);
-	}
 	
 	// functions for the elements of request/offer form 	
 	var spinner = $( "#spinner" ).spinner({
@@ -164,25 +154,6 @@ $(function() {
 		purgeNPC_xmlhttp.open("GET", "./purgeAllNPCs.php", true);
 		purgeNPC_xmlhttp.send();
 	});
-		
-	// current user's active offer and request lists 
-	$( "#requestList" ).selectable({
-		selecting: function( event, ui ) {
-			selectedRequests = [];
-		},
-		selected: function( event, ui ) {
-			selectedRequests.push([ui.selected.attributes.requestid.nodeValue,"Request"]);
-		}
-	});
-	
-	$( "#offerList" ).selectable({
-		selecting: function( event, ui ) {
-			selectedOffers = [];
-		},
-		selected: function( event, ui ) {
-			selectedOffers.push([ui.selected.attributes.offerId.nodeValue,"Offer"]);
-		}
-	});
 	
 	// dialogs 
 	$( "#invalid-passNum-dialog" ).dialog({
@@ -205,40 +176,6 @@ $(function() {
 	  }
 	});
 	
-	var scroller = $('#scroller div.innerScrollArea');
-	var scrollerContent = scroller.children('ul');
-	scrollerContent.children().clone().appendTo(scrollerContent);
-	var curX = 0;
-	scrollerContent.children().each(function(){
-		var $this = $(this);
-		$this.css('left', curX);
-		curX += $this.outerWidth(true);
-	});
-	var fullW = curX / 2;
-	var viewportW = scroller.width();
-
-	// Scrolling speed management
-	var controller = {curSpeed:0, fullSpeed:40};
-	var $controller = $(controller);
-	var tweenToNewSpeed = function(newSpeed, duration)
-	{
-		if (duration === undefined)
-			duration = 50;
-		$controller.stop(true).animate({curSpeed:newSpeed}, duration);
-	};
-
-
-	// Scrolling management; start the automatical scrolling
-	var doScroll = function()
-	{
-		var curX = scroller.scrollLeft();
-		var newX = curX + controller.curSpeed;
-		if (newX > fullW*2 - viewportW)
-			newX -= fullW;
-		scroller.scrollLeft(newX);
-	};
-	setInterval(doScroll, 20);
-	
 });
 
 function showError(errorTitle, errorMsg)
@@ -255,6 +192,7 @@ function loadUserData(netId)
 	setInterval(getAllExchanges, 3000);
 }
 
+/* Return data on all NPCs */
 function getAllNPCs()
 {
 	if (window.XMLHttpRequest)
@@ -278,6 +216,7 @@ function getAllNPCs()
 	getNPC_xmlhttp.send();
 }
 
+/* Delete specified NPC */
 function deleteNPC(NPCid)
 {
 	if (window.XMLHttpRequest)
@@ -301,6 +240,7 @@ function deleteNPC(NPCid)
 	delNPC_xmlhttp.send();
 }
 
+/* Fetches server statics */
 function getServerStats()
 {
 	if (window.XMLHttpRequest)
@@ -324,6 +264,7 @@ function getServerStats()
 	stats_xmlhttp.send();
 }
 
+/* Fetches statics on old chat messages and old offer/exhanges */
 function getGarbageStats()
 {
 	if (window.XMLHttpRequest)
@@ -347,6 +288,7 @@ function getGarbageStats()
 	garbage_xmlhttp.send();
 }
 
+/* Deletes all chat messages older than 10 days. */
 function cleanChatMessages()
 {
 	if (window.XMLHttpRequest)
@@ -374,6 +316,7 @@ function cleanChatMessages()
 	clean_xmlhttp.send();
 }
 
+/* Deletes all exhaneges older than today. */
 function cleanExchanges()
 {
 	if (window.XMLHttpRequest)

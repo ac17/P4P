@@ -1,8 +1,12 @@
 // JavaScript Document
+
+/* Functions which handel actions performed on the map. */
+
 var map;
 var markers = [];
 var infoWindows = [];
 
+/* Function to initialize the map. */
 function initialize() {
 	var mapOptions = {
 	  center: { lat: 40.348374, lng: -74.652918},
@@ -12,11 +16,15 @@ function initialize() {
 		
 }
 
+/* Initialize the map when the page loads. */
 google.maps.event.addDomListener(window, 'load', initialize);
 
+/* Function to load all offers which match the query specified by the user interface */
 function getMatchingExchanges()
 {
+	// Clear the map of all markers.
 	deleteMarkers();
+	
 	if (window.XMLHttpRequest)
 	{//  IE7+, Firefox, Chrome, Opera, Safari
 	  getMatchingExchanges_xmlhttp = new XMLHttpRequest();
@@ -28,8 +36,10 @@ function getMatchingExchanges()
 	  
 	getMatchingExchanges_xmlhttp.onreadystatechange=function()
 	{
+		// On sucessful AJAX return 
 		if (getMatchingExchanges_xmlhttp.readyState==4 && getMatchingExchanges_xmlhttp.status==200)
-		{			
+		{	
+			// Add all matching offers to the map
 			var json = JSON.parse(getMatchingExchanges_xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
@@ -37,16 +47,21 @@ function getMatchingExchanges()
 					var user = json.Users[i];
 					addUserToMap(user);
 				} 
+				// Show only those markers which are within a radius specified by the slider of the user's current location
 				showMarkersWithinRange($( "#range-slider" ).slider( "value" ));
+				// Adjust the map zoom and location to show all the markers 
 				updateMapToShowAllMarkers();
 			}
 		}
 	}
 	
+	// Call script to get all offers which match the user's query
 	getMatchingExchanges_xmlhttp.open("GET", "./php/searchExchangesUserSpecific.php?date=" + $( "#searchPassDate" ).val() + "&type=Offer" + "&numPasses=" + numPasses.spinner( "value" ) + "&club=" + $('#searchEatingClub :selected').text() + "&netId=" + document.getElementById("netId").value, true);
 	getMatchingExchanges_xmlhttp.send();
 }
 
+/* Function to get all exchanges and display them on map.
+Used for the control room map. */
 function getAllExchanges()
 {
 	deleteMarkers();
@@ -61,8 +76,10 @@ function getAllExchanges()
 	  
 	getAllExchanges_xmlhttp.onreadystatechange=function()
 	{
+		// On sucessful AJAX return
 		if (getAllExchanges_xmlhttp.readyState==4 && getAllExchanges_xmlhttp.status==200)
-		{			
+		{
+			// Display all markers
 			var json = JSON.parse(getAllExchanges_xmlhttp.responseText);
 			if (json.Users.length>0) {
 				var i;
@@ -70,16 +87,19 @@ function getAllExchanges()
 					var user = json.Users[i];
 					addUserToMap(user);
 				} 
-				showMarkersWithinRange($( "#range-slider" ).slider( "value" ));
+				// Readjust the map to show all markers 
 				updateMapToShowAllMarkers();
 			}
 		}
 	}
 	
+	// Call a script to get all exhanges
 	getAllExchanges_xmlhttp.open("GET", "./php/getAllExchanges.php", true);
 	getAllExchanges_xmlhttp.send();
 }
 
+/* Function to add a marker for a user and an info window which shows all 
+of that user's matching offers. */
 function addUserToMap(user) {
 	var photo; 
 	
@@ -134,6 +154,7 @@ function addUserToMap(user) {
 	  
 	var myLatlng = new google.maps.LatLng(user.lat, user.lng);
 	
+	// Create a marker and infowindow and add them to the map
 	var infowindow = new google.maps.InfoWindow({
       content: contentString
   	});
@@ -149,10 +170,12 @@ function addUserToMap(user) {
     	infowindow.open(map,marker);
   	});
 	
+	// Save the marker and infowindow in the arrays 
 	markers.push(marker);
 	infoWindows.push(infowindow);
 }
 
+/* Function to pursue an offer with offerID */
 function pursueOffer(offerId) {
 	// show the offer as selected
 	document.getElementById(offerId).className = "selectedOfferDiv";
@@ -173,6 +196,7 @@ function pursueOffer(offerId) {
 			{
 				if (pursueOffer_xmlhttp.readyState==4 && pursueOffer_xmlhttp.status==200)
 				{
+					// check if an error message has been returned 
 					if(pursueOffer_xmlhttp.responseText != "")
 					{
 						showError("A Small Problem...", pursueOffer_xmlhttp.responseText);
@@ -185,14 +209,17 @@ function pursueOffer(offerId) {
 			pursueOffer_xmlhttp.send();
 }
 
-// Sets the map on all markers in the array.
+/* Below helper functions are based on code from:
+https://developers.google.com/maps/documentation/javascript/examples/marker-remove */ 
+
+/* Function to show all markers on the map */
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
   }
 }
 
-// Removes the markers from the map, but keeps them in the array.
+/* Function to clear the markers from the map */
 function clearMarkers() {
   setAllMap(null); 
   for (var i = 0; i < markers.length; i++) {
@@ -200,7 +227,7 @@ function clearMarkers() {
   }
 }
 
-// Shows any markers currently in the array.
+/* Function to shows markers the array.*/
 function showMarkers() {
   setAllMap(map);
   for (var i = 0; i < markers.length; i++) {
@@ -208,17 +235,22 @@ function showMarkers() {
   }
 }
 
-// Deletes all markers in the array by removing references to them.
+/* Function to delete all markers in the array*/
 function deleteMarkers() {
   clearMarkers();
   markers = [];
   infoWindows = [];
 }
 
+/* Function to change map zoom and center to show all markers. 
+Based on code from: 
+http://stackoverflow.com/questions/19304574/center-set-zoom-of-map-to-cover-all-markers-visible-markers */
 function updateMapToShowAllMarkers()
 {
 	var atLeastOneMarker = false; 
 	
+	// check if there is atleat one visible marker before 
+	// changing the map 
 	var bounds = new google.maps.LatLngBounds();
 	for(i=0;i<markers.length;i++) {
 		if (markers[i].getVisible() == true)
@@ -247,6 +279,8 @@ function updateMapToShowAllMarkers()
 
 }
 
+/* Function to hide or display markers if they are with in a range from the user's current location.
+*/
 function showMarkersWithinRange(range)
 {
 	// the range is in miles
@@ -257,9 +291,10 @@ function showMarkersWithinRange(range)
 	browserSupportFlag = true;
 	navigator.geolocation.getCurrentPosition(function(position) {
 	  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-	  
+	  // if a location is sucessfuly obtained, clear all marrkes
 	  clearMarkers();
 
+	  // redisplay makers which are with the specified range 
 	  for(i=0;i<markers.length;i++) {
 	   	if (google.maps.geometry.spherical.computeDistanceBetween(initialLocation, markers[i].getPosition()) <= range)
 		{ 
@@ -268,6 +303,7 @@ function showMarkersWithinRange(range)
 		}																	   
 	  }
 	  
+	  // recenter and zoom map to show all visible markers
 	  updateMapToShowAllMarkers();
 	
 	}, function() {
@@ -280,6 +316,7 @@ function showMarkersWithinRange(range)
 	handleNoGeolocation(browserSupportFlag);
 	}
 	
+	// if an error occours in getting the location, display all of the markers
 	function handleNoGeolocation(errorFlag) {
 	if (errorFlag == true) { 
 	  showMarkers();
@@ -291,6 +328,7 @@ function showMarkersWithinRange(range)
 	}
 }
 
+/* Function to get the users current location and upload it to the database */
 function shareCurrentLocation(currentUserNetId)
 {
 	// Try W3C Geolocation (Preferred)
@@ -298,6 +336,7 @@ function shareCurrentLocation(currentUserNetId)
 	browserSupportFlag = true;
 	navigator.geolocation.getCurrentPosition(function(position) {
 	  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	  // if a location is sucessfuly obtained, center the map on it and update the database
 	  map.setCenter(initialLocation);
 		if (window.XMLHttpRequest)
 		{//  IE7+, Firefox, Chrome, Opera, Safari
@@ -329,6 +368,7 @@ function shareCurrentLocation(currentUserNetId)
 	handleNoGeolocation(browserSupportFlag);
 	}
 	
+	// Display error messages if location could not be obtained
 	function handleNoGeolocation(errorFlag) {
 	if (errorFlag == true) {
 	  showError("A Small Problem...", "Geolocation service failed.");

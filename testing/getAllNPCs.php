@@ -2,6 +2,8 @@
 header('Content-type: application/json');
 require('../php/database_connect.php');
 
+// list all NPCs
+
 // close session to allow for parallel requests
 session_write_close();
 

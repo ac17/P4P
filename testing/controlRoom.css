@@ -1,6 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* Style of the tops of div tables used in NPC manager, server stats and grabage collector. */
 .tableHeader {
 	font-size:12px;
 	font-weight:900;
@@ -8,6 +9,7 @@
 	text-align:left;
 }
 
+/* Style of the cells of div tables used in NPC manager, server stats and grabage collector. */
 .tableCell {
 	font-size:12px;
 	padding:3px;

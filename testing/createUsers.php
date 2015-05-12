@@ -4,6 +4,8 @@
 require('../php/database_connect.php');
 require('./randName.php');
 
+/* Create a new random user */
+
 $fullName = getRandomName();
 $fullName = explode(" ", $fullName);
 

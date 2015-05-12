@@ -345,7 +345,6 @@ PROFPIC;
                 	<input class = "btn btn-default" type="submit" value="Share Current Location" id="shareLocation" onClick="shareCurrentLocation('<?php echo $_SESSION['user']['netId']; ?>')">
                     <input class = "btn btn-default" type="submit" value="Reposition Map" id="shareLocation" onClick="updateMapToShowAllMarkers()">
 			
-                <!--chatclient -->
               </div>
               
               <!-- Exchange Manager -->
@@ -494,6 +493,7 @@ PROFPIC;
 
                     /* print mst recent chat and link to chat with the other user*/
                     if ($counter === 1){
+
                       echo '<tr><td style="width:20%">'.$row['Time'].'</td><td style="width:20%"><a class = "clickable" onclick = "register_popup(\''.$otherUser.'\', \''.$otherUsername.'\')" >'.$otherUsername.$photo.'</a></td><td style="width:60%">' . $userFrom . ': ' . $row['Conversation'] .'</td></tr>';  //$row['index'] the index here is a field name
                     }
                     $counter = $counter + 1;    

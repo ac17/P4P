@@ -4,6 +4,7 @@ require('../php/database_connect.php');
 // close session to allow for parallel requests
 session_write_close();
 
+// get all active exchanges older than today
 $query = 'SELECT * FROM Active_exchanges WHERE passDate<"'.date('Y-m-d').'"';
 $query_result = mysql_query($query);
 if(!$query_result){

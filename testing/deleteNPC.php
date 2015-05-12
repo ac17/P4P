@@ -6,6 +6,8 @@ require('../php/database_connect.php');
 session_start();
 session_write_close();
 
+/* Delete an NPC with id $npsID */ 
+
 $npcId = $_GET["npcId"];
 
 //Protect against SQL injection

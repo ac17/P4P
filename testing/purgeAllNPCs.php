@@ -9,6 +9,7 @@ session_write_close();
 $filename = 'NPCs.txt';
 $userIds = file($filename, FILE_IGNORE_NEW_LINES);
 
+// Delete all NPCs and their exchanges, chats, and user info but not their echanges in the history 
 foreach ($userIds as $userId)
 {
 	$user = mysql_fetch_assoc(mysql_query("SELECT * FROM Users WHERE id='" . $userId . "';"));

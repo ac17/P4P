@@ -20,6 +20,7 @@ $userIds = file($filename, FILE_IGNORE_NEW_LINES);
 
 set_time_limit (60000);
 
+// For all NPCs perform $heatbeats random actions specified by $actions array 
 foreach ($userIds as $userId)
 {
 	$user = loadUserInfo($userId);
