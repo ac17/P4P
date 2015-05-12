@@ -3,7 +3,7 @@
 require('../php/database_connect.php');
 require('exchange_api/exchangeAPI.php');
 
-//Get the id of the note to be displayed returned
+//Get an array of exchange ids to delete and the netId of their owner
 $currentUserNetId = $_GET["currentUserNetId"];
 $data = file_get_contents( "php://input" );
 $exchangesToRemove = json_decode( $data );
@@ -13,6 +13,8 @@ if(get_magic_quotes_gpc()){
 	$exchangesToRemove = stripslashes(mysql_real_escape_string($exchangesToRemove));
 }
 
+/* Remove all exchanges in the array of ids $exchanges to remove 
+which belong to $currentUserNetId */
 removeExchanges($currentUserNetId, $exchangesToRemove);
 
 mysql_close($connection);

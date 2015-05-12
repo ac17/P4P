@@ -2,7 +2,7 @@
 //Get login information 
 require('../php/database_connect.php');
 require('exchange_api/exchangeAPI.php');
-//Get the id of the note to be displayed returned
+//Get get info about the exchange (offer/request)
 $currentUserNetId = $_GET["netId"];
 $passDate = $_GET["passDate"];
 $type = $_GET["type"];
@@ -19,6 +19,7 @@ if(get_magic_quotes_gpc()){
 	$comment = stripslashes(mysql_real_escape_string($comment));
 }
 
+/* Function to add a new request or offer.*/
 addExchange($currentUserNetId, $passDate, $type, $numPasses, $passClub, $comment);
 
 mysql_close($connection);

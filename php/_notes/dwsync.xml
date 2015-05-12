@@ -30,4 +30,19 @@
 <file name="savePicture.php" server="ec2-54-149-32-72.us-west-2.compute.amazonaws.com/./" local="130754354960346547" remote="130754607000000000" />
 <file name="database_login_info.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130720468200000000" remote="130754615400000000" />
 <file name="database_connect.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130754180284196636" remote="130754615400000000" />
+<file name="pursueOffer.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759214385134526" remote="130759466400000000" />
+<file name="userActiveExchanges.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759218500729925" remote="130759470000000000" />
+<file name="userActiveTrades.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759219462284923" remote="130759471200000000" />
+<file name="getExchangeById.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759219641025146" remote="130759471200000000" />
+<file name="searchExchangesUserSpecific.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759221879063154" remote="130759473600000000" />
+<file name="searchExchanges.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759223857086291" remote="130759475400000000" />
+<file name="deleteRequest.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759225130639134" remote="130759476600000000" />
+<file name="removeExchanges.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759226187639591" remote="130759477800000000" />
+<file name="deleteOffer.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759226869188573" remote="130759478400000000" />
+<file name="completeTrade.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759229066354244" remote="130759480800000000" />
+<file name="cancelTrade.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759230982123820" remote="130759482600000000" />
+<file name="addExchange.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759232078816547" remote="130759483800000000" />
+<file name="getAllExchanges.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759232750404960" remote="130759484400000000" />
+<file name="acceptRequest.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759233976025061" remote="130759485600000000" />
+<file name="declineRequest.php" server="ec2-52-24-152-91.us-west-2.compute.amazonaws.com/./" local="130759241342466397" remote="130759492800000000" />
 </dwsync>
