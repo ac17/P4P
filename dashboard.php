@@ -61,6 +61,7 @@
   <body>
 
     <?php
+    /* Keep the settings modal open if a password or profile picture change just occurred. */
     if (isset($_POST['hiddenSettings']) && $_POST['hiddenSettings'] == 'true') {
         echo <<< CHANGESETTINGS
         <script type="text/javascript">
@@ -81,6 +82,7 @@ CHANGEPP;
         }
     ?>
 
+    <!-- Top Menu Bar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -111,6 +113,7 @@ CHANGEPP;
                 </div>
                 <div class="modal-body">
                     <?php
+                    /* Form for changing password */
                     $settingsForm = <<< SETTINGS
                     <form action="{$_SERVER['PHP_SELF']}" method="post" id="settingsForm">
                       <h3>Change your password.</h3>
@@ -122,6 +125,7 @@ CHANGEPP;
                         <button class="btn btn-default" id="settingsSubmit" type="submit" form="settingsForm" value="Submit">Submit</button>
                     </form>
 SETTINGS;
+                    /* Form for changing profile photo */
                     $changePhotoForm = <<<PROFPIC
                     <form action="{$_SERVER['PHP_SELF']}" method="post" id="photoForm" enctype="multipart/form-data">
                       <h3>Change your profile photo.</h3>
@@ -235,6 +239,7 @@ PROFPIC;
         </div>
     </div>
 
+    <!-- Left Side Bar -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">

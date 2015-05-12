@@ -36,6 +36,7 @@ include('login.php');
 
 <body>
 <?php
+    /* Keep the sign-up modal open if sign-up just occurred. */
     if (isset($_POST['hiddenSignup']) && $_POST['hiddenSignup'] == 'true') {
         echo <<< SIGNUPCONFIRMATION
         <script type="text/javascript">
@@ -46,6 +47,7 @@ include('login.php');
 SIGNUPCONFIRMATION;
     }
 
+    /* Keep the login modal open if login error just occurred. */
     if (isset($_POST['hiddenLogin']) && $_POST['hiddenLogin'] == 'true') {
         echo <<< LOGINCONFIRMATION
         <script type="text/javascript">
@@ -56,6 +58,7 @@ SIGNUPCONFIRMATION;
 LOGINCONFIRMATION;
     }
 ?>
+
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -148,6 +151,7 @@ LOGINCONFIRMATION;
 SIGNUP;
                     $dupUser = "Sorry, you have already signed up!";
                     $welcomeUser = "Thank you for signing up! Check your @princeton.edu email address (including your spam inbox) for a verification email - you must verify your account before using Passes for Passes.";
+                    
                     /* sign up new user */
                     if (isset($_POST['hiddenSignup']) && $_POST['hiddenSignup'] == 'true') {
                     $err = 0;

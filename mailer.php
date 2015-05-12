@@ -2,6 +2,7 @@
 /**
  * Use PHP Mailer to send msg (in HTML format) to the recipent with name recipName
  * and email recipEmail. Returns TRUE upon success and FALSE upon error.
+ * Sender is Passes for Passes (passesforpasses@gmail.com).
  */
 
 require 'PHPMailer-master/PHPMailerAutoload.php';

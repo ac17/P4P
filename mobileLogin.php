@@ -23,22 +23,13 @@ if (isValidUser($un, $pwHash)) {
 	$query = "UPDATE Users SET deviceID='" . $deviceID . "' WHERE netId='" . $un . "';";
 	mysql_query($query);
 
-	// load user data
+	// load user data without location field
 	$query = "SELECT * FROM Users WHERE netId='" . $un . "';";
 	$result = mysql_query($query);
 	if ($result) {
 		$resultArray[] = mysql_fetch_assoc($result);
 		foreach ($resultArray as &$x)
 			array_splice($x, 4, 1);
-
-		/* $row = mysql_fetch_assoc($result);
-		$resultArray['id'] = $row['id'];
-		$resultArray['firstName'] = $row['firstName'];
-		$resultArray['lastName'] = $row['lastName'];
-		$resultArray['photo'] = $row['photo'];
-		$resultArray['netId'] = $row['netId'];
-		$resultArray['reputation'] = $row['reputation'];
-		$resultArray['password'] = $row['password']; */
 	}
 }
 
