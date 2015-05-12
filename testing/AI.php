@@ -74,7 +74,7 @@ function sendRequest()
 // Creating offers
 function randomOffer($netId)
 {
-	$passDate = "05/" . mt_rand(3,9) . "/2015";
+	$passDate = "05/" . mt_rand(10,31) . "/2015";
 	$numPasses = mt_rand(1,3);
 	$clubs = ["Ivy Club", "Tower Club", "Tiger Inn", "Colonial", "Cottage", "Cap and Gown", "Cannon"];
 	$passClub = $clubs[mt_rand(0,4)];
