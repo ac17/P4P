@@ -1,2 +1,5 @@
 COS333.pem
 COS333.ppk
+php/database_login_info.php
+php/database_connect.php
+php/signup.php
