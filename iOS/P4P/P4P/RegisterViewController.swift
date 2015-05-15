@@ -18,9 +18,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var userPhotoView: UIImageView!
     
-  //  var userPhotoSet: Bool = false
+    var userPhotoSet: Bool = false
     
-    //var imagePicker: UIImagePickerController!
+    var imagePicker: UIImagePickerController!
     
     var backgroundView: UIImageView?
     
@@ -41,12 +41,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         websiteURLbase = appDelegate.websiteURLBase
 
         // Set background color to dark blue
-        backgroundView = UIImageView(image: UIImage(named: "RegisterScreenlight.png"))
+        backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
         backgroundView!.frame = UIScreen.mainScreen().bounds
                 self.view.insertSubview(backgroundView!, atIndex: 0)
         
         // Make the image view interactive
-        self.userPhotoView.userInteractionEnabled = false
+        self.userPhotoView.userInteractionEnabled = true
         
         // Set up the gesture recognizer
         tapRec.addTarget(self, action: "takeSelfie")
@@ -83,7 +83,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         view.endEditing(true)
         return false
     }
-    /*
+    
     // called when the image is tapped. opens the camera so the user can take a selfie
     func takeSelfie() {
         self.imagePicker = UIImagePickerController()
@@ -92,16 +92,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         if let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.userPhotoView.image = image
             self.userPhotoSet = true
-            self.uploadImageOne(image)
         }
     }
-        */
+    
     @IBAction func returnToHomeScreen(sender: AnyObject) {
         self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -151,10 +150,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.successRegisterLabel.alpha = 1.0
                             }, completion: nil)
-                        /*
                         if self.userPhotoSet {
-                            self.uploadImageOne(self.userPhotoView.image!)
-                        } */
+                            self.uploadImageOne(self.userPhotoView.image!, netID: netid)
+                        }
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
@@ -174,8 +172,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
         task.resume()
     }
-    /*
-    func uploadImageOne(image: UIImage) {
+    
+    func uploadImageOne(image: UIImage, netID: String) {
         var imageData = UIImagePNGRepresentation(image)
         
         if imageData != nil{
@@ -194,7 +192,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             // Title
             body.appendData(NSString(format: "\r\n--%@\r\n",boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
             body.appendData(NSString(format:"Content-Disposition: form-data; name=\"title\"\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
-            body.appendData("Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+            body.appendData(netID.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
             
             // Image
             body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -215,9 +213,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             println("returnString \(returnString)")
             
         }
-
+        
+        
     }
-    */
 }
 
 extension UIColor {

@@ -732,7 +732,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyhead.png" translatesAutoresizingMaskIntoConstraints="NO" id="PiZ-AB-Avm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyhead.png" translatesAutoresizingMaskIntoConstraints="NO" id="PiZ-AB-Avm">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PiZ-AB-Avm" secondAttribute="height" multiplier="3:4" id="mCh-fD-MSK"/>
