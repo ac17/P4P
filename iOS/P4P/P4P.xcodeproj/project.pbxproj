@@ -46,6 +46,7 @@
 		DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCAB768D1AD3015B004A2CD9 /* Main.storyboard */; };
 		DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAB76921AD3015B004A2CD9 /* LaunchScreen.xib */; };
 		DCAB76A01AD3015B004A2CD9 /* P4PTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */; };
+		DCB347C51B05BE1D00810F78 /* RegisterScreenlight.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB347C41B05BE1D00810F78 /* RegisterScreenlight.png */; };
 		DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = DCDC303A1AF97892008C13E8 /* HomeScreen.png */; };
 		DCE489D91AF1CC65009599D3 /* menuicon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE489D81AF1CC65009599D3 /* menuicon.png */; };
 		DCEE5DD91AD40F63003CBAB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */; };
@@ -109,6 +110,7 @@
 		DCAB76991AD3015B004A2CD9 /* P4PTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P4PTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCAB769E1AD3015B004A2CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAB769F1AD3015B004A2CD9 /* P4PTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4PTests.swift; sourceTree = "<group>"; };
+		DCB347C41B05BE1D00810F78 /* RegisterScreenlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RegisterScreenlight.png; sourceTree = "<group>"; };
 		DCDC303A1AF97892008C13E8 /* HomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeScreen.png; sourceTree = "<group>"; };
 		DCE489D81AF1CC65009599D3 /* menuicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuicon.png; path = Images.xcassets/menuicon.png; sourceTree = "<group>"; };
 		DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				A02B6EF51B024BF30050C97E /* Maps Tab Related */,
 				DC86CF531AF95CD000E0054F /* PopupView.swift */,
 				A05C3E2D1AD488BA007185A0 /* P4P-Bridging-Header.h */,
+				DCB347C41B05BE1D00810F78 /* RegisterScreenlight.png */,
 				A02B6EF61B024C040050C97E /* Keychain (Obj-C) */,
 				DCEE5DD81AD40F63003CBAB0 /* Images.xcassets */,
 				A0B432C81B01A9A500FA38FB /* Other Images */,
@@ -388,6 +391,7 @@
 				DC687CE31AFAC41000285F63 /* emptyhead.png in Resources */,
 				DC687CF11AFB495E00285F63 /* SplashScreen.png in Resources */,
 				DCAB768F1AD3015B004A2CD9 /* Main.storyboard in Resources */,
+				DCB347C51B05BE1D00810F78 /* RegisterScreenlight.png in Resources */,
 				DCDC303B1AF97892008C13E8 /* HomeScreen.png in Resources */,
 				DCAB76941AD3015B004A2CD9 /* LaunchScreen.xib in Resources */,
 				A05C3E351AD48B5A007185A0 /* GoogleMaps.bundle in Resources */,

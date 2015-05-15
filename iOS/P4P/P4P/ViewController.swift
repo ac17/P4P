@@ -94,7 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.text = ""
 
         let deviceID: String = (UIApplication.sharedApplication().delegate as! AppDelegate).deviceToken
-        let pwHash: String = password.MD5()
+        let pwHash: String = password.MD5P4P()
         let url = NSURL(string: self.websiteURLbase + "/mobileLogin.php?un=" + username + "&pwHash=" + pwHash + "&deviceID=" + deviceID)
         
         var loginViewController = self;
@@ -152,21 +152,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension Int {
-    func hexString() -> String {
+    func hexStringP4P() -> String {
         return NSString(format:"%02x", self) as String
     }
 }
 
 extension NSData {
-    func hexString() -> String {
+    func hexStringP4P() -> String {
         var string = String()
         for i in UnsafeBufferPointer<UInt8>(start: UnsafeMutablePointer<UInt8>(bytes), count: length) {
-            string += Int(i).hexString()
+            string += Int(i).hexStringP4P()
         }
         return string
     }
     
-    func MD5() -> NSData {
+    func MD5P4P() -> NSData {
         let result = NSMutableData(length: Int(CC_MD5_DIGEST_LENGTH))!
         CC_MD5(bytes, CC_LONG(length), UnsafeMutablePointer<UInt8>(result.mutableBytes))
         return NSData(data: result)
@@ -174,8 +174,8 @@ extension NSData {
 }
 
 extension String {
-    func MD5() -> String {
-        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)!.MD5().hexString()
+    func MD5P4P() -> String {
+        return (self as NSString).dataUsingEncoding(NSUTF8StringEncoding)!.MD5P4P().hexStringP4P()
     }
 }
 

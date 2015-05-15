@@ -18,9 +18,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var userPhotoView: UIImageView!
     
-    var userPhotoSet: Bool = false
+  //  var userPhotoSet: Bool = false
     
-    var imagePicker: UIImagePickerController!
+    //var imagePicker: UIImagePickerController!
     
     var backgroundView: UIImageView?
     
@@ -41,12 +41,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         websiteURLbase = appDelegate.websiteURLBase
 
         // Set background color to dark blue
-        backgroundView = UIImageView(image: UIImage(named: "darkbluebackground.png"))
+        backgroundView = UIImageView(image: UIImage(named: "RegisterScreenlight.png"))
         backgroundView!.frame = UIScreen.mainScreen().bounds
                 self.view.insertSubview(backgroundView!, atIndex: 0)
         
         // Make the image view interactive
-        self.userPhotoView.userInteractionEnabled = true
+        self.userPhotoView.userInteractionEnabled = false
         
         // Set up the gesture recognizer
         tapRec.addTarget(self, action: "takeSelfie")
@@ -83,7 +83,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         view.endEditing(true)
         return false
     }
-    
+    /*
     // called when the image is tapped. opens the camera so the user can take a selfie
     func takeSelfie() {
         self.imagePicker = UIImagePickerController()
@@ -92,15 +92,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-    
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         if let image: UIImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.userPhotoView.image = image
             self.userPhotoSet = true
+            self.uploadImageOne(image)
         }
     }
-    
+        */
     @IBAction func returnToHomeScreen(sender: AnyObject) {
         self.parentViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -130,8 +131,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         var lastName = self.lastNameTextField.text
         lastName = lastName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         let password = self.passwordTextField.text
-        let pwHash: String = password.MD5()
-        
+        let pwHash: String = password.MD5P4P().stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+
         if netid == "" || firstName == "" || lastName == "" || password == "" {
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.emptyFormsLabel.alpha = 1.0
@@ -150,10 +151,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
                         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                             self.successRegisterLabel.alpha = 1.0
                             }, completion: nil)
-                        /*if self.userPhotoSet {
-                            let url2 = "hi"
-                            self.uploadImage(self.userPhotoView.image!, url: url)
-                        }*/
+                        /*
+                        if self.userPhotoSet {
+                            self.uploadImageOne(self.userPhotoView.image!)
+                        } */
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
@@ -174,15 +175,47 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
         task.resume()
     }
     /*
-    func uploadImage(image:UIImage, url: String) {
-        let imageData:NSData = UIImageJPEGRepresentation(image, 100)
-        SRWebClient.POST(url)
-            .data(imageData, fieldName:"photo", data: ["foo":"bar","baz":"qux"])
-            .send({(response:AnyObject!, status:Int) -> Void in
-                // process success response
-                },failure:{(error:NSError!) -> Void in
-                    // process failure response
-            })
+    func uploadImageOne(image: UIImage) {
+        var imageData = UIImagePNGRepresentation(image)
+        
+        if imageData != nil{
+            var request = NSMutableURLRequest(URL: NSURL(string: websiteURLbase + "/php/savePicture.php")!)
+            var session = NSURLSession.sharedSession()
+            
+            request.HTTPMethod = "POST"
+            
+            var boundary = NSString(format: "---------------------------14737809831466499882746641449")
+            var contentType = NSString(format: "multipart/form-data; boundary=%@",boundary)
+            //  println("Content Type \(contentType)")
+            request.addValue(contentType as String, forHTTPHeaderField: "Content-Type")
+            
+            var body = NSMutableData.alloc()
+            
+            // Title
+            body.appendData(NSString(format: "\r\n--%@\r\n",boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"title\"\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Hello World".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+            
+            // Image
+            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(NSString(format:"Content-Disposition: form-data; name=\"image\"; filename=\"img.jpg\"\\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(imageData)
+            body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            
+            
+            request.HTTPBody = body
+            
+            
+            var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+            
+            var returnString = NSString(data: returnData!, encoding: NSUTF8StringEncoding)
+            
+            println("returnString \(returnString)")
+            
+        }
+
     }
     */
 }
